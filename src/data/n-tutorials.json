@@ -1,0 +1,23 @@
+[
+  {
+    "id": "n1",
+    "title": "全栈入门",
+    "desc": "Node/Express + 部署",
+    "category": "fullstack",
+    "icon": "🖥️",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "n1-1",
+        "title": "三层架构",
+        "content": "浏览器→Vue→Express→MySQL。Node.js后端,Express框架,RESTful API。"
+      },
+      {
+        "id": "n1-2",
+        "title": "部署+挑战",
+        "content": "部署:build→start→PM2→Nginx→HTTPS。做全栈项目:Express API返回JSON,前端fetch渲染。",
+        "tip": "你就是全栈大牛!"
+      }
+    ]
+  }
+]

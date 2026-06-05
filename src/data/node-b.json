@@ -1,0 +1,319 @@
+[
+  {
+    "id": "n7",
+    "title": "📁 fs 文件系统——读写文件",
+    "desc": "同步/异步读文件/写文件/目录操作/监视文件/Stream",
+    "category": "node",
+    "icon": "📁",
+    "difficulty": "基础",
+    "steps": [
+      {
+        "id": "n7-1",
+        "title": "读文件:同步 vs 异步 vs Promise",
+        "content": "fs模块提供<b>三种方式</b>读文件:<b>①fs.readFileSync(path, encoding)</b>→同步,阻塞执行(代码跑到这行会停住,等读完才继续)。<b>②fs.readFile(path, encoding, callback)</b>→异步回调(不阻塞,读完调callback)。<b>③fs.promises.readFile(path, encoding)</b>→返回Promise(推荐!用async/await写异步代码超爽)。💡<b>同步方法只有在启动初始化时用,服务器运行时一律用异步!</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> fs = require(<span style=\"color:#2ecc71\">'fs'</span>);\n\n<span style=\"color:#888\">// ①同步:简单但不推荐(会阻塞)</span>\n<span style=\"color:#667eea\">const</span> data1 = fs.readFileSync(<span style=\"color:#2ecc71\">'./data.txt'</span>, <span style=\"color:#2ecc71\">'utf-8'</span>);\nconsole.log(<span style=\"color:#2ecc71\">'同步:'</span>, data1);\n\n<span style=\"color:#888\">// ②异步回调:不阻塞,但容易回调地狱</span>\nfs.readFile(<span style=\"color:#2ecc71\">'./data.txt'</span>, <span style=\"color:#2ecc71\">'utf-8'</span>, (err, data2) => {\n  <span style=\"color:#667eea\">if</span> (err) <span style=\"color:#667eea\">throw</span> err;\n  console.log(<span style=\"color:#2ecc71\">'回调:'</span>, data2);\n});\n\n<span style=\"color:#888\">// ③Promise + async/await:最佳选择!</span>\n<span style=\"color:#667eea\">async function</span> readMyFile() {\n  <span style=\"color:#667eea\">const</span> data3 = <span style=\"color:#667eea\">await</span> fs.promises\n    .readFile(<span style=\"color:#2ecc71\">'./data.txt'</span>, <span style=\"color:#2ecc71\">'utf-8'</span>);\n  console.log(<span style=\"color:#2ecc71\">'Promise:'</span>, data3);\n}\nreadMyFile();</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 模拟 fs.readFileSync\nconsole.log('同步读取: 文件内容...');\nconsole.log('异步读取(回调): 文件内容...');\nconsole.log('Promise读取(async/await): 文件内容...');"
+        },
+        "propRef": "node.fs"
+      },
+      {
+        "id": "n7-2",
+        "title": "写文件:创建、覆盖、追加",
+        "content": "<b>fs.writeFileSync(path, content)</b>→同步写(会覆盖已有内容)。<b>fs.appendFileSync(path, content)</b>→追加内容(不覆盖,加到末尾)。<b>fs.existsSync(path)</b>→检查文件是否存在。<b>fs.mkdirSync(path)</b>→创建目录。<b>fs.readdirSync(path)</b>→读取目录下所有文件名。💡符号Sync意味着同步(阻塞),不用Sync就是异步(有callback)或Promise版本。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> fs = require(<span style=\"color:#2ecc71\">'fs'</span>);\n\n<span style=\"color:#888\">// 写文件(覆盖已有内容!)</span>\nfs.writeFileSync(<span style=\"color:#2ecc71\">'./note.txt'</span>, <span style=\"color:#2ecc71\">'Hello Node!'</span>);\n\n<span style=\"color:#888\">// 追加内容(加到末尾,不覆盖)</span>\nfs.appendFileSync(<span style=\"color:#2ecc71\">'./note.txt'</span>, <span style=\"color:#2ecc71\">'\\n第二行内容'</span>);\n\n<span style=\"color:#888\">// 检查文件是否存在</span>\n<span style=\"color:#667eea\">if</span> (fs.existsSync(<span style=\"color:#2ecc71\">'./note.txt'</span>)) {\n  console.log(<span style=\"color:#2ecc71\">'✅ 文件存在!'</span>);\n}\n\n<span style=\"color:#888\">// 创建目录 / 列出目录内容</span>\nfs.mkdirSync(<span style=\"color:#2ecc71\">'./docs'</span>, { recursive: <span style=\"color:#667eea\">true</span> });\n<span style=\"color:#667eea\">const</span> files = fs.readdirSync(<span style=\"color:#2ecc71\">'./docs'</span>);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 文件操作演示(在浏览器中模拟)\nconsole.log('✅ writeFileSync: 写入成功');\nconsole.log('✅ appendFileSync: 追加成功');\nconsole.log('✅ existsSync: note.txt 存在');\nconsole.log('✅ readdirSync: [file1.txt, file2.js, ...]');"
+        },
+        "propRef": "node.fs"
+      },
+      {
+        "id": "n7-3",
+        "title": "监视文件变化——fs.watch",
+        "content": "<b>fs.watch(filename, callback)</b>可以监听文件变化——别人改了文件,你立刻知道。这在开发环境中常用(代码改动→自动重启服务器)。callback收到(eventType, filename)两个参数,eventType是'change'或'rename'。💡还有fs.watchFile(轮询方式),但fs.watch更高效(用操作系统级监听)。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> fs = require(<span style=\"color:#2ecc71\">'fs'</span>);\n\n<span style=\"color:#888\">// 监听文件变化</span>\nfs.watch(<span style=\"color:#2ecc71\">'./data.txt'</span>, (eventType, filename) => {\n  console.log(<span style=\"color:#2ecc71\">`📝 文件「${filename}」${eventType}了!`</span>);\n  <span style=\"color:#888\">// 可以在这里自动重新读取 → 热更新!</span>\n});\n\n<span style=\"color:#888\">// 监听整个目录的变化</span>\nfs.watch(<span style=\"color:#2ecc71\">'./src'</span>, { recursive: <span style=\"color:#667eea\">true</span> }, (event, file) => {\n  console.log(<span style=\"color:#2ecc71\">`📁 文件:${file} 事件:${event}`</span>);\n});\n\nconsole.log(<span style=\"color:#2ecc71\">'👀 正在监视文件变化...按Ctrl+C退出'</span>);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// watch演示\nconsole.log('👀 模拟文件监听...');\nvar count = 0;\nvar interval = setInterval(function() {\n  count++;\n  console.log('📝 文件 data.txt change了! (第' + count + '次)');\n  if (count >= 3) {\n    clearInterval(interval);\n    console.log('按Ctrl+C退出监听');\n  }\n}, 1000);"
+        },
+        "propRef": "node.fs"
+      },
+      {
+        "id": "n7-4",
+        "title": "🎯 实战挑战:写一个笔记管理器",
+        "content": "创建 note.js,实现命令行笔记管理:<br>1. node note.js add 「标题」「内容」→ 追加一条笔记到notes.json<br>2. node note.js list → 列出所有笔记<br>3. 用fs模块读写notes.json文件<br>4. 每条笔记包含:时间、标题、内容<br>💡这是你第一个实用的Node.js小工具!",
+        "tip": "文件操作是Node.js最常见的任务——日志系统、配置管理、数据存储都离不开fs。",
+        "code": {
+          "html": "<!-- 🎯 note.js —— 命令行笔记管理器 -->\n<!-- 用法: node note.js add 标题 内容 -->\n<!-- 用法: node note.js list -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "// 🎯 笔记管理器核心逻辑\nvar notes = [];\n\nfunction addNote(title, content) {\n  notes.push({\n    time: new Date().toISOString(),\n    title: title,\n    content: content\n  });\n  console.log('✅ 笔记已添加:', title);\n}\n\nfunction listNotes() {\n  console.log('📋 共 ' + notes.length + ' 条笔记:');\n  notes.forEach(function(n, i) {\n    console.log('  [' + (i+1) + ']', n.title, '-', n.time.slice(0,10));\n  });\n}\n\n// 模拟演示\naddNote('学fs模块', '学会读文件和写文件');\naddNote('学HTTP', '用Node做Web服务器');\nlistNotes();\nconsole.log('\\n💡 在Node中把这个换成fs.readFileSync和fs.writeFileSync!');"
+        },
+        "propRef": "node.fs"
+      }
+    ]
+  },
+  {
+    "id": "n8",
+    "title": "🌐 HTTP 服务器——从零搭建 Web 服务",
+    "desc": "createServer/request/response/路由/JSON API",
+    "category": "node",
+    "icon": "🌐",
+    "difficulty": "基础",
+    "steps": [
+      {
+        "id": "n8-1",
+        "title": "5行代码启动一个Web服务器",
+        "content": "Node.js的http模块让你<b>不依赖任何框架就能创建Web服务器!</b>核心是 <b>http.createServer()</b>,它接受一个回调函数,每次有请求就调用。回调发两个参数:<b>req(请求)</b>包含URL/方法/请求头,<b>res(响应)</b>用来返回内容。最后 <b>server.listen(端口号)</b> 开始监听。💡浏览器访问http://localhost:3000就能看到你的服务器了!",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> http = require(<span style=\"color:#2ecc71\">'http'</span>);\n\n<span style=\"color:#888\">// 创建服务器</span>\n<span style=\"color:#667eea\">const</span> server = http.createServer((req, res) => {\n  <span style=\"color:#888\">// 设置响应头</span>\n  res.writeHead(200, { <span style=\"color:#2ecc71\">'Content-Type'</span>: <span style=\"color:#2ecc71\">'text/html; charset=utf-8'</span> });\n  \n  <span style=\"color:#888\">// 返回HTML内容</span>\n  res.end(<span style=\"color:#2ecc71\">'<h1>🚀 Hello from Node.js!</h1><p>请求的URL:'</span> + req.url + <span style=\"color:#2ecc71\">'</p>'</span>);\n});\n\n<span style=\"color:#888\">// 监听3000端口</span>\nserver.listen(3000, () => {\n  console.log(<span style=\"color:#2ecc71\">'✅ 服务器已启动: http://localhost:3000'</span>);\n});</pre></div><p style=\"color:#ccc;font-size:12px;text-align:center;margin-top:8px\">运行这段代码,浏览器打开 http://localhost:3000 !</p></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px;flex-direction:column}",
+          "js": "// HTTP服务器在浏览器中无法运行,\n// 但你可以把这个代码复制到本地用Node运行!\nconsole.log('✅ 模拟:服务器 http://localhost:3000 已启动');\nconsole.log('📨 收到请求 GET /');\nconsole.log('📤 返回: <h1>Hello from Node.js!</h1>');"
+        },
+        "propRef": "node.http"
+      },
+      {
+        "id": "n8-2",
+        "title": "解析请求:URL、方法、请求体",
+        "content": "req对象包含请求的所有信息:<b>req.url</b>→请求路径(如/api/users?id=1)。<b>req.method</b>→请求方法(GET/POST/PUT/DELETE)。<b>req.headers</b>→请求头(浏览器类型、Cookie等)。POST请求的<b>请求体(body)</b>是流式接收的,需要监听data事件拼接:let body='';req.on('data',chunk=>body+=chunk);req.on('end',()=>{...});",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> http = require(<span style=\"color:#2ecc71\">'http'</span>);\n\nhttp.createServer((req, res) => {\n  <span style=\"color:#888\">// 获取基本信息</span>\n  console.log(<span style=\"color:#2ecc71\">`「${req.method}」${req.url}「`</span>);\n  console.log(<span style=\"color:#2ecc71\">'User-Agent:'</span>, req.headers[<span style=\"color:#2ecc71\">'user-agent'</span>]);\n\n  <span style=\"color:#888\">// 简单路由</span>\n  <span style=\"color:#667eea\">if</span> (req.url === <span style=\"color:#2ecc71\">'/'</span> && req.method === <span style=\"color:#2ecc71\">'GET'</span>) {\n    res.end(<span style=\"color:#2ecc71\">'首页'</span>);\n  } <span style=\"color:#667eea\">else if</span> (req.url === <span style=\"color:#2ecc71\">'/api/users'</span> && req.method === <span style=\"color:#2ecc71\">'GET'</span>) {\n    res.setHeader(<span style=\"color:#2ecc71\">'Content-Type'</span>, <span style=\"color:#2ecc71\">'application/json'</span>);\n    res.end(JSON.stringify([\n      { name: <span style=\"color:#2ecc71\">'小明'</span>, age: 18 },\n      { name: <span style=\"color:#2ecc71\">'小红'</span>, age: 20 }\n    ]));\n  } <span style=\"color:#667eea\">else</span> {\n    res.writeHead(404);\n    res.end(<span style=\"color:#2ecc71\">'404 页面不存在'</span>);\n  }\n}).listen(3000);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px;flex-direction:column}",
+          "js": "// 模拟路由处理\nconsole.log('✅ 访问 GET / → 返回: 首页');\nconsole.log('✅ 访问 GET /api/users → 返回: JSON数据');\nconsole.log('✅ 访问 GET /other → 返回: 404页面不存在');\nconsole.log('💡 核心: req.url 做路由匹配!');"
+        },
+        "propRef": "node.http"
+      },
+      {
+        "id": "n8-3",
+        "title": "返回不同类型的内容",
+        "content": "服务器可以返回<b>任何类型</b>的内容,通过Content-Type头告诉浏览器怎么解析:<b>text/html</b>→HTML页面。<b>text/plain</b>→纯文本。<b>application/json</b>→JSON数据(API最常用)。<b>image/png</b>→图片。还可以用 <b>res.writeHead(状态码, 头对象)</b> 设置响应状态码(200=成功,404=没找到,500=服务器错误)。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// 不同的Content-Type示例</span>\n\n<span style=\"color:#888\">// HTML页面</span>\nres.writeHead(200, { <span style=\"color:#2ecc71\">'Content-Type'</span>: <span style=\"color:#2ecc71\">'text/html'</span> });\nres.end(<span style=\"color:#2ecc71\">'&lt;html&gt;&lt;body&gt;&lt;h1&gt;网页&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'</span>);\n\n<span style=\"color:#888\">// JSON API (最常用!)</span>\nres.writeHead(200, { <span style=\"color:#2ecc71\">'Content-Type'</span>: <span style=\"color:#2ecc71\">'application/json'</span> });\nres.end(JSON.stringify({ status: <span style=\"color:#2ecc71\">'ok'</span>, data: [1,2,3] }));\n\n<span style=\"color:#888\">// 纯文本</span>\nres.writeHead(200, { <span style=\"color:#2ecc71\">'Content-Type'</span>: <span style=\"color:#2ecc71\">'text/plain'</span> });\nres.end(<span style=\"color:#2ecc71\">'这是纯文本,不是HTML'</span>);\n\n<span style=\"color:#888\">// 常见状态码</span>\n<span style=\"color:#888\">// 200 OK | 201 Created | 301 重定向</span>\n<span style=\"color:#888\">// 400 请求错误 | 401 未登录 | 403 禁止 | 404 找不到</span>\n<span style=\"color:#888\">// 500 服务器炸了</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px;flex-direction:column}",
+          "js": "// Content-Type演示\nconsole.log('Content-Type: text/html → 浏览器渲染HTML');\nconsole.log('Content-Type: application/json → JSON数据(API)');\nconsole.log('Content-Type: text/plain → 纯文本(无格式)');\nconsole.log('\\n常见状态码:');\nconsole.log('  200 OK · 404 Not Found · 500 Server Error');"
+        },
+        "propRef": "node.http"
+      },
+      {
+        "id": "n8-4",
+        "title": "🎯 实战挑战:做一个JSON API服务器",
+        "content": "用http模块做一个简易的图书API:<br>1. GET /books → 返回所有图书的JSON数组<br>2. GET /books?id=1 → 返回单本图书<br>3. POST /books → 接收新书数据并添加<br>4. 任何其他请求返回404<br>💡虽然实际项目会用Express,但裸写一次http能让你真正理解Web服务器的原理!",
+        "tip": "掌握原生的http.createServer,你就理解了Express等框架底层在做什么。这是从「用户」变成「开发者」的关键一步。",
+        "code": {
+          "html": "<!-- 🎯 books-api.js -->\n<!-- 用原生http模块实现RESTful图书API -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "// 🎯 模拟图书API服务器\nvar books = [\n  {id:1,title:'JavaScript高级编程',author:'Nicholas'},\n  {id:2,title:'深入浅出Node.js',author:'朴灵'},\n  {id:3,title:'ES6标准入门',author:'阮一峰'}\n];\n\nfunction handleGET(url) {\n  if (url === '/books') {\n    console.log('📚 返回所有图书:', JSON.stringify(books));\n  } else if (url.startsWith('/books?id=')) {\n    var id = parseInt(url.split('=')[1]);\n    var book = books.find(function(b){return b.id===id});\n    console.log('📖 返回单本图书:', JSON.stringify(book || {error:'未找到'}));\n  }\n}\n\nhandleGET('/books?id=1');\nhandleGET('/books');\nconsole.log('\\n💡 在Node中换成http.createServer实现!');"
+        },
+        "propRef": "node.http"
+      }
+    ]
+  },
+  {
+    "id": "n9",
+    "title": "📦 npm——世界上最大的代码仓库",
+    "desc": "package.json/npm install/scripts/全局vs本地/npx",
+    "category": "node",
+    "icon": "📦",
+    "difficulty": "基础",
+    "steps": [
+      {
+        "id": "n9-1",
+        "title": "npm 是什么——像App Store的代码商店",
+        "content": "<b>npm(Node Package Manager)</b> 是Node.js自带的包管理器,也是<b>世界上最大的代码仓库</b>——200万+包!安装Node时npm就自动装好了。<b>一个「包」就是别人写好、打包好、可以复用的代码</b>。就像手机装App,开发者在项目里 npm install 就能拿别人的代码直接用。💡你能想到的功能,大概率npm上已经有现成的包了。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\"># 常用npm命令</span>\n\n<span style=\"color:#888\"># 初始化一个新项目(创建package.json)</span>\nnpm init -y\n\n<span style=\"color:#888\"># 安装一个包并保存到依赖</span>\nnpm install express\nnpm install --save-dev typescript    <span style=\"color:#888\"># 开发依赖</span>\n\n<span style=\"color:#888\"># 全局安装(命令行工具)</span>\nnpm install -g nodemon\n\n<span style=\"color:#888\"># 运行package.json中定义的脚本</span>\nnpm start\nnpm run dev\nnpm test\n\n<span style=\"color:#888\"># npx:不需要全局安装就能运行包</span>\nnpx create-react-app my-app</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// npm命令速查\nconsole.log('npm init -y      → 创建package.json');\nconsole.log('npm install xxx  → 安装依赖');\nconsole.log('npm run dev      → 运行开发脚本');\nconsole.log('npm install -g   → 全局安装');\nconsole.log('npx xxx          → 临时运行包');"
+        },
+        "propRef": "node.npm"
+      },
+      {
+        "id": "n9-2",
+        "title": "package.json——项目的身份证",
+        "content": "<b>package.json</b> 是每个Node项目的核心配置文件,包含:<b>name/version</b>→项目名和版本号。<b>scripts</b>→定义快捷命令(npm start → node index.js)。<b>dependencies</b>→生产环境依赖(上线要用的包)。<b>devDependencies</b>→开发环境依赖(只在开发时用,如测试工具/类型定义)。💡git提交代码时不要把node_modules传上去——别人拿到package.json后npm install就能自动下载。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:550px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\">{\n  <span style=\"color:#2ecc71\">\"name\"</span>: <span style=\"color:#2ecc71\">\"my-project\"</span>,\n  <span style=\"color:#2ecc71\">\"version\"</span>: <span style=\"color:#2ecc71\">\"1.0.0\"</span>,\n  <span style=\"color:#2ecc71\">\"description\"</span>: <span style=\"color:#2ecc71\">\"我的第一个Node项目\"</span>,\n\n  <span style=\"color:#2ecc71\">\"scripts\"</span>: {                    <span style=\"color:#888\">← 快捷命令</span>\n    <span style=\"color:#2ecc71\">\"start\"</span>: <span style=\"color:#2ecc71\">\"node index.js\"</span>,     <span style=\"color:#888\">→ npm start</span>\n    <span style=\"color:#2ecc71\">\"dev\"</span>: <span style=\"color:#2ecc71\">\"node --watch index.js\"</span>, <span style=\"color:#888\">→ npm run dev</span>\n    <span style=\"color:#2ecc71\">\"test\"</span>: <span style=\"color:#2ecc71\">\"node --test\"</span>\n  },\n\n  <span style=\"color:#2ecc71\">\"dependencies\"</span>: {               <span style=\"color:#888\">← 上线要用的</span>\n    <span style=\"color:#2ecc71\">\"express\"</span>: <span style=\"color:#2ecc71\">\"^4.19.0\"</span>,\n    <span style=\"color:#2ecc71\">\"axios\"</span>: <span style=\"color:#2ecc71\">\"^1.6.0\"</span>\n  },\n\n  <span style=\"color:#2ecc71\">\"devDependencies\"</span>: {           <span style=\"color:#888\">← 开发才用</span>\n    <span style=\"color:#2ecc71\">\"nodemon\"</span>: <span style=\"color:#2ecc71\">\"^3.1.0\"</span>\n  }\n}</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// package.json 字段说明\nconsole.log('name/version  → 项目的名字和版本');\nconsole.log('scripts       → 快捷命令 (npm run xxx)');\nconsole.log('dependencies  → 生产依赖 (express, axios...)');\nconsole.log('devDependencies → 开发依赖 (nodemon...)');\nconsole.log('\\n💡 版本号 ^4.19.0 表示: 4.x.x 中 >=4.19.0');"
+        },
+        "propRef": "node.npm"
+      },
+      {
+        "id": "n9-3",
+        "title": "npx —— 不用安装就能用",
+        "content": "<b>npx</b>(npm v5.2+自带)是一个神级工具:它能<b>运行npm上的包,但不用全局安装!</b>例如:npx create-react-app my-app 直接创建React项目(用完就删,不占磁盘)。npx cowsay 「hello」 临时下载cowsay并运行。💡npx = 临时借用,适用于脚手架、一次性工具。再也不需要 npm install -g 一堆全局包了!",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\"># npx 的使用场景</span>\n\n<span style=\"color:#888\"># ① 创建新项目(不用全局装脚手架)</span>\nnpx create-react-app my-app\nnpx create-vite my-vue-app\n\n<span style=\"color:#888\"># ② 运行一次性工具</span>\nnpx cowsay <span style=\"color:#2ecc71\">\"Hello Node!\"</span>\nnpx http-server .       <span style=\"color:#888\"># 临时启动静态文件服务</span>\n\n<span style=\"color:#888\"># ③ 运行特定版本的包</span>\nnpx node@18 index.js    <span style=\"color:#888\"># 用Node 18运行,不用切版本!</span>\n\n<span style=\"color:#888\"># 原理:下载→运行→删除,不污染全局环境</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// npx 演示\nconsole.log('npx 的神奇之处:');\nconsole.log('  ✅ 不用安装就能运行任何npm包');\nconsole.log('  ✅ 用完自动删除,不占磁盘');\nconsole.log('  ✅ 每次运行都是最新版本');\nconsole.log('  ✅ 可以指定包的特定版本');"
+        },
+        "propRef": "node.npm"
+      },
+      {
+        "id": "n9-4",
+        "title": "🎯 实战挑战:创建一个完整项目",
+        "content": "1. 新建文件夹 my-api,cd进入<br>2. npm init -y 创建package.json<br>3. npm install express 安装Express<br>4. 在scripts中添加「start」:「node server.js」<br>5. 创建server.js,用require引入express<br>6. npm start 启动服务<br>💡这就是每个Node项目的标准初始化流程!",
+        "tip": "package.json + node_modules 是Node项目的两大核心。学会npm你就打开了200万+开源包的大门!",
+        "code": {
+          "html": "<!-- 🎯 项目初始化流程 -->\n<!-- 1. npm init -y -->\n<!-- 2. npm install express -->\n<!-- 3. 写 server.js -->\n<!-- 4. npm start -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "// 🎯 初始化脚本步骤演示\nconsole.log('$ mkdir my-api && cd my-api');\nconsole.log('$ npm init -y');\nconsole.log('  ✅ package.json 已创建');\nconsole.log('$ npm install express');\nconsole.log('  ✅ express 已安装到 node_modules/');\nconsole.log('$ echo node server.js > package.json scripts.start');\nconsole.log('$ npm start');\nconsole.log('  ✅ 服务器启动! http://localhost:3000');"
+        },
+        "propRef": "node.npm"
+      }
+    ]
+  },
+  {
+    "id": "n10",
+    "title": "🎯 Events 事件驱动——Node 的灵魂",
+    "desc": "EventEmitter/on/emit/once/事件驱动架构",
+    "category": "node",
+    "icon": "🎯",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "n10-1",
+        "title": "事件驱动——不同于传统编程的思维方式",
+        "content": "Node.js大量使用<b>事件驱动模式</b>。和传统「一行一行顺序执行」不同,事件驱动是:<b>先定义「当某事发生时做什么」,然后等着事情发生。</b>这就像你设置手机闹钟——你定义「8点时响铃」,然后该干嘛干嘛,不用一直盯着时钟。Node的很多核心模块(HTTP请求、文件读取、Stream)都是基于事件的。<b>EventEmitter是这一切的基类。</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> EventEmitter = require(<span style=\"color:#2ecc71\">'events'</span>);\n\n<span style=\"color:#888\">// 创建一个事件发射器</span>\n<span style=\"color:#667eea\">const</span> myEmitter = <span style=\"color:#667eea\">new</span> EventEmitter();\n\n<span style=\"color:#888\">// ① on: 注册事件监听器(等事情发生)</span>\nmyEmitter.on(<span style=\"color:#2ecc71\">'alarm'</span>, (time) => {\n  console.log(<span style=\"color:#2ecc71\">`🔔 闹钟响了! 现在是 ${time}`</span>);\n});\n\n<span style=\"color:#888\">// ② once: 只触发一次,然后自动注销</span>\nmyEmitter.once(<span style=\"color:#2ecc71\">'welcome'</span>, (name) => {\n  console.log(<span style=\"color:#2ecc71\">`🎉 欢迎你,${name}! (只欢迎一次)`</span>);\n});\n\n<span style=\"color:#888\">// ③ emit: 触发事件(让事情发生)</span>\nmyEmitter.emit(<span style=\"color:#2ecc71\">'alarm'</span>, <span style=\"color:#2ecc71\">'8:00'</span>);\nmyEmitter.emit(<span style=\"color:#2ecc71\">'welcome'</span>, <span style=\"color:#2ecc71\">'小明'</span>);\nmyEmitter.emit(<span style=\"color:#2ecc71\">'welcome'</span>, <span style=\"color:#2ecc71\">'小红'</span>); <span style=\"color:#888\">// 无效!once已注销</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// EventEmitter 浏览器模拟\nconsole.log('🔔 闹钟响了! 现在是 8:00');\nconsole.log('🎉 欢迎你,小明! (只欢迎一次)');\nconsole.log('(第二次welcome不会触发,因为once已注销)');\nconsole.log('\\n💡 on=一直监听, once=只监听一次');"
+        },
+        "propRef": "node.events"
+      },
+      {
+        "id": "n10-2",
+        "title": "EventEmitter 的核心方法",
+        "content": "<b>emitter.on(event, listener)</b>→注册一个事件监听器(可以注册多个)。<b>emitter.once(event, listener)</b>→注册一次性的监听器(触发后自动移除)。<b>emitter.emit(event, ...args)</b>→触发事件(所有注册的监听器同步执行)。<b>emitter.off(event, listener)</b>→移除特定监听器。<b>emitter.eventNames()</b>→列出所有已注册的事件。💡错误处理:监听'error'事件不然错误会崩程序!",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> emitter = <span style=\"color:#667eea\">new</span> (require(<span style=\"color:#2ecc71\">'events'</span>))();\n\n<span style=\"color:#888\">// 一个事件可以绑多个监听器</span>\nemitter.on(<span style=\"color:#2ecc71\">'login'</span>, (user) => \n  console.log(<span style=\"color:#2ecc71\">'📝 记录日志:'</span>, user));\nemitter.on(<span style=\"color:#2ecc71\">'login'</span>, (user) => \n  console.log(<span style=\"color:#2ecc71\">'📊 统计在线:'</span>, user));\nemitter.on(<span style=\"color:#2ecc71\">'login'</span>, (user) => \n  console.log(<span style=\"color:#2ecc71\">'🔐 检查权限:'</span>, user));\n\n<span style=\"color:#888\">// 必需:监听error事件!</span>\nemitter.on(<span style=\"color:#2ecc71\">'error'</span>, (err) => \n  console.error(<span style=\"color:#2ecc71\">'💥 错误:'</span>, err.message));\n\n<span style=\"color:#888\">// 查看所有事件</span>\nconsole.log(emitter.eventNames()); <span style=\"color:#888\">// ['login', 'error']</span>\n\n<span style=\"color:#888\">// 触发login → 三个监听器都会执行!</span>\nemitter.emit(<span style=\"color:#2ecc71\">'login'</span>, <span style=\"color:#2ecc71\">'小明'</span>);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 多个监听器演示\nconsole.log('触发 login 事件...');\nconsole.log('📝 记录日志: 小明');\nconsole.log('📊 统计在线: 小明');\nconsole.log('🔐 检查权限: 小明');\nconsole.log('\\n一个事件触发,三个监听器同时响应!');\nconsole.log('这就是事件驱动架构——解耦的秘诀');"
+        },
+        "propRef": "node.events"
+      },
+      {
+        "id": "n10-3",
+        "title": "Node.js 内置的事件驱动模块",
+        "content": "很多Node核心模块本身就是EventEmitter实例:<b>http.Server</b>继承EventEmitter→可以监听'request'、'connection'事件。<b>fs.ReadStream</b>→'data'、'end'、'error'事件。<b>process</b>→'exit'、'uncaughtException'事件。<b>net.Socket</b>→'data'、'close'事件。💡理解事件驱动后,你会发现Node的设计如此优雅——所有I/O操作都是「发起请求,监听完成事件」。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> http = require(<span style=\"color:#2ecc71\">'http'</span>);\n\n<span style=\"color:#888\">// http.Server 就是 EventEmitter!</span>\n<span style=\"color:#667eea\">const</span> server = http.createServer();\n\n<span style=\"color:#888\">// 监听事件(和on一样)</span>\nserver.on(<span style=\"color:#2ecc71\">'request'</span>, (req, res) => {\n  console.log(<span style=\"color:#2ecc71\">'📨 收到请求:'</span>, req.url);\n  res.end(<span style=\"color:#2ecc71\">'OK'</span>);\n});\n\nserver.on(<span style=\"color:#2ecc71\">'listening'</span>, () => {\n  console.log(<span style=\"color:#2ecc71\">'✅ 服务器已就绪'</span>);\n});\n\nserver.on(<span style=\"color:#2ecc71\">'error'</span>, (err) => {\n  console.error(<span style=\"color:#2ecc71\">'💥 服务器炸了:'</span>, err);\n});\n\nserver.listen(3000);\n\n<span style=\"color:#888\">// process也是EventEmitter</span>\nprocess.on(<span style=\"color:#2ecc71\">'exit'</span>, () => console.log(<span style=\"color:#2ecc71\">'👋 程序退出'</span>));\nprocess.on(<span style=\"color:#2ecc71\">'uncaughtException'</span>, err => \n  console.error(<span style=\"color:#2ecc71\">'⚠️ 未捕获异常:'</span>, err));</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 内置Emitter演示\nconsole.log('✅ 服务器已就绪');\nconsole.log('📨 收到请求: /');\nconsole.log('📨 收到请求: /api/users');\nconsole.log('\\nhttp.Server = EventEmitter!');\nconsole.log('process = EventEmitter!');\nconsole.log('fs.ReadStream = EventEmitter!');"
+        },
+        "propRef": "node.events"
+      }
+    ]
+  },
+  {
+    "id": "n11",
+    "title": "🚀 实战——搭建 RESTful API 服务",
+    "desc": "综合项目:Express框架/REST接口/CRUD/文件存储",
+    "category": "node",
+    "icon": "🚀",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "n11-1",
+        "title": "项目结构——从零开始组织代码",
+        "content": "真实项目的代码不是堆在一个文件里的。好的项目结构让代码清晰、好维护:<b>server.js</b>→入口文件(启动服务器)。<b>routes/</b>→路由模块(一个文件负责一类API)。<b>data/</b>→数据存储(JSON文件或数据库)。<b>middleware/</b>→中间件(日志、错误处理等)。💡先搭骨架,再填功能——这就是软件工程的分治思想。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:500px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\">my-api/\n├── package.json\n├── server.js           <span style=\"color:#888\">← 入口:启动服务器</span>\n├── routes/\n│   ├── books.js        <span style=\"color:#888\">← 图书相关接口</span>\n│   └── users.js        <span style=\"color:#888\">← 用户相关接口</span>\n├── data/\n│   └── books.json      <span style=\"color:#888\">← 数据文件(后续换数据库)</span>\n└── node_modules/       <span style=\"color:#888\">← npm install 生成</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 项目结构说明\nconsole.log('📁 my-api/');\nconsole.log('  📄 package.json  ← 项目配置+依赖');\nconsole.log('  📄 server.js     ← 入口,启动服务');\nconsole.log('  📁 routes/        ← 路由,分模块');\nconsole.log('  📁 data/          ← 数据存储');\nconsole.log('  📁 node_modules/  ← 第三方依赖');"
+        },
+        "propRef": "node.project"
+      },
+      {
+        "id": "n11-2",
+        "title": "CRUD 全套 API——增删改查",
+        "content": "RESTful API的四个基本操作(Create/Read/Update/Delete):<b>GET /api/books</b>→获取全部图书列表。<b>GET /api/books/:id</b>→获取单本图书。<b>POST /api/books</b>→添加新图书(数据在请求体)。<b>PUT /api/books/:id</b>→更新图书信息。<b>DELETE /api/books/:id</b>→删除图书。💡REST是Web API的事实标准,学会它就学会了80%的后端工作。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// routes/books.js</span>\n<span style=\"color:#667eea\">const</span> fs = require(<span style=\"color:#2ecc71\">'fs'</span>);\n<span style=\"color:#667eea\">const</span> path = require(<span style=\"color:#2ecc71\">'path'</span>);\n<span style=\"color:#667eea\">const</span> dbPath = path.join(__dirname, <span style=\"color:#2ecc71\">'../data/books.json'</span>);\n\n<span style=\"color:#888\">// GET /api/books — 获取全部</span>\n<span style=\"color:#667eea\">function</span> getAllBooks(req, res) {\n  <span style=\"color:#667eea\">const</span> books = JSON.parse(fs.readFileSync(dbPath));\n  res.end(JSON.stringify(books));\n}\n\n<span style=\"color:#888\">// POST /api/books — 创建新图书</span>\n<span style=\"color:#667eea\">function</span> createBook(req, res) {\n  <span style=\"color:#667eea\">let</span> body = <span style=\"color:#2ecc71\">''</span>;\n  req.on(<span style=\"color:#2ecc71\">'data'</span>, chunk => body += chunk);\n  req.on(<span style=\"color:#2ecc71\">'end'</span>, () => {\n    <span style=\"color:#667eea\">const</span> books = JSON.parse(fs.readFileSync(dbPath));\n    <span style=\"color:#667eea\">const</span> newBook = JSON.parse(body);\n    newBook.id = Date.now();\n    books.push(newBook);\n    fs.writeFileSync(dbPath, JSON.stringify(books, <span style=\"color:#667eea\">null</span>, 2));\n    res.end(JSON.stringify(newBook));\n  });\n}\n\n<span style=\"color:#888\">// 导出路由处理函数</span>\nmodule.exports = { getAllBooks, createBook };</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 模拟图书API\nvar books = [{id:1,title:'Node.js入门',author:'小明'}];\nconsole.log('GET /api/books →', JSON.stringify(books));\nconsole.log('POST /api/books → 已创建新书');\nconsole.log('PUT /api/books/1 → 已更新');\nconsole.log('DELETE /api/books/1 → 已删除');\nconsole.log('\\n💡 CRUD = Create/Read/Update/Delete');"
+        },
+        "propRef": "node.project"
+      },
+      {
+        "id": "n11-3",
+        "title": "启动并测试你的API",
+        "content": "在server.js中:<b>①引入http模块</b>→<b>②创建服务器</b>→<b>③根据req.url和req.method分发到路由函数</b>→<b>④listen监听端口</b>。测试用:浏览器打开 http://localhost:3000/api/books 看JSON返回,或使用Postman/curl工具发POST请求。💡看到自己写的API返回JSON数据的那一刻,你就正式成为全栈开发者了!",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// server.js — 入口文件</span>\n<span style=\"color:#667eea\">const</span> http = require(<span style=\"color:#2ecc71\">'http'</span>);\n<span style=\"color:#667eea\">const</span> books = require(<span style=\"color:#2ecc71\">'./routes/books'</span>);\n\nhttp.createServer((req, res) => {\n  <span style=\"color:#888\">// 设置CORS允许跨域(前后端分离必备)</span>\n  res.setHeader(<span style=\"color:#2ecc71\">'Access-Control-Allow-Origin'</span>, <span style=\"color:#2ecc71\">'*'</span>);\n  res.setHeader(<span style=\"color:#2ecc71\">'Content-Type'</span>, <span style=\"color:#2ecc71\">'application/json'</span>);\n\n  <span style=\"color:#888\">// 路由分发</span>\n  <span style=\"color:#667eea\">if</span> (req.url === <span style=\"color:#2ecc71\">'/api/books'</span> && req.method === <span style=\"color:#2ecc71\">'GET'</span>) {\n    books.getAllBooks(req, res);\n  } <span style=\"color:#667eea\">else if</span> (req.url === <span style=\"color:#2ecc71\">'/api/books'</span> && req.method === <span style=\"color:#2ecc71\">'POST'</span>) {\n    books.createBook(req, res);\n  } <span style=\"color:#667eea\">else</span> {\n    res.writeHead(404);\n    res.end(JSON.stringify({ error: <span style=\"color:#2ecc71\">'接口不存在'</span> }));\n  }\n}).listen(3000, () => console.log(<span style=\"color:#2ecc71\">'🚀 API已启动: http://localhost:3000'</span>));</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// server.js 模拟\nconsole.log('🚀 API已启动: http://localhost:3000');\nconsole.log('📡 可访问接口:');\nconsole.log('  GET  http://localhost:3000/api/books');\nconsole.log('  POST http://localhost:3000/api/books');\nconsole.log('\\n测试命令:');\nconsole.log('  curl http://localhost:3000/api/books');"
+        },
+        "propRef": "node.project"
+      },
+      {
+        "id": "n11-4",
+        "title": "🎯 终极挑战:完善你的API项目",
+        "content": "在以上基础上完善图书管理系统:<br>1. 实现PUT /api/books/:id 更新图书<br>2. 实现DELETE /api/books/:id 删除图书<br>3. 添加数据校验(标题不能为空)<br>4. 添加错误处理中间件<br>5. (加分)换成Express框架重写,感受两者的区别<br>💡完成了这个项目,你就可以在简历上写「独立开发RESTful API服务」了!",
+        "tip": "恭喜你完成Node.js全部学习!你掌握了:运行环境→模块系统→核心模块→文件操作→HTTP服务→npm→事件驱动→项目实战。你已经从纯前端变成了全栈开发者!",
+        "code": {
+          "html": "<!-- 🎯 图书管理系统 - 最终项目 -->\n<!-- 实现完整的 CRUD API -->\n<!-- 部署到服务器上给别人用! -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "// 🎯 Node.js学习完成!\nvar skills = [\n  '✅ Node.js运行环境',\n  '✅ CommonJS和ES模块',\n  '✅ path/os/url内置模块',\n  '✅ fs文件读写',\n  '✅ http服务器',\n  '✅ npm包管理',\n  '✅ EventEmitter事件驱动',\n  '✅ RESTful API开发'\n];\nconsole.log('========== 🎉 Node.js学习完成 ==========');\nskills.forEach(function(s) { console.log(s); });\nconsole.log('======================================');\nconsole.log('\\n下一步: Express → MySQL → 部署上线!');"
+        },
+        "propRef": "node.project"
+      }
+    ]
+  },
+  {
+    "id": "n12",
+    "title": "💾 Buffer——二进制数据的世界",
+    "desc": "Buffer概念/alloc/from/toString/编码转换/实战",
+    "category": "node",
+    "icon": "💾",
+    "difficulty": "基础",
+    "steps": [
+      {
+        "id": "n12-1",
+        "title": "计算机只懂01——为什么需要Buffer",
+        "content": "JavaScript本来只处理字符串,但Node.js要处理文件、网络数据、图片、加密——这些全是<b>二进制</b>。Buffer就是Node.js中专门处理二进制数据的「容器」。可以把它想象成<b>一个固定长度、只能存数字0-255的数组</b>。每个「格子」叫1字节(Byte)= 8个比特(bit)。💡<b>Buffer是Node.js处理底层数据的基础,fs/http/crypto都依赖它。</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\">// Buffer = 字节数组 (每个元素 0-255)</span>\n<span style=\"color:#667eea\">const</span> buf = Buffer.from([72, 101, 108, 108, 111]);\n\nconsole.log(buf);          <span style=\"color:#888\">// <Buffer 48 65 6c 6c 6f></span>\nconsole.log(buf.toString()); <span style=\"color:#888\">// Hello (UTF-8)</span>\nconsole.log(buf.length);     <span style=\"color:#888\">// 5 字节</span>\n\n<span style=\"color:#888\">// 中文1个字=3字节(UTF-8)</span>\n<span style=\"color:#667eea\">const</span> b2 = Buffer.from(<span style=\"color:#2ecc71\">你好</span>);\nconsole.log(b2.length); <span style=\"color:#888\">// 6 (不是2!)</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('Buffer.from([72,101,108,108,111]).toString() → Hello');console.log('Buffer.from(\\'你好\\') 长度=6 (中文1字=3字节UTF-8)');"
+        },
+        "propRef": "node.buffer"
+      },
+      {
+        "id": "n12-2",
+        "title": "创建Buffer的三种方式",
+        "content": "<b>①Buffer.alloc(size)</b>:分配指定字节内存并自动初始化为0,<b>安全但稍慢</b>。<b>②Buffer.from(array|string)</b>:从已有数据创建(最常用)。<b>③Buffer.allocUnsafe(size)</b>:分配未初始化内存(可能含旧数据),<b>速度快但要手动fill清空</b>。💡永远用alloc,除非你确定马上会覆盖全部内容。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\">// ① alloc: 安全分配,自动填0</span>\n<span style=\"color:#667eea\">const</span> b1 = Buffer.alloc(10);\n<span style=\"color:#888\">// <Buffer 00 00 00 00 ...> 全0</span>\n\n<span style=\"color:#888\">// ② from: 从数据创建</span>\n<span style=\"color:#667eea\">const</span> b2 = Buffer.from(<span style=\"color:#2ecc71\">Hello</span>);    <span style=\"color:#888\">// 从字符串</span>\n<span style=\"color:#667eea\">const</span> b3 = Buffer.from([1, 2, 3]); <span style=\"color:#888\">// 从数组</span>\n\n<span style=\"color:#888\">// ③ allocUnsafe: 快但可能有脏数据</span>\n<span style=\"color:#667eea\">const</span> b4 = Buffer.allocUnsafe(10000);\nb4.fill(0); <span style=\"color:#888\">// 手动清空!</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('Buffer.alloc(10)  → 10字节全0 (安全)');console.log('Buffer.from(\\'Hi\\')  → 2字节');console.log('Buffer.allocUnsafe → 需fill清空');"
+        },
+        "propRef": "node.buffer"
+      },
+      {
+        "id": "n12-3",
+        "title": "编码转换——Buffer的灵魂操作",
+        "content": "buf.toString(encoding)将Buffer解码为字符串:<b>'utf-8'</b>→最常用(多字节Unicode)。<b>'hex'</b>→十六进制(每字节2个字符,调试神器)。<b>'base64'</b>→把二进制转成纯文本(图片嵌入HTML / API传输)。<b>'latin1'</b>→单字节。反向操作:Buffer.from(str,encoding)再编码回去。💡前端常见的base64图片 `data:image/png;base64,xxx` 就是这样来的!",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> buf = Buffer.from(<span style=\"color:#2ecc71\">Hello Node!</span>);\n\n<span style=\"color:#888\">// UTF-8 (默认,原样输出)</span>\nconsole.log(buf.toString(<span style=\"color:#2ecc71\">utf-8</span>)); <span style=\"color:#888\">// Hello Node!</span>\n\n<span style=\"color:#888\">// 十六进制 (调试神器)</span>\nconsole.log(buf.toString(<span style=\"color:#2ecc71\">hex</span>));\n<span style=\"color:#888\">// → 48656c6c6f204e6f646521</span>\n\n<span style=\"color:#888\">// Base64 (二进制→文本)</span>\nconsole.log(buf.toString(<span style=\"color:#2ecc71\">base64</span>));\n<span style=\"color:#888\">// → SGVsbG8gTm9kZSE=</span>\n\n<span style=\"color:#888\">// 反向: hex/base64 → Buffer → 字符串</span>\n<span style=\"color:#667eea\">const</span> x = Buffer.from(<span style=\"color:#2ecc71\">68656c6c6f</span>, <span style=\"color:#2ecc71\">hex</span>);\nconsole.log(x.toString()); <span style=\"color:#888\">// hello</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('utf8=日常, hex=调试, base64=传输');console.log('Hello→hex=48656c6c6f→base64=SGVsbG8=');"
+        },
+        "propRef": "node.buffer"
+      },
+      {
+        "id": "n12-4",
+        "title": "🎯 实战:文件编码转换器",
+        "content": "写一个程序,读取文本文件→转成Base64输出:1.fs.readFileSync不传encoding返回Buffer 2.buf.toString('base64')转换 3.保存到新文件。💡提示:任何文件(图片/PDF/音频)都可以这样转成Base64文本!",
+        "code": {
+          "html": "<!-- 🎯 文件→Base64 转换器 -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "console.log('步骤: 1. const buf = fs.readFileSync(./image.png)');console.log('     2. const b64 = buf.toString(\\'base64\\')');console.log('     3. fs.writeFileSync(./image.txt, b64)');"
+        },
+        "propRef": "node.buffer"
+      }
+    ]
+  }
+]

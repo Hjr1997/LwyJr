@@ -1,0 +1,1309 @@
+[
+  {
+    "id": "h0",
+    "title": "📑 HTML 完全学习大纲",
+    "desc": "20章 · 对标W3Schools · 每章有实战挑战",
+    "category": "html",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h0-1",
+        "title": "大纲——点击任意章节开始学习",
+        "content": "20章覆盖HTML全部核心知识，从零基础到能独立写页面。每章末尾有实战挑战。",
+        "code": {
+          "html": "<div style=\"max-width:700px;margin:0 auto;padding:16px\"><h2 style=\"text-align:center;color:#f39c12\">📑 HTML 完全学习大纲</h2><p style=\"text-align:center;color:#888;font-size:12px;margin-bottom:12px\">20章 · 对标W3Schools · 每章有挑战</p><table style=\"width:100%;border-collapse:collapse;font-size:11px\"><tr style=\"background:linear-gradient(135deg,#f39c12,#e74c3c)\"><td colspan=3 style=\"padding:6px 8px;color:#fff;font-weight:bold;font-size:12px\">🌐 入门篇：认识HTML</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h1</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">HTML简介·你的第一个网页</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h1'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h2</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">HTML基础·骨架与编辑器</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h2'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h3</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">HTML元素·网页的积木</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h3'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h4</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">HTML属性·元素的遥控器</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h4'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:linear-gradient(135deg,#f39c12,#e74c3c)\"><td colspan=3 style=\"padding:6px 8px;color:#fff;font-weight:bold;font-size:12px\">📝 基础篇：文本与内容</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h5</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">标题h1-h6·层级艺术</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h5'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h6</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">段落p/br/hr/pre</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h6'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h7</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">文本格式化·strong/em/mark</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h7'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h8</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">引用·blockquote/q/cite</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h8'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h9</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">注释·实体·Emoji</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h9'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:linear-gradient(135deg,#f39c12,#e74c3c)\"><td colspan=3 style=\"padding:6px 8px;color:#fff;font-weight:bold;font-size:12px\">💬 进阶篇：链接·图片·列表·表格</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h10</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">链接a标签全解</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h10'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h11</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">图片img/picture/figure</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h11'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h12</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">列表ul/ol/dl</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h12'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h13</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">表格table全家桶</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h13'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:linear-gradient(135deg,#f39c12,#e74c3c)\"><td colspan=3 style=\"padding:6px 8px;color:#fff;font-weight:bold;font-size:12px\">📋 高级篇：表单·布局·多媒体</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h14</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">区块div/span/class/id</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h14'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h15</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">表单(上)·form+input</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h15'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h16</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">表单(下)·控件全解</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h16'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h17</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">iframe·网页嵌入</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h17'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h18</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">多媒体video/audio</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h18'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:linear-gradient(135deg,#f39c12,#e74c3c)\"><td colspan=3 style=\"padding:6px 8px;color:#fff;font-weight:bold;font-size:12px\">🚀 工程篇：布局·语义·最佳实践</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h19</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">语义化与响应式布局</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h19'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr><tr style=\"background:transparent\"><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><b style=\"color:#f39c12\">h20</b></td><td style=\"padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px\">全标签速查与总结</td><td style=\"padding:5px 8px;border-bottom:1px solid #333\"><span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h20'}))\" style=\"display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px\">📖</span></td></tr></table></div>",
+          "css": "body{margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.summary"
+      }
+    ]
+  },
+  {
+    "id": "h1",
+    "title": "🌐 HTML简介——你的第一个网页",
+    "desc": "什么是HTML / 新手心态 / 第一个Hello World / HTML能做什么",
+    "category": "html",
+    "icon": "🌐",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h1-1",
+        "title": "什么是HTML——网页的「骨骼」",
+        "content": "HTML 全称 HyperText Markup Language（超文本标记语言）。它不是编程语言，而是<b>标记语言</b>——用标签来「标记」内容是什么：这里是标题、那里是段落、这是一张图片。如果把网页比作一个人，HTML是骨骼，CSS是皮囊（美丑），JavaScript是肌肉（行为）。学HTML不需要任何编程基础，只要你用过浏览器就够了。",
+        "code": {
+          "html": "<!-- 这就是HTML：用标签包裹内容 -->\n<h1>我是标题</h1>\n<p>我是一个段落，里面有<b>加粗</b>的文字。</p>\n<img src=\"https://placehold.co/200x100/667eea/fff?text=图片\" alt=\"示例图片\">",
+          "css": "body{text-align:center;padding:40px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}h1{color:#667eea}p{color:#ccc;font-size:14px;line-height:1.8}img{max-width:100%;border-radius:8px;margin-top:12px}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h1-2",
+        "title": "你的第一个HTML文件——Hello World",
+        "content": "新建一个文件叫 index.html，用记事本或 VS Code 打开，输入下面代码，然后双击用浏览器打开。你会看到浏览器标签页上写着「我的第一个网页」，页面中显示「Hello World!」。<b>恭喜，你已经是一个网页开发者了！</b>",
+        "code": {
+          "html": "<!DOCTYPE html>\n<html lang=\"zh\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>我的第一个网页</title>\n</head>\n<body>\n  <h1>Hello World!</h1>\n  <p>这是我的第一个HTML页面，我会越来越厉害的！</p>\n</body>\n</html>",
+          "css": "body{text-align:center;padding:60px 20px;font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;min-height:100vh}h1{font-size:2.5em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}p{font-size:1.1em;opacity:.9}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h1-3",
+        "title": "HTML能做什么——不只是文字",
+        "content": "HTML可以展示文字、图片、视频、表格、表单（登录/注册/搜索），还可以嵌入地图、播放音乐。你现在看到的所有网页，底层都是HTML。淘宝、B站、GitHub——去掉CSS和JS后，剩下的HTML骨架就像是一份带格式的Word文档。学会HTML = 学会了网页开发的「普通话」。",
+        "code": {
+          "html": "<h2>HTML可以展示：</h2>\n<ul>\n  <li>📝 <b>文字内容</b>：标题、段落、列表</li>\n  <li>🖼️ <b>图片视频</b>：商品图、教程视频</li>\n  <li>📊 <b>表格数据</b>：课程表、排行榜</li>\n  <li>📋 <b>表单交互</b>：登录框、搜索框</li>\n  <li>🗺️ <b>嵌入内容</b>：地图、第三方小工具</li>\n</ul>",
+          "css": "body{padding:30px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}h2{color:#667eea;margin-bottom:16px}li{color:#ccc;line-height:2;font-size:15px}b{color:#f39c12}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h1-4",
+        "title": "🎯 实战挑战：创建你的第一个网页",
+        "content": "1. 电脑上新建一个文本文件，改名为 index.html\n2. 用记事本打开，输入 Hello World 的完整代码\n3. 双击用浏览器打开，看看效果\n4. 改一改 h1 和 p 里的文字，刷新浏览器观察变化",
+        "tip": "恭喜你写出了人生第一个HTML页面！记住这种感觉，后面只是在这个骨架上不断添砖加瓦。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "propRef": "html.basics"
+      }
+    ]
+  },
+  {
+    "id": "h2",
+    "title": "📄 HTML基础——网页骨架与编辑器",
+    "desc": "DOCTYPE/html/head/meta/title/body 完整骨架 + VS Code推荐",
+    "category": "html",
+    "icon": "📄",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h2-1",
+        "title": "<!DOCTYPE> —— 网页的「身份证」",
+        "content": "<b><!DOCTYPE html></b> 必须写在每个HTML文件的第一行。它的作用是告诉浏览器：「这是一个HTML5文档，请用最新的标准来渲染」。不写DOCTYPE，浏览器会进入「怪异模式」（把网页当成20年前的老网页处理），样式可能乱掉。<b>记住：第一行永远是 <code>&lt;!DOCTYPE html&gt;</code></b>。",
+        "code": {
+          "html": "<!DOCTYPE html>\n<!-- ⬆ 第一行，告诉浏览器我是HTML5 -->\n<html lang=\"zh\">\n  <!-- ⬆ 根元素，lang=\"zh\" 告诉搜索引擎这是中文 -->\n<body>\n  <p style=\"color:#2ecc71\">✅ DOCTYPE写对了，浏览器按标准渲染</p>\n</body>\n</html>",
+          "css": "body{padding:30px;text-align:center;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}p{font-size:18px}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h2-2",
+        "title": "<html> + <head> —— 根和头",
+        "content": "<code>&lt;html lang=\"zh\"&gt;</code> 是所有元素的「根」，整个页面包裹在它里面。lang属性告诉浏览器和搜索引擎这个网页用什么语言（zh=中文，en=英文）。<code>&lt;head&gt;</code> 是页面的「后台」——用户看不到里面写的东西，但它极其重要：设置字符编码（防乱码）、网页标题、关键词、引入CSS和JS文件都在这里。",
+        "code": {
+          "html": "<!DOCTYPE html>\n<html lang=\"zh\">\n<head>\n  <meta charset=\"UTF-8\">    <!-- 字符编码，防中文乱码 -->\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta name=\"description\" content=\"这是我的网站描述\">\n  <title>网页标题——显示在浏览器标签页上</title>\n</head>\n<body>\n  <p style=\"color:#ccc\">head里的东西用户看不见，但对SEO和浏览器很重要</p>\n</body>\n</html>",
+          "css": "body{padding:30px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}p{text-align:center}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h2-3",
+        "title": "<meta> 标签详解——页面的身份证信息",
+        "content": "meta标签全部放在head中。最关键的三个：<b>charset</b>（字符编码，不写中文会乱码）、<b>viewport</b>（响应式必备，让手机端正常显示）、<b>description</b>（SEO描述，搜索引擎展示的摘要）。其他常用：keywords（关键词）、author（作者）、og:title/og:image（分享到微信/QQ时显示的卡片信息）。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#667eea;margin-top:0\">必写的两个meta：</h3>\n  <code style=\"display:block;color:#2ecc71;margin:6px 0\">&lt;meta charset=\"UTF-8\"&gt;</code>\n  <span style=\"color:#888;font-size:13px\">← 不放 = 中文可能变乱码</span>\n  <code style=\"display:block;color:#2ecc71;margin:6px 0\">&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>\n  <span style=\"color:#888;font-size:13px\">← 不放 = 手机上字会小得像蚂蚁</span>\n  <h3 style=\"color:#f39c12;margin:14px 0 4px\">推荐写的meta：</h3>\n  <code style=\"display:block;color:#aaa;margin:4px 0;font-size:13px\">name=\"description\" → 搜索摘要（影响点击率）</code>\n  <code style=\"display:block;color:#aaa;margin:4px 0;font-size:13px\">property=\"og:title\" → 社交分享卡片</code>\n  <code style=\"display:block;color:#aaa;margin:4px 0;font-size:13px\">name=\"author\" → 标注作者</code>\n</div>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.meta"
+      },
+      {
+        "id": "h2-4",
+        "title": "推荐开发工具——VS Code",
+        "content": "不要用记事本写代码！强烈推荐 <b>VS Code</b>（免费）：语法高亮、自动补全、Emmet快捷输入（输入 ! 然后按Tab就能生成完整HTML骨架）。再安装 <b>Live Server</b> 插件，保存代码浏览器自动刷新，效率提升10倍。<b>工欲善其事，必先利其器。</b>",
+        "code": {
+          "html": "<div style=\"text-align:center;padding:20px\">\n  <h2 style=\"color:#667eea\">🛠️ 推荐工具栈</h2>\n  <div style=\"background:#1e1e30;display:inline-block;padding:20px 30px;border-radius:12px;text-align:left\">\n    <p style=\"color:#2ecc71\"><b>编辑器：</b>VS Code（免费·最流行）</p>\n    <p style=\"color:#2ecc71\"><b>必备插件：</b>Live Server（自动刷新）</p>\n    <p style=\"color:#2ecc71\"><b>快捷技巧：</b>新建.html文件 → 输入! → 按Tab → 完整骨架自动生成</p>\n    <p style=\"color:#2ecc71\"><b>预览方式：</b>右键 → Open with Live Server</p>\n  </div>\n</div>",
+          "css": "body{font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee;}p{margin:12px 0;font-size:15px}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h2-5",
+        "title": "🎯 实战挑战：手写完整HTML骨架",
+        "content": "在VS Code中新建一个HTML文件，手写（不要用!+Tab快捷）完整的HTML5骨架：DOCTYPE + html(lang=zh) + head(charset + viewport + description + title) + body(一个h1标题 + 一段p自我介绍)。保存后用Live Server预览。",
+        "tip": "手写骨架是每个前端的基本功。多写几遍，直到闭着眼睛都能写出来。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "propRef": "html.basics"
+      }
+    ]
+  },
+  {
+    "id": "h3",
+    "title": "🧱 HTML元素——网页的积木",
+    "desc": "标签语法 / 嵌套规则 / 空元素 / 块级vs行内 / 大小写规范",
+    "category": "html",
+    "icon": "🧱",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h3-1",
+        "title": "元素 = 开始标签 + 内容 + 结束标签",
+        "content": "一个完整的HTML元素由三部分组成：<code>&lt;开始标签&gt;内容&lt;/结束标签&gt;</code>。比如 <code>&lt;p&gt;你好&lt;/p&gt;</code> 就是一个段落元素。开始标签和结束标签之间的内容就是显示给用户看的。<b>这是HTML最基本的语法，必须刻在脑子里。</b>",
+        "code": {
+          "html": "<!-- 标准元素结构：开始标签 + 内容 + 结束标签 -->\n<h1>这是一个标题元素</h1>\n<p>这是一个<b>段落</b>元素</p>\n\n<!-- 空元素（自闭合标签）：没有内容，没有结束标签 -->\n<br>  <!-- 换行，只有开始标签 -->\n<hr> <!-- 水平分割线 -->\n<img src=\"https://placehold.co/300x50/764ba2/fff?text=空元素示例\" alt=\"图片\">",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}h1{color:#667eea}p{color:#ccc;line-height:2}hr{border:1px solid #764ba2}img{max-width:100%}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h3-2",
+        "title": "嵌套规则——像俄罗斯套娃一样",
+        "content": "HTML元素可以嵌套，但必须遵循<b>「先进后出、先开后关」</b>的原则。就像括号一样：<code>&lt;div&gt;&lt;p&gt;内容&lt;/p&gt;&lt;/div&gt;</code> ✅ 正确；<code>&lt;div&gt;&lt;p&gt;内容&lt;/div&gt;&lt;/p&gt;</code> ❌ 交叉嵌套是错的。<b>新手最常见的bug就是标签没关对。</b>建议每写一个开始标签，立刻写对应的结束标签，再往中间填内容。",
+        "code": {
+          "html": "<div style=\"border:2px solid #2ecc71;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#2ecc71;margin:0 0 8px\">✅ 正确嵌套（div > h3 + p）</h3>\n  <p style=\"color:#ccc\">外层div包裹着h3和这个p，像俄罗斯套娃一样层层包含。</p>\n</div>\n\n<div style=\"border:2px solid #e74c3c;padding:16px;border-radius:8px;margin-top:12px\">\n  <h3 style=\"color:#e74c3c;margin:0 0 8px\">❌ 常见错误</h3>\n  <p style=\"color:#e74c3c\"><b>忘记关闭标签</b>——浏览器会「猜测」帮你补上，但结果往往不是你想要的</p>\n  <p style=\"color:#e74c3c\"><b>交叉嵌套</b>——&lt;a&gt;&lt;b&gt;文字&lt;/a&gt;&lt;/b&gt; 这是错的</p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h3-3",
+        "title": "块级元素 vs 行内元素",
+        "content": "HTML元素分为两大类：<b>块级元素</b>（block）独占一整行，如 div/p/h1/ul，可以设宽高；<b>行内元素</b>（inline）不换行，如 span/a/img/strong，只占内容宽度。理解这一点是学习CSS布局的基础。<b>记住：div是块，span是行内——这是最常用的两个「万能容器」。</b>",
+        "code": {
+          "html": "<h3 style=\"color:#667eea\">块级元素示例（每个占一整行）：</h3>\n<div style=\"background:#667eea;color:#fff;padding:10px;margin:4px 0;border-radius:4px\">div块1——独占一行</div>\n<div style=\"background:#764ba2;color:#fff;padding:10px;margin:4px 0;border-radius:4px\">div块2——独占一行</div>\n\n<h3 style=\"color:#f39c12;margin-top:16px\">行内元素示例（排在同一行）：</h3>\n<p style=\"color:#ccc\">\n  这是<span style=\"background:#667eea;color:#fff;padding:2px 8px;border-radius:3px\">span1</span>\n  和<span style=\"background:#2ecc71;color:#fff;padding:2px 8px;border-radius:3px\">span2</span>\n  和<span style=\"background:#e74c3c;color:#fff;padding:2px 8px;border-radius:3px\">span3</span>\n  ——它们不会换行\n</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h3-4",
+        "title": "大小写和格式规范",
+        "content": "HTML标签<b>不区分大小写</b>（<code>&lt;P&gt;</code>和<code>&lt;p&gt;</code>效果一样），但W3C和所有前端团队都统一用<b>小写</b>。理由很简单：写小写手指不用按Shift，快；所有人的代码风格统一，好维护。<b>行业铁律：标签名全小写，属性值用双引号。</b>",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#2ecc71;margin:0 0 8px\">✅ 规范的写法：</h3>\n  <code style=\"color:#ccc;font-size:14px\">&lt;p class=\"intro\"&gt;大家好&lt;/p&gt;</code>\n  <p style=\"color:#888;font-size:12px;margin:2px 0 12px\">标签小写 + 属性双引号 = 行业标准</p>\n  <h3 style=\"color:#e74c3c;margin:0 0 8px\">❌ 不推荐（虽然能用）：</h3>\n  <code style=\"color:#e74c3c;font-size:14px\">&lt;P CLASS=intro&gt;大家好&lt;/P&gt;</code>\n  <p style=\"color:#888;font-size:12px;margin:2px 0\">大写 + 属性无引号 = 看起来很业余</p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.basics"
+      },
+      {
+        "id": "h3-5",
+        "title": "🎯 实战挑战：造一座积木塔",
+        "content": "用HTML搭一个「个人简介卡片」：外层div（块级容器），里面放h2（标题）、p（段落，其中用span包裹关键词）、img（头像占位图）、以及一个包含3个li的ul列表（技能列表）。重点是标签嵌套正确，不要交叉闭合。",
+        "tip": "F12打开开发者工具 → Elements面板，检查你的嵌套结构是否正确。正确的嵌套像一棵树，每层只被外层包裹。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "propRef": "html.basics"
+      }
+    ]
+  },
+  {
+    "id": "h4",
+    "title": "🔧 HTML属性——元素的「遥控器」",
+    "desc": "属性写法/href/src/alt/class/id/style/title 全属性详解",
+    "category": "html",
+    "icon": "🔧",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h4-1",
+        "title": "属性是什么——给标签配「参数」",
+        "content": "属性写在开始标签的内部：<code>&lt;标签 属性名=\"属性值\"&gt;</code>。比如 <code>&lt;a href=\"https://baidu.com\"&gt;</code> 中，href就是属性名，网址就是属性值。属性用来配置标签的行为：链接跳哪、图片显示什么、输入框能不能编辑。每个标签支持的属性不同，但有一些<b>全局属性</b>所有标签都能用（class、id、style、title）。",
+        "code": {
+          "html": "<!-- href属性：告诉a标签跳转目标 -->\n<a href=\"https://www.w3school.com.cn\">点我去W3School</a>\n\n<!-- src属性：告诉img图片在哪，alt属性：图片加载失败时显示的文字 -->\n<img src=\"https://placehold.co/200x60/667eea/fff?text=图片\" alt=\"示例图片\" style=\"display:block;margin:12px 0\">\n\n<!-- disabled属性：禁用按钮（布尔属性，只写属性名就行） -->\n<button disabled>这个按钮点不了</button>",
+          "css": "body{padding:30px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}a{color:#667eea;display:block;margin:8px 0;text-decoration:none;font-size:16px}button{padding:8px 16px;margin-top:8px;background:#667eea;color:#fff;border:none;border-radius:4px;cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}img{border-radius:6px}",
+          "js": ""
+        },
+        "propRef": "html.attributes"
+      },
+      {
+        "id": "h4-2",
+        "title": "布尔属性——有就生效，没有就不生效",
+        "content": "有些属性不需要值，写了就生效，不写就不生效。比如 <code>disabled</code>（禁用）、<code>checked</code>（选中）、<code>required</code>（必填）、<code>readonly</code>（只读）、<code>selected</code>（默认选中）。<b>注意：布尔属性只写属性名，不要写 =\"true\"。</b>",
+        "code": {
+          "html": "<h3 style=\"color:#667eea\">布尔属性示例：</h3>\n\n<input type=\"text\" placeholder=\"这个输入框被禁用了\" disabled style=\"display:block;width:250px;padding:8px;margin:8px 0;background:#333;color:#888;border:1px solid #555;border-radius:4px\">\n\n<input type=\"checkbox\" checked> 默认选中（checked布尔属性）\n\n<br><br>\n\n<input type=\"text\" placeholder=\"必填项\" required style=\"width:250px;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px\">\n<span style=\"color:#888;font-size:12px\">← required 布尔属性，不填不能提交</span>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.attributes"
+      },
+      {
+        "id": "h4-3",
+        "title": "最常用的属性详解",
+        "content": "属性分两类：<b>特定属性</b>（只有某些标签能用，如href只有a能用，src只有img/video/audio能用）和<b>全局属性</b>（所有标签都能用）。下面是最常用的属性速查表，先记住这10个就够了。",
+        "code": {
+          "html": "<div style='background:#1e1e30;padding:20px;border-radius:8px;max-width:600px;margin:0 auto'>\n<p style='color:#ccc;font-size:14px;line-height:1.8;margin:0'>\n点击右上角 <b style='color:#667eea'>📋 全属性</b> 按钮，查看所有 HTML 全局属性（id/class/style/data-*/title/lang/hidden/dir/tabindex/contenteditable/draggable）的完整说明和用法示例。\n</p>\n</div>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.attributes"
+      },
+      {
+        "id": "h4-4",
+        "title": "data-* 自定义属性——给标签存「秘密信息」",
+        "content": "data-* 属性是所有标签都能用的自定义属性，用来存储「给JavaScript看但用户看不到」的数据。比如 <code>&lt;div data-user-id=\"99\"&gt;</code> 存了用户ID，JS可以随时读取。这在Todo List、用户列表等场景中非常常用。<b>data-* 是HTML和JS之间的「暗号」。</b>",
+        "code": {
+          "html": "<!-- 每个卡片存了用户的ID和角色 -->\n<div data-user-id=\"1\" data-role=\"admin\" style=\"background:#1e1e30;padding:12px;border-radius:8px;margin:8px 0;border-left:4px solid #f39c12\">\n  <b style=\"color:#f39c12\">管理员</b>：小明\n  <span style=\"color:#888;font-size:11px;margin-left:8px\">data-user-id=\"1\" data-role=\"admin\"</span>\n</div>\n\n<div data-user-id=\"2\" data-role=\"user\" style=\"background:#1e1e30;padding:12px;border-radius:8px;margin:8px 0;border-left:4px solid #667eea\">\n  <b style=\"color:#667eea\">用户</b>：小红\n  <span style=\"color:#888;font-size:11px;margin-left:8px\">data-user-id=\"2\" data-role=\"user\"</span>\n</div>\n\n<p style=\"color:#888;font-size:12px\">💡 右键检查元素，看data-*属性；JS用 element.dataset.userId 读取</p>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.attributes"
+      },
+      {
+        "id": "h4-5",
+        "title": "🎯 实战挑战：做一个「可配置的按钮」",
+        "content": "写一个a链接（href=https://www.w3school.com.cn，target=_blank，title=\"去W3School学习\"），再写一个img图片（用占位图），写两个disabled输入框（一个text一个checkbox），每个标签都加上至少2个属性。用F12检查元素面板确认所有属性都生效。",
+        "tip": "检查：href点开正确、图片显示正常、按钮确实点不了 = 属性全用对了！",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "propRef": "html.attributes"
+      }
+    ]
+  },
+  {
+    "id": "h5",
+    "title": "📝 HTML标题——h1到h6的层级艺术",
+    "desc": "h1-h6:语义层级/SEO最佳实践/标题结构设计",
+    "category": "html",
+    "icon": "📝",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h5-1",
+        "title": "六级标题——从 h1 到 h6",
+        "content": "HTML提供了6个级别的标题：<b>h1最大，h6最小</b>。浏览器默认会给标题加上粗体和上下间距。但你要记住的核心原则：<b>选标题级别看的是语义层级，不是看字号大小</b>——字号用CSS调。h1是页面最重要的标题（应该只有一个），h2是大章节，h3是子章节，以此类推。",
+        "code": {
+          "html": "<h1>一级标题 h1——页面主标题（每个页面只有一个！）</h1>\n<h2>二级标题 h2——大章节标题</h2>\n<h3>三级标题 h3——子章节标题</h3>\n<h4>四级标题 h4</h4>\n<h5>五级标题 h5</h5>\n<h6>六级标题 h6——最小的标题</h6>",
+          "css": "h1{color:#667eea;font-size:2em}h2{color:#764ba2;font-size:1.5em}h3{color:#2ecc71;font-size:1.17em}h4{color:#f39c12;font-size:1em}h5{color:#e74c3c;font-size:.83em}h6{color:#888;font-size:.67em}h1,h2,h3,h4,h5,h6{margin:8px 0;font-family:'Segoe UI',Arial,sans-serif}body{padding:24px;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.headings"
+      },
+      {
+        "id": "h5-2",
+        "title": "标题层级——像写书的目录一样设计",
+        "content": "好的标题结构就像一本书的目录：<b>h1=书名、h2=章名、h3=节名</b>。不跳级（h2下面直接h4是大忌）、不能反过来（h2不能出现在h1上面）。搜索引擎通过标题层级理解页面结构——这是SEO（搜索引擎优化）最基础也是最重要的一课。",
+        "code": {
+          "html": "<h1>📚 前端开发完全指南</h1>\n<p style=\"color:#888;font-size:13px\">h1:页面主标题，包含核心关键词</p>\n\n<h2>第一章 HTML基础</h2>\n<h3>1.1 什么是HTML</h3>\n<h3>1.2 基本标签</h3>\n<h3>1.3 属性与元素</h3>\n\n<h2>第二章 CSS入门</h2>\n<h3>2.1 选择器基础</h3>\n<h3>2.2 盒模型</h3>\n\n<p style=\"color:#2ecc71;font-size:12px;margin-top:12px\">✅ h1→h2→h3 层级正确，不跳级，语义清晰</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}h1{font-size:1.6em;margin:0 0 4px;color:#667eea}h2{font-size:1.2em;margin:16px 0 4px;color:#764ba2}h3{font-size:1em;margin:6px 0;color:#2ecc71}p{margin:2px 0}",
+          "js": ""
+        },
+        "propRef": "html.headings"
+      },
+      {
+        "id": "h5-3",
+        "title": "h1的SEO法则——全站只此一个",
+        "content": "面试常见问题：<b>「一个页面可以有几个h1？」</b> 答：HTML5规范允许每个section有个h1，但<b>最佳实践是整个页面只有一个h1</b>，包含最核心的关键词。搜索引擎把h1当做页面主题的最强信号，多个h1会分散权重。h2-h6可以多个，但要遵循层级递进。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#f39c12;margin:0 0 12px\">📋 标题使用口诀</h3>\n  <p style=\"color:#2ecc71;margin:6px 0\">✅ 一个页面一个h1，含核心关键词</p>\n  <p style=\"color:#2ecc71;margin:6px 0\">✅ h2-h6按层级，不跳级</p>\n  <p style=\"color:#2ecc71;margin:6px 0\">✅ 标题描述下方内容，不是装饰</p>\n  <p style=\"color:#e74c3c;margin:6px 0\">❌ 不要为了「大字号」选h1——用CSS调字号</p>\n  <p style=\"color:#e74c3c;margin:6px 0\">❌ 不要h2直接跳到h4——跳级让结构混乱</p>\n  <p style=\"color:#e74c3c;margin:6px 0\">❌ 不要在同一层级混用h2和h3——同级用同级标题</p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.headings"
+      },
+      {
+        "id": "h5-4",
+        "title": "🎯 实战挑战：写一个「学习计划」大纲",
+        "content": "做一个学习计划页面的大纲：一个h1标题「我的前端学习之路」，两个h2（「HTML基础」和「CSS入门」），每个h2下面各两个h3（具体知识点）。注意层级不跳级！给h1加id属性做页面锚点。",
+        "tip": "检查清单：①整个页面只有一个h1 ②h2下面只接h3，没有h4 ③层级像金字塔一样规整 = 完美！",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "propRef": "html.headings"
+      }
+    ]
+  },
+  {
+    "id": "h6",
+    "title": "📃 HTML段落——p、br、hr、pre",
+    "desc": "段落标签/换行/分割线/保留格式的pre/断词wbr",
+    "category": "html",
+    "icon": "📃",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h6-1",
+        "title": "<p>——段落标签",
+        "content": "<code>&lt;p&gt;</code>是「paragraph」（段落）的缩写，是最常用的HTML标签之一。每个p是一个<b>块级元素</b>——自动换行、自动有上下间距。把文字放在p里而不是裸露在body中，浏览器就能正确识别这是「一个段落」。<b>任何时候写文字都应该放在p标签里。</b>",
+        "code": {
+          "html": "<p>这是第一段。HTML是网页开发的基础，每一个网页都由HTML构建。学会HTML，你就拥有了建造网页的「砖块」。</p>\n<p>这是第二段。注意看，段落之间自动有了间距——这个间距是浏览器默认加的，不需要你手动换行。</p>\n<p>这是第三段。每个p标签的内容就是一个完整的段落，语义明确。</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}p{color:#ccc;line-height:1.8;margin:12px 0;font-size:15px}",
+          "js": ""
+        },
+        "propRef": "html.paragraphs"
+      },
+      {
+        "id": "h6-2",
+        "title": "<br> 换行 + <hr> 分割线",
+        "content": "<code>&lt;br&gt;</code>：强制换行（不产生新段落）。比如写一首诗，每行用br换行比用p更合适。<b>但是</b>——不要用多个br来制造间距，那是CSS的活！<code>&lt;hr&gt;</code>：水平分割线，表示主题的转换。默认是一条灰色的横线，可以用CSS美化。<code>&lt;wbr&gt;</code>：可选断词点，用于长单词或长URL。",
+        "code": {
+          "html": "<h3 style=\"color:#667eea\">用 br 写诗</h3>\n<p style=\"color:#ccc;line-height:2.2;font-size:15px\">\n  床前明月光，<br>\n  疑是地上霜。<br>\n  举头望明月，<br>\n  低头思故乡。\n</p>\n\n<hr style=\"border:none;border-top:3px solid #667eea;margin:16px 0\">\n\n<h3 style=\"color:#764ba2\">分割线后的内容</h3>\n<p style=\"color:#ccc\">hr 标签用来分割不同主题的内容。上面的诗和这里的说明是不同的主题，用hr分割非常自然。</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.paragraphs"
+      },
+      {
+        "id": "h6-3",
+        "title": "<pre> —— 保留格式的神器",
+        "content": "<code>&lt;pre&gt;</code>（preformatted）保留你写的所有空格、换行、缩进——浏览器默认会压缩多余的空白，但pre里的全部保留。非常适合展示代码块、ASCII艺术、诗歌排版。常见搭配：<code>&lt;pre&gt;&lt;code&gt;代码&lt;/code&gt;&lt;/pre&gt;</code>。<b>想让读者看到和代码编辑器里一模一样的格式？用 pre + code。</b>",
+        "code": {
+          "html": "<h3 style=\"color:#2ecc71\">pre + code 展示代码：</h3>\n<pre style=\"background:#282840;padding:16px;border-radius:8px;color:#2ecc71;overflow:auto;font-size:14px\"><code>function greet(name) {\n  if (name === \"\") {\n    return \"请输入你的名字！\";\n  }\n  // 这些缩进和换行都被保留了\n  return \"你好，\" + name + \"！\";\n}\n\ngreet(\"小明\");  // → \"你好，小明！\"</code></pre>\n<p style=\"color:#888;font-size:13px\">↑ 所有的空格、缩进、换行都和写的完全一样</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.paragraphs"
+      },
+      {
+        "id": "h6-4",
+        "title": "🎯 实战挑战：写一首诗 + 技术笔记",
+        "content": "用HTML写一个「技术笔记」页面：上面用p标签写两句介绍，中间用hr分割，下面用br换行写一首诗。最下面用pre+code展示一段你学过的任意代码。注意：诗用br不用p（语义不同），代码用pre保持格式。",
+        "tip": "检查：p有间距、br只换行不产生间距、hr是分割线、pre完整保留缩进 = 全部正确！",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "propRef": "html.paragraphs"
+      }
+    ]
+  },
+  {
+    "id": "h7",
+    "title": "✏️ HTML文本格式化——粗体/斜体/高亮/上下标",
+    "desc": "b/strong/i/em/mark/small/del/ins/sub/sup 语义与视觉",
+    "category": "html",
+    "icon": "✏️",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h7-1",
+        "title": "b vs strong、i vs em——视觉一样，语义不同",
+        "content": "这是HTML入门最常见的困惑之一：<b>b和strong都显示粗体，i和em都显示斜体，有什么区别？</b> 答案是：<b>语义不同</b>。<code>&lt;b&gt;</code>只是「视觉加粗」，没有额外含义；<code>&lt;strong&gt;</code>表示「这段内容很重要」——屏幕阅读器会用更重的语气读出，搜索引擎会给予更高权重。同理：<code>&lt;i&gt;</code>是视觉斜体，<code>&lt;em&gt;</code>是语义强调。结论：<b>能用strong/em就用strong/em，对无障碍访问和SEO更好。</b>",
+        "code": {
+          "html": "<h3 style=\"color:#f39c12\">视觉效果相同：</h3>\n<p style=\"color:#ccc;line-height:2\"><b>&lt;b&gt;纯视觉粗体&lt;/b&gt;</b></p>\n<p style=\"color:#ccc;line-height:2\"><strong>&lt;strong&gt;重要内容（语义）&lt;/strong&gt;</strong></p>\n<p style=\"color:#ccc;line-height:2\"><i>&lt;i&gt;纯视觉斜体&lt;/i&gt;</i></p>\n<p style=\"color:#ccc;line-height:2\"><em>&lt;em&gt;强调内容（语义）&lt;/em&gt;</em></p>\n\n<div style=\"background:#282840;padding:12px;border-radius:8px;margin-top:12px\">\n  <p style=\"color:#2ecc71\"><strong>优先级：strong > b，em > i</strong></p>\n  <p style=\"color:#888;font-size:13px\">语义标签对盲人阅读器和搜索引擎更友好</p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.textformat"
+      },
+      {
+        "id": "h7-2",
+        "title": "mark/small/del/ins——高亮、小字、删改标记",
+        "content": "<code>&lt;mark&gt;</code>：高亮文字（像荧光笔画的），浏览器默认黄色背景。<code>&lt;small&gt;</code>：小号文字（版权声明、免责条款常用）。<code>&lt;del&gt;</code>：删除线（原价划掉）。<code>&lt;ins&gt;</code>：插入线（新价格加下划线）。del和ins通常配对使用，表示「删了旧的，加了新的」。del和ins有cite（来源URL）和datetime（修改时间）属性。",
+        "code": {
+          "html": "<p style=\"color:#ccc\">今天的特价是：<mark style=\"background:#f39c12;color:#000;padding:0 4px;border-radius:2px\">买一送一</mark>，仅限今日！</p>\n\n<p style=\"color:#bbb;margin-top:16px\"><small>© 2026 我的公司。All rights reserved. 这是版权声明小字。</small></p>\n\n<p style=\"color:#ccc;margin-top:16px\">\n  原价：<del cite=\"#old-price\" datetime=\"2026-01-01\">¥1999</del>\n  <span style=\"color:#2ecc71;\">现价：<ins>¥999</ins></span>\n  （降价1000元！）\n</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}p{line-height:2}del{color:#e74c3c}ins{color:#2ecc71;text-decoration:none;font-weight:bold}",
+          "js": ""
+        },
+        "propRef": "html.textformat"
+      },
+      {
+        "id": "h7-3",
+        "title": "sub/sup——下标和上标",
+        "content": "<code>&lt;sub&gt;</code>（下标）：用于化学式（H₂O）、数学脚注。<code>&lt;sup&gt;</code>（上标）：用于数学指数（x²）、日期脚注。<b>这两个标签不仅让文字变小变偏移，更重要的是传达了语义——浏览器和搜索引擎知道这是数学/化学符号。</b>",
+        "code": {
+          "html": "<h3 style=\"color:#667eea\">下标 sub：</h3>\n<p style=\"color:#ccc;font-size:18px\">水的化学式：H<sub>2</sub>O</p>\n<p style=\"color:#ccc;font-size:18px\">二氧化碳：CO<sub>2</sub></p>\n\n<h3 style=\"color:#764ba2;margin-top:16px\">上标 sup：</h3>\n<p style=\"color:#ccc;font-size:18px\">数学公式：x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup></p>\n<p style=\"color:#ccc;font-size:18px\">2的10次方：2<sup>10</sup> = 1024</p>\n<p style=\"color:#888;font-size:12px;margin-top:12px\">💡 sub和sup是有语义的，不只是「字小」</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.textformat"
+      },
+      {
+        "id": "h7-3b",
+        "title": "ruby/bdi/bdo/dfn——更多语义标签",
+        "content": "HTML还有许多语义化的行内标签：<b>ruby+rt+rp</b>注音标注（中文拼音/日文假名）。<b>bdi</b>双向隔离（处理阿拉伯文/希伯来文等RTL文本时防止乱排）。<b>bdo</b>强制文字方向。💡ruby标签对中文网页尤其重要——一段代码就能加拼音。",
+        "code": {
+          "html": "<ruby style=\"color:#ccc;font-size:24px\">汉<rp>(</rp><rt style=\"font-size:14px;color:#667eea\">hàn</rt><rp>)</rp>字<rp>(</rp><rt style=\"font-size:14px;color:#667eea\">zì</rt><rp>)</rp></ruby><p style=\"color:#888;font-size:12px;margin-top:4px\">↑ ruby注音——点击F12看结构</p><p style=\"color:#ccc;margin-top:8px\"><bdo dir=\"rtl\" style=\"color:#f39c12\">这段文字从右往左显示</bdo> ← bdo:rtl</p>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "html.textformat"
+      },
+      {
+        "id": "h7-4",
+        "title": "🎯 实战挑战：写一则促销公告",
+        "content": "用所有学过的格式化标签写一则促销公告：strong强调「仅限今日」、mark高亮「五折优惠」、del原价¥299/ins现价¥149、small写「解释权归本店所有」、sup写日期脚注、h2大标题、两个p段落。每个标签都用上有意义的语义。",
+        "tip": "检查每个标签的语义都对：strong=重要、em=强调、mark=高亮、del=删除、ins=插入、small=小字附属 = 全对！",
+        "propRef": "html.textformat",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h8",
+    "title": "💬 HTML引用与代码——blockquote/q/cite/pre/code",
+    "desc": "引用标签/代码标签/缩写/地址/键盘/变量",
+    "category": "html",
+    "icon": "💬",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h8-1",
+        "title": "blockquote/q/cite——引用三件套",
+        "content": "<code>&lt;blockquote&gt;</code>：块级引用（大段引用，浏览器默认缩进）。通常搭配cite属性标注来源URL。<code>&lt;q&gt;</code>：行内引用（自动加引号，不同语言的引号样式不同）。<code>&lt;cite&gt;</code>：引用作品名（书名、电影名、论文名），默认斜体。<b>引用内容要标注来源——这是最基本的尊重。</b>",
+        "code": {
+          "html": "<blockquote cite=\"https://en.wikipedia.org/wiki/Steve_Jobs\" style=\"border-left:4px solid #667eea;padding:12px 16px;margin:16px 0;background:#1e1e30;border-radius:0 8px 8px 0\">\n  <p style=\"color:#ccc;font-style:italic;margin:0;line-height:1.8\">Stay hungry, stay foolish.</p>\n  <footer style=\"color:#888;font-size:13px;margin-top:8px\">\n    — <cite style=\"color:#667eea;font-style:normal\">Steve Jobs</cite>, Stanford commencement speech, 2005\n  </footer>\n</blockquote>\n\n<p style=\"color:#ccc\">小明说：<q cite=\"#chat\">学习HTML其实很简单！</q></p>\n\n<p style=\"color:#888;font-size:13px\">↑ cite标签标注了作品名，q会自动加引号</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}p{line-height:2}",
+          "js": ""
+        },
+        "propRef": "html.textformat"
+      },
+      {
+        "id": "h8-2",
+        "title": "code/kbd/samp/var——计算机相关标签",
+        "content": "这些标签专为技术文档设计：<code>&lt;code&gt;</code>表示代码片段（浏览器默认等宽字体）；<code>&lt;kbd&gt;</code>表示键盘按键（通常显示为小按钮样式）；<code>&lt;samp&gt;</code>表示程序输出样本；<code>&lt;var&gt;</code>表示变量名（通常斜体）。<b>写技术博客必用这些标签。</b>",
+        "code": {
+          "html": "<p style=\"color:#ccc;line-height:2.2\">\n  在终端输入 <code style=\"background:#282840;padding:2px 6px;border-radius:3px;color:#2ecc71\">npm init</code> 来初始化项目。\n</p>\n\n<p style=\"color:#ccc;line-height:2.2\">\n  按 <kbd style=\"background:#555;padding:2px 8px;border-radius:4px;border:1px solid #777;color:#fff;font-size:13px\">Ctrl</kbd>\n  +\n  <kbd style=\"background:#555;padding:2px 8px;border-radius:4px;border:1px solid #777;color:#fff;font-size:13px\">S</kbd>\n  保存文件。\n</p>\n\n<p style=\"color:#ccc;line-height:2.2\">\n  程序输出：<samp style=\"color:#2ecc71\">Hello, World!</samp>\n</p>\n\n<p style=\"color:#ccc;line-height:2.2\">\n  变量 <var style=\"color:#f39c12;font-style:italic\">x</var> 的值是 <var style=\"color:#f39c12;font-style:italic\">y</var> 的两倍。\n</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.textformat"
+      },
+      {
+        "id": "h8-3",
+        "title": "abbr/address——缩写和联系方式",
+        "content": "<code>&lt;abbr title=\"全称\"&gt;</code>：缩写标签，鼠标悬停显示全称（默认有虚线下划线）。对专业术语非常有用。<code>&lt;address&gt;</code>：联系方式（邮箱、电话、地址），默认斜体块级。<b>注意：address不只是「地址」，任何联系方式都应该放在address里。</b>",
+        "code": {
+          "html": "<p style=\"color:#ccc;line-height:2\">\n  <abbr title=\"HyperText Markup Language\" style=\"text-decoration:underline dotted;cursor:help;color:#f39c12\">HTML</abbr> 是网页开发的基础。\n  <small style=\"color:#888\">（鼠标悬停看全称）</small>\n</p>\n\n<p style=\"color:#ccc;line-height:2\">\n  <abbr title=\"Cascading Style Sheets\" style=\"text-decoration:underline dotted;cursor:help;color:#f39c12\">CSS</abbr> 负责网页的样式。\n</p>\n\n<hr style=\"border:1px solid #444;margin:16px 0\">\n\n<address style=\"color:#aaa;font-style:normal;line-height:1.8;background:#1e1e30;padding:12px;border-radius:8px\">\n  📧 邮箱：<a href=\"mailto:hello@example.com\" style=\"color:#667eea\">hello@example.com</a><br>\n  📍 地址：北京市海淀区中关村<br>\n  📞 电话：<a href=\"tel:010-12345678\" style=\"color:#667eea\">010-12345678</a>\n</address>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}a{text-decoration:none}",
+          "js": ""
+        },
+        "propRef": "html.textformat"
+      },
+      {
+        "id": "h8-4",
+        "title": "🎯 实战挑战：做一个名言墙",
+        "content": "制作一个「名言墙」页面：用blockquote+cite+footer写三条名言（标注作者和来源），用abbr标注HTML和CSS的全称，用address写上你的联系方式，用code标签写一句代码。每个标签的语义都要准确。",
+        "tip": "检查：blockquote有缩进、q有引号、abbr悬停有提示、address有联系方式 = 全对！",
+        "propRef": "html.textformat",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h9",
+    "title": "🗒️ HTML注释、实体与Emoji",
+    "desc": "注释写法/HTML实体/Emoji/URL编码/特殊字符",
+    "category": "html",
+    "icon": "🗒️",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h9-1",
+        "title": "注释——写给开发者看的「便签」",
+        "content": "HTML注释的写法：<code>&lt;!-- 这是注释 --&gt;</code>。注释不会被浏览器渲染，用户看不到。用途：解释复杂逻辑、标记代码区块、临时「禁用」某段代码（调试利器）。快捷键：Ctrl+/（Mac: Cmd+/）。<b>规则：复杂布局上方必须写注释——三个月后你会感谢现在的自己。</b>注意：注释不能嵌套。",
+        "code": {
+          "html": "<!-- ========== 页面头部 ========== -->\n<h2 style=\"color:#667eea;text-align:center\">我的个人主页</h2>\n\n<!-- 导航菜单开始 -->\n<div style=\"text-align:center;padding:8px\">\n  <span style=\"color:#2ecc71;margin:0 12px\">首页</span>\n  <span style=\"color:#2ecc71;margin:0 12px\">关于</span>\n  <span style=\"color:#2ecc71;margin:0 12px\">联系</span>\n</div>\n<!-- 导航菜单结束 -->\n\n<!-- <p>这段暂时隐藏的代码</p> -->\n<p style=\"color:#888;font-size:13px;text-align:center;margin-top:16px\">↑ F12看源码，能看到注释和被注释掉的隐藏代码</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.comments"
+      },
+      {
+        "id": "h9-2",
+        "title": "HTML实体——特殊字符的正确写法",
+        "content": "有些字符在HTML中有特殊含义（比如 &lt; 和 &gt; 是标签符号），直接写会被浏览器误解析。这时需要用<b>HTML实体</b>：以 & 开头、以 ; 结尾的代号。最常用的：<code>&amp;lt;</code> → <、<code>&amp;gt;</code> → >、<code>&amp;amp;</code> → &、<code>&amp;copy;</code> → ©、<code>&amp;nbsp;</code> → 不换行空格、<code>&amp;quot;</code> → \"。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#f39c12;margin:0 0 12px\">常用HTML实体速查：</h3>\n  <table style=\"width:100%;border-collapse:collapse;font-size:14px\">\n    <tr style=\"background:#555\"><th style=\"padding:4px 8px;color:#fff\">代码</th><th style=\"padding:4px 8px;color:#fff\">显示</th><th style=\"padding:4px 8px;color:#fff\">说明</th></tr>\n    <tr><td style=\"padding:4px 8px;color:#2ecc71;border-bottom:1px solid #333\">&amp;lt;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">&lt;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">小于号</td></tr>\n    <tr style=\"background:#282840\"><td style=\"padding:4px 8px;color:#2ecc71;border-bottom:1px solid #333\">&amp;gt;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">&gt;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">大于号</td></tr>\n    <tr><td style=\"padding:4px 8px;color:#2ecc71;border-bottom:1px solid #333\">&amp;amp;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">&amp;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">与号</td></tr>\n    <tr style=\"background:#282840\"><td style=\"padding:4px 8px;color:#2ecc71;border-bottom:1px solid #333\">&amp;copy;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">&copy;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">版权</td></tr>\n    <tr><td style=\"padding:4px 8px;color:#2ecc71;border-bottom:1px solid #333\">&amp;nbsp;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">[空格]</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">不换行空格</td></tr>\n    <tr style=\"background:#282840\"><td style=\"padding:4px 8px;color:#2ecc71;border-bottom:1px solid #333\">&amp;quot;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">&quot;</td><td style=\"padding:4px 8px;color:#ccc;border-bottom:1px solid #333\">双引号</td></tr>\n  </table>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.comments"
+      },
+      {
+        "id": "h9-3",
+        "title": "Emoji——让网页有温度",
+        "content": "Emoji可以直接写在HTML中（就像普通文字一样）：😊👍🚀。也可以用数字编码：<code>&amp;#128512;</code> = 😀。两者的效果完全相同，但直接粘贴更直观。<b>在合适的场景用Emoji可以让网页更有亲和力</b>——但不要过度使用，会影响专业感。在title/meta description中用Emoji可以让搜索结果更显眼。",
+        "code": {
+          "html": "<h2 style=\"text-align:center;color:#667eea\">常用网页Emoji</h2>\n\n<div style=\"display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:16px\">\n  <span style=\"font-size:2em\">😀</span>\n  <span style=\"font-size:2em\">👍</span>\n  <span style=\"font-size:2em\">🚀</span>\n  <span style=\"font-size:2em\">🔥</span>\n  <span style=\"font-size:2em\">💡</span>\n  <span style=\"font-size:2em\">⭐</span>\n  <span style=\"font-size:2em\">✅</span>\n  <span style=\"font-size:2em\">❌</span>\n  <span style=\"font-size:2em\">🎉</span>\n  <span style=\"font-size:2em\">❤️</span>\n  <span style=\"font-size:2em\">📧</span>\n  <span style=\"font-size:2em\">🔗</span>\n</div>\n\n<p style=\"color:#888;font-size:13px;text-align:center;margin-top:20px\">\n  💡 也可以写 &amp;#128512; 来显示 😀\n</p>\n\n<p style=\"color:#888;font-size:13px;text-align:center\">\n  Emoji在不同操作系统和浏览器上显示效果可能略有差异\n</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.comments"
+      },
+      {
+        "id": "h9-4",
+        "title": "🎯 实战挑战：做一个「版权声明」页脚",
+        "content": "写一个页脚区域：用注释标注「页脚开始」和「页脚结束」，用 &copy; 显示版权符号，用 &lt;和&gt; 写一段「&lt;h1&gt;是标题」这样的教学说明，最后加几个Emoji装饰。在注释中隐藏一段文字（方便以后恢复）。",
+        "tip": "F12看源码：注释显示但用户看不到，实体正确转换，Emoji正常显示 = 全对！",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "propRef": "html.comments"
+      }
+    ]
+  },
+  {
+    "id": "h10",
+    "title": "🔗 HTML链接——a标签全解",
+    "desc": "a标签:href/target/rel/download/锚点/mailto/tel 全属性",
+    "category": "html",
+    "icon": "🔗",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h10-1",
+        "title": "基础链接——href 和 target",
+        "content": "<code>&lt;a&gt;</code>（anchor，锚）是HTML最重要的标签之一——没有链接，就没有「互联」网。<b>href</b>：目标地址（必须属性）。可以指向：①外部网址 ②本站其他页面 ③页面锚点 ④邮箱 ⑤电话。<b>target</b>：_self（当前窗口，默认值）/_blank（新窗口，必须搭配rel=\"noopener\"防安全漏洞）。<b>链接文字描述目的地，不要写「点击这里」。</b>",
+        "code": {
+          "html": "<h3 style=\"color:#667eea\">不同类型链接：</h3>\n\n<p><a href=\"https://www.w3school.com.cn\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:#667eea\">🔗 W3School（新窗口打开，安全）</a></p>\n\n<p><a href=\"mailto:hello@example.com\" style=\"color:#2ecc71\">📧 发送邮件</a></p>\n\n<p><a href=\"tel:13800138000\" style=\"color:#f39c12\">📞 拨打电话（手机端点击直接拨号）</a></p>\n\n<p><a href=\"#section2\" style=\"color:#764ba2\">⬇️ 跳到页面下方（锚点）</a></p>\n\n<p><a href=\"/about.html\" style=\"color:#e74c3c\">📄 本站关于页面（相对路径）</a></p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}a{text-decoration:none;transition:.2s;font-size:15px}a:hover{text-decoration:underline}p{line-height:2.4;margin:6px 0}",
+          "js": ""
+        },
+        "propRef": "html.a"
+      },
+      {
+        "id": "h10-2",
+        "title": "target=\"_blank\" 安全必知——rel=\"noopener\"",
+        "content": "target=\"_blank\" 让链接在新窗口打开，但如果不加 <b>rel=\"noopener noreferrer\"</b>，新页面可以通过 window.opener 操纵你的页面，造成安全漏洞（钓鱼攻击）。<b>这是面试常考题！规则：只要用了 target=\"_blank\"，就加上 rel=\"noopener noreferrer\"。</b>",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#e74c3c;margin:0 0 8px\">⚠️ 安全规则：</h3>\n  <pre style=\"background:#282840;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.8\">✅ 正确写法：\n&lt;a href=\".\" target=\"_blank\" rel=\"noopener noreferrer\"&gt;\n\n❌ 危险写法：\n&lt;a href=\".\" target=\"_blank\"&gt;\n（缺少rel，有安全漏洞）</pre>\n  <p style=\"color:#888;font-size:13px\">noopener = 禁止window.opener访问（安全）</p>\n  <p style=\"color:#888;font-size:13px\">noreferrer = 不发送Referer头（隐私）</p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.a"
+      },
+      {
+        "id": "h10-3",
+        "title": "a标签属性详解",
+        "content": "链接标签的所有属性一览。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#f39c12;margin:0 0 12px\">a 标签全属性速查：</h3>\n  <pre style=\"background:#282840;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.8;overflow:auto\">href=\"url\"              目标地址（必须！）\ntarget=\"_blank\"         新窗口打开\ntarget=\"_self\"          当前窗口（默认）\nrel=\"noopener\"          安全：禁止opener劫持\nrel=\"nofollow\"          SEO：不给权重传递\nrel=\"noreferrer\"        隐私：不发送来源信息\ndownload=\"文件名\"        点击下载（自动）\nhreflang=\"en\"           目标页面语言\ntype=\"text/html\"        MIME类型</pre>\n  <p style=\"color:#888;font-size:13px\">特殊协议：mailto:邮箱 | tel:电话 | #锚点</p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.a"
+      },
+      {
+        "id": "h10-4",
+        "title": "🎯 实战挑战：做一个导航栏",
+        "content": "做一个简单的导航栏：用a标签写5个链接——首页（#）、关于（#about）、联系（mailto:你的邮箱）、W3School（新窗口打开+安全属性）、回到顶部（#）。每个链接用不同的颜色区分，悬停有变化。不要写「点击这里」，链接文字要有描述性。",
+        "tip": "检查：href正确、target=_blank的有noopener、mailto能唤出邮件客户端、文字有描述性 = 全对！",
+        "propRef": "html.a",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h11",
+    "title": "🖼️ HTML图片——img/picture/figure全解",
+    "desc": "img全属性:src/alt/loading/srcset/sizes + picture + figure",
+    "category": "html",
+    "icon": "🖼️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h11-1",
+        "title": "img标签——src和alt缺一不可",
+        "content": "<code>&lt;img&gt;</code>是空元素（自闭合、无结束标签）。两个最重要的属性：<b>src</b>：图片地址；<b>alt</b>：替代文字——图片加载失败时显示、盲人阅读器朗读、搜索引擎理解图片内容。<b>alt是必须属性！</b>不写alt，无障碍检测直接标红。其他常用属性：width/height（尺寸）、loading=\"lazy\"（懒加载，页面滚动到附近再加载，性能利器）。",
+        "code": {
+          "html": "<!-- 带alt的图片 -->\n<img src=\"https://placehold.co/400x120/667eea/fff?text=带alt属性的图片\" alt=\"一张蓝色背景的示例图片，写着带alt属性的图片\" style=\"max-width:100%;border-radius:8px;display:block;margin:8px 0\">\n\n<!-- 加载失败的图片（演示alt的用途） -->\n<img src=\"https://broken.url.test/nonexistent.jpg\" alt=\"图片加载失败时，这段alt文字会显示出来\" style=\"max-width:100%;border-radius:8px;display:block;margin:8px 0;border:1px dashed #e74c3c\">\n\n<p style=\"color:#e74c3c;font-size:13px\">↑ 图片地址故意写错，alt文字显示了出来——这就是alt的作用</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.img"
+      },
+      {
+        "id": "h11-2",
+        "title": "loading=\"lazy\" —— 懒加载，性能利器",
+        "content": "<code>&lt;img loading=\"lazy\"&gt;</code> 让图片在用户滚动到附近时才加载，而不是页面一打开就全部加载。这对包含大量图片的页面（商品列表、图库）是巨大的性能优化。原生HTML就支持，不需要JS！<b>只要不是首屏必须看到的图片，就加上loading=\"lazy\"。</b>",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#2ecc71;margin:0 0 8px\">性能优化规则：</h3>\n  <p style=\"color:#ccc;line-height:1.8\">✅ 首屏图片：正常加载，不加lazy</p>\n  <p style=\"color:#ccc;line-height:1.8\">✅ 首屏外图片：加 loading=\"lazy\"</p>\n  <p style=\"color:#ccc;line-height:1.8\">✅ 所有图片都要 width/height（防布局抖动）</p>\n\n  <pre style=\"background:#282840;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.6\">&lt;img \n  src=\"商品图.jpg\"\n  alt=\"红色连衣裙\"\n  width=\"400\"\n  height=\"600\"\n  loading=\"lazy\"\n&gt;</pre>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.img"
+      },
+      {
+        "id": "h11-3",
+        "title": "picture + figure —— 响应式图片 + 图文组合",
+        "content": "<code>&lt;picture&gt;</code>根据屏幕宽度加载不同尺寸图片（移动端小图省流量，桌面端大图高清）。<code>&lt;source&gt;</code>指定条件和对应的图片，<code>&lt;img&gt;</code>作为兜底。<code>&lt;figure&gt;</code>+<code>&lt;figcaption&gt;</code>：语义化图文组合，适合配图、插图、图表。<b>移动优先的时代，picture是必备技能。</b>",
+        "code": {
+          "html": "<figure style=\"text-align:center;margin:16px 0;padding:16px;background:#1e1e30;border-radius:8px\">\n  <img src=\"https://placehold.co/300x120/764ba2/fff?text=figure+figcaption示例\" alt=\"图文组合示例\" style=\"max-width:100%;border-radius:6px\">\n  <figcaption style=\"color:#888;font-size:13px;margin-top:8px\">\n    图1：这是 figcaption，figure标签的图片说明文字\n  </figcaption>\n</figure>\n\n<div style=\"background:#282840;padding:12px;border-radius:8px\">\n  <h4 style=\"color:#667eea;margin:0 0 8px\">picture响应式示例写法：</h4>\n  <pre style=\"color:#2ecc71;font-size:12px;line-height:1.6;margin:0\">&lt;picture&gt;\n  &lt;source media=\"(min-width:800px)\" srcset=\"大图.jpg\"&gt;\n  &lt;source media=\"(min-width:400px)\" srcset=\"中图.jpg\"&gt;\n  &lt;img src=\"小图.jpg\" alt=\"描述\"&gt;\n&lt;/picture&gt;</pre>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.picture"
+      },
+      {
+        "id": "h11-4",
+        "title": "img 属性详解表",
+        "content": "图片标签所有属性一览。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#f39c12;margin:0 0 12px\">img 全属性速查：</h3>\n  <pre style=\"background:#282840;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.8;overflow:auto\">src=\"图片地址\"           必须！图片来源\nalt=\"描述文字\"           必须！替代文字(无障碍+SEO)\nwidth/height            尺寸（防布局抖动）\nloading=\"lazy\"          懒加载（性能优化）\nloading=\"eager\"         立即加载（首屏用）\nsrcset=\"小.jpg 400w,大.jpg 800w\"  响应式尺寸\nsizes=\"(max-width:600px) 100vw, 50vw\" 条件规则\ncrossorigin=\"anonymous\" 跨域（Canvas使用时需要）\ntitle=\"提示\"             鼠标悬停提示\nusemap=\"#mapname\"       图片热区\nismap                   服务端图片映射</pre>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.img"
+      },
+      {
+        "id": "h11-5",
+        "title": "🎯 实战挑战：做一个「我的旅行相册」",
+        "content": "写一个相册页面：3张图片（用占位图），每张都有alt描述和loading=lazy。用figure+figcaption给每张图加说明。给一张图故意写错src地址，观察alt文字的效果。最后用一个picture标签示意响应式图片的写法（可以写成注释形式或代码块展示）。",
+        "tip": "检查：alt都有文字、lazy都加了、figure+figcaption正确、加载失败的图显示了alt = 全对！",
+        "propRef": "html.img",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h12",
+    "title": "📋 HTML列表——ul/ol/dl全属性",
+    "desc": "无序列表/有序列表/描述列表/嵌套列表/type/start",
+    "category": "html",
+    "icon": "📋",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h12-1",
+        "title": "ul无序 + ol有序 + dl描述——三种列表",
+        "content": "<b>ul</b>（unordered list）：圆点列表，最常用（导航菜单本质就是ul）。<b>ol</b>（ordered list）：编号列表。属性：type（1/A/a/I/i编号样式）、start（起始数字）、reversed（倒序）。<b>dl</b>（description list）：术语+解释，比如FAQ、词汇表。dt=术语名，dd=术语解释。<b>所有列表的每项都是li，li是ul/ol的唯一合法子元素。</b>",
+        "code": {
+          "html": "<h3 style=\"color:#667eea\">ul 无序列表：</h3>\n<ul style=\"color:#ccc;line-height:2\">\n  <li>苹果 🍎</li>\n  <li>香蕉 🍌</li>\n  <li>橙子 🍊</li>\n</ul>\n\n<h3 style=\"color:#764ba2\">ol 有序列表（字母序号）：</h3>\n<ol type=\"A\" style=\"color:#ccc;line-height:2\">\n  <li>打开电脑</li>\n  <li>打开VS Code</li>\n  <li>开始写代码</li>\n</ol>\n\n<h3 style=\"color:#2ecc71\">dl 描述列表：</h3>\n<dl style=\"color:#ccc;line-height:1.8\">\n  <dt style=\"color:#f39c12;font-weight:bold\">HTML</dt>\n  <dd style=\"margin-left:16px;color:#aaa\">超文本标记语言——网页的骨架</dd>\n  <dt style=\"color:#f39c12;font-weight:bold\">CSS</dt>\n  <dd style=\"margin-left:16px;color:#aaa\">层叠样式表——网页的衣服</dd>\n</dl>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.list"
+      },
+      {
+        "id": "h12-2",
+        "title": "嵌套列表——所有网站导航的底层结构",
+        "content": "列表可以嵌套：<code>ul > li > ul > li</code>。这就是所有网站导航菜单（包括下拉菜单）的底层HTML结构。<b>重点：嵌套的ul必须放在li的内部，不能直接放在ul里。</b>浏览器会自动给嵌套列表增加缩进，形成树状视觉效果。",
+        "code": {
+          "html": "<h3 style=\"color:#667eea\">嵌套列表——学习路线：</h3>\n<ul style=\"color:#ccc;line-height:2\">\n  <li>📚 <b>前端开发</b>\n    <ul style=\"color:#aaa;font-size:14px;line-height:1.8\">\n      <li>HTML —— 页面骨架</li>\n      <li>CSS —— 页面样式</li>\n      <li>JavaScript —— 页面交互</li>\n      <li>Vue/React —— 现代框架</li>\n    </ul>\n  </li>\n  <li>🛠️ <b>开发工具</b>\n    <ul style=\"color:#aaa;font-size:14px;line-height:1.8\">\n      <li>VS Code —— 代码编辑器</li>\n      <li>Chrome DevTools —— 调试工具</li>\n      <li>Git —— 版本控制</li>\n    </ul>\n  </li>\n</ul>\n\n<p style=\"color:#888;font-size:12px;margin-top:8px\">↑ ul>li>ul结构 = 所有导航菜单的底层HTML</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.list"
+      },
+      {
+        "id": "h12-3",
+        "title": "ol 的高级属性——start/type/reversed/value",
+        "content": "有序列表可以自定义编号：<b>start=\"10\"</b>从10开始编号；<b>type=\"A\"</b>用大写字母（可选1/A/a/I/i）；<b>reversed</b>倒序排列；<b>li value=\"50\"</b>单独设置某项的编号。这些属性在制作排名榜、步骤教程等场景中非常有用。",
+        "code": {
+          "html": "<h3 style=\"color:#667eea\">从5开始编号：</h3>\n<ol start=\"5\" style=\"color:#ccc;line-height:2\">\n  <li>第五步</li>\n  <li>第六步</li>\n  <li value=\"10\">直接跳到10</li>\n  <li>自动变成11</li>\n</ol>\n\n<h3 style=\"color:#764ba2\">罗马数字序号：</h3>\n<ol type=\"I\" style=\"color:#ccc;line-height:2\">\n  <li>第一章</li>\n  <li>第二章</li>\n  <li>第三章</li>\n</ol>\n\n<h3 style=\"color:#e74c3c\">倒序排名：</h3>\n<ol reversed style=\"color:#ccc;line-height:2\">\n  <li>季军 🥉</li>\n  <li>亚军 🥈</li>\n  <li>冠军 🥇</li>\n</ol>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.list"
+      },
+      {
+        "id": "h12-4",
+        "title": "🎯 实战挑战：做一个完整的学习路线图",
+        "content": "做一个「前端学习路线」：ul>li多层嵌套。顶层2个大类：「前端基础」和「进阶框架」，每个大类下面嵌套ul列出子项。再用ol做排名（type=罗马数字），用dl描述HTML/CSS/JS三个术语。注意：嵌套ul必须放在li里面。",
+        "tip": "F12检查嵌套结构：每个内层ul都在外层li里面，没有直接放在ul里 = 结构正确！",
+        "propRef": "html.list",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h13",
+    "title": "📊 HTML表格——table全家桶",
+    "desc": "table/caption/thead/tbody/tr/th/td/colspan/rowspan/colgroup",
+    "category": "html",
+    "icon": "📊",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h13-1",
+        "title": "表格基础结构——table > tr > th/td",
+        "content": "表格是最复杂的HTML元素之一，但结构其实很清晰：<b>table</b>（表格容器）> <b>caption</b>（标题，可选）> <b>thead</b>（表头）> <b>tbody</b>（表体）> <b>tfoot</b>（表尾，可选）。每一行是<b>tr</b>，表头格用<b>th</b>（默认粗体居中），数据格用<b>td</b>。<b>画表格前先画格子图——这是我的经验之谈。</b>",
+        "code": {
+          "html": "<table style=\"width:100%;border-collapse:collapse;color:#eee\">\n  <caption style=\"color:#888;margin-bottom:8px\">📊 班级成绩表</caption>\n  <thead>\n    <tr style=\"background:linear-gradient(135deg,#667eea,#764ba2)\">\n      <th style=\"padding:10px 8px;color:#fff;border:1px solid #444\">姓名</th>\n      <th style=\"padding:10px 8px;color:#fff;border:1px solid #444\">语文</th>\n      <th style=\"padding:10px 8px;color:#fff;border:1px solid #444\">数学</th>\n      <th style=\"padding:10px 8px;color:#fff;border:1px solid #444\">英语</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr style=\"background:#1e1e30\">\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">小明</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">92</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">88</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">95</td>\n    </tr>\n    <tr>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">小红</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">85</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">96</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">90</td>\n    </tr>\n    <tr style=\"background:#1e1e30\">\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">小华</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">78</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">82</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">88</td>\n    </tr>\n  </tbody>\n</table>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}caption{font-size:1.1em}",
+          "js": ""
+        },
+        "propRef": "html.table"
+      },
+      {
+        "id": "h13-2",
+        "title": "colspan + rowspan —— 合并单元格",
+        "content": "<b>colspan</b>（column span）：横向合并——一个单元格跨多列。<b>rowspan</b>（row span）：纵向合并——一个单元格跨多行。<b>关键技巧</b>：合并N列/N行后，相邻的格子要少写，否则表格会多出来。动手前先在纸上画格子图，标出每个合并的位置。<b>90%的表格bug都是colspan和rowspan用错。</b>",
+        "code": {
+          "html": "<table style=\"width:100%;border-collapse:collapse;color:#eee\">\n  <caption style=\"color:#888;margin-bottom:8px\">📊 课程表（colspan+rowspan演示）</caption>\n  <thead>\n    <tr style=\"background:#667eea\">\n      <th style=\"padding:8px;border:1px solid #444;color:#fff\">时间</th>\n      <th style=\"padding:8px;border:1px solid #444;color:#fff\">周一</th>\n      <th style=\"padding:8px;border:1px solid #444;color:#fff\">周二</th>\n      <th style=\"padding:8px;border:1px solid #444;color:#fff\">周三</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr style=\"background:#1e1e30\">\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">上午</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">HTML</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\" colspan=\"2\">复习（colspan=2横向合并）</td>\n    </tr>\n    <tr>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">下午</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">CSS</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">JavaScript</td>\n      <td style=\"padding:8px;border:1px solid #444;text-align:center\">Vue</td>\n    </tr>\n  </tbody>\n</table>\n\n<p style=\"color:#888;font-size:12px;margin-top:12px\">💡 colspan=2 让一个格子横跨两列，注意合并后右边那列在本行不写td</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.table"
+      },
+      {
+        "id": "h13-3",
+        "title": "表格的语义结构——thead/tbody/tfoot",
+        "content": "把表格分为三个部分：<b>thead</b>（表头，固定不滚动）、<b>tbody</b>（数据主体，可能很长）、<b>tfoot</b>（汇总行，比如总计）。虽然浏览器不会强制要求，但写了以后：①打印时每页自动重复表头 ②大数据表格可以做表头固定+表体滚动 ③语义更清晰（无障碍友好）。<b>专业的前端项目中表格必须有thead和tbody。</b>",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#667eea;margin:0 0 12px\">表格标准结构：</h3>\n  <pre style=\"background:#282840;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.8\">&lt;table&gt;\n  &lt;caption&gt;表格标题&lt;/caption&gt;     <span style=\"color:#888\">← 可选</span>\n  &lt;thead&gt;                       <span style=\"color:#888\">← 表头</span>\n    &lt;tr&gt;&lt;th&gt;列1&lt;/th&gt;&lt;th&gt;列2&lt;/th&gt;&lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;                       <span style=\"color:#888\">← 表体（数据）</span>\n    &lt;tr&gt;&lt;td&gt;数据&lt;/td&gt;&lt;td&gt;数据&lt;/td&gt;&lt;/tr&gt;\n  &lt;/tbody&gt;\n  &lt;tfoot&gt;                       <span style=\"color:#888\">← 表尾（汇总，可选）</span>\n    &lt;tr&gt;&lt;td colspan=\"2\"&gt;共N条&lt;/td&gt;&lt;/tr&gt;\n  &lt;/tfoot&gt;\n&lt;/table&gt;</pre>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.table"
+      },
+      {
+        "id": "h13-3b",
+        "title": "<col> + <colgroup> —— 统一控制列样式",
+        "content": "colgroup用于对表格的列进行分组，col定义单列属性（如宽度、背景色）。放在caption之后、thead之前。用span属性控制多列：<col span='2'>同时控制两列。💡用col设置列宽比给每个td加style高效得多——一处定义全列生效。配合CSS更灵活。",
+        "code": {
+          "html": "<table style=\"width:100%;border-collapse:collapse;color:#eee\"><colgroup><col style=\"background:#1e1e30;width:30%\"><col style=\"background:#282840;width:35%\"><col style=\"background:#1e1e30;width:35%\"></colgroup><caption style=\"color:#888;margin-bottom:4px\">colgroup样式示例</caption><thead><tr style=\"background:#667eea\"><th style=\"padding:6px\">名称</th><th style=\"padding:6px\">分类</th><th style=\"padding:6px\">价格</th></tr></thead><tbody><tr><td style=\"padding:6px;text-align:center;border-bottom:1px solid #444\">商品A</td><td style=\"padding:6px;text-align:center;border-bottom:1px solid #444\">电子</td><td style=\"padding:6px;text-align:center;border-bottom:1px solid #444\">¥299</td></tr><tr><td style=\"padding:6px;text-align:center;border-bottom:1px solid #444\">商品B</td><td style=\"padding:6px;text-align:center;border-bottom:1px solid #444\">服装</td><td style=\"padding:6px;text-align:center;border-bottom:1px solid #444\">¥199</td></tr></tbody></table><p style=\"color:#888;font-size:12px;margin-top:6px\">💡 colgroup定义列背景和宽度，无需给每个td单独写样式</p>",
+          "css": "table{border-radius:6px}",
+          "js": ""
+        },
+        "propRef": "html.table"
+      },
+      {
+        "id": "h13-4",
+        "title": "🎯 实战挑战：做一个完整的课程表",
+        "content": "制作一张课程表：caption标题，thead表头（星期一到星期五），tbody数据（每天上午/下午各一门课）。至少用一次colspan（比如午休横跨所有列）和一次rowspan（比如某门课连续两节）。CSS加边框和斑马纹。",
+        "tip": "检查：thead+tfoot+tbody都有、colspan/rowspan位置正确、斑马纹生效、表格不歪 = 全对！",
+        "propRef": "html.table",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h14",
+    "title": "📦 HTML区块——div/span/class/id",
+    "desc": "div块容器/span行容器/class分类/id标识/BEM命名法",
+    "category": "html",
+    "icon": "📦",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h14-1",
+        "title": "div（块级）vs span（行内）——两个万能容器",
+        "content": "<b>div</b>（division）：块级容器，独占一行，可以设宽高，没有语义——纯粹为了布局和组织代码。一个页面可以有几十个div。<b>span</b>：行内容器，不换行，只占内容宽度——用来包裹一小段文字给它加样式。<b>记忆口诀：div是「大箱子」（装整个区块），span是「小标签」（装一句话或几个字）。</b>两者都没有默认样式，是「白板」容器。",
+        "code": {
+          "html": "<style>\n  .product-card {\n    background:#1e1e30;\n    padding:16px;\n    border-radius:10px;\n    margin:8px 0;\n  }\n  .price {color:#2ecc71;font-weight:bold;font-size:1.2em;}\n  .tag {background:#667eea;color:#fff;padding:2px 8px;border-radius:3px;font-size:12px;}\n</style>\n\n<div class=\"product-card\">\n  <h3 style=\"color:#fff;margin:0 0 8px\">机械键盘</h3>\n  <p style=\"color:#ccc;margin:4px 0\">\n    价格：<span class=\"price\">¥299</span>\n    <span class=\"tag\">热卖</span>\n    <span class=\"tag\" style=\"background:#e74c3c\">限时</span>\n  </p>\n</div>\n\n<p style=\"color:#888;font-size:12px;margin-top:8px\">↑ 外层div（卡片容器）+ 内层span（价格和标签）= 经典组合</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.semantic"
+      },
+      {
+        "id": "h14-2",
+        "title": "class（分类）vs id（唯一标识）",
+        "content": "<b>class</b>：可重复使用，一个元素可以有多个class（空格分隔），CSS和JS的主力选择器。一个class可以用在无数元素上。<b>id</b>：页面中唯一（一个id只能用一次），用于JS精准操作（getElementById）、锚点导航（#id跳转）。<b>规则：class给CSS用（可重复），id给JS和锚点用（唯一的）。</b>不要用id做CSS样式——会让样式不可复用。",
+        "code": {
+          "html": "<style>\n  .card {background:#1e1e30;padding:14px;border-radius:8px;margin:8px 0;border-left:4px solid #667eea;}\n  .card.featured {border-left-color:#f39c12;}\n  .card__title {color:#fff;font-weight:bold;margin:0 0 4px;}\n  .card__desc {color:#aaa;font-size:13px;margin:0;}\n</style>\n\n<div class=\"card\">\n  <p class=\"card__title\">普通文章</p>\n  <p class=\"card__desc\">使用class来复用样式</p>\n</div>\n\n<div class=\"card featured\" id=\"hot-article\">\n  <p class=\"card__title\">🔥 热门文章（id=\"hot-article\"）</p>\n  <p class=\"card__desc\">这个卡片有两个class：card + featured</p>\n</div>\n\n<div class=\"card\">\n  <p class=\"card__title\">另一篇文章</p>\n  <p class=\"card__desc\">.card 样式被复用了三次</p>\n</div>\n\n<p style=\"color:#888;font-size:12px;margin-top:8px\">💡 card类复用了3次、id=\"hot-article\"全局唯一、一个元素可以同时有多个class</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.globalattrs"
+      },
+      {
+        "id": "h14-3",
+        "title": "BEM命名法——大型项目的选择",
+        "content": "class命名规范很重要。基本规则：<b>全小写、单词用连字符分隔</b>（user-card ✅，UserCard ❌）。<b>BEM命名法</b>是业界主流方案：<b>Block（块）__Element（元素）--Modifier（修饰符）</b>。例如：.card__title--highlight 表示「卡片里的标题，高亮变体」。命名清晰的class就像好的变量名——看名字就知道是什么，不需要注释。",
+        "code": {
+          "html": "<style>\n  .user-card {padding:12px;background:#1e1e30;border-radius:8px;margin:6px 0;}\n  .user-card__name {color:#fff;font-weight:bold;font-size:15px;}\n  .user-card__role {color:#888;font-size:12px;}\n  .user-card--vip {border:2px solid #f39c12;background:#2a2020;}\n</style>\n\n<div class=\"user-card\">\n  <div class=\"user-card__name\">小明</div>\n  <div class=\"user-card__role\">前端工程师</div>\n</div>\n\n<div class=\"user-card user-card--vip\">\n  <div class=\"user-card__name\">小红</div>\n  <div class=\"user-card__role\">高级前端工程师</div>\n</div>\n\n<p style=\"color:#888;font-size:11px;margin-top:8px;line-height:1.6\">BEM解析：<br>user-card = Block（块，即卡片组件）<br>user-card__name = Element（元素，卡片的子部分）<br>user-card--vip = Modifier（修饰符，VIP变体）</p>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.globalattrs"
+      },
+      {
+        "id": "h14-4",
+        "title": "🎯 实战挑战：用BEM命名做一个商品列表",
+        "content": "写一个商品列表：外层div用product-list容器，里面3个div.product-card（BEM的Block），每个卡里包含product-card__image（图片区）、product-card__title（商品名）、product-card__price（价格用span）、product-card__tag（标签用span）。第一张卡片加product-card--sale修饰符（表示打折），改变边框颜色。",
+        "tip": "__用来连元素，--用来连修饰符。BEM命名会让CSS选择器清晰无比，大型项目中每个人都能秒懂。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "propRef": "html.globalattrs"
+      }
+    ]
+  },
+  {
+    "id": "h15",
+    "title": "📝 HTML表单(上)——form + input全type",
+    "desc": "form属性:action/method/enctype | input全type:text/password/email/date等",
+    "category": "html",
+    "icon": "📝",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h15-1",
+        "title": "认识表单——永远不要忽略form标签",
+        "content": "<code>&lt;form&gt;</code>是所有输入控件的容器。<b>核心属性</b>：<b>action</b>（提交到哪个URL）、<b>method</b>（GET→数据在URL可见用于搜索，POST→数据在请求体用于登录/注册）、<b>enctype</b>（multipart/form-data→上传文件时必须！）。<b>永远不要把input直接放在body里而不包form</b>——键盘的Enter键就不会触发表单提交了。",
+        "code": {
+          "html": "<form onsubmit=\"event.preventDefault();this.innerHTML='<p style=color:#2ecc71;text-align:center;font-size:18px>✅ 表单提交成功！（演示效果）</p>'\" style=\"max-width:360px;margin:0 auto\">\n  <h3 style=\"color:#667eea;margin:0 0 12px;text-align:center\">📝 用户注册</h3>\n\n  <label style=\"color:#ccc;font-size:13px\">用户名：</label>\n  <input type=\"text\" placeholder=\"请输入用户名\" required style=\"display:block;width:100%;padding:10px;margin:6px 0 12px;background:#333;color:#eee;border:1px solid #555;border-radius:6px;box-sizing:border-box;font-size:14px\">\n\n  <label style=\"color:#ccc;font-size:13px\">密码：</label>\n  <input type=\"password\" placeholder=\"请输入密码\" required style=\"display:block;width:100%;padding:10px;margin:6px 0 12px;background:#333;color:#eee;border:1px solid #555;border-radius:6px;box-sizing:border-box;font-size:14px\">\n\n  <button type=\"submit\" style=\"width:100%;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:16px;font-weight:bold\">注册</button>\n</form>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.form"
+      },
+      {
+        "id": "h15-2",
+        "title": "input type大全——不只是文本框",
+        "content": "input的type属性决定了输入框的类型，不同type在<b>移动端会调出不同的键盘</b>（这是关键！）。常用type：<b>text</b>文字、<b>password</b>密码（黑点显示）、<b>email</b>邮箱（手机键盘自动出现@）、<b>number</b>数字（手机弹出数字键盘）、<b>tel</b>电话、<b>url</b>网址、<b>search</b>搜索框（带清除按钮）、<b>date</b>日期选择器（原生日历！）、<b>color</b>颜色选择器、<b>file</b>文件上传。",
+        "code": {
+          "html": "<div style=\"max-width:400px;margin:0 auto\">\n  <label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">text - 普通文字：</label>\n  <input type=\"text\" placeholder=\"输入文字\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\">\n\n  <label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">email - 邮箱（注意手机键盘！）：</label>\n  <input type=\"email\" placeholder=\"you@example.com\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\">\n\n  <label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">number - 数字（min=0,max=100）：</label>\n  <input type=\"number\" min=\"0\" max=\"100\" value=\"50\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\">\n\n  <label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">date - 日期选择器：</label>\n  <input type=\"date\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\">\n\n  <label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">color - 颜色选择器：</label>\n  <input type=\"color\" value=\"#667eea\" style=\"width:60px;height:36px;border:none;cursor:pointer\">\n\n  <label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">file - 文件上传：</label>\n  <input type=\"file\" style=\"color:#ccc;margin-bottom:12px\">\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.input"
+      },
+      {
+        "id": "h15-3",
+        "title": "input 核心属性详解",
+        "content": "input除了type，还有这些重要属性：<b>name</b>（提交时的键名，必须在form中！不写name就不会被提交）、<b>placeholder</b>（占位提示文字）、<b>required</b>（必填，布尔属性）、<b>disabled</b>（禁用）、<b>readonly</b>（只读）、<b>autofocus</b>（自动聚焦）、<b>pattern</b>（正则验证）、<b>min/max</b>（数值范围）。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px;max-width:400px;margin:0 auto\">\n  <h3 style=\"color:#f39c12;margin:0 0 12px\">input 核心属性速查：</h3>\n  <pre style=\"background:#282840;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.8;overflow:auto\">name=\"username\"       提交键名（必须！）\nplaceholder=\"提示\"     占位文字\nrequired              必填验证\ndisabled              禁用（不可输入）\nreadonly              只读（可看到不能改）\nautofocus             自动聚焦（页面加载后）\nautocomplete=\"off\"    关闭自动填充\npattern=\"[A-Za-z]+\"   正则验证\nmin=\"0\" max=\"100\"     数值范围\nminlength=\"3\"         最短字符数\nmaxlength=\"20\"        最长字符数\nvalue=\"默认值\"        初始值</pre>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.input"
+      },
+      {
+        "id": "h15-3b",
+        "title": "时间类 input type——datetime-local/month/week/time",
+        "content": "HTML5提供了完整的时间输入类型：<b>datetime-local</b>日期时间选择器（不含时区）、<b>month</b>年月选择器、<b>week</b>年周选择器、<b>time</b>时间选择器。不同的type在移动端调出不同键盘/选择器。💡用原生控件而不是自定义JS——体验更好、代码量更少。",
+        "code": {
+          "html": "<div style=\"max-width:400px\"><label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">datetime-local 日期时间：</label><input type=\"datetime-local\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\"><label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">month 月份：</label><input type=\"month\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\"><label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">week 周：</label><input type=\"week\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\"><label style=\"color:#ccc;font-size:13px;display:block;margin:8px 0 4px\">time 时间：</label><input type=\"time\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\"></div>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "html.datalist"
+      },
+      {
+        "id": "h15-4",
+        "title": "🎯 实战挑战：做一个注册表单",
+        "content": "做一个完整的注册表单（用form包裹）：用户名（text+required+placeholder）、邮箱（email+required+placeholder）、密码（password+required+minlength）、生日（date）、喜欢的颜色（color）、头像上传（file accept=\"image/*\"）、提交按钮（type=\"submit\"）。所有input都要有name属性。不要忘记form的action和method。",
+        "tip": "检查：每个input都有name、required的输入框有红色边框提示、date点了弹出日历、file能选文件 = 全对！",
+        "propRef": "html.input",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h16",
+    "title": "✅ HTML表单(下)——radio/checkbox/select/textarea/label",
+    "desc": "单选/复选/下拉框/多行文本/按钮/label关联/fieldset/datalist",
+    "category": "html",
+    "icon": "✅",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h16-1",
+        "title": "radio（单选）+ checkbox（多选）——选择控件",
+        "content": "<b>radio</b>（单选按钮）：同一组的radio必须设置相同的<b>name</b>属性来实现互斥（选一个另一个自动取消）。用<b>checked</b>布尔属性设置默认选中。<b>checkbox</b>（复选框）：可以多选，也支持checked默认选中。<b>关键原则：radio和checkbox必须配合label使用</b>——label的for属性关联input的id，点击文字也能选中/取消。",
+        "code": {
+          "html": "<div style=\"max-width:400px;margin:0 auto\">\n  <h3 style=\"color:#667eea;margin:0 0 8px\">radio 单选（同name互斥）：</h3>\n  <p style=\"color:#ccc;margin:4px 0\">性别：\n    <label style=\"margin:0 16px 0 4px;cursor:pointer\">\n      <input type=\"radio\" name=\"gender\" value=\"male\" checked> 男\n    </label>\n    <label style=\"cursor:pointer\">\n      <input type=\"radio\" name=\"gender\" value=\"female\"> 女\n    </label>\n  </p>\n\n  <h3 style=\"color:#764ba2;margin:16px 0 8px\">checkbox 多选：</h3>\n  <p style=\"color:#ccc;margin:4px 0\">爱好：\n    <label style=\"margin:0 12px 0 4px;cursor:pointer\">\n      <input type=\"checkbox\" name=\"hobby\" value=\"coding\" checked> 编程\n    </label>\n    <label style=\"margin:0 12px 0 4px;cursor:pointer\">\n      <input type=\"checkbox\" name=\"hobby\" value=\"reading\"> 阅读\n    </label>\n    <label style=\"cursor:pointer\">\n      <input type=\"checkbox\" name=\"hobby\" value=\"sports\"> 运动\n    </label>\n  </p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}label{color:#ccc;font-size:14px}",
+          "js": ""
+        },
+        "propRef": "html.select"
+      },
+      {
+        "id": "h16-2",
+        "title": "select（下拉框）+ textarea（多行文本）+ button（按钮）",
+        "content": "<b>select</b> > option：下拉选择框。option用value设置提交值，用<b>selected</b>设置默认选中。可以设置multiple多选、size显示行数。用optgroup给选项分组。<b>textarea</b>：多行文本输入域，rows（行数）和cols（列数）控制尺寸。用户可以在右下角拖拽改变大小。<b>button</b>：type=submit（提交表单）/reset（重置）/button（普通按钮，需要JS）。",
+        "code": {
+          "html": "<div style=\"max-width:400px;margin:0 auto\">\n  <label style=\"color:#ccc;font-size:13px\">城市（select下拉）：</label>\n  <select name=\"city\" style=\"display:block;width:100%;padding:8px;margin:4px 0 12px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;font-size:14px\">\n    <option value=\"\">请选择城市</option>\n    <option value=\"beijing\">北京</option>\n    <option value=\"shanghai\" selected>上海</option>\n    <option value=\"shenzhen\">深圳</option>\n    <option value=\"guangzhou\">广州</option>\n  </select>\n\n  <label style=\"color:#ccc;font-size:13px\">留言（textarea多行）：</label>\n  <textarea name=\"message\" rows=\"4\" placeholder=\"请输入你的留言...\" style=\"display:block;width:100%;padding:8px;margin:4px 0 12px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;font-size:14px;box-sizing:border-box;resize:vertical\"></textarea>\n\n  <button type=\"submit\" style=\"padding:10px 24px;background:#2ecc71;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:15px;font-weight:bold\">✅ 提交</button>\n  <button type=\"reset\" style=\"padding:10px 24px;background:#e74c3c;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:15px;margin-left:8px\">🔄 重置</button>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.textarea"
+      },
+      {
+        "id": "h16-3",
+        "title": "label/fieldset/datalist——表单辅助标签",
+        "content": "<b>label for=\"id\"</b>：关联输入框，点击label文字自动聚焦/选中对应的input。这是无障碍访问的基本要求！<b>fieldset + legend</b>：将表单控件分组，外面加边框，legend是分组标题——适合地址信息、支付信息等场景。<b>datalist</b>：给input提供自动补全建议（不是下拉框，是「输入时弹建议」）。",
+        "code": {
+          "html": "<div style=\"max-width:400px;margin:0 auto\">\n  <fieldset style=\"border:2px solid #667eea;border-radius:8px;padding:16px;margin-bottom:16px\">\n    <legend style=\"color:#667eea;font-weight:bold;font-size:15px;padding:0 8px\">📦 收货地址</legend>\n    <label style=\"color:#ccc;font-size:13px;display:block;margin-bottom:4px\">姓名：</label>\n    <input type=\"text\" style=\"width:100%;padding:8px;margin-bottom:10px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\">\n    <label style=\"color:#ccc;font-size:13px;display:block;margin-bottom:4px\">电话：</label>\n    <input type=\"tel\" style=\"width:100%;padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\">\n  </fieldset>\n\n  <label style=\"color:#ccc;font-size:13px\">浏览器（有输入建议）：</label>\n  <input list=\"browsers\" placeholder=\"输入试试\" style=\"display:block;width:100%;padding:8px;margin:4px 0 12px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;box-sizing:border-box\">\n  <datalist id=\"browsers\">\n    <option value=\"Chrome\">\n    <option value=\"Firefox\">\n    <option value=\"Safari\">\n    <option value=\"Edge\">\n    <option value=\"Opera\">\n  </datalist>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.button"
+      },
+      {
+        "id": "h16-4",
+        "title": "🎯 实战挑战：做一个完整的调查问卷",
+        "content": "制作一个调查问卷表单：①姓名（text+required）②性别（radio互斥+label关联）③爱好（checkbox多选+label关联）④城市（select下拉+selected默认值）⑤满意度（range 1-10）⑥建议（textarea）⑦提交+重置按钮。用fieldset分组基本信息。所有input都要有name和id，所有label都要有for。",
+        "tip": "检查：点击label文字能选中对应控件、radio互斥、checkbox可多选、select下拉展开、textarea可拖拽 = 全对！",
+        "propRef": "html.fieldset",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h17",
+    "title": "🖥️ HTML iframe——网页中的网页",
+    "desc": "iframe嵌入:src/sandbox/allowfullscreen/loading 安全与性能",
+    "category": "html",
+    "icon": "🖥️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h17-1",
+        "title": "iframe基础——在当前页面嵌入另一个网页",
+        "content": "<code>&lt;iframe&gt;</code>（inline frame）可以在你的网页中嵌入另一个完整的网页。最常用的场景：嵌入YouTube视频、Google地图、第三方支付页面、在线文档。<b>核心属性：src</b>（嵌入页面的URL）、<b>width/height</b>（尺寸）。",
+        "code": {
+          "html": "<h3 style=\"color:#667eea;margin:0 0 8px\">iframe 示例：</h3>\n\n<iframe \n  src=\"about:blank\" \n  width=\"100%\" \n  height=\"120\" \n  style=\"border:2px solid #667eea;border-radius:8px;background:#1e1e30\"\n  title=\"iframe示例——嵌入空白页\"\n>\n  <p>你的浏览器不支持iframe</p>\n</iframe>\n\n<p style=\"color:#888;font-size:13px;margin-top:8px\">↑ iframe内部是一个独立的页面，有自己的CSS和JS环境</p>\n\n<div style=\"background:#1e1e30;padding:12px;border-radius:8px;margin-top:12px\">\n  <h4 style=\"color:#2ecc71;margin:0 0 8px\">常见使用场景：</h4>\n  <p style=\"color:#ccc;font-size:14px;line-height:1.8;margin:0\">\n    🎬 嵌入YouTube视频<br>\n    🗺️ 嵌入Google地图<br>\n    💳 嵌入第三方支付<br>\n    📊 嵌入数据仪表盘<br>\n    🔗 嵌入其他网站内容\n  </p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.iframe"
+      },
+      {
+        "id": "h17-2",
+        "title": "sandbox安全沙箱——iframe安全必修课",
+        "content": "嵌入第三方内容时，<b>sandbox</b>属性是必加的！它用沙箱隔离iframe内部的权限，防止恶意脚本攻击你的页面。<b>总结：只给最少权限</b>。常用值：sandbox=\"\"（空值=最严格，禁止一切脚本和表单）、sandbox=\"allow-scripts\"（允许脚本但不允许弹窗/表单提交/顶层导航）。多个权限用空格分隔。",
+        "code": {
+          "html": "<div style=\"background:#282840;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#e74c3c;margin:0 0 12px\">⚠️ sandbox 安全沙箱：</h3>\n  <pre style=\"background:#1e1e30;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.8;overflow:auto\">sandbox=\"\"             最严格！禁止一切脚本/表单\nsandbox=\"allow-scripts\"  允许JS，不允许弹窗\nsandbox=\"allow-same-origin\"  视为同源\nsandbox=\"allow-forms\"      允许表单提交\nsandbox=\"allow-popups\"      允许弹窗\n\n组合使用（空格分隔）：\nsandbox=\"allow-scripts allow-same-origin allow-popups\"\n\n推荐策略：\n✅ 嵌入自己的内容 → 不加sandbox\n✅ 嵌入第三方内容 → 加sandbox，按需开放权限\n⚠️ 永远不要同时开放 allow-scripts 和 allow-same-origin 给不可信的第三方！</pre>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.iframe"
+      },
+      {
+        "id": "h17-3",
+        "title": "iframe属性详解",
+        "content": "iframe所有属性一览。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#f39c12;margin:0 0 12px\">iframe 全属性速查：</h3>\n  <pre style=\"background:#282840;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.8;overflow:auto\">src=\"URL\"             嵌入的网页地址\nwidth/height          宽高\nsandbox=\"\"           安全沙箱（嵌入第三方必加）\nallowfullscreen       允许全屏（视频用）\ntitle=\"描述\"          描述（无障碍，建议加）\nloading=\"lazy\"        懒加载（性能优化）\nreferrerpolicy        控制referrer发送\nname=\"frame-name\"     给iframe命名（a的target用）\nframeborder=\"0\"       无边框（CSS中用border代替）\nallow=\"camera;microphone\"  设备权限控制</pre>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.iframe"
+      },
+      {
+        "id": "h17-4",
+        "title": "🎯 实战挑战：做一个视频嵌入页面",
+        "content": "做一个「视频推荐」页面：用一个iframe模拟嵌入视频（可以用about:blank或者找一个YouTube视频的嵌入代码），设置sandbox安全沙箱，加上allowfullscreen。写清楚title描述。用一个a链接，点击后在iframe内打开（target指向iframe的name）。",
+        "tip": "检查：iframe显示了、sandbox加了、有title描述、布局不溢出 = 全对！",
+        "propRef": "html.iframe",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h18",
+    "title": "🎬 HTML多媒体——video/audio",
+    "desc": "video/audio全属性:controls/autoplay/muted/loop/poster/source/track",
+    "category": "html",
+    "icon": "🎬",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h18-1",
+        "title": "video标签——不依赖Flash的原生视频播放器",
+        "content": "<code>&lt;video&gt;</code>让浏览器原生支持视频播放，不需要安装任何插件。<b>controls</b>：显示播放/暂停/音量/全屏等控件。<b>autoplay</b>：自动播放（<b>现代浏览器要求必须同时设置muted</b>，否则会被拦截）。<b>loop</b>：循环播放。<b>poster</b>：视频加载前显示的封面图。<b>preload</b>：预加载策略（none不加载/metadata只加载元数据/auto预加载）。<b>source</b>：提供多种格式（MP4/WebM/OGG）确保兼容。",
+        "code": {
+          "html": "<div style=\"max-width:560px;margin:0 auto\">\n  <h3 style=\"color:#667eea;margin:0 0 12px;text-align:center\">video 视频播放器：</h3>\n  \n  <div style=\"background:#000;border-radius:10px;overflow:hidden\">\n    <video controls muted loop preload=\"metadata\" poster=\"https://placehold.co/560x315/667eea/fff?text=视频封面\" style=\"width:100%;display:block\">\n      <source src=\"https://www.w3school.com.cn/i/movie.ogg\" type=\"video/ogg\">\n      <source src=\"https://www.w3school.com.cn/i/movie.mp4\" type=\"video/mp4\">\n      <p>你的浏览器不支持HTML5视频，请升级浏览器。</p>\n    </video>\n  </div>\n\n  <p style=\"color:#888;font-size:13px;text-align:center;margin-top:8px\">\n    💡 controls显示控件、muted静音、loop循环、poster封面图\n  </p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.video"
+      },
+      {
+        "id": "h18-2",
+        "title": "audio标签——原生音频播放",
+        "content": "<code>&lt;audio&gt;</code>用于播放音频。属性和video几乎一样：<b>controls</b>（音频控制条）、<b>autoplay</b>（需muted）、<b>loop</b>、<b>preload</b>。也是用<b>source</b>提供多种格式（MP3/WAV/OGG）。注意：audio的autoplay同样受浏览器限制，必须有muted或用户交互触发。",
+        "code": {
+          "html": "<div style=\"max-width:500px;margin:0 auto\">\n  <h3 style=\"color:#764ba2;margin:0 0 12px;text-align:center\">audio 音频播放器：</h3>\n\n  <div style=\"background:#1e1e30;padding:20px;border-radius:10px;text-align:center\">\n    <p style=\"color:#ccc;margin:0 0 10px\">🎵 示例音频</p>\n    <audio controls preload=\"metadata\" style=\"width:100%;max-width:400px\">\n      <source src=\"https://www.w3school.com.cn/i/horse.ogg\" type=\"audio/ogg\">\n      <source src=\"https://www.w3school.com.cn/i/horse.mp3\" type=\"audio/mpeg\">\n      <p>你的浏览器不支持HTML5音频。</p>\n    </audio>\n  </div>\n\n  <p style=\"color:#888;font-size:13px;text-align:center;margin-top:8px\">\n    💡 source标签提供多个格式，浏览器自动选第一个支持的\n  </p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.audio"
+      },
+      {
+        "id": "h18-3",
+        "title": "track字幕 + 视频属性详解",
+        "content": "<b>track</b>标签给视频添加字幕（.vtt格式文件）。kind=\"subtitles\"字幕，kind=\"captions\"隐藏字幕（含音效描述），srclang字幕语言，label字幕名称（用户看到的选项）。字幕对无障碍访问（听障用户）和SEO都有帮助。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\">\n  <h3 style=\"color:#f39c12;margin:0 0 12px\">video/audio 全属性速查：</h3>\n  <pre style=\"background:#282840;padding:12px;border-radius:6px;color:#2ecc71;font-size:13px;line-height:1.8;overflow:auto\">控件相关：\ncontrols        显示播放控件（重要！）\ncontrolslist    控件定制（如 nodownload）\n\n播放行为：\nautoplay        自动播放（必须加muted）\nmuted           静音播放\nloop            循环播放\n\n视觉效果（video专属）：\nposter=\"封面.jpg\"  视频封面图（重要！）\nwidth/height      视频尺寸\n\n性能：\npreload=\"none\"     不预加载（省流量）\npreload=\"metadata\" 只加载元数据（推荐）\npreload=\"auto\"     预加载整个视频\n\ntrack字幕属性：\nkind=\"subtitles\"   字幕\nsrclang=\"zh\"      字幕语言\nlabel=\"中文字幕\"   显示名称\nsrc=\"subtitle.vtt\" 字幕文件</pre>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.media"
+      },
+      {
+        "id": "h18-4",
+        "title": "🎯 实战挑战：做一个多媒体页面",
+        "content": "做一个「我的视频博客」页面：用video标签放一段示例视频（controls+muted+loop+poster+preload=metadata），用source提供mp4和ogg两种格式。用audio标签放一段示例音频（controls+preload=metadata）。每个多媒体元素都要有相应的说明文字。注意autoplay必须搭配muted。",
+        "tip": "检查：video有播放控件、音频有进度条、poster封面显示了、控件都能用 = 全对！",
+        "propRef": "html.video",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h19",
+    "title": "🚀 HTML语义化与响应式布局",
+    "desc": "HTML5语义标签:header/nav/main/section/article/aside/footer + 响应式基础",
+    "category": "html",
+    "icon": "🚀",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h19-1",
+        "title": "语义化标签——让HTML有「意义」",
+        "content": "HTML5引入了一组语义化标签，它们看起来和div一样（都是块级容器），但有明确的语义：<b>header</b>页头、<b>footer</b>页尾、<b>nav</b>导航、<b>main</b>主体（一个页面一个！）、<b>section</b>内容分区、<b>article</b>独立文章、<b>aside</b>侧栏。<b>原则：能用语义标签就不用div。</b>语义化让搜索引擎理解页面结构、让盲人阅读器可以跳转导航、让开发者看代码就能懂布局。",
+        "code": {
+          "html": "<style>\n  header{background:linear-gradient(135deg,#667eea,#764ba2);padding:16px;text-align:center;color:#fff;font-weight:bold;border-radius:10px 10px 0 0}\n  nav{background:#2a2a40;padding:10px;text-align:center}\n  nav a{color:#ccc;margin:0 12px;text-decoration:none;font-size:14px}\n  main{display:flex;min-height:80px}\n  section{flex:2;background:#1e1e30;padding:16px;color:#fff}\n  aside{flex:1;background:#282840;padding:16px;color:#aaa;font-size:14px}\n  footer{background:#2ecc71;padding:14px;text-align:center;color:#fff;border-radius:0 0 10px 10px;font-weight:bold;font-size:14px}\n</style>\n\n<header>header - 页头（Logo、标题）</header>\n<nav>nav - 导航 | <a href=\"#\">首页</a> | <a href=\"#\">关于</a> | <a href=\"#\">联系</a></nav>\n<main>\n  <section>section - 主要内容区</section>\n  <aside>aside - 侧栏</aside>\n</main>\n<footer>footer - 页尾（版权、链接）</footer>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.semantic"
+      },
+      {
+        "id": "h19-2",
+        "title": "经典页面布局——header+nav+main+aside+footer",
+        "content": "90%的网站布局都可以用语义化标签描述。下面是经典的「头部-导航-主体(内容+侧栏)-底部」布局结构。这就是你学了HTML后应该能写出来的基本页面框架。<b>记住这个模板，它就是所有网页的「骨架模板」。</b>",
+        "code": {
+          "html": "<style>\n  .page{max-width:600px;margin:0 auto;font-family:'Segoe UI',Arial,sans-serif}\n  .page-header{background:linear-gradient(135deg,#667eea,#764ba2);padding:24px;text-align:center;border-radius:12px 12px 0 0}\n  .page-header h1{color:#fff;margin:0;font-size:1.5em}\n  .page-nav{background:#2a2a40;padding:10px 20px;display:flex;gap:16px}\n  .page-nav a{color:#aaa;text-decoration:none;font-size:14px;transition:.2s}\n  .page-nav a:hover{color:#fff}\n  .page-main{display:flex;min-height:150px}\n  .page-content{flex:3;background:#1e1e30;padding:20px}\n  .page-content h2{color:#667eea;margin:0 0 8px;font-size:1.1em}\n  .page-content p{color:#ccc;font-size:14px;line-height:1.8;margin:0}\n  .page-sidebar{flex:1;background:#282840;padding:16px;min-width:120px}\n  .page-sidebar h3{color:#f39c12;margin:0 0 8px;font-size:1em}\n  .page-sidebar ul{color:#aaa;list-style:none;padding:0;margin:0;font-size:13px;line-height:2}\n  .page-footer{background:#1a1a2e;padding:16px;text-align:center;border-radius:0 0 12px 12px;border-top:2px solid #333}\n  .page-footer p{color:#666;font-size:12px;margin:0}\n</style>\n\n<div class=\"page\">\n  <header class=\"page-header\"><h1>🌐 我的网站</h1></header>\n  <nav class=\"page-nav\">\n    <a href=\"#\">🏠 首页</a>\n    <a href=\"#\">📝 博客</a>\n    <a href=\"#\">ℹ️ 关于</a>\n    <a href=\"#\">📧 联系</a>\n  </nav>\n  <main class=\"page-main\">\n    <article class=\"page-content\">\n      <h2>欢迎来到我的网站</h2>\n      <p>这是用HTML5语义化标签搭建的标准页面布局。header+nav+main(section+aside)+footer，学会了这个模板，你就能搭建任何网站的基本框架。</p>\n    </article>\n    <aside class=\"page-sidebar\">\n      <h3>📌 快速链接</h3>\n      <ul><li>推荐文章</li><li>热门标签</li><li>关于我</li></ul>\n    </aside>\n  </main>\n  <footer class=\"page-footer\"><p>© 2026 我的网站 | 使用HTML5语义标签搭建</p></footer>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.semantic"
+      },
+      {
+        "id": "h19-3",
+        "title": "响应式布局基础——viewport + CSS @media",
+        "content": "响应式设计让网页在不同屏幕上都好看。核心两步：①在head中加 <code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>——这是响应式的「开关」，不加的话手机会把网页缩小成桌面版；②用CSS的 <code>@media</code> 查询根据屏幕宽度调整样式。原则：<b>移动优先</b>——基础样式为手机设计，然后用 @media (min-width) 逐渐增强到桌面。",
+        "code": {
+          "html": "<style>\n  .responsive-demo{padding:16px;background:#667eea;color:#fff;text-align:center;border-radius:8px;max-width:600px;margin:0 auto}\n  .responsive-demo h3{margin:0;font-size:1.2em}\n  .responsive-demo p{font-size:14px;margin:4px 0 0;opacity:.9}\n  @media (max-width:480px){\n    .responsive-demo{padding:10px;font-size:13px}\n    .responsive-demo h3{font-size:1em}\n  }\n</style>\n\n<div class=\"responsive-demo\">\n  <h3>📱 响应式盒子（缩小窗口试试）</h3>\n  <p>窗口 &gt; 480px：正常显示 | 窗口 &lt; 480px：缩小适配手机</p>\n</div>\n\n<div style=\"background:#1e1e30;padding:16px;border-radius:8px;max-width:600px;margin:16px auto 0\">\n  <h4 style=\"color:#2ecc71;margin:0 0 8px\">响应式三大原则：</h4>\n  <p style=\"color:#ccc;font-size:13px;line-height:1.8;margin:0\">\n    ① meta viewport（head中必须写）<br>\n    ② CSS @media 查询（根据屏幕宽度切换样式）<br>\n    ③ 图片 max-width:100%（防止撑破手机屏幕）<br>\n    ④ 移动优先：基础样式=手机 → @media(min-width)增强桌面\n  </p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.semantic"
+      },
+      {
+        "id": "h19-4",
+        "title": "全局属性详解——所有标签都能用的属性",
+        "content": "这些属性任何HTML标签都可以用，是写页面最常用的「瑞士军刀」。<b>id</b>唯一标识、<b>class</b>分类、<b>style</b>内联样式、<b>title</b>悬停提示（四大金刚）。<b>contenteditable=\"true\"</b>让元素可编辑！<b>hidden</b>隐藏、<b>draggable</b>可拖拽、<b>tabindex</b>Tab键顺序、<b>data-*</b>自定义数据、<b>lang</b>语言、<b>spellcheck</b>拼写检查。",
+        "code": {
+          "html": "<div style='background:#1e1e30;padding:20px;border-radius:8px;max-width:600px;margin:0 auto'>\n<p style='color:#ccc;font-size:14px;line-height:1.8;margin:0'>\n点击右上角 <b style='color:#667eea'>📋 全属性</b> 按钮，查看 <b>id/class/style/data-*/title/lang/dir/hidden/tabindex/contenteditable</b> 等所有全局属性的完整用法和 JavaScript 操作方法。\n</p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.semantic"
+      },
+      {
+        "id": "h19-5",
+        "title": "🎯 实战挑战：搭建一个完整的个人主页",
+        "content": "用语义化标签搭建一个个人主页：header（名字+一句话介绍）、nav（4个导航链接）、main（section自我介绍+article技能列表）、aside（联系方式）、footer（版权©+年份）。meta viewport要写。用CSS @media做简单的响应式——手机端aside和main竖向排列。全部用语义标签，尽量少用div。",
+        "tip": "检查：header+nav+main+aside+footer一个不少、meta viewport写了、窗口缩小时布局有变化 = 你已经可以独立写网页了！",
+        "propRef": "html.semantic",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h20",
+    "title": "📑 HTML全标签速查与总结",
+    "desc": "所有标签分类速查 / 核心属性 / 面试常见考点 / 学习路径",
+    "category": "html",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "h20-1",
+        "title": "HTML 全标签总览（分类整理）",
+        "content": "学完所有章节后，这份速查表是日常开发的案头参考。按分类列出所有常用标签及核心属性。",
+        "code": {
+          "html": "<div style='max-width:750px;margin:0 auto;padding:16px'>\n<h2 style='text-align:center;color:#f39c12;margin-bottom:4px'>📑 HTML 全标签总览</h2>\n<p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>21章 · 点击 📖 跳转到对应章节</p>\n<table style='width:100%;border-collapse:collapse;font-size:11px'>\n<tr style='background:#667eea'>\n  <th style='padding:4px 8px;color:#fff;text-align:left'>ID</th>\n  <th style='padding:4px 8px;color:#fff;text-align:left'>章节</th>\n  <th style='padding:4px 8px;color:#fff;text-align:left'>说明</th>\n  <th style='padding:4px 8px;color:#fff;text-align:center'>跳转</th>\n</tr>\n<tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h1</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🌐 HTML简介——你的第一个网页</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>什么是HTML / 新手心态 / 第一个Hello World / HTML能做</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h1'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h2</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>📄 HTML基础——网页骨架与编辑器</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>DOCTYPE/html/head/meta/title/body 完整骨架 +</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h2'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h3</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🧱 HTML元素——网页的积木</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>标签语法 / 嵌套规则 / 空元素 / 块级vs行内 / 大小写规范</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h3'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h4</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🔧 HTML属性——元素的「遥控器」</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>属性写法/href/src/alt/class/id/style/title 全</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h4'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h5</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>📝 HTML标题——h1到h6的层级艺术</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>h1-h6:语义层级/SEO最佳实践/标题结构设计</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h5'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h6</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>📃 HTML段落——p、br、hr、pre</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>段落标签/换行/分割线/保留格式的pre/断词wbr</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h6'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h7</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>✏️ HTML文本格式化——粗体/斜体/高亮/上下标</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>b/strong/i/em/mark/small/del/ins/sub/sup</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h7'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h8</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>💬 HTML引用与代码——blockquote/q/cite/pre/code</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>引用标签/代码标签/缩写/地址/键盘/变量</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h8'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h9</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🗒️ HTML注释、实体与Emoji</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>注释写法/HTML实体/Emoji/URL编码/特殊字符</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h9'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h10</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🔗 HTML链接——a标签全解</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>a标签:href/target/rel/download/锚点/mailto/t</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h10'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h11</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🖼️ HTML图片——img/picture/figure全解</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>img全属性:src/alt/loading/srcset/sizes + pi</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h11'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h12</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>📋 HTML列表——ul/ol/dl全属性</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>无序列表/有序列表/描述列表/嵌套列表/type/start</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h12'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h13</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>📊 HTML表格——table全家桶</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>table/caption/thead/tbody/tr/th/td/colsp</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h13'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h14</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>📦 HTML区块——div/span/class/id</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>div块容器/span行容器/class分类/id标识/BEM命名法</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h14'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h15</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>📝 HTML表单(上)——form + input全type</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>form属性:action/method/enctype | input全typ</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h15'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h16</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>✅ HTML表单(下)——radio/checkbox/select/textarea/label</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>单选/复选/下拉框/多行文本/按钮/label关联/fieldset/datal</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h16'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h17</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🖥️ HTML iframe——网页中的网页</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>iframe嵌入:src/sandbox/allowfullscreen/loa</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h17'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h18</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🎬 HTML多媒体——video/audio</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>video/audio全属性:controls/autoplay/muted/l</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h18'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h19</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🚀 HTML语义化与响应式布局</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>HTML5语义标签:header/nav/main/section/articl</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h19'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h20</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>📑 HTML全标签速查与总结</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>所有标签分类速查 / 核心属性 / 面试常见考点 / 学习路径</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h20'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:#1e1e30'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h21</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🔽 HTML交互元素——details/dialog/time/progress</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>折叠面板/模态对话框/时间标签/进度条/度量条</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h21'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr><tr style='background:transparent'>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'><b style='color:#f39c12'>h22</b></td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#eee;font-size:11px'>🎨 HTML多媒体进阶——canvas/embed/object/map</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333;color:#888;font-size:10px'>canvas画布/embed嵌入/object对象/map-area图片热区</td>\n      <td style='padding:5px 8px;border-bottom:1px solid #333'>\n        <span onclick=\"parent.document.dispatchEvent(new CustomEvent('tutNav',{detail:'h22'}))\"  style='display:inline-block;padding:3px 10px;background:#f39c12;color:#fff;border-radius:3px;cursor:pointer;font-size:11px'>📖</span>\n      </td></tr>\n</table>\n<p style='text-align:center;color:#555;font-size:10px;margin-top:12px'>💡 从上到下循序渐进，每章有实战挑战</p>\n</div>",
+          "css": "body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.summary"
+      },
+      {
+        "id": "h20-2",
+        "title": "🎓 学习总结——下一步学什么",
+        "content": "恭喜你学完了HTML全部核心知识！你已经掌握了网页开发的「普通话」——所有网站的地基都是HTML。下一步的学习路线：<b>CSS（网页的「衣服」，让页面变好看）→ JavaScript（网页的「肌肉」，让页面动起来）→ Vue/React（现代框架，高效开发复杂应用）</b>。记住一句话：HTML是网页的骨骼，骨架子搭得正，后面加什么都好看。",
+        "code": {
+          "html": "<div style=\"max-width:600px;margin:0 auto;padding:16px;text-align:center\">\n  <h2 style=\"color:#f39c12;margin:0 0 16px\">🎉 恭喜你完成了HTML学习！</h2>\n\n  <div style=\"background:#1e1e30;padding:20px;border-radius:12px;margin-bottom:16px\">\n    <h3 style=\"color:#2ecc71;margin:0 0 12px\">📋 你已掌握的核心技能：</h3>\n    <p style=\"color:#ccc;font-size:14px;line-height:2;margin:0\">\n      ✅ HTML5文档完整骨架<br>\n      ✅ 标题h1-h6的层级艺术<br>\n      ✅ 段落/格式化/引用/代码标签<br>\n      ✅ 注释/实体/Emoji<br>\n      ✅ 链接a标签全属性<br>\n      ✅ 图片img/picture/figure<br>\n      ✅ 列表ul/ol/dl + 嵌套<br>\n      ✅ 表格table + colspan/rowspan<br>\n      ✅ 表单form + 所有input type<br>\n      ✅ div/span/class/id/BEM命名<br>\n      ✅ 语义化标签 + 响应式基础<br>\n      ✅ video/audio/iframe多媒体\n    </p>\n  </div>\n\n  <div style=\"background:linear-gradient(135deg,#667eea,#764ba2);padding:20px;border-radius:12px;color:#fff\">\n    <h3 style=\"margin:0 0 12px\">🚀 下一步学习路线：</h3>\n    <p style=\"font-size:14px;line-height:2;margin:0;opacity:.95\">\n      1️⃣ <b>CSS</b> —— 让网页变漂亮的样式语言<br>\n      2️⃣ <b>JavaScript</b> —— 让网页动起来的编程语言<br>\n      3️⃣ <b>Vue / React</b> —— 现代前端框架<br>\n      🔥 <b>动手做项目</b> —— 最好的学习方式！\n    </p>\n  </div>\n\n  <p style=\"color:#888;font-size:13px;margin-top:16px\">💡 记住：HTML是网页的骨骼，骨架子搭得正，后面加什么都好看。</p>\n</div>",
+          "css": "body{padding:24px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "html.summary"
+      }
+    ]
+  },
+  {
+    "id": "h21",
+    "title": "🔽 HTML交互元素——details/dialog/time/progress",
+    "desc": "折叠面板/模态对话框/时间标签/进度条/度量条",
+    "category": "html",
+    "icon": "🔽",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h21-1",
+        "title": "<details> + <summary> —— 纯HTML折叠面板",
+        "content": "<b>details</b>是HTML5原生折叠/展开组件（零JS实现手风琴效果！）。<b>summary</b>是折叠面板的标题。默认收起，加上<b>open</b>布尔属性默认展开。点击标题自动切换。💡FAQ、帮助文档、代码示例折叠的最佳选择，不需要任何JS。",
+        "code": {
+          "html": "<p style=\"color:#888;font-size:12px\">💡 纯HTML零JS实现折叠面板！</p>",
+          "css": "details{border:2px solid #667eea;border-radius:8px;padding:8px;margin:8px 0;background:#1e1e30}summary{transition:.2s}summary:hover{color:#764ba2!important}",
+          "js": ""
+        },
+        "propRef": "html.details"
+      },
+      {
+        "id": "h21-2",
+        "title": "<dialog> —— 原生模态对话框",
+        "content": "<b>dialog</b>是HTML原生对话框（弹窗），替代了以前用div+JS模拟的做法。设置<b>open</b>属性默认显示。JS调用：dialog.show()非模态、dialog.showModal()模态（背景遮罩）。::backdrop伪元素可以样式化遮罩层。💡浏览器原生支持，比第三方弹窗库更轻量，无障碍性好。",
+        "code": {
+          "html": "<button onclick=\"document.getElementById('d21').showModal()\" style=\"padding:10px 20px;background:#667eea;color:#fff;border:none;border-radius:6px;cursor:pointer\">打开对话框</button><dialog id=\"d21\" style=\"border:2px solid #667eea;border-radius:12px;padding:24px;background:#1e1e30;color:#eee;max-width:350px\"><h3 style=\"color:#667eea;margin:0 0 8px\">📢 原生对话框</h3><p style=\"color:#ccc;font-size:14px;line-height:1.6\">这是用&lt;dialog&gt;标签创建的原生弹窗，不需要任何第三方库。</p><button onclick=\"document.getElementById('d21').close()\" style=\"padding:8px 20px;background:#2ecc71;color:#fff;border:none;border-radius:6px;cursor:pointer;margin-top:8px\">关闭</button></dialog><style>dialog::backdrop{background:rgba(0,0,0,.7)}</style>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "html.dialog"
+      },
+      {
+        "id": "h21-3",
+        "title": "<time> —— 语义化时间日期标签",
+        "content": "time标签给日期/时间添加机器可读格式。datetime属性存ISO 8601格式(YYYY-MM-DDTHH:MM:SS)。搜索引擎和日历应用能解析time标签。💡SEO友好：搜索引擎知道这是时间而不是普通文字。对活动时间、文章发布日期的标注尤其重要。",
+        "code": {
+          "html": "<p style=\"color:#ccc;line-height:2.2\">📅 活动日期：<time datetime=\"2024-10-01\" style=\"color:#f39c12;font-weight:bold\">2024年10月1日</time></p><p style=\"color:#ccc;line-height:2.2\">⏰ 开始时间：<time datetime=\"2024-10-01T14:30:00\" style=\"color:#667eea;font-weight:bold\">下午2:30</time></p><p style=\"color:#888;font-size:12px\">💡 datetime属性存ISO格式，浏览器/搜索引擎可解析</p>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "html.textformat"
+      },
+      {
+        "id": "h21-4",
+        "title": "<progress> + <meter> —— 进度条和度量条",
+        "content": "<b>progress</b>进度条：value当前值/max最大值。不指定value则显示为不确定状态（动画来回扫）。<b>meter</b>度量条：显示已知范围内的标量值（温度/磁盘使用率/评分）。low/high/optimum设定警戒范围。💡progress适合不确定过程（加载中），meter适合确定的值（评分）。",
+        "code": {
+          "html": "<h3 style=\"color:#667eea;margin:8px 0 4px\">progress 进度条：</h3><label style=\"color:#ccc;font-size:13px\">下载进度：60%</label><progress value=\"60\" max=\"100\" style=\"width:200px;height:20px;accent-color:#2ecc71\"></progress><br><label style=\"color:#ccc;font-size:13px\">不确定进度：</label><progress max=\"100\" style=\"width:200px;height:20px;accent-color:#667eea\"></progress><h3 style=\"color:#764ba2;margin:16px 0 4px\">meter 度量条：</h3><label style=\"color:#ccc;font-size:13px\">评分：</label><meter value=\"4.5\" min=\"0\" max=\"5\" low=\"2\" high=\"4\" optimum=\"5\" style=\"width:200px;height:20px\"></meter><span style=\"color:#f39c12;font-weight:bold\">4.5/5</span>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "html.details"
+      },
+      {
+        "id": "h21-5",
+        "title": "🎯 实战挑战：FAQ折叠面板",
+        "content": "用details+summary做3个FAQ折叠面板。用dialog做「联系我们」弹窗（showModal+关闭按钮）。用time标注活动时间（ISO 8601格式）。进度条显示任务完成状态。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：details可折叠、dialog弹窗正常、time语义正确 = 全掌握！",
+        "propRef": "html.details"
+      }
+    ]
+  },
+  {
+    "id": "h22",
+    "title": "🎨 HTML多媒体进阶——canvas/embed/object/map",
+    "desc": "canvas画布/embed嵌入/object对象/map-area图片热区",
+    "category": "html",
+    "icon": "🎨",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "h22-1",
+        "title": "<canvas> —— JS绘图画布",
+        "content": "canvas是HTML5的绘图画布，通过JS在像素级别绘制图形/动画/游戏。默认大小为300×150px。JS获取上下文：canvas.getContext('2d')。常用方法：fillRect(x,y,w,h)绘制矩形、arc圆形、fillText文字。💡canvas是数据可视化(ECharts/Chart.js)、游戏开发、图像处理的基础。",
+        "code": {
+          "html": "<canvas id=\"c22\" width=\"220\" height=\"100\" style=\"border:2px solid #667eea;border-radius:6px;background:#1e1e30\"></canvas>",
+          "css": "",
+          "js": "let c=document.getElementById(\"c22\");let ctx=c.getContext(\"2d\");ctx.fillStyle=\"#667eea\";ctx.fillRect(10,10,60,40);ctx.fillStyle=\"#e74c3c\";ctx.beginPath();ctx.arc(160,50,30,0,Math.PI*2);ctx.fill();ctx.fillStyle=\"#fff\";ctx.font=\"14px Arial\";ctx.fillText(\"canvas画布\",70,80)"
+        },
+        "propRef": "html.canvas"
+      },
+      {
+        "id": "h22-2",
+        "title": "<embed> + <object> —— 嵌入外部内容",
+        "content": "<b>embed</b>嵌入外部应用/插件（如PDF、Flash等）。src指定资源、type指定MIME类型。不支持回退内容。<b>object</b>功能更强大：支持多级回退、可传参数(<param>)、支持更多类型。<b>区别</b>：embed是空元素无法嵌套回退，object可以嵌套回退内容。💡现代Web中两者逐渐被更专业的方案替代，但了解它们仍有必要。",
+        "code": {
+          "html": "<object data=\"data:text/html,<h3>object嵌入内容</h3>\" type=\"text/html\" width=\"200\" height=\"80\" style=\"border:2px solid #667eea;border-radius:6px;display:block;margin:8px 0\"><p style=\"color:#e74c3c\">回退内容：浏览器不支持object</p></object><p style=\"color:#888;font-size:12px\">↑ object可以嵌套回退内容（加载失败时显示）</p>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "html.media"
+      },
+      {
+        "id": "h22-3",
+        "title": "<map> + <area> —— 图片热区",
+        "content": "在图片上定义多个可点击区域，不同区域跳不同链接。map用name标识，img用usemap='#name'关联。area定义热区：shape方形(rect)/圆形(circle)/多边形(poly)、coords坐标。💡适合地图、产品图标注、信息图等场景——比切图拼网页优雅。",
+        "code": {
+          "html": "<img src=\"data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27150%27><rect fill=%27%23667eea%27 width=%27150%27 height=%27150%27/><rect fill=%27%23e74c3c%27 x=%27150%27 width=%27150%27 height=%27150%27/><text fill=%27white%27 x=%2775%27 y=%2785%27 text-anchor=%27middle%27 font-size=%2720%27>左侧</text><text fill=%27white%27 x=%27225%27 y=%2785%27 text-anchor=%27middle%27 font-size=%2720%27>右侧</text></svg>\" alt=\"图片热区示例\" usemap=\"#m22\" style=\"max-width:100%;border-radius:8px\"><map name=\"m22\"><area shape=\"rect\" coords=\"0,0,150,150\" href=\"#\" title=\"左侧蓝色区域\" alt=\"左侧\"><area shape=\"rect\" coords=\"150,0,300,150\" href=\"#\" title=\"右侧红色区域\" alt=\"右侧\"></map><p style=\"color:#888;font-size:12px\">↑ 悬停左右区域看不同的title提示（实际项目中用真实链接）</p>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "html.map"
+      },
+      {
+        "id": "h22-4",
+        "title": "🎯 实战挑战：产品功能展示页",
+        "content": "canvas画一个简单图形（矩形+圆形+文字）。object嵌入一段HTML内容并设置回退。map+area给产品图片的不同部件加注释链接。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：canvas绘图、object有回退、热区可点击 = 全掌握！",
+        "propRef": "html.canvas"
+      }
+    ]
+  }
+]

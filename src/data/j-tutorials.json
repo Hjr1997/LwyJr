@@ -1,0 +1,1695 @@
+[
+  {
+    "id": "j33",
+    "title": "📑 JavaScript 完整学习大纲",
+    "desc": "32篇教程 · 从0到精通 · 十年架构师视角",
+    "category": "js",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "j33-1",
+        "title": "大纲——按顺序学习",
+        "content": "32篇教程覆盖JS完整知识体系，从变量到模块化，每章有实战挑战。",
+        "code": {
+          "html": "<div style=\"max-width:700px;margin:0 auto;padding:16px\"><h2 style=\"text-align:center;color:#f39c12\">📑 JavaScript 完全学习大纲</h2><p style=\"text-align:center;color:#888;font-size:12px;margin-bottom:16px\">32篇教程 · 从0到精通</p><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#667eea\"><th style=\"padding:4px 8px;color:#fff;text-align:left\">分类</th><th style=\"padding:4px 8px;color:#fff;text-align:left\">章节</th><th style=\"padding:4px 8px;color:#fff;text-align:left\">核心内容</th></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">入门(6篇)</td><td style=\"padding:4px 8px;color:#ccc\">j1-j6</td><td style=\"padding:4px 8px;color:#888\">JS介绍/变量/类型/运算符/条件/循环</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">函数(3篇)</td><td style=\"padding:4px 8px;color:#ccc\">j7-j9</td><td style=\"padding:4px 8px;color:#888\">函数/进阶/作用域</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">String(2篇)</td><td style=\"padding:4px 8px;color:#ccc\">j10-j11</td><td style=\"padding:4px 8px;color:#888\">字符串/模板/方法</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">Number(2篇)</td><td style=\"padding:4px 8px;color:#ccc\">j12-j13</td><td style=\"padding:4px 8px;color:#888\">数字/Math对象</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">Array(2篇)</td><td style=\"padding:4px 8px;color:#ccc\">j14-j15</td><td style=\"padding:4px 8px;color:#888\">数组/高阶方法</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">Object(2篇)</td><td style=\"padding:4px 8px;color:#ccc\">j16-j17</td><td style=\"padding:4px 8px;color:#888\">对象/原型链</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">数据结构(3篇)</td><td style=\"padding:4px 8px;color:#ccc\">j18-j20</td><td style=\"padding:4px 8px;color:#888\">Date/MapSet/解构</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">现代JS(3篇)</td><td style=\"padding:4px 8px;color:#ccc\">j21-j23</td><td style=\"padding:4px 8px;color:#888\">Class/JSON/错误处理</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">异步(3篇)</td><td style=\"padding:4px 8px;color:#ccc\">j24-j26</td><td style=\"padding:4px 8px;color:#888\">定时器/Promise/async</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">浏览器(4篇)</td><td style=\"padding:4px 8px;color:#ccc\">j27-j30</td><td style=\"padding:4px 8px;color:#888\">DOM/事件/表单/BOM</td></tr><tr><td style=\"padding:4px 8px;color:#f39c12\">高级(2篇)</td><td style=\"padding:4px 8px;color:#ccc\">j31-j32</td><td style=\"padding:4px 8px;color:#888\">正则/模块化</td></tr></table><p style=\"text-align:center;color:#555;font-size:11px;margin-top:12px\">💡 从上到下循序渐进</p></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;color:#eee}",
+          "js": ""
+        },
+        "propRef": "js.summary"
+      }
+    ]
+  },
+  {
+    "id": "j1",
+    "title": "📜 JS 介绍·输出·注释",
+    "desc": "JS是什么/script标签/console.log/alert/注释",
+    "category": "js",
+    "icon": "📜",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "j1-1",
+        "title": "比喻：浏览器里的小机器人——JavaScript是什么",
+        "content": "HTML搭骨架、CSS穿衣服、<b>JavaScript赋予行为</b>——让网页活起来。点击按钮、验证表单、动画效果、加载数据都是JS干的。它是真正的<b>编程语言</b>（和HTML/CSS标记语言不同）。💡学JS前你要忘掉一个观念：网页不是静态的画，而是可以交互的程序。",
+        "code": {
+          "html": "<h1>静态标题</h1><p id='j1demo'>等JS改变我...</p>",
+          "css": "body{text-align:center;padding:40px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "document.getElementById('j1demo').textContent='✅ JS 成功运行！';document.getElementById('j1demo').style.color='#2ecc71'"
+        },
+        "propRef": "js.intro"
+      },
+      {
+        "id": "j1-2",
+        "title": "JS 基本语法规则——写代码的规矩",
+        "content": "①分号：语句结尾加分号（可省略但不推荐，有坑）。②大小写敏感：myVar≠myvar。③驼峰命名：firstName(首个单词小写后续首字母大写)。④关键字不能用作变量名。⑤语句和表达式：let x=5是语句，5+3是表达式产值。⑥代码块用{}包裹。⑦好的缩进让人看得懂——不在乎空格多少，在乎有没有。",
+        "code": {
+          "html": "<button onclick=\"j1s()\">语法演示</button><pre id=\"j1s_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j1s(){var r=document.getElementById(\"j1s_\");var lines=[];var a=1;var b=2;var c=a+b;lines.push(\"a=\"+a+\", b=\"+b+\", c=a+b=\"+c);var MyVar=\"大写\";var myvar=\"小写\";lines.push(\"MyVar vs myvar: \"+MyVar+\" ≠ \"+myvar);var firstName=\"小明\";lines.push(\"驼峰命名: firstName=\"+firstName);r.textContent=lines.join(\"\\n\")}"
+        },
+        "propRef": "js.intro"
+      },
+      {
+        "id": "j1-3",
+        "title": "三种输出方式——让JS「说话」",
+        "content": "①<b>window.console.log('调试')</b>→F12控制台看（最常用，开发调试专用）②<b>window.alert('弹窗')</b>→浏览器弹框（用户看得到，但太打扰了）③<b>document.write()</b>→写HTML到页面（慎用！页面加载后用会覆盖全部内容）。💡日常开发99%用console.log。alert 和 console.log 都是 window 下的方法，浏览器全局可直接调用。",
+        "code": {
+          "html": "<button id=\"btnLog\">window.console.log</button>\n<button id=\"btnAlert\">window.alert</button>\n<button id=\"btnWrite\">document.write</button>\n<pre id=\"j1o\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;margin:4px;cursor:pointer}button:hover{background:#e67e22}pre{margin-top:8px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "// 使用 window 下的方法（浏览器全局可直接调用）\n\ndocument.getElementById('btnLog').onclick = function() {\n  window.console.log('调试：按钮被点击！')\n  document.getElementById('j1o').textContent = '✅ 已输出到 F12 控制台（按 F12 → Console 查看）'\n}\n\ndocument.getElementById('btnAlert').onclick = function() {\n  window.alert('你好！这是一个 window.alert 弹窗')\n  document.getElementById('j1o').textContent = '✅ window.alert 弹窗已弹出'\n}\n\ndocument.getElementById('btnWrite').onclick = function() {\n  // 注意：document.write() 在页面加载后调用会覆盖全部内容！\n  document.getElementById('j1o').textContent = '✅ document.write 已执行（但不推荐在加载后使用）'\n}"
+        },
+        "propRef": "js.intro"
+      },
+      {
+        "id": "j1-4",
+        "title": "单行注释 // 和多行注释 /* */",
+        "content": "//单行注释：从//到行末被忽略。/* */多行注释：中间全部忽略。用途：解释代码、临时禁用代码调试。快捷键Ctrl+/。💡复杂逻辑上方必须写注释——三个月后你会感谢自己。",
+        "code": {
+          "html": "<button onclick=\"j1d()\">运行</button><pre id=\"j1d_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "// 单行注释——下面代码会执行\nvar x = 10; // 行末也可以注释\n/* 多行注释\n   中间代码全忽略\n   var y = 99; 不执行 */\nfunction j1d(){document.getElementById(\"j1d_\").textContent=\"x=\"+x+\"，注释让代码更可读!\"}"
+        },
+        "propRef": "js.intro"
+      },
+      {
+        "id": "j1-4b",
+        "title": "Console 高级方法——不只是 log",
+        "content": "console除了log，还有：<b>error('message')</b>红色错误日志（带堆栈）、<b>warn('message')</b>黄色警告、<b>table(arr)</b>表格形式输出数组/对象、<b>group('名')</b>/groupEnd()分组折叠、<b>time('名')</b>/timeEnd('名')测量代码执行时间。💡调试大型应用时table和group是神器。",
+        "code": {
+          "html": "<button onclick=\"j1e()\">console.error</button><button onclick=\"j1f()\">console.table</button><button onclick=\"j1g()\">console.time</button><pre id=\"j1e_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j1e(){console.error(\"红色错误日志\");document.getElementById(\"j1e_\").textContent=\"已输出到控制台\"}function j1f(){console.table([{name:\"小明\"},{name:\"小红\"}]);document.getElementById(\"j1e_\").textContent=\"已输出表格\"}function j1g(){console.time(\"计\");for(let i=0;i<1e6;i++){}console.timeEnd(\"计\");document.getElementById(\"j1e_\").textContent=\"已输出时间\"}"
+        },
+        "propRef": "js.console"
+      },
+      {
+        "id": "j1-5",
+        "title": "🎯 实战挑战：第一个JS程序",
+        "content": "点击按钮后显示当前时间到页面上。提示：new Date().toLocaleString()获取时间、textContent设置文本、用console.log在控制台输出「时间已更新」。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：点按钮页面出现时间、F12控制台有输出 = JS入门！",
+        "propRef": "js.intro"
+      }
+    ]
+  },
+  {
+    "id": "j2",
+    "title": "📦 变量·let/const/var",
+    "desc": "变量命名/let可改/const锁定/var旧式/块级作用域",
+    "category": "js",
+    "icon": "📦",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "j2-1",
+        "title": "比喻：贴标签的储物箱——什么是变量",
+        "content": "变量是一个带名字的「箱子」，可以存各种东西。let name='小明'是声明(创建箱子)+赋值(放东西)。变量名规则：字母/数字/$/_、不能数字开头、区分大小写。推荐驼峰命名：firstName。💡命名要描述内容——name比n好，userName比name更好。",
+        "code": {
+          "html": "<button onclick=\"j2a()\">演示变量</button><pre id=\"j2a_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j2a(){let name='小明';let age=18;let isStudent=true;let r=[];r.push('name: '+name);r.push('age: '+age);r.push('isStudent: '+isStudent);r.push('typeof name: '+typeof name);document.getElementById('j2a_').textContent=r.join('\\n')}"
+        },
+        "propRef": "js.variables"
+      },
+      {
+        "id": "j2-2",
+        "title": "let——可修改，有块级作用域（最常用）",
+        "content": "let声明的变量可重新赋值，作用域限制在最近的{}块内。不能重复声明同名变量。必须先声明后使用（暂时死区TDZ）。💡推荐默认用let——可改、安全、作用域明确。",
+        "code": {
+          "html": "<button onclick=\"j2b()\">演示let</button><pre id=\"j2b_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j2b(){let score=60;let r=[];r.push(\"初始: \"+score);score=90;r.push(\"修改后: \"+score);{let score=100;r.push(\"块内: \"+score)}r.push(\"块外: \"+score+\" (块内不影响外)\");document.getElementById(\"j2b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.variables"
+      },
+      {
+        "id": "j2-3",
+        "title": "const——常量，锁定不变",
+        "content": "const声明的变量不能重新赋值！但对象/数组的内部属性可以修改（const锁定的是引用，不是内容）。💡架构师建议：默认用const，确定需要改时用let。这是2024+年的行业标准。永远不用var。",
+        "code": {
+          "html": "<button onclick=\"j2c()\">演示const</button><pre id=\"j2c_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j2c(){const PI=3.14159;const user={name:\"小明\"};let r=[];r.push(\"PI: \"+PI);user.name=\"小红\";r.push(\"user.name改后: \"+user.name);r.push(\"PI不能改，但user.name能改(改对象内属性)\");document.getElementById(\"j2c_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.variables"
+      },
+      {
+        "id": "j2-4",
+        "title": "var——旧时代的变量（面试常考）",
+        "content": "var是ES5时代的变量声明方式，有三大问题：①变量提升（声明被提至函数顶部，赋值不动，访问是undefined）②没有块级作用域（{}关不住）③可重复声明不报错。💡面试必考：let/const/var区别——var有提升+无块作用域+可重复声明。",
+        "code": {
+          "html": "<button onclick=\"j2d()\">var vs let</button><pre id=\"j2d_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j2d(){let r=[];var a=1;var a=2;r.push(\"var可重复声明: a=\"+a);{var x=10;let y=20}r.push(\"var无块作用域: x=\"+x);try{{let z}}catch(e){r.push(\"let有块作用域: 访问不到z\")}document.getElementById(\"j2d_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.variables"
+      },
+      {
+        "id": "j2-5",
+        "title": "🎯 实战挑战：变量三兄弟对比",
+        "content": "声明三个变量：const定PI、let存分数、var存名字。测试const能否改值、let块作用域、var重复声明。总结let/const/var三条核心区别。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：能说清let/const/var三条区别 = 全掌握！",
+        "propRef": "js.variables"
+      }
+    ]
+  },
+  {
+    "id": "j3",
+    "title": "🏷️ 数据类型·typeof",
+    "desc": "7种原始类型/typeof/null陷阱/NaN/类型转换",
+    "category": "js",
+    "icon": "🏷️",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "j3-1",
+        "title": "比喻：不同形状的积木——JS的数据类型",
+        "content": "JS有7种原始类型+1种引用类型。原始类型：<b>number</b>数字、<b>string</b>字符串、<b>boolean</b>布尔值(true/false)、<b>undefined</b>未定义、<b>null</b>空值、<b>symbol</b>唯一标识(ES6)、<b>bigint</b>大整数。引用类型：<b>object</b>对象(含array/function/date等)。💡面试：JS是动态类型语言——变量可随时换类型。",
+        "code": {
+          "html": "<button onclick=\"j3a()\">查看类型</button><pre id=\"j3a_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j3a(){let r=[];r.push(\"number: \"+typeof 42);r.push(\"string: \"+typeof \"hello\");r.push(\"boolean: \"+typeof true);r.push(\"undefined: \"+typeof undefined);r.push(\"object: \"+typeof {});r.push(\"数组: \"+typeof []);document.getElementById(\"j3a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.datatypes"
+      },
+      {
+        "id": "j3-2",
+        "title": "typeof 和 null 的陷阱（面试必考）",
+        "content": "typeof用来检查类型，但有个著名bug：typeof null返回'object'！这是JS诞生之初的设计失误，一直保留至今（修复会破坏大量现有代码）。💡面试常考：如何正确判断null？答案：value===null（用严格相等判断）。",
+        "code": {
+          "html": "<button onclick=\"j3b()\">null陷阱</button><pre id=\"j3b_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j3b(){let r=[];let a=null;r.push(\"typeof null = \"+typeof a+\"  ← 历史bug!\");r.push(\"a===null = \"+(a===null)+\" ← 正确判断法\");r.push(\"undefined vs null: undefined=未赋值, null=主动置空\");document.getElementById(\"j3b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.datatypes"
+      },
+      {
+        "id": "j3-3",
+        "title": "NaN + 类型转换",
+        "content": "NaN(Not a Number)表示「这不是一个合法的数字」。特点：NaN不等于任何值，包括自己！用isNaN()判断。类型转换：Number('42')→42、String(42)→'42'、Boolean(0)→false（falsy值：0、''、null、undefined、NaN、false）。",
+        "code": {
+          "html": "<button onclick=\"j3c()\">NaN和转换</button><pre id=\"j3c_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j3c(){let r=[];r.push(\"NaN===NaN: \"+(NaN===NaN)+\" ← NaN不等于自己!\");r.push(\"isNaN(NaN): \"+isNaN(NaN));r.push(\"Number(\"42\"): \"+Number(\"42\"));r.push(\"Boolean(0): \"+Boolean(0)+\" (falsy)\");r.push(\"Boolean(\"hello\"): \"+Boolean(\"hello\")+\" (truthy)\");document.getElementById(\"j3c_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.datatypes"
+      },
+      {
+        "id": "j3-4",
+        "title": "🎯 实战挑战：类型侦探",
+        "content": "写一个函数，接收任意值，返回它的类型（string/number/boolean/object/undefined/null）。注意null的特殊处理。测试6种以上不同类型的值。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：null返回null而不是object、各类型识别正确 = 全掌握！",
+        "propRef": "js.datatypes"
+      }
+    ]
+  },
+  {
+    "id": "j4",
+    "title": "➕ 运算符——加减乘除与赋值",
+    "desc": "算术+-*/%/**/赋值+=/自增++--/优先级",
+    "category": "js",
+    "icon": "➕",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "j4-1",
+        "title": "算术运算符——+-*/%**",
+        "content": "加减乘除和数学一样。新增：<b>%取模</b>（取余数，5%2=1，判断奇偶神器）、<b>**指数</b>（2**10=1024，替代Math.pow）。💡取模面试题：如何判断奇偶数？n%2===0偶数，n%2===1奇数。",
+        "code": {
+          "html": "<button onclick=\"j4a()\">算术演示</button><pre id=\"j4a_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j4a(){let r=[];r.push('10+5='+(10+5)+' 10-5='+(10-5));r.push('10*5='+(10*5)+' 10/5='+(10/5));r.push('10%3='+(10%3)+' (取余)');r.push('2**10='+(2**10)+' (指数)');document.getElementById('j4a_').textContent=r.join('\\n')}"
+        },
+        "propRef": "js.operators"
+      },
+      {
+        "id": "j4-2",
+        "title": "自增++/自减-- + 赋值运算符",
+        "content": "i++先用后加、++i先加后用。i--先用后减。赋值简写：x+=5等价x=x+5、x*=2等价x=x*2。💡面试常考：var a=1; var b=a++ + ++a; b=?(答：1+3=4，因为a++返回1后a变2，++a返回3)。",
+        "code": {
+          "html": "<button onclick=\"j4b()\">自增赋值</button><pre id=\"j4b_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j4b(){let r=[];let a=1;r.push(\"a++先返回后加: \"+(a++)+\", 现在a=\"+a);let b=1;r.push(\"++b先加后返回: \"+(++b)+\", 现在b=\"+b);let x=10;x+=5;r.push(\"x=10; x+=5 → \"+x);document.getElementById(\"j4b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.operators"
+      },
+      {
+        "id": "j4-3",
+        "title": "运算符优先级——先算谁",
+        "content": "优先级口诀：乘除>加减、括号最高、赋值最低。不确定时加括号——不是语法错误，反而让意图更清晰。💡括号永远是最好的文档。",
+        "code": {
+          "html": "<button onclick=\"j4c()\">优先级</button><pre id=\"j4c_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j4c(){let r=[];r.push('10+5*2='+(10+5*2)+' (先乘后加)');r.push('(10+5)*2='+((10+5)*2)+' (括号优先)');document.getElementById('j4c_').textContent=r.join('\\n')}"
+        },
+        "propRef": "js.operators"
+      },
+      {
+        "id": "j4-4",
+        "title": "🎯 实战挑战：计算器雏形",
+        "content": "写函数计算BMI：体重/(身高*身高)。用%判断输入数字的奇偶。用**做幂运算。所有结果console.log输出。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：运算正确、奇偶正确、指数运算正确 = 全掌握！",
+        "propRef": "js.operators"
+      }
+    ]
+  },
+  {
+    "id": "j5",
+    "title": "⚖️ 比较·逻辑·条件——让JS做判断",
+    "desc": "===vs==/&&||!/if-else/三元/truthy-falsy",
+    "category": "js",
+    "icon": "⚖️",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "j5-1",
+        "title": "比较运算符——===和==的区别（面试必考）",
+        "content": "<b>===严格相等</b>：值和类型都相同才true。3==='3'→false! <b>==宽松相等</b>：会做类型转换再比较，3=='3'→true(坑！)。💡永远用===，永远不用==。这是一条铁律。同样用!==和> < >= <=。",
+        "code": {
+          "html": "<button onclick=\"j5a()\">比较演示</button><pre id=\"j5a_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j5a(){let r=[];r.push(\"3===3: \"+(3===3)+\" ✅\");r.push(\"3==='3': \"+(3===\"3\")+\" ✅严格\");r.push(\"3=='3': \"+(3==\"3\")+\" ⚠️宽松有坑!\");r.push(\"5>3: \"+(5>3)+\"; 5>=5: \"+(5>=5));document.getElementById(\"j5a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.conditions"
+      },
+      {
+        "id": "j5-2",
+        "title": "逻辑运算符——&& || !",
+        "content": "&&(与)两边都true才true。||(或)一边true就true。!(非)取反。短路求值：false&&anything直接返回false不执行右边。💡实战：if(user&&user.name){...}安全访问嵌套属性。",
+        "code": {
+          "html": "<button onclick=\"j5b()\">逻辑演示</button><pre id=\"j5b_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j5b(){let r=[];r.push(\"true && false: \"+(true&&false));r.push(\"true || false: \"+(true||false));r.push(\"!true: \"+(!true));r.push(\"短路: false && console.log(x) 不执行右边\");document.getElementById(\"j5b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.conditions"
+      },
+      {
+        "id": "j5-3",
+        "title": "if-else + 三元表达式——JS的决策引擎",
+        "content": "if(条件){执行} else if{备选} else{兜底}。花括号哪怕只有一行也必须写(防bug)。三元运算符：条件?真值:假值——一行搞定if-else。💡三元嵌套可读性差，超过一层就用if-else。",
+        "code": {
+          "html": "<button onclick=\"j5c()\">判断朝代</button><pre id=\"j5c_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j5c(){let score=85;let r=[];if(score>=90){r.push(\"优秀\")}else if(score>=60){r.push(\"及格\")}else{r.push(\"不及格\")}let result=score>=60?\"通过\":\"不通过\";r.push(\"三元: \"+result);document.getElementById(\"j5c_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.conditions"
+      },
+      {
+        "id": "j5-4",
+        "title": "truthy和falsy——隐式布尔转换",
+        "content": "在if()中不是布尔值但会被转换。falsy值(6个)：false、0、''空串、null、undefined、NaN。其他所有值都是truthy！'0'、'false'、[]、{}都是truthy。💡面试：为什么空数组[]是truthy？答：[]是对象不是falsy值。",
+        "code": {
+          "html": "<button onclick=\"j5d()\">truthy/falsy</button><pre id=\"j5d_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j5d(){var r=[];var e=\"\";r.push(\"Boolean(0)=\"+Boolean(0));r.push(\"Boolean(empty)=\"+Boolean(e));r.push(\"Boolean(zero str)=\"+Boolean(\"0\")+\" (truthy)\");r.push(\"Boolean([])=\"+Boolean([])+\" (truthy)\");document.getElementById(\"j5d_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.conditions"
+      },
+      {
+        "id": "j5-5",
+        "title": "🎯 实战挑战：成绩评级器",
+        "content": "输入分数，输出评级(≥90优秀/≥80良好/≥60及格/<60不及格)。用if-else实现，再用三元运算符重写。判断输入的分数区间正确性。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：各分数段评级正确、三元运算符一行搞定if-else = 全掌握！",
+        "propRef": "js.conditions"
+      }
+    ]
+  },
+  {
+    "id": "j6",
+    "title": "🔁 Switch·循环——让代码重复执行",
+    "desc": "switch多分支/for/while/do-while/for-of/break/continue",
+    "category": "js",
+    "icon": "🔁",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "j6-1",
+        "title": "switch——多分支选择（面试常考）",
+        "content": "switch(表达式){case 值:break;default:}。每个case必须有break否则会穿透(继续执行下一个case)! default是所有case都不匹配时的兜底。💡面试：switch如何实现穿透？答：故意不加break让多个case执行同一段代码。",
+        "code": {
+          "html": "<button onclick=\"j6a()\">星期几</button><pre id=\"j6a_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j6a(){let r=[];for(let day=1;day<=3;day++){let name=\"\";switch(day){case 1:name=\"周一\";break;case 2:name=\"周二\";break;case 3:name=\"周三\";break;default:name=\"其他\"}r.push(\"day=\"+day+\"→\"+name)}document.getElementById(\"j6a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.loops"
+      },
+      {
+        "id": "j6-2",
+        "title": "for循环——最常用的循环（核心中的核心）",
+        "content": "for(初始化;条件;每次后){循环体}。for(let i=0;i<5;i++)执行5次。遍历数组的标准写法：for(let i=0;i<arr.length;i++)。💡经典面试：for循环中let和var的区别——let每次迭代创建新变量，var共享一个变量。",
+        "code": {
+          "html": "<button onclick=\"j6b()\">for循环</button><pre id=\"j6b_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j6b(){let r=[];for(let i=1;i<=5;i++){r.push('第'+i+'次')}document.getElementById('j6b_').textContent=r.join('\\n')}"
+        },
+        "propRef": "js.loops"
+      },
+      {
+        "id": "j6-3",
+        "title": "while/do-while + break/continue",
+        "content": "while(条件){...}先判断后执行(可能一次不执行)。do{...}while(条件)先执行后判断(至少一次)。break跳出整个循环、continue跳过本次继续下一次。",
+        "code": {
+          "html": "<button onclick=\"j6c()\">while</button><pre id=\"j6c_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j6c(){let r=[];let i=1;while(i<=3){r.push('while第'+i+'次');i++}document.getElementById('j6c_').textContent=r.join('\\n')}"
+        },
+        "propRef": "js.loops"
+      },
+      {
+        "id": "j6-4",
+        "title": "for-of——现代遍历（最推荐）",
+        "content": "for(let item of arr)直接拿到数组每项的值，不用管索引。比for(let i=0;i&lt;arr.length;i++)简洁太多！适用于可迭代对象（数组、字符串、Map、Set）。💡现代开发中for-of是最常用的循环方式。",
+        "code": {
+          "html": "<button onclick=\"j6d()\">for-of</button><pre id=\"j6d_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}",
+          "js": "function j6d(){let fruits=['Apple','Banana','Orange'];let r=[];for(let fruit of fruits){r.push(fruit)}document.getElementById('j6d_').textContent=r.join('\\n')}"
+        },
+        "propRef": "js.loops"
+      },
+      {
+        "id": "j6-5",
+        "title": "🎯 实战挑战：九九乘法表",
+        "content": "用双重for循环打印九九乘法表。用switch做一个星期转换器(1→周一...7→周日)。用for-of遍历数组。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：乘法表正确、switch无误、for-of从容 = 全掌握！",
+        "propRef": "js.loops"
+      }
+    ]
+  },
+  {
+    "id": "j7",
+    "title": "🔧 函数基础——封装代码的「黑盒子」",
+    "desc": "function声明/表达式/箭头/参数/默认值/return",
+    "category": "js",
+    "icon": "🔧",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j7-1",
+        "title": "比喻：咖啡机——输入原料，输出产品",
+        "content": "function是封装一段代码的盒子，给它输入(参数)，它返回输出(返回值)。function name(参数){代码;return 值;}。return后面的代码不执行。无return默认返回undefined。",
+        "code": {
+          "html": "<button onclick=\"j7a()\">函数演示</button><pre id=\"j7a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function greet(name){return \"你好, \"+name+\"!\"}function j7a(){let r=[];r.push(greet(\"小明\"));r.push(greet(\"小红\"));document.getElementById(\"j7a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.functions"
+      },
+      {
+        "id": "j7-2",
+        "title": "三种定义方式——声明/表达式/箭头",
+        "content": "①声明：function fn(){}会提升(先调用后定义也行，但不推荐)②表达式：const fn=function(){}不会提升③箭头：const fn=()=>{}最简洁(ES6)。💡架构师建议：默认用箭头函数。",
+        "code": {
+          "html": "<button onclick=\"j7b()\">三种函数</button><pre id=\"j7b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j7b(){let r=[];function fn1(x){return x*x}const fn2=function(x){return x*x};const fn3=x=>x*x;r.push(\"声明: fn1(5)=\"+fn1(5));r.push(\"表达式: fn2(5)=\"+fn2(5));r.push(\"箭头: fn3(5)=\"+fn3(5));document.getElementById(\"j7b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.functions"
+      },
+      {
+        "id": "j7-3",
+        "title": "参数——默认值和剩余参数",
+        "content": "参数设默认值：function fn(x=10)。剩余参数：...args收集所有额外参数成数组。💡默认值解决了undefined传参的痛点。",
+        "code": {
+          "html": "<button onclick=\"j7c()\">参数</button><pre id=\"j7c_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j7c(){let r=[];function say(msg=\"你好\"){return msg}function sum(...nums){return nums.reduce((a,b)=>a+b,0)}r.push(\"say()=\"+say());r.push(\"sum(1,2,3)=\"+sum(1,2,3));document.getElementById(\"j7c_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.functions"
+      },
+      {
+        "id": "j7-4",
+        "title": "🎯 挑战：计算器函数",
+        "content": "写add/subtract/multiply/divide四个函数。每个接收两个参数返回结果。用箭头函数重写。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：函数正确、箭头函数简洁 = 全掌握！",
+        "propRef": "js.functions"
+      }
+    ]
+  },
+  {
+    "id": "j8",
+    "title": "⚙️ 函数进阶——this/闭包/IIFE",
+    "desc": "call/apply/bind/this/闭包/立即执行函数",
+    "category": "js",
+    "icon": "⚙️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j8-1",
+        "title": "this——函数中的「我」是谁（面试必考）",
+        "content": "this的值取决于函数怎么被调用：①全局→window ②对象方法→该对象 ③事件处理→触发元素 ④箭头函数→继承外层。💡箭头函数没有自己的this，这是最大的区别。",
+        "code": {
+          "html": "<button onclick=\"j8a()\">this演示</button><pre id=\"j8a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j8a(){const obj={name:\"小明\",say(){return \"this.name=\"+this.name}};let r=[];r.push(obj.say());document.getElementById(\"j8a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.closures"
+      },
+      {
+        "id": "j8-2",
+        "title": "闭包——函数「记住」出生环境（面试常考）",
+        "content": "闭包：函数能访问外部函数的变量，即使外部函数已执行完毕。经典场景：①私有变量（数据隐藏）②循环中创建独立变量③模块化。💡面试：闭包的优缺点——优：数据私有、模块化；缺：内存不释放。",
+        "code": {
+          "html": "<button onclick=\"j8b()\">闭包</button><pre id=\"j8b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j8b(){function counter(){let count=0;return ()=>{count++;return count}}let c=counter();let r=[];r.push(\"c(): \"+c());r.push(\"c(): \"+c());r.push(\"闭包记住了count变量\");document.getElementById(\"j8b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.closures"
+      },
+      {
+        "id": "j8-3",
+        "title": "🎯 挑战：做一个计数器",
+        "content": "用闭包实现计数器：每次调用+1，变量不能被外部直接访问。用箭头函数简化写法。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：计数器每次+1、外部访问不到内部变量 = 全掌握！",
+        "propRef": "js.closures"
+      }
+    ]
+  },
+  {
+    "id": "j9",
+    "title": "🔒 作用域·提升·严格模式",
+    "desc": "全局/函数/块级作用域/Hoisting/let-const-var对比/use strict",
+    "category": "js",
+    "icon": "🔒",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j9-1",
+        "title": "作用域——变量能「看到」的范围",
+        "content": "①全局作用域：任何地方都能访问②函数作用域：函数内有效③块级作用域(ES6)：{}内有效，let/const遵守，var不遵守。💡用let/const自然获得块级作用域保护。",
+        "code": {
+          "html": "<button onclick=\"j9a()\">作用域</button><pre id=\"j9a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j9a(){let r=[];let x=1;{let x=2;r.push(\"块内x: \"+x)}r.push(\"块外x: \"+x);document.getElementById(\"j9a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.scope"
+      },
+      {
+        "id": "j9-2",
+        "title": "变量提升(Hoisting)——面试常考",
+        "content": "var声明会被「提升」到作用域顶部（赋值不动）。函数声明整体提升。let/const不提升（有暂时死区TDZ）。💡面试：var a=1;(function(){console.log(a);var a=2})()输出什么？答：undefined（var a提升但赋值不提升）。",
+        "code": {
+          "html": "<button onclick=\"j9b()\">提升</button><pre id=\"j9b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j9b(){let r=[];r.push(\"var有提升，let/const没有\");r.push(\"函数声明会整体提升\");document.getElementById(\"j9b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.scope"
+      },
+      {
+        "id": "j9-3",
+        "title": "🎯 挑战：作用域迷宫",
+        "content": "写嵌套块级作用域，测试let/const/var在{}内外的访问性。验证var提升和let暂时死区。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：能准确说出每个变量在哪有效 = 全掌握！",
+        "propRef": "js.scope"
+      }
+    ]
+  },
+  {
+    "id": "j10",
+    "title": "📝 String 基础与模板",
+    "desc": "字符串创建/模板字面量${}/转义符/长度/字符访问",
+    "category": "js",
+    "icon": "📝",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j10-1",
+        "title": "字符串基础——引号和转义",
+        "content": "三种引号：单引号'、双引号\"、反引号`（模板字面量）。转义符\\n换行、\\t制表、\\\\反斜杠。推荐使用模板字面量，支持换行和插值。",
+        "code": {
+          "html": "<button onclick=\"j10a()\">字符串</button><pre id=\"j10a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j10a(){let name=\"小明\";let age=18;let r=[];r.push(\"普通: 姓名\"+name+\", 年龄\"+age);r.push(\"模板: `姓名${name}, 年龄${age}`\");document.getElementById(\"j10a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.string"
+      },
+      {
+        "id": "j10-2",
+        "title": "模板字面量——最好用的字符串方式",
+        "content": "`${变量}`直接在字符串中插入变量值，不用+拼接。支持多行字符串（不用\\n）。支持嵌套表达式${a+b}。💡永远用模板字面量代替字符串拼接——可读性高太多。",
+        "code": {
+          "html": "<button onclick=\"j10b()\">模板</button><pre id=\"j10b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j10b(){let user={name:\"小明\",score:95};let msg=`${user.name}的成绩是${user.score}分`;document.getElementById(\"j10b_\").textContent=msg}"
+        },
+        "propRef": "js.string"
+      },
+      {
+        "id": "j10-3",
+        "title": "🎯 挑战：名片生成器",
+        "content": "用模板字面量生成HTML格式的名片：姓名、年龄、职位。用${}插值。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：模板正确插值、格式正确 = 全掌握！",
+        "propRef": "js.string"
+      }
+    ]
+  },
+  {
+    "id": "j11",
+    "title": "🔤 String 方法详解",
+    "desc": "indexOf/includes/startsWith/slice/substring/replace/split/大小写",
+    "category": "js",
+    "icon": "🔤",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j11-1",
+        "title": "搜索和判断——indexOf/includes/startsWith",
+        "content": "indexOf('子串')返回位置，找不到-1。includes('子串')返回true/false（最直观）。startsWith/endsWith判断开头结尾。💡推荐用includes取代indexOf>-1的判断——更语义化。",
+        "code": {
+          "html": "<button onclick=\"j11a()\">搜索</button><pre id=\"j11a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j11a(){let str=\"Hello World\";let r=[];r.push(\"includes Hello: \"+str.includes(\"Hello\"));r.push(\"startsWith He: \"+str.startsWith(\"He\"));r.push(\"endsWith ld: \"+str.endsWith(\"ld\"));document.getElementById(\"j11a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.string"
+      },
+      {
+        "id": "j11-2",
+        "title": "截取和替换——slice/substring/replace",
+        "content": "slice(开始,结束)截取（支持负数=从末尾数）。replace('旧','新')替换第一个。replaceAll替换全部。split('分隔符')切分字符串成数组。",
+        "code": {
+          "html": "<button onclick=\"j11b()\">截取替换</button><pre id=\"j11b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j11b(){let str=\"apple,banana,orange\";let r=[];r.push(\"slice(0,5): \"+str.slice(0,5));r.push(\"split: \"+JSON.stringify(str.split(\",\")));r.push(\"slice(-6): \"+str.slice(-6));document.getElementById(\"j11b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.string"
+      },
+      {
+        "id": "j11-3",
+        "title": "大小写转换+trim",
+        "content": "toUpperCase()全大写、toLowerCase()全小写。trim()去首尾空格、trimStart/trimEnd。💡用户输入先用trim()去掉多余空格再处理。",
+        "code": {
+          "html": "<button onclick=\"j11c()\">大小写</button><pre id=\"j11c_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j11c(){let s=\"  Hello World  \";let r=[];r.push(\"trim: |\"+s.trim()+\"|\");r.push(\"upper: \"+s.trim().toUpperCase());document.getElementById(\"j11c_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.string"
+      },
+      {
+        "id": "j11-4",
+        "title": "🎯 挑战：URL解析器",
+        "content": "解析URL字符串：提取协议、域名、路径。用split和slice组合。处理首尾空格。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：各部分提取正确、trim处理了 = 全掌握！",
+        "propRef": "js.string"
+      }
+    ]
+  },
+  {
+    "id": "j12",
+    "title": "🔢 Number 详解",
+    "desc": "整数/浮点数/科学计数/parseInt/parseFloat/toFixed/isNaN",
+    "category": "js",
+    "icon": "🔢",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j12-1",
+        "title": "数字的表示——整数、小数、科学计数",
+        "content": "JS中所有数字都是64位浮点数。整数、小数直接写。大数用科学计数法：1e6=1000000。特殊值：Infinity无穷、-Infinity、NaN(非法数字)。",
+        "code": {
+          "html": "<button onclick=\"j12a()\">数字</button><pre id=\"j12a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j12a(){let r=[];r.push(\"1e6=\"+1e6);r.push(\"0.1+0.2=\"+(0.1+0.2));r.push(\"Math.round(0.1+0.2)=\"+Math.round((0.1+0.2)*10)/10);document.getElementById(\"j12a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.number"
+      },
+      {
+        "id": "j12-2",
+        "title": "类型转换——parseInt/parseFloat/Number",
+        "content": "Number('42')→42。parseInt('42px')→42(智能丢弃非数字部分)。parseFloat('3.14')→3.14。toFixed(2)保留2位小数。isNaN()判断是否NaN。",
+        "code": {
+          "html": "<button onclick=\"j12b()\">转换</button><pre id=\"j12b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j12b(){let r=[];r.push(\"parseInt(42px): \"+parseInt(\"42px\"));r.push(\"parseFloat(3.14): \"+parseFloat(\"3.14\"));r.push(\"(10/3).toFixed(2): \"+(10/3).toFixed(2));document.getElementById(\"j12b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.number"
+      },
+      {
+        "id": "j12-3",
+        "title": "🎯 挑战：价格格式化",
+        "content": "输入数字输出格式化价格(保留2位小数+¥符号)。处理整数、小数、科学计数法。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：¥符号、2位小数、格式正确 = 全掌握！",
+        "propRef": "js.number"
+      }
+    ]
+  },
+  {
+    "id": "j13",
+    "title": "📐 Math 对象",
+    "desc": "Math.round/ceil/floor/random/max/min/pow/sqrt/abs",
+    "category": "js",
+    "icon": "📐",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j13-1",
+        "title": "取整系列——round/ceil/floor/trunc",
+        "content": "round四舍五入、ceil向上取整、floor向下取整、trunc截断小数。💡做分页计算时ceil最常用（总条数/每页条数向上取整=总页数）。",
+        "code": {
+          "html": "<button onclick=\"j13a()\">取整</button><pre id=\"j13a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j13a(){let r=[];let n=3.7;r.push(\"round(3.7)=\"+Math.round(n));r.push(\"ceil(3.1)=\"+Math.ceil(3.1));r.push(\"floor(3.9)=\"+Math.floor(3.9));document.getElementById(\"j13a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.math"
+      },
+      {
+        "id": "j13-2",
+        "title": "random——随机数（重要！）",
+        "content": "Math.random()返回0-1之间随机小数。Math.floor(Math.random()*10) 0-9整数。min+Math.floor(Math.random()*(max-min+1))指定范围。💡做抽奖、验证码、随机排序的核心。",
+        "code": {
+          "html": "<button onclick=\"j13b()\">随机</button><pre id=\"j13b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j13b(){let r=[];for(let i=0;i<3;i++){r.push(\"1-100: \"+Math.floor(Math.random()*100+1))}document.getElementById(\"j13b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.math"
+      },
+      {
+        "id": "j13-3",
+        "title": "🎯 挑战：随机抽奖",
+        "content": "写函数：传入数组，随机返回其中一个元素。用Math.random实现。测试多次验证随机性。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：每次结果不同、覆盖所有可能的输出 = 全掌握！",
+        "propRef": "js.math"
+      }
+    ]
+  },
+  {
+    "id": "j14",
+    "title": "📚 Array 基础",
+    "desc": "创建/访问/修改/length/push/pop/shift/splice/slice",
+    "category": "js",
+    "icon": "📚",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j14-1",
+        "title": "数组——数据的「列表」",
+        "content": "数组是一组有序数据的集合。创建：let arr=[1,2,3]。访问：arr[0]第一个。length获取长度。数组可以存任意类型混合。💡数组是JS最常用的数据结构——几乎所有数据操作都涉及数组。",
+        "code": {
+          "html": "<button onclick=\"j14a()\">数组</button><pre id=\"j14a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j14a(){let arr=[\"HTML\",\"CSS\",\"JS\"];let r=[];r.push(\"arr=\"+JSON.stringify(arr));r.push(\"arr[1]=\"+arr[1]);r.push(\"length=\"+arr.length);document.getElementById(\"j14a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.array"
+      },
+      {
+        "id": "j14-2",
+        "title": "增删改——push/pop/shift/splice",
+        "content": "push尾加、pop尾删(返回删除值)。unshift头加、shift头删。splice(位置,删几个,新增...)万能操作。slice(开始,结束)截取(不改变原数组)。💡splice会改原数组，slice不会——这是关键区别。",
+        "code": {
+          "html": "<button onclick=\"j14b()\">增删改</button><pre id=\"j14b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j14b(){let arr=[1,2,3];let r=[];arr.push(4);r.push(\"push后: \"+JSON.stringify(arr));arr.splice(1,1,99);r.push(\"splice(1,1,99): \"+JSON.stringify(arr));r.push(\"slice(0,2): \"+JSON.stringify(arr.slice(0,2)));document.getElementById(\"j14b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.array"
+      },
+      {
+        "id": "j14-3",
+        "title": "遍历数组——for-of/forEach",
+        "content": "for(let item of arr)直接拿值（最推荐）。arr.forEach((item,index)=>{}))函数式遍历。经典for循环for(let i=0;i<arr.length;i++)也常用。",
+        "code": {
+          "html": "<button onclick=\"j14c()\">遍历</button><pre id=\"j14c_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j14c(){let arr=[\"A\",\"B\",\"C\"];let r=[];arr.forEach((item,i)=>{r.push(i+\": \"+item)});document.getElementById(\"j14c_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.array"
+      },
+      {
+        "id": "j14-4",
+        "title": "🎯 挑战：Todo列表管理器",
+        "content": "用数组存储任务。实现添加任务(push)、删除任务(splice)、查看所有任务(遍历)。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：添加/删除正确、遍历完整 = 全掌握！",
+        "propRef": "js.array"
+      }
+    ]
+  },
+  {
+    "id": "j15",
+    "title": "⚡ Array 高阶方法——map/filter/reduce",
+    "desc": "map/filter/reduce/find/some/every/sort",
+    "category": "js",
+    "icon": "⚡",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j15-1",
+        "title": "map——把每个元素「变」一下",
+        "content": "arr.map(item=>新值)返回新数组，原数组不变。每个元素经过函数处理变成新值。最常用的高阶方法之一。💡所有现代项目大量使用map。",
+        "code": {
+          "html": "<button onclick=\"j15a()\">map</button><pre id=\"j15a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j15a(){let nums=[1,2,3,4,5];let doubled=nums.map(n=>n*2);let r=[];r.push(\"原: \"+JSON.stringify(nums));r.push(\"×2: \"+JSON.stringify(doubled));document.getElementById(\"j15a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.array"
+      },
+      {
+        "id": "j15-2",
+        "title": "filter——筛出符合条件的",
+        "content": "arr.filter(item=>条件)返回满足条件的元素组成的新数组。配map链式调用：arr.filter().map()。面试常考。💡数组操作精髓：map改、filter筛、reduce合。",
+        "code": {
+          "html": "<button onclick=\"j15b()\">filter</button><pre id=\"j15b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j15b(){let nums=[1,2,3,4,5,6];let evens=nums.filter(n=>n%2===0);let r=[];r.push(\"原: \"+JSON.stringify(nums));r.push(\"偶数: \"+JSON.stringify(evens));document.getElementById(\"j15b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.array"
+      },
+      {
+        "id": "j15-3",
+        "title": "reduce/find/sort",
+        "content": "reduce(累加,初始)聚合计算（求和、求积）。find找第一个符合条件的元素。sort()排序（默认按字符串排序，需要传比较函数）。",
+        "code": {
+          "html": "<button onclick=\"j15c()\">reduce/sort</button><pre id=\"j15c_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j15c(){let nums=[3,1,4,1,5];let r=[];r.push(\"sum: \"+nums.reduce((a,b)=>a+b,0));r.push(\"sorted: \"+JSON.stringify([...nums].sort((a,b)=>a-b)));document.getElementById(\"j15c_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.array"
+      },
+      {
+        "id": "j15-4",
+        "title": "🎯 挑战：数据处理管道",
+        "content": "数组[1..10]：筛选奇数→每个×2→求和。用filter+map+reduce链式调用。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：链式调用正确、结果正确 = 全掌握！",
+        "propRef": "js.array"
+      }
+    ]
+  },
+  {
+    "id": "j16",
+    "title": "📦 Object 基础",
+    "desc": "创建/属性访问/keys/values/entries/assign/in/hasOwn",
+    "category": "js",
+    "icon": "📦",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j16-1",
+        "title": "对象——键值对的集合",
+        "content": "对象是{key:value}的集合。点语法obj.name访问，方括号obj['name']动态访问。可以嵌套对象。💡JS中几乎所有东西都是对象（或可以当对象用）。",
+        "code": {
+          "html": "<button onclick=\"j16a()\">对象</button><pre id=\"j16a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j16a(){let user={name:\"小明\",age:18,hobby:\"编程\"};let r=[];r.push(\"name: \"+user.name);r.push(\"keys: \"+Object.keys(user));r.push(\"values: \"+Object.values(user));document.getElementById(\"j16a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.objects"
+      },
+      {
+        "id": "j16-2",
+        "title": "对象操作——增删改查",
+        "content": "obj.key=值新增/修改。delete obj.key删除。hasOwnProperty判断自有属性。Object.assign合并对象。展开运算符{...obj}浅拷贝。",
+        "code": {
+          "html": "<button onclick=\"j16b()\">操作</button><pre id=\"j16b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j16b(){let obj={a:1};obj.b=2;delete obj.a;let r=[];r.push(\"修改后: \"+JSON.stringify(obj));let copy={...obj,c:3};r.push(\"展开拷贝: \"+JSON.stringify(copy));document.getElementById(\"j16b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.objects"
+      },
+      {
+        "id": "j16-3",
+        "title": "🎯 挑战：通讯录",
+        "content": "用对象数组存储联系人。实现添加联系人、按名字查找(find)、列出所有名称(keys)。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：增删改查正确、find能搜索 = 全掌握！",
+        "propRef": "js.objects"
+      }
+    ]
+  },
+  {
+    "id": "j17",
+    "title": "🗂️ Object 进阶——原型链与深拷贝",
+    "desc": "构造函数/prototype/原型链/深拷贝/defineProperty",
+    "category": "js",
+    "icon": "🗂️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j17-1",
+        "title": "原型链——JS的继承机制（面试必考）",
+        "content": "每个对象都有一个原型(__proto__)指向它的「父亲」。访问属性时先在自己身上找，找不到就往原型上找——这就是原型链。Array的方法都在Array.prototype上。💡面试：new操作符做了什么？创建空对象→绑定原型→执行构造函数→返回对象。",
+        "code": {
+          "html": "<button onclick=\"j17a()\">原型</button><pre id=\"j17a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j17a(){let arr=[];let r=[];r.push(\"Array.isArray: \"+Array.isArray(arr));r.push(\"原型链查找: arr.toString\");document.getElementById(\"j17a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.objects"
+      },
+      {
+        "id": "j17-2",
+        "title": "深拷贝 vs 浅拷贝（面试必考）",
+        "content": "浅拷贝{...obj}只复制第一层，内层对象共享引用。深拷贝JSON.parse(JSON.stringify(obj))完全独立(但不能处理函数/Date等)。structuredClone()现代深拷贝方案。💡面试：如何实现深拷贝？答：递归复制所有层级。",
+        "code": {
+          "html": "<button onclick=\"j17b()\">深浅拷贝</button><pre id=\"j17b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j17b(){let obj={a:1,b:{c:2}};let shallow={...obj};let deep=JSON.parse(JSON.stringify(obj));obj.b.c=99;let r=[];r.push(\"原: \"+JSON.stringify(obj));r.push(\"浅拷: \"+JSON.stringify(shallow)+\" (b.c变了!)\");r.push(\"深拷: \"+JSON.stringify(deep)+\" (b.c不变)\");document.getElementById(\"j17b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.objects"
+      },
+      {
+        "id": "j17-3",
+        "title": "🎯 挑战：实现深拷贝",
+        "content": "写deepClone函数：递归拷贝所有属性、处理数组和对象、处理循环引用。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：修改原对象不影响拷贝 = 全掌握！",
+        "propRef": "js.objects"
+      }
+    ]
+  },
+  {
+    "id": "j18",
+    "title": "📅 Date 详解",
+    "desc": "new Date/getFullYear/getMonth/getDay/时间戳/格式化",
+    "category": "js",
+    "icon": "📅",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j18-1",
+        "title": "Date 基础——创建和获取",
+        "content": "new Date()当前时间。new Date('2024-01-01')指定日期。getFullYear()年、getMonth()月(0-11!)、getDate()日、getDay()星期几(0周日)、getHours/Minutes/Seconds。💡getMonth要+1才是日常月份。",
+        "code": {
+          "html": "<button onclick=\"j18a()\">日期</button><pre id=\"j18a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j18a(){let now=new Date();let r=[];r.push(\"当前: \"+now.toLocaleString());r.push(\"年: \"+now.getFullYear());r.push(\"月: \"+(now.getMonth()+1));document.getElementById(\"j18a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.date"
+      },
+      {
+        "id": "j18-2",
+        "title": "时间戳——数字表示的时间",
+        "content": "getTime()毫秒数（1970.1.1至今）。Date.now()当前时间戳。用于计算时间差、排序、存储。常用的轻量时间格式。",
+        "code": {
+          "html": "<button onclick=\"j18b()\">时间戳</button><pre id=\"j18b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j18b(){let ts=Date.now();let r=[];r.push(\"当前时间戳: \"+ts);r.push(\"1小时后: \"+(ts+3600000));document.getElementById(\"j18b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.date"
+      },
+      {
+        "id": "j18-3",
+        "title": "🎯 挑战：倒计时器",
+        "content": "计算距离新年还有多少天、时、分、秒。用Date.now()和未来时间戳计算差值。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：倒计正确、格式友好 = 全掌握！",
+        "propRef": "js.date"
+      }
+    ]
+  },
+  {
+    "id": "j19",
+    "title": "🗺️ Map/Set——更强大的数据结构",
+    "desc": "Map替代Object/Set去重/WeakMap/WeakSet",
+    "category": "js",
+    "icon": "🗺️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j19-1",
+        "title": "Set——不重复值的集合",
+        "content": "new Set([1,2,2,3])自动去重。add添加/has判断/delete删除/size大小。💡数组去重神器：[...new Set(arr)]一行搞定。",
+        "code": {
+          "html": "<button onclick=\"j19a()\">Set去重</button><pre id=\"j19a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j19a(){let arr=[1,2,2,3,3,3];let unique=[...new Set(arr)];let r=[];r.push(\"原: \"+JSON.stringify(arr));r.push(\"去重: \"+JSON.stringify(unique));document.getElementById(\"j19a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.mapsets"
+      },
+      {
+        "id": "j19-2",
+        "title": "Map——比Object更好用的键值对",
+        "content": "Map的键可以是任意类型(对象也能做键!)。set(key,val)设值、get(key)取值、has判断、delete删除、size大小。比Object更适合做字典。",
+        "code": {
+          "html": "<button onclick=\"j19b()\">Map</button><pre id=\"j19b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j19b(){let map=new Map();map.set(\"name\",\"小明\");map.set(1,\"数字键\");map.set(true,\"布尔键\");let r=[];r.push(\"size: \"+map.size);r.push(\"get(name): \"+map.get(\"name\"));document.getElementById(\"j19b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.mapsets"
+      },
+      {
+        "id": "j19-3",
+        "title": "🎯 挑战：单词统计器",
+        "content": "统计一段文本中每个单词出现的次数。用Map存储，Set去重单词列表。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：计数正确、Set去重有效 = 全掌握！",
+        "propRef": "js.mapsets"
+      }
+    ]
+  },
+  {
+    "id": "j20",
+    "title": "🧩 解构赋值——优雅地拆包裹",
+    "desc": "数组解构/对象解构/默认值/别名/嵌套/rest/spread",
+    "category": "js",
+    "icon": "🧩",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j20-1",
+        "title": "数组解构——一次拿多个值",
+        "content": "let [a,b]=[1,2] → a=1,b=2。跳过：let [,b]=[1,2]→b=2。剩余：let [a,...rest]=[1,2,3,4]→rest=[2,3,4]。交换变量：[a,b]=[b,a]一行搞定！",
+        "code": {
+          "html": "<button onclick=\"j20a()\">数组解构</button><pre id=\"j20a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j20a(){let [x,y]=[10,20];let [h,...t]=[1,2,3,4];let a=1,b=2;[a,b]=[b,a];let r=[];r.push(\"x=\"+x+\", y=\"+y);r.push(\"head=\"+h+\", tail=\"+JSON.stringify(t));r.push(\"交换: a=\"+a+\", b=\"+b);document.getElementById(\"j20a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.destructuring"
+      },
+      {
+        "id": "j20-2",
+        "title": "对象解构——精确取属性",
+        "content": "let {name,age}=user提取同名属性。别名：let {name:n}=user→n=user.name。函数参数解构：function fn({name}){}直接取对象属性。💡现代开发中用解构比obj.xxx访问优雅太多。",
+        "code": {
+          "html": "<button onclick=\"j20b()\">对象解构</button><pre id=\"j20b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j20b(){let user={name:\"小明\",age:25,city:\"北京\"};let {name,city}=user;let {age:a}=user;let r=[];r.push(\"name: \"+name+\", city: \"+city);r.push(\"age别名a: \"+a);document.getElementById(\"j20b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.destructuring"
+      },
+      {
+        "id": "j20-3",
+        "title": "🎯 挑战：API响应解析",
+        "content": "模拟API返回{code,data:{user:{name,email}}}用多层对象解构直接获取name和email。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：嵌套解构正确 = 全掌握！",
+        "propRef": "js.destructuring"
+      },
+      {
+        "id": "j20-3b",
+        "title": "可选链 ?. ——安全访问深层属性（ES2020核心语法）",
+        "content": "obj?.prop如果obj是null/undefined，不会报错而是返回undefined。obj?.prop?.nested多层安全。方法调用：obj.method?.()。数组访问：arr?.[0]。💡架构师建议：任何可能为null的对象访问都用?.——消灭 Cannot read property of null 错误！",
+        "code": {
+          "html": "<button onclick=\"js20b()\">?.演示</button><pre id=\"js20b_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function js20b(){let r=[];let user=null;r.push(\"user?.name=\"+user?.name+\" (不报错!)\");let data={info:{addr:\"北京\"}};r.push(\"data?.info?.addr=\"+data?.info?.addr);r.push(\"data?.x?.y=\"+data?.x?.y+\" (不报错)\");document.getElementById(\"js20b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.destructuring"
+      },
+      {
+        "id": "j20-3c",
+        "title": "空值合并 ?? ——给null/undefined提供默认值（ES2020）",
+        "content": "value ?? default只在value为null或undefined时取默认值。和||的区别：0||'默认'='默认'(因为0是falsy)、0??'默认'=0(因为0不是null/undefined)。💡面试常考：??和||的区别——||对falsy值都生效、??只对null/undefined。",
+        "code": {
+          "html": "<button onclick=\"js20c()\">??演示</button><pre id=\"js20c_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function js20c(){let r=[];let x=0;let y=null;r.push(\"0??10=\"+(x??10)+\" ←保留0\");r.push(\"0||10=\"+(x||10)+\" ←被替换!\");r.push(\"null??10=\"+(y??10)+\" ←取默认\");r.push(\"name??'匿名'=\"+(undefined??\"匿名\"));document.getElementById(\"js20c_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.destructuring"
+      }
+    ]
+  },
+  {
+    "id": "j21",
+    "title": "🏛️ Class——面向对象编程",
+    "desc": "class/constructor/extends/super/static/私有字段",
+    "category": "js",
+    "icon": "🏛️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j21-1",
+        "title": "class 基本语法——构造函数+方法",
+        "content": "class是构造函数的语法糖。constructor定义初始化逻辑。方法直接写在class体内不需要function关键字。new创建实例。💡面试：class和普通构造函数的区别——class必须new调用、class方法不可枚举。",
+        "code": {
+          "html": "<button onclick=\"j21a()\">Class</button><pre id=\"j21a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j21a(){class Person{constructor(name){this.name=name}sayHi(){return \"你好, \"+this.name}}let p=new Person(\"小明\");let r=[];r.push(p.sayHi());document.getElementById(\"j21a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.classes"
+      },
+      {
+        "id": "j21-2",
+        "title": "extends 继承——子承父业",
+        "content": "class Child extends Parent继承父类所有方法。super调用父类构造器。static静态方法直接类调用。私有字段#name(#前缀，ES2022+)。",
+        "code": {
+          "html": "<button onclick=\"j21b()\">继承</button><pre id=\"j21b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j21b(){class Animal{constructor(name){this.name=name}}class Dog extends Animal{bark(){return this.name+\" 汪汪!\"}}let d=new Dog(\"旺财\");let r=[];r.push(d.bark());document.getElementById(\"j21b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.classes"
+      },
+      {
+        "id": "j21-3",
+        "title": "🎯 挑战：用户管理系统",
+        "content": "User类(属性name,role) + Admin类(extends User，加权限管理方法)。验证继承和多态。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：继承正确、子类方法可用 = 全掌握！",
+        "propRef": "js.classes"
+      }
+    ]
+  },
+  {
+    "id": "j22",
+    "title": "📄 JSON——数据交换的通用语言",
+    "desc": "JSON.stringify/JSON.parse/深拷贝/前后端通信格式",
+    "category": "js",
+    "icon": "📄",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j22-1",
+        "title": "JSON是什么——JS对象的「文字版」",
+        "content": "JSON(JavaScript Object Notation)是所有编程语言通用的数据格式。JSON.stringify(obj)对象→字符串。JSON.parse(str)字符串→对象。💡前后端通信99%用JSON格式——web开发的基石。",
+        "code": {
+          "html": "<button onclick=\"j22a()\">JSON</button><pre id=\"j22a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j22a(){let obj={name:\"小明\",scores:[90,85,88]};let str=JSON.stringify(obj);let back=JSON.parse(str);let r=[];r.push(\"stringify: \"+str);r.push(\"parse back: \"+back.name);document.getElementById(\"j22a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.json"
+      },
+      {
+        "id": "j22-2",
+        "title": "JSON的限制——什么能转什么不能",
+        "content": "能转：string/number/boolean/null/array/object。不能转：function/undefined/Symbol/Date(转成字符串)/循环引用(报错)。💡涉及Date/函数时不能简单用JSON做深拷贝，需要结构化克隆。",
+        "code": {
+          "html": "<button onclick=\"j22b()\">JSON限制</button><pre id=\"j22b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j22b(){let obj={fn:function(){},date:new Date()};let str=JSON.stringify(obj);let r=[];r.push(\"JSON: \"+str);r.push(\"函数被忽略，Date变字符串\");document.getElementById(\"j22b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.json"
+      },
+      {
+        "id": "j22-3",
+        "title": "🎯 挑战：配置管理器",
+        "content": "用JSON.stringify保存用户配置对象到localStorage。用JSON.parse读取恢复。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：存取正确、配置持久化 = 全掌握！",
+        "propRef": "js.json"
+      }
+    ]
+  },
+  {
+    "id": "j23",
+    "title": "🛡️ 错误处理——让代码更健壮",
+    "desc": "try/catch/finally/throw/Error对象/自定义错误",
+    "category": "js",
+    "icon": "🛡️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j23-1",
+        "title": "try/catch——优雅地处理错误",
+        "content": "try{可能出错的代码}catch(e){出错后执行}。e.message错误信息。finally不管成功失败都执行。💡永远不要让用户看到未处理的异常——用catch兜住给出友好提示。",
+        "code": {
+          "html": "<button onclick=\"j23a()\">try/catch</button><pre id=\"j23a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j23a(){let r=[];try{let x=JSON.parse(\"这不是JSON\");r.push(\"解析成功\")}catch(e){r.push(\"捕获错误: \"+e.message)}finally{r.push(\"finally总是执行\")}document.getElementById(\"j23a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.errors"
+      },
+      {
+        "id": "j23-2",
+        "title": "throw——主动抛出错误",
+        "content": "throw new Error('自定义错误信息')主动抛出。配合try/catch在不符合业务规则时报错。可以自定义Error类。💡在实际项目中，throw用于参数校验、状态检查等。",
+        "code": {
+          "html": "<button onclick=\"j23b()\">throw</button><pre id=\"j23b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j23b(){function divide(a,b){if(b===0)throw new Error(\"不能除以零!\");return a/b}let r=[];try{r.push(divide(10,2));r.push(divide(10,0))}catch(e){r.push(e.message)}document.getElementById(\"j23b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.errors"
+      },
+      {
+        "id": "j23-3",
+        "title": "🎯 挑战：安全计算器",
+        "content": "实现除法函数，除数为0时throw Error，用try/catch捕获并提示用户。验证输入合法性。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：错误被捕获、提示友好 = 全掌握！",
+        "propRef": "js.errors"
+      }
+    ]
+  },
+  {
+    "id": "j24",
+    "title": "⏰ 异步基础——定时器与回调",
+    "desc": "同步vs异步/事件循环/setTimeout/setInterval/回调函数",
+    "category": "js",
+    "icon": "⏰",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j24-1",
+        "title": "同步vs异步——JS的「队列」机制",
+        "content": "同步代码：一行行执行。异步代码：先放到「任务队列」，等所有同步代码执行完才执行。setTimeout(callback,延迟ms)是最简单的异步。💡面试：事件循环(Event Loop)——同步→微任务(Promise)→宏任务(setTimeout)。",
+        "code": {
+          "html": "<button onclick=\"j24a()\">异步</button><pre id=\"j24a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j24a(){let r=[];r.push(\"1:同步代码\");setTimeout(()=>{r.push(\"3:异步代码(1秒后)\");document.getElementById(\"j24a_\").textContent=r.join(\"\\n\")},1000);r.push(\"2:这也是同步代码,比3先执行\");document.getElementById(\"j24a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.promise"
+      },
+      {
+        "id": "j24-2",
+        "title": "setInterval——定时重复",
+        "content": "setInterval(callback,间隔ms)每隔一段时间执行一次。clearInterval停止。用于时钟、倒计时、轮询。💡注意用clearInterval清理，否则造成内存泄漏。",
+        "code": {
+          "html": "<button onclick=\"j24b()\">计时</button><pre id=\"j24b_\"></pre><button onclick=\"j24c()\">停止</button>",
+          "css": "button{margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px}body{padding:20px;font-family:arial;background:#1a1a2e;color:#eee}",
+          "js": "var timer;function j24b(){var count=0;timer=setInterval(function(){count++;document.getElementById(\"j24b_\").textContent=\"计数: \"+count},500)}function j24c(){clearInterval(timer)}"
+        },
+        "propRef": "js.promise"
+      },
+      {
+        "id": "j24-3",
+        "title": "🎯 挑战：打字效果",
+        "content": "用setTimeout+递归实现文字逐字显示的打字效果。字符间延迟50ms。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：逐字显示、速度可控 = 全掌握！",
+        "propRef": "js.promise"
+      }
+    ]
+  },
+  {
+    "id": "j25",
+    "title": "🤝 Promise——优雅的异步处理（核心）",
+    "desc": "Promise/then/catch/finally/Promise.all/race",
+    "category": "js",
+    "icon": "🤝",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j25-1",
+        "title": "Promise 是什么——异步操作的「承诺」",
+        "content": "Promise有三种状态：pending进行中→fulfilled成功/resolved→rejected失败。then处理成功、catch处理失败、finally无论成败。链式调用：p.then().then().catch()。💡Promise解决了回调地狱(callback hell)——嵌套回调变扁平链式。",
+        "code": {
+          "html": "<button onclick=\"j25a()\">Promise</button><pre id=\"j25a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j25a(){let r=[];let p=new Promise((resolve,reject)=>{setTimeout(()=>resolve(\"数据加载成功!\"),500)});p.then(data=>{r.push(data);r.push(\"Promise解决了异步嵌套问题\");document.getElementById(\"j25a_\").textContent=r.join(\"\\n\")})}"
+        },
+        "propRef": "js.promise"
+      },
+      {
+        "id": "j25-2",
+        "title": "Promise.all/race——并发控制",
+        "content": "Promise.all([p1,p2,...])等所有完成才返回（全部成功才成功）。Promise.race谁先完成返回谁。Promise.allSettled等所有完成（不管成败）。💡并发请求多个API用Promise.all。",
+        "code": {
+          "html": "<button onclick=\"j25b()\">all/race</button><pre id=\"j25b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j25b(){let r=[];let p1=Promise.resolve(\"快速\");let p2=new Promise(r=>setTimeout(()=>r(\"慢速\"),300));Promise.all([p1,p2]).then(v=>{r.push(\"all: \"+JSON.stringify(v))});Promise.race([p1,p2]).then(v=>{r.push(\"race: \"+v)});setTimeout(()=>{document.getElementById(\"j25b_\").textContent=r.join(\"\\n\")},500)}"
+        },
+        "propRef": "js.promise"
+      },
+      {
+        "id": "j25-3",
+        "title": "🎯 挑战：模拟数据加载",
+        "content": "用Promise模拟API请求(延迟+随机成功/失败)。加载中显示loading、成功显示数据、失败显示错误。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：loading→成功/失败状态切换正确 = 全掌握！",
+        "propRef": "js.promise"
+      }
+    ]
+  },
+  {
+    "id": "j26",
+    "title": "🚀 async/await——同步风格写异步",
+    "desc": "async/await/错误处理/Fetch API/GET请求",
+    "category": "js",
+    "icon": "🚀",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j26-1",
+        "title": "async/await——Promise的糖衣（最重要的异步语法）",
+        "content": "async函数自动返回Promise。await暂停执行等待Promise完成——代码读起来像同步。try/catch包裹await处理错误。💡架构师建议：永远用async/await而不是then链——可读性和调试体验都是碾压级的。",
+        "code": {
+          "html": "<button onclick=\"j26a()\">async/await</button><pre id=\"j26a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j26a(){let r=[];async function load(){r.push(\"开始加载...\");let data=await new Promise(r=>setTimeout(()=>r(\"数据来了!\"),500));r.push(data);r.push(\"async/await让异步像同步一样写\");document.getElementById(\"j26a_\").textContent=r.join(\"\\n\")}load()}"
+        },
+        "propRef": "js.promise"
+      },
+      {
+        "id": "j26-2",
+        "title": "Fetch API——发网络请求",
+        "content": "fetch(url)返回Promise。.then(res=>res.json())解析JSON。async/await版：const res=await fetch(url);const data=await res.json()。💡现代替代XMLHttpRequest的标准方式。",
+        "code": {
+          "html": "<button onclick=\"j26b()\">模拟Fetch</button><pre id=\"j26b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j26b(){let r=[];async function demo(){r.push(\"发送请求...\");let res=await new Promise(r=>setTimeout(()=>r({json:()=>({name:\"小明\"})}),500));let data=res.json();r.push(\"获取到: \"+JSON.stringify(data));document.getElementById(\"j26b_\").textContent=r.join(\"\\n\")}demo()}"
+        },
+        "propRef": "js.promise"
+      },
+      {
+        "id": "j26-2b",
+        "title": "Fetch POST + 状态码处理——实战请求",
+        "content": "POST请求：method:'POST'、headers:{'Content-Type':'application/json'}、body:JSON.stringify(data)。判断响应：res.ok代表2xx状态码、res.status是具体状态码(404/500等)。重要的陷阱：fetch只在网络错误时reject，404/500不会reject！必须手动检查res.ok。",
+        "code": {
+          "html": "<button onclick=\"js26b()\">模拟POST</button><pre id=\"js26b_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "async function js26b(){let r=[];try{let res={ok:true,status:200,json:async()=>({code:0,msg:\"成功\"})};r.push(\"status: \"+res.status);r.push(\"ok: \"+res.ok);let data=await res.json();r.push(\"data: \"+JSON.stringify(data))}catch(e){r.push(\"错误: \"+e.message)}document.getElementById(\"js26b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.fetch"
+      },
+      {
+        "id": "j26-3",
+        "title": "🎯 挑战：用户数据加载器",
+        "content": "用async/await写函数：模拟fetch请求用户数据、处理加载状态、catch错误并显示友好提示。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：数据加载正确、错误被捕获 = 全掌握！",
+        "propRef": "js.promise"
+      }
+    ]
+  },
+  {
+    "id": "j27",
+    "title": "🌳 DOM——让页面活起来",
+    "desc": "DOM选择/querySelector/创建元素/修改内容/样式操作/classList",
+    "category": "js",
+    "icon": "🌳",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j27-1",
+        "title": "DOM 是什么——网页的「遥控器」",
+        "content": "DOM(Document Object Model)是浏览器提供的API，让JS能操作HTML页面。document.querySelector('选择器')选第一个、querySelectorAll选所有。getElementById选ID。💡DOM是JS和HTML之间的桥梁——前端开发的必修课。",
+        "code": {
+          "html": "<button onclick=\"j27a()\">DOM操作</button><p id=\"j27t\">原始文字</p>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j27a(){let el=document.getElementById(\"j27t\");el.textContent=\"JS修改了这段文字!\";el.style.color=\"#2ecc71\"}"
+        },
+        "propRef": "js.dom"
+      },
+      {
+        "id": "j27-2",
+        "title": "增删改——动态改页面",
+        "content": "createElement创建元素→appendChild添加到页面。remove()删除元素。innerHTML设置HTML内容。textContent安全设置文本。classList.add/remove/toggle操作class(比className优雅)。",
+        "code": {
+          "html": "<button onclick=\"j27b()\">创建元素</button><div id=\"j27c\"></div>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j27b(){let div=document.createElement(\"div\");div.textContent=\"这是JS动态创建的元素\";div.style.cssText=\"padding:10px;background:#667eea;color:#fff;border-radius:4px;margin:8px 0\";document.getElementById(\"j27c\").appendChild(div)}"
+        },
+        "propRef": "js.dom"
+      },
+      {
+        "id": "j27-3",
+        "title": "🎯 挑战：动态留言板",
+        "content": "输入框+按钮：点击后创建新留言元素添加到列表。每条留言有删除按钮。用classList控制样式。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：能添加+删除留言、样式正确 = 全掌握！",
+        "propRef": "js.dom"
+      },
+      {
+        "id": "j27-3b",
+        "title": "IntersectionObserver——懒加载核心（重要API）",
+        "content": "IntersectionObserver监听元素是否进入/离开视口。比监听scroll事件性能好100倍（浏览器原生优化）。经典场景：①图片懒加载（进入视口才加载）②无限滚动（到底部加载更多）③曝光统计（广告是否被看见）。💡现代浏览器覆盖率>97%，放心使用。",
+        "code": {
+          "html": "<div style=\"height:80px;overflow:auto;background:#1e1e30;border-radius:6px;padding:8px\"><div id=\"j27t\" style=\"height:30px;background:#667eea;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:4px;margin:2px 0;transition:.3s\">目标元素</div><p style=\"color:#ccc;font-size:12px;margin:4px 0 0;text-align:center\">↓ 滚动目标元素</p></div><pre id=\"j27to\"></pre>",
+          "css": "button{margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px}body{padding:20px;font-family:arial;background:#1a1a2e;color:#eee}",
+          "js": "let target=document.getElementById(\"j27t\");let observer=new IntersectionObserver((entries)=>{for(let e of entries){document.getElementById(\"j27to\").textContent=e.isIntersecting?\"目标可见 ✅\":\"目标不可见 ❌\";if(e.isIntersecting){e.target.style.background=\"#2ecc71\"}else{e.target.style.background=\"#667eea\"}}});observer.observe(target)"
+        },
+        "propRef": "js.dom"
+      }
+    ]
+  },
+  {
+    "id": "j28",
+    "title": "🖱️ 事件——响应用户的一举一动",
+    "desc": "addEventListener/事件对象/冒泡/事件委托/表单事件",
+    "category": "js",
+    "icon": "🖱️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j28-1",
+        "title": "事件监听——等用户「触发」",
+        "content": "element.addEventListener('事件名',回调)绑定事件。click点击、submit表单提交、keydown键盘、input输入变化。💡addEventListener比onclick好——可绑多个、可remove。",
+        "code": {
+          "html": "<button id=\"j28b\">点我</button><pre id=\"j28o\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "document.getElementById(\"j28b\").addEventListener(\"click\",function(){let el=document.getElementById(\"j28o\");el.textContent=\"按钮被点击了! 时间: \"+new Date().toLocaleTimeString()})"
+        },
+        "propRef": "js.event"
+      },
+      {
+        "id": "j28-2",
+        "title": "事件冒泡+事件委托（面试常考）",
+        "content": "事件冒泡：子元素事件会向上传播到父元素。事件委托：把事件绑在父元素上，用e.target判断哪个子元素被点击。💡面试：为什么用事件委托？减少事件监听器数量、动态添加的子元素也能响应。",
+        "code": {
+          "html": "<ul id=\"j28l\" style=\"list-style:none;padding:0\"><li style=\"padding:8px;background:#667eea;color:#fff;margin:4px;border-radius:4px;cursor:pointer\">项目1</li><li style=\"padding:8px;background:#667eea;color:#fff;margin:4px;border-radius:4px;cursor:pointer\">项目2</li></ul><pre id=\"j28o2\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "document.getElementById(\"j28l\").addEventListener(\"click\",function(e){if(e.target.tagName===\"LI\"){document.getElementById(\"j28o2\").textContent=\"点击了: \"+e.target.textContent+\" (事件委托)\"}})"
+        },
+        "propRef": "js.event"
+      },
+      {
+        "id": "j28-2b",
+        "title": "键盘事件——keydown/keyup/keypress",
+        "content": "keydown按键按下（按住不放持续触发）、keyup按键释放、keypress字符键按下（已废弃，不推荐）。e.key获取按键名('Enter'/'a')、e.code获取物理键位('KeyA')、e.ctrlKey判断修饰键。💡做搜索框回车搜索：e.key==='Enter'。",
+        "code": {
+          "html": "<input id=\"j28k\" placeholder=\"按任意键试试\" style=\"padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px;width:250px\"><pre id=\"j28ko\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "document.getElementById(\"j28k\").addEventListener(\"keydown\",function(e){let r=[];r.push(\"key: \"+e.key);r.push(\"code: \"+e.code);r.push(\"ctrl: \"+e.ctrlKey);if(e.key===\"Enter\")r.push(\"⚠️回车键被按下!\");document.getElementById(\"j28ko\").textContent=r.join(\"\\n\")})"
+        },
+        "propRef": "js.event"
+      },
+      {
+        "id": "j28-2c",
+        "title": "鼠标+滚动+触摸事件",
+        "content": "mousemove鼠标移动、mousedown/mouseup显示/释放。scroll页面/元素滚动（用throttle防抖控制频率）。touchstart/touchmove/touchend移动端触摸（e.touches获取触摸点）。💡scroll事件必须加节流(throttle)否则每秒触发上百次。",
+        "code": {
+          "html": "<div id=\"j28m\" style=\"height:100px;background:#1e1e30;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#ccc;cursor:crosshair;overflow:auto\">在我上面移动/滚动鼠标</div><pre id=\"j28mo\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "let j28count=0;document.getElementById(\"j28m\").addEventListener(\"mousemove\",function(){j28count++;document.getElementById(\"j28mo\").textContent=\"鼠标移动次数: \"+j28count})"
+        },
+        "propRef": "js.event"
+      },
+      {
+        "id": "j28-3",
+        "title": "🎯 挑战：待办事项 + 事件委托",
+        "content": "Todo列表：父元素绑定事件委托，点击每项的删除按钮删除该项。新增项自动支持删除（因为委托）。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：delgate模式下新增项也能删除 = 全掌握！",
+        "propRef": "js.event"
+      }
+    ]
+  },
+  {
+    "id": "j29",
+    "title": "📋 表单——收集用户输入",
+    "desc": "input取值/formData/表单验证/preventDefault",
+    "category": "js",
+    "icon": "📋",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j29-1",
+        "title": "表单取值——读用户输入",
+        "content": "input.value获取输入框值。checkbox.checked判断是否选中。preventDefault()阻止表单默认提交。💡所有用户输入的数据都通过value获取。",
+        "code": {
+          "html": "<form id=\"j29f\" onsubmit=\"event.preventDefault()\"><input id=\"j29i\" placeholder=\"输入内容\" style=\"padding:8px;background:#333;color:#eee;border:1px solid #555;border-radius:4px\"><button type=\"submit\">提交</button></form><pre id=\"j29o\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "document.getElementById(\"j29f\").addEventListener(\"submit\",function(e){e.preventDefault();let v=document.getElementById(\"j29i\").value;document.getElementById(\"j29o\").textContent=\"提交: \"+v})"
+        },
+        "propRef": "js.event"
+      },
+      {
+        "id": "j29-2",
+        "title": "🎯 挑战：登录表单",
+        "content": "用户名+密码输入框、提交按钮。取值、验证非空、显示成功/失败信息。用preventDefault阻止刷新。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：取值正确、验证非空、不刷新页面 = 全掌握！",
+        "propRef": "js.event"
+      }
+    ]
+  },
+  {
+    "id": "j30",
+    "title": "🪟 BOM·Storage——浏览器全局能力",
+    "desc": "window/location/history/navigator/localStorage",
+    "category": "js",
+    "icon": "🪟",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j30-1",
+        "title": "BOM——浏览器对象模型",
+        "content": "window全局对象。location.href获取/跳转URL。history.back/go导航。navigator.userAgent设备信息。💡BOM让JS能和浏览器本身交互。",
+        "code": {
+          "html": "<button onclick=\"j30a()\">BOM信息</button><pre id=\"j30a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j30a(){let r=[];r.push(\"URL: \"+location.href);r.push(\"平台: \"+navigator.platform);document.getElementById(\"j30a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.storage"
+      },
+      {
+        "id": "j30-2",
+        "title": "localStorage——永久本地存储",
+        "content": "localStorage.setItem('key',val)存数据。getItem取数据、removeItem删、clear清空。数据永久存储(除非手动清除)。只能存字符串(用JSON.stringify)。💡最常用的前端持久化方案。",
+        "code": {
+          "html": "<button onclick=\"j30b()\">存储</button><button onclick=\"j30c()\">读取</button><pre id=\"j30b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j30b(){localStorage.setItem(\"user\",JSON.stringify({name:\"小明\"}));document.getElementById(\"j30b_\").textContent=\"已存储\"}function j30c(){let d=localStorage.getItem(\"user\");document.getElementById(\"j30b_\").textContent=d?d:\"无数据\"}"
+        },
+        "propRef": "js.storage"
+      },
+      {
+        "id": "j30-2b",
+        "title": "sessionStorage——会话级存储",
+        "content": "sessionStorage 和 localStorage API 完全一样（setItem/getItem/removeItem），但<b>数据在关闭标签页时清除</b>。适合存储临时表单数据、一次性验证码等不希望持久化的数据。💡对比：localStorage永不过期、sessionStorage关标签即删。",
+        "code": {
+          "html": "<button onclick=\"js30b()\">存session</button><button onclick=\"js30c()\">读session</button><pre id=\"j30b_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function js30b(){sessionStorage.setItem(\"temp\",\"临时数据\");document.getElementById(\"j30b_\").textContent=\"已存到sessionStorage(关标签就没了)\"}function js30c(){let d=sessionStorage.getItem(\"temp\");document.getElementById(\"j30b_\").textContent=d||\"无数据\"}"
+        },
+        "propRef": "js.storage"
+      },
+      {
+        "id": "j30-2c",
+        "title": "Cookie——最经典但最受限的存储",
+        "content": "Cookie 是最古老的客户端存储方式。通过 document.cookie 读写。特点：①大小限制4KB(远小于localStorage的5MB)②每次HTTP请求自动发送给服务器 ③可设过期时间 expires。💡Cookie的主要用途已从存储转向身份认证(Token/SessionID)。面试常考三者区别。",
+        "code": {
+          "html": "<button onclick=\"js30d()\">写Cookie</button><button onclick=\"js30e()\">读Cookie</button><pre id=\"j30d_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function js30d(){document.cookie=\"username=小明;max-age=3600;path=/\";document.getElementById(\"j30d_\").textContent=\"Cookie已设置(1小时后过期)\"}function js30e(){let r=document.cookie||\"无Cookie\";document.getElementById(\"j30d_\").textContent=r}"
+        },
+        "propRef": "js.storage"
+      },
+      {
+        "id": "j30-2d",
+        "title": "三种存储方式对比",
+        "content": "localStorage vs sessionStorage vs Cookie 的核心区别。面试常考！",
+        "code": {
+          "html": "<div style='max-width:650px;margin:0 auto;padding:16px'>\n<h3 style='color:#f39c12;text-align:center;margin-bottom:12px'>📊 三种存储方式对比</h3>\n<table style='width:100%;border-collapse:collapse;font-size:11px'>\n<tr style='background:#667eea'><th style='padding:4px 8px;color:#fff'>特性</th><th style='padding:4px 8px;color:#fff'>localStorage</th><th style='padding:4px 8px;color:#fff'>sessionStorage</th><th style='padding:4px 8px;color:#fff'>Cookie</th></tr>\n<tr><td style='padding:4px 8px;color:#f39c12'>容量</td><td style='padding:4px 8px;color:#2ecc71'>~5MB</td><td style='padding:4px 8px;color:#2ecc71'>~5MB</td><td style='padding:4px 8px;color:#e74c3c'>~4KB</td></tr>\n<tr style='background:#1e1e30'><td style='padding:4px 8px;color:#f39c12'>生命周期</td><td style='padding:4px 8px;color:#2ecc71'>永久</td><td style='padding:4px 8px;color:#f39c12'>标签页关闭</td><td style='padding:4px 8px;color:#ccc'>可设过期</td></tr>\n<tr><td style='padding:4px 8px;color:#f39c12'>随请求发送</td><td style='padding:4px 8px;color:#2ecc71'>❌ 不发送</td><td style='padding:4px 8px;color:#2ecc71'>❌ 不发送</td><td style='padding:4px 8px;color:#e74c3c'>✅ 自动发送</td></tr>\n<tr style='background:#1e1e30'><td style='padding:4px 8px;color:#f39c12'>跨标签页</td><td style='padding:4px 8px;color:#2ecc71'>✅ 同源共享</td><td style='padding:4px 8px;color:#e74c3c'>❌ 隔离</td><td style='padding:4px 8px;color:#2ecc71'>✅ 同域名</td></tr>\n<tr><td style='padding:4px 8px;color:#f39c12'>API</td><td style='padding:4px 8px;color:#ccc'>setItem/getItem</td><td style='padding:4px 8px;color:#ccc'>setItem/getItem</td><td style='padding:4px 8px;color:#e74c3c'>document.cookie</td></tr>\n<tr style='background:#1e1e30'><td style='padding:4px 8px;color:#f39c12'>安全</td><td style='padding:4px 8px;color:#f39c12'>JS可读</td><td style='padding:4px 8px;color:#f39c12'>JS可读</td><td style='padding:4px 8px;color:#2ecc71'>可设HttpOnly</td></tr>\n</table><p style='text-align:center;color:#555;font-size:10px;margin-top:8px'>💡 存储对象用 JSON.stringify/JSON.parse | Cookie 设 SameSite=Strict 防 CSRF</p></div>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "js.storage"
+      },
+      {
+        "id": "j30-3b",
+        "title": "History API——SPA路由的核心",
+        "content": "pushState(state,title,url)不刷新页面就改变浏览器URL（单页应用SPA的核心）。replaceState替换当前历史记录。popstate事件监听浏览器前进/后退按钮。💡这就是Vue Router/React Router的底层原理——不用#号也能切换URL。",
+        "code": {
+          "html": "<button onclick=\"js30f()\">pushState改变URL</button><pre id=\"j30f_\"></pre>",
+          "css": "button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function js30f(){history.pushState({page:1},\"\",\"?page=about\");document.getElementById(\"j30f_\").textContent=\"URL已变为 ?page=about (不刷新页面!)\";setTimeout(()=>{history.pushState({page:1},\"\",\"?page=home\")},2000)}"
+        },
+        "propRef": "js.history"
+      },
+      {
+        "id": "j30-3",
+        "title": "🎯 挑战：主题偏好保存",
+        "content": "用localStorage保存用户的主题偏好(暗色/亮色)。下次打开自动应用保存的主题。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：刷新后主题不丢失 = 全掌握！",
+        "propRef": "js.storage"
+      }
+    ]
+  },
+  {
+    "id": "j31",
+    "title": "🔍 RegExp——文本处理的瑞士军刀",
+    "desc": "正则表达式/test/match/replace/常用模式",
+    "category": "js",
+    "icon": "🔍",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j31-1",
+        "title": "正则基础——匹配模式",
+        "content": "/模式/标志。test()判断匹配、match()提取匹配、replace()替换。\\d数字、\\w字母数字、+一次以上、*零次以上、^开头、$结尾。💡正则三句话：判断有无(test)、提取内容(match)、替换内容(replace)。",
+        "code": {
+          "html": "<button onclick=\"j31a()\">正则</button><pre id=\"j31a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j31a(){let email=\"test@example.com\";let phone=\"13800138000\";let r=[];r.push(\"邮箱验证: \"+/\\w+@\\w+\\.\\w+/.test(email));r.push(\"手机号: \"+/1\\d{10}/.test(phone));document.getElementById(\"j31a_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.string"
+      },
+      {
+        "id": "j31-2",
+        "title": "常用模式——手机号/邮箱/URL",
+        "content": "邮箱：/\\w+@\\w+\\.\\w+/。手机号：/1[3-9]\\d{9}/。URL：/^https?:\\/\\//。replace：str.replace(/旧/g,'新')全局替换（g标志）。",
+        "code": {
+          "html": "<button onclick=\"j31b()\">常用模式</button><pre id=\"j31b_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j31b(){let r=[];r.push(\"手机13800138000: \"+/1[3-9]\\d{9}/.test(\"13800138000\"));r.push(\"不是手机138: \"+/1[3-9]\\d{9}/.test(\"138\"));r.push(\"全局替换: \"+\"a1b2c3\".replace(/\\d/g,\"X\"));document.getElementById(\"j31b_\").textContent=r.join(\"\\n\")}"
+        },
+        "propRef": "js.string"
+      },
+      {
+        "id": "j31-3",
+        "title": "🎯 挑战：表单验证器",
+        "content": "验证邮箱格式、手机号格式、密码强度(至少8位+数字+字母)。用test+正则实现。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：邮箱/手机/密码验证正确 = 全掌握！",
+        "propRef": "js.string"
+      }
+    ]
+  },
+  {
+    "id": "j32",
+    "title": "📦 模块化——组织大型项目",
+    "desc": "import/export/default导出/命名导出/动态import",
+    "category": "js",
+    "icon": "📦",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "j32-1",
+        "title": "export/import——导出和导入",
+        "content": "export导出：命名导出export const a=1(可多个)、默认导出export default fn(一个模块一个)。import导入：import {a} from './file.js'命名导入、import fn from './file.js'默认导入。💡模块化让代码分文件管理。",
+        "code": {
+          "html": "<div style=\"background:#1e1e30;padding:16px;border-radius:8px\"><h3 style=\"color:#2ecc71;margin:0 0 8px\">模块化语法：</h3><pre style=\"background:#282840;padding:10px;color:#2ecc71;font-size:12px;line-height:1.6;margin:0\">// 导出 (utils.js)\nexport const PI = 3.14;\nexport function add(a,b){ return a+b }\nexport default class User{}\n\n// 导入 (main.js)\nimport User from './utils.js';\nimport { PI, add } from './utils.js';</pre></div>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "js.modules"
+      },
+      {
+        "id": "j32-2",
+        "title": "动态import——按需加载",
+        "content": "import('./module.js')返回Promise，运行时动态加载。用于代码分割、条件加载、性能优化。💡大型项目用动态import实现路由懒加载——首屏只加载必要代码。",
+        "code": {
+          "html": "<button onclick=\"j32a()\">动态import模拟</button><pre id=\"j32a_\"></pre>",
+          "css": "body{padding:20px;font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#eee}button{padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:4px}pre{margin-top:6px;background:#1e1e30;padding:8px;border-radius:4px;color:#eee;font-size:12px;line-height:1.6}",
+          "js": "function j32a(){let r=document.getElementById(\"j32a_\");r.textContent=\"实际项目中: const module = await import('./module.js')\"}"
+        },
+        "propRef": "js.modules"
+      },
+      {
+        "id": "j32-3",
+        "title": "🎯 挑战：模块化重构",
+        "content": "把工具函数(格式化日期、随机数)放在一个utils.js模块，主文件import使用。理解命名导出和默认导出的区别。",
+        "code": {
+          "html": "<!-- 🎯 在这里写你的HTML代码 -->\n",
+          "css": "/* 🎯 在这里写你的CSS样式 */\n",
+          "js": "// 🎯 在这里写你的JavaScript代码\n"
+        },
+        "tip": "检查：导入导出语法正确、模块间清晰分离 = 全掌握！",
+        "propRef": "js.modules"
+      }
+    ]
+  }
+]

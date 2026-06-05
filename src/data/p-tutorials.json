@@ -1,0 +1,135 @@
+[
+  {
+    "id": "p0",
+    "title": "📑 Pinia 完整学习大纲",
+    "desc": "4篇教程 · Vue3 官方状态管理",
+    "category": "pinia",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "p0-1",
+        "title": "大纲——Pinia = Vue3 官方状态管理",
+        "content": "<div style='max-width:600px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'><h2 style='text-align:center;color:#ffd859;margin:0 0 4px'>📑 Pinia 学习路径</h2><p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>4篇 · 从安装到实战</p><table style='width:100%;border-collapse:collapse;font-size:12px'><tr style='background:#ffd859'><th style='padding:6px 10px;color:#000;text-align:left'>#</th><th style='padding:6px 10px;color:#000;text-align:left'>章节</th><th style='padding:6px 10px;color:#000;text-align:left'>核心</th></tr><tr style='background:#222'><td style='padding:5px 10px;color:#ffd859;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>安装并创建第一个 Store</td><td style='padding:5px 10px;color:#888;font-size:11px'>npm i pinia / createPinia / defineStore</td></tr><tr><td style='padding:5px 10px;color:#ffd859;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>State + Getters + Actions</td><td style='padding:5px 10px;color:#888;font-size:11px'>Option Store + Setup Store 两种写法</td></tr><tr style='background:#222'><td style='padding:5px 10px;color:#ffd859;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>组件中使用 + storeToRefs</td><td style='padding:5px 10px;color:#888;font-size:11px'>解构保持响应性 / $subscribe 持久化</td></tr><tr><td style='padding:5px 10px;color:#ffd859;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>实战——购物车 Store</td><td style='padding:5px 10px;color:#888;font-size:11px'>完整 CRUD + 组件代码</td></tr></table><p style='text-align:center;color:#888;font-size:11px;margin-top:12px'>💡 Pinia 代码需在本地 Vue3 项目中运行，点 Copy 复制到编辑器</p></div>",
+        "propRef": "pinia.summary"
+      }
+    ]
+  },
+  {
+    "id": "p1",
+    "title": "🧩 安装 Pinia 并创建第一个 Store",
+    "desc": "npm install pinia / createPinia / defineStore",
+    "category": "pinia",
+    "icon": "🧩",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "p1-1",
+        "title": "安装 Pinia——Vue3 官方状态管理",
+        "content": "Pinia 是 Vue3 官方推荐的状态管理库（Vuex 继任者）。<br><br>安装：<code>npm install pinia</code><br>然后在 main.js 注册：<code>createPinia() + app.use()</code><br><br>💡 和 Vue3 教程的关系：之前组件间用 provide/inject 传数据，Pinia 就是升级版——全局 Store，任意组件直读直写。",
+        "code": {
+          "html": "<div style='color:#ffd859;font-size:13px'>📦 npm install pinia → createPinia → app.use()</div>",
+          "css": "",
+          "js": "# ===== npm install & 注册 =====\n\n$ npm install pinia\n\n# ===== src/main.js =====\n\nimport { createApp } from 'vue'\nimport { createPinia } from 'pinia'\nimport App from './App.vue'\n\nconst pinia = createPinia()\nconst app = createApp(App)\n\napp.use(pinia)           # 注册 Pinia 插件\napp.mount('#app')\n\n\n✅ Pinia 注册完成！\n✅ 现在所有 .vue 组件都能 import 和使用 Store 了"
+        },
+        "propRef": "pinia.intro"
+      },
+      {
+        "id": "p1-2",
+        "title": "defineStore() —— 定义你的第一个 Store",
+        "content": "Pinia 使用 <b>defineStore()</b> 定义 Store，支持两种写法：<br><br>① <b>Option Store</b>（类似 Options API）：state/getters/actions 分块<br>② <b>Setup Store</b>（类似 Composition API）：ref/computed/function<br><br>两个参数：<b>id</b>（唯一名字）+ <b>options</b>。约定：Store 名以 <code>use</code> 开头、<code>Store</code> 结尾。",
+        "code": {
+          "html": "<div style='color:#ffd859;font-size:13px'>🧩 defineStore('id', options) = Option / Setup 两种</div>",
+          "css": "",
+          "js": "# ===== stores/counter.js =====\n\nimport { defineStore } from 'pinia'\n\n# ===== 方式1: Option Store =====\nexport const useCounterStore = defineStore('counter', {\n  state: () => ({\n    count: 0,\n    name: '计数器'\n  }),\n  getters: {\n    doubleCount: (state) => state.count * 2\n  },\n  actions: {\n    increment() {\n      this.count++\n    }\n  }\n})\n\n# ===== 方式2: Setup Store（推荐）=====\nimport { ref, computed } from 'vue'\n\nexport const useCounterStore = defineStore('counter', () => {\n  const count = ref(0)\n  const doubleCount = computed(() => count.value * 2)\n\n  function increment() {\n    count.value++\n  }\n\n  # 必须 return！不 return 的不暴露\n  return { count, doubleCount, increment }\n})\n\n\n💡 推荐 Setup Store——和 Vue3 Composable 风格一致\n💡 约定：useXxxStore 命名"
+        },
+        "propRef": "pinia.define"
+      }
+    ]
+  },
+  {
+    "id": "p2",
+    "title": "📦 State + Getters + Actions——Store 三要素",
+    "desc": "state响应式/getters缓存/actions异步/storeToRefs解构",
+    "category": "pinia",
+    "icon": "📦",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "p2-1",
+        "title": "State 和 Getters——数据 + 计算",
+        "content": "<b>state</b> = Store 的响应式数据（像组件 data）<br><code>state: () => ({ count: 0, name: '张三' })</code><br>Option Store 必须用函数返回（保证每个实例独立）。<br><br><b>getters</b> = Store 的计算属性（像 computed），有缓存<br><code>doubleCount: (state) => state.count * 2</code><br><br>💡 组件中：<code>store.count++</code> 直接读写 state。$patch 批量更新比多次赋值性能好。",
+        "code": {
+          "html": "<div style='color:#ffd859;font-size:13px'>📦 state = 数据 | getters = 缓存计算</div>",
+          "css": "",
+          "js": "# ===== stores/user.js —— 完整示例 =====\n\nimport { defineStore } from 'pinia'\n\nexport const useUserStore = defineStore('user', {\n  state: () => ({\n    name: '张三',\n    age: 25,\n    loggedIn: false\n  }),\n\n  getters: {\n    upperName: (state) => state.name.toUpperCase(),\n    isAdult: (state) => state.age >= 18,\n    # 访问其他 getter\n    greeting: (state) => {\n      return state.age >= 18 ? '您好' : '小朋友好'\n    }\n  }\n})\n\n\n# ===== 组件中使用 =====\n<script setup>\nimport { useUserStore } from '@/stores/user'\nconst user = useUserStore()\n\n// 直接读写 state\nuser.name = '李四'\nuser.age++\n\n// 批量更新（性能更好）\nuser.$patch({ name: '王五', age: 30 })\n\n// 重置\nuser.$reset()  # name → 张三, age → 25\n</script>\n\n\n💡 state 是响应式的，改了自动更新 UI\n💡 $patch 批量更新性能优于多次赋值\n💡 $reset 恢复到初始值"
+        },
+        "propRef": "pinia.state"
+      },
+      {
+        "id": "p2-2",
+        "title": "Actions——方法（支持 async/await）",
+        "content": "<b>Actions</b> = Store 的方法，支持<b>异步</b>：<br>• Option Store：用 <code>this</code> 访问 state<br>• Setup Store：通过闭包访问<br><br>和 Vuex 的区别：Pinia 没有 mutation，actions 直接改 state——更简洁。<br><br>💡 Actions 可以写 <code>async/await</code> 调 API、操作数据库。这是 Pinia 比 Vuex mutation/action 分家更便利的地方。",
+        "code": {
+          "html": "<div style='color:#ffd859;font-size:13px'>⚡ actions = 方法，支持 async/await</div>",
+          "css": "",
+          "js": "# ===== stores/todo.js —— Actions 异步示例 =====\n\nimport { defineStore } from 'pinia'\n\nexport const useTodoStore = defineStore('todo', {\n  state: () => ({\n    list: [],\n    loading: false\n  }),\n\n  getters: {\n    doneCount: (state) =>\n      state.list.filter(t => t.done).length\n  },\n\n  actions: {\n    // 同步 Action\n    addItem(text) {\n      this.list.push({\n        id: Date.now(),\n        text,\n        done: false\n      })\n    },\n\n    removeItem(id) {\n      this.list = this.list.filter(t => t.id !== id)\n    },\n\n    toggleItem(id) {\n      const item = this.list.find(t => t.id === id)\n      if (item) item.done = !item.done\n    },\n\n    // 异步 Action（调 API）\n    async fetchTodos() {\n      this.loading = true\n      try {\n        const res = await fetch('/api/todos')\n        this.list = await res.json()\n      } finally {\n        this.loading = false\n      }\n    }\n  }\n})\n\n\n💡 Actions 里可以 async/await\n💡 用 this 访问 state 和其他 actions\n💡 不需要 mutations——直接改 state！"
+        },
+        "propRef": "pinia.usage"
+      }
+    ]
+  },
+  {
+    "id": "p3",
+    "title": "🔌 组件中使用 + storeToRefs + $subscribe",
+    "desc": "storeToRefs解构 / $subscribe持久化 / $onAction日志",
+    "category": "pinia",
+    "icon": "🔌",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "p3-1",
+        "title": "storeToRefs——解构保持响应性",
+        "content": "⚠ 直接 <code>const { count } = store</code> 会丢失响应性！<br>✅ 用 <b>storeToRefs()</b>：<code>const { count } = storeToRefs(store)</code><br><br>Actions 可以直接解构（函数引用不需要响应性）。<br><br>💡 模板中 ref 会自动解包，所以 <code>{{ count }}</code> 不需要 <code>.value</code>。",
+        "code": {
+          "html": "<div style='color:#ffd859;font-size:13px'>🔌 storeToRefs = 解构保持响应性</div>",
+          "css": "",
+          "js": "# ===== 组件中正确使用 Store =====\n\n<script setup>\nimport { storeToRefs } from 'pinia'\nimport { useCounterStore } from '@/stores/counter'\n\nconst store = useCounterStore()\n\n# ❌ 错误：直接解构——丢失响应性\n# const { count, doubleCount } = store\n\n# ✅ 正确：用 storeToRefs\nconst { count, doubleCount } = storeToRefs(store)\n\n# ✅ Actions 可以直接解构（函数不需要响应性）\nconst { increment } = store\n\nfunction handleClick() {\n  increment()\n  console.log('当前 count:', count.value)\n}\n</script>\n\n<template>\n  <p>count: {{ count }}</p>\n  <p>double: {{ doubleCount }}</p>\n  <button @click=\"increment\">+1</button>\n</template>\n\n\n✅ storeToRefs(store) 只提取 state + getters\n✅ Actions 正常解构，无需 storeToRefs\n✅ 模板中自动解包 ref（不需要 .value）"
+        },
+        "propRef": "pinia.subscribe"
+      },
+      {
+        "id": "p3-2",
+        "title": "$subscribe——自动保存到 localStorage",
+        "content": "Pinia 的 <b>$subscribe</b> 监听 state 变化，常用于数据持久化：<br><code>store.$subscribe((mutation, state) => { localStorage.setItem(key, JSON.stringify(state)) })</code><br><br>还有 <b>$onAction</b> 监听 action 调用（before/after/error 钩子），用于日志/埋点。<br><br>💡 和 Vue3 watch 的区别：$subscribe 是 Pinia 级别的，精确监听 Store 变化。",
+        "code": {
+          "html": "<div style='color:#ffd859;font-size:13px'>💾 $subscribe = 自动持久化到 localStorage</div>",
+          "css": "",
+          "js": "# ===== $subscribe 持久化 =====\n\nimport { useCounterStore } from '@/stores/counter'\n\nconst store = useCounterStore()\n\n// $subscribe 监听变化\nstore.$subscribe((mutation, state) => {\n  // mutation.type: 'direct' | 'patch object' | 'patch function'\n  console.log('state 变了:', mutation.type)\n\n  // 自动保存到 localStorage\n  localStorage.setItem(\n    'counter-state',\n    JSON.stringify(state)\n  )\n})\n\n\n# ===== $onAction 日志 =====\n\nstore.$onAction(({ name, args, after, onError }) => {\n  console.log(`Action ${name} 开始`, args)\n\n  after((result) => {\n    console.log(`Action ${name} 完成`)\n  })\n\n  onError((error) => {\n    console.error(`Action ${name} 失败:`, error)\n  })\n})\n\n\n💡 $subscribe → 持久化、同步\n💡 $onAction   → 日志、埋点\n💡 刷新页面 → state 从 localStorage 恢复"
+        },
+        "propRef": "pinia.subscribe"
+      }
+    ]
+  },
+  {
+    "id": "p4",
+    "title": "🛒 实战——购物车 Store",
+    "desc": "完整 CRUD + storeToRefs + $subscribe + 组件代码",
+    "category": "pinia",
+    "icon": "🛒",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "p4-1",
+        "title": "完整购物车——定义 + 使用 + 持久化",
+        "content": "整合 Pinia 全部核心：defineStore → state/getters/actions → storeToRefs → $subscribe<br><br>功能：添加/修改数量/删除/清空/总数总价计算/localStorage 持久化<br><br>💡 复制下面代码到你的 Vue3 项目，npm run dev 就能看到完整购物车。",
+        "code": {
+          "html": "<div style='color:#ffd859;font-size:13px'>🛒 完整 Pinia 购物车 = defineStore + storeToRefs + $subscribe</div>",
+          "css": "",
+          "js": "# ===== stores/cart.js =====\n\nimport { defineStore } from 'pinia'\n\nexport const useCartStore = defineStore('cart', {\n  state: () => ({\n    items: [\n      { id: 1, name: 'Vue3 教程', price: 99, qty: 1 },\n      { id: 2, name: 'Pinia 指南', price: 79, qty: 2 }\n    ]\n  }),\n\n  getters: {\n    total: (state) =>\n      state.items.reduce((s, i) => s + i.price * i.qty, 0),\n    count: (state) =>\n      state.items.reduce((s, i) => s + i.qty, 0)\n  },\n\n  actions: {\n    addItem(item) {\n      const exist = this.items.find(i => i.id === item.id)\n      if (exist) {\n        exist.qty += item.qty || 1\n      } else {\n        this.items.push({ ...item, qty: item.qty || 1 })\n      }\n    },\n    updateQty(id, qty) {\n      const item = this.items.find(i => i.id === id)\n      if (item) item.qty = qty\n    },\n    removeItem(id) {\n      this.items = this.items.filter(i => i.id !== id)\n    },\n    clear() {\n      this.items = []\n    }\n  }\n})\n\n\n# ===== 组件中使用 =====\n<script setup>\nimport { storeToRefs } from 'pinia'\nimport { useCartStore } from '@/stores/cart'\n\nconst cart = useCartStore()\nconst { total, count } = storeToRefs(cart)\nconst items = useCartStore().items  # 或者 storeToRefs\n\nfunction addItem() { cart.addItem({ ... }) }\nfunction remove(id) { cart.removeItem(id) }\n</script>\n\n\n# ===== main.js 中注册 $subscribe =====\nimport { useCartStore } from '@/stores/cart'\n\nuseCartStore().$subscribe((mutation, state) => {\n  localStorage.setItem('cart', JSON.stringify(state))\n})\n\n\n# ===== 启动时恢复数据 =====\nconst saved = localStorage.getItem('cart')\nif (saved) {\n  useCartStore().$patch(JSON.parse(saved))\n}\n\n\n💡 这就是真实项目中的标准 Pinia 模式\n💡 和 Vue3 教程的组件通信无缝结合"
+        },
+        "propRef": "pinia.summary"
+      }
+    ]
+  }
+]

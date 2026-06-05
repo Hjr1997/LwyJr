@@ -1,0 +1,272 @@
+[
+  {
+    "id": "n13",
+    "title": "🌊 Stream——高效处理大数据",
+    "desc": "流概念/Readable/Writable/Transform/pipe/pipeline",
+    "category": "node",
+    "icon": "🌊",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "n13-1",
+        "title": "流是什么——不把水喝完就能用水",
+        "content": "假设要处理一个<b>10GB的文件</b>。一次读入内存→电脑爆炸。Stream思路:<b>像水管,数据一小块一小块流过,处理完就丢,内存只占一小块。</b>4种基本类型:<b>Readable</b>(可读)→<b>Writable</b>(可写)→<b>Duplex</b>(双向)→<b>Transform</b>(读写同时改数据)。💡<b>所有I/O操作(文件/网络/压缩)背后都是流!</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// 传统:一次读完(文件大就炸)</span>\n<span style=\"color:#667eea\">const</span> data = fs.readFileSync(<span style=\"color:#2ecc71\">./10gb.bin</span>);\n<span style=\"color:#888\">// → 💥 内存不够!</span>\n\n<span style=\"color:#888\">// 流:边读边处理(内存只占一小块)</span>\nfs.createReadStream(<span style=\"color:#2ecc71\">./10gb.bin</span>)\n  .pipe(process.stdout);\n<span style=\"color:#888\">// → ✅ 稳定输出,不崩!</span>\n\n<span style=\"color:#888\">// 流 = 水管:</span>\n<span style=\"color:#888\">// Readable(源) → Transform(处理) → Writable(终点)</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('Stream = 水管模式');console.log('Readable→Transform→Writable');console.log('💡 边读边处理,从不一次加载全部!');"
+        },
+        "propRef": "node.stream"
+      },
+      {
+        "id": "n13-2",
+        "title": "pipe——连接流的主宰",
+        "content": "<b>readable.pipe(writable)</b> 自动管理数据流动和<b>背压(backpressure)</b>——读快写慢时自动暂停,写完再继续。链式调用:A.pipe(B).pipe(C),数据从A流经B处理后到C。💡pipe是Node.js异步编程的另一种范式:不写回调,只连管道。类似于Unix的 `cat file | grep node | wc -l`。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> fs = require(<span style=\"color:#2ecc71\">fs</span>);\n\n<span style=\"color:#888\">// 经典:读文件 → 写入另一个文件</span>\nfs.createReadStream(<span style=\"color:#2ecc71\">./input.txt</span>)\n  .pipe(fs.createWriteStream(<span style=\"color:#2ecc71\">./output.txt</span>));\n\n<span style=\"color:#888\">// 转换流:读 → 大写转换 → 输出</span>\n<span style=\"color:#667eea\">const</span> { Transform } = require(<span style=\"color:#2ecc71\">stream</span>);\n<span style=\"color:#667eea\">const</span> upper = <span style=\"color:#667eea\">new</span> Transform({\n  transform(chunk, enc, cb) {\n    cb(<span style=\"color:#667eea\">null</span>, chunk.toString().toUpperCase());\n  }\n});\n\nprocess.stdin.pipe(upper).pipe(process.stdout);\n<span style=\"color:#888\">// 输入 hello → 输出 HELLO</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('pipe 自动背压管理: 写慢→读暂停→写完→继续');console.log('链式: readFile.pipe(transform).pipe(writeFile)');"
+        },
+        "propRef": "node.stream"
+      },
+      {
+        "id": "n13-3",
+        "title": "四种流在实战中的组合",
+        "content": "Node.js中几乎所有I/O API都返回流:<b>fs.createReadStream</b>→可读流('data'/'end'事件)。<b>fs.createWriteStream</b>→可写流(write()返回false时等'drain')。<b>zlib.createGzip()</b>→Transform流。<b>http的req是可读流,res是可写流!</b>💡理解了这点,你就懂了整个Node.js的I/O模型。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> fs = require(<span style=\"color:#2ecc71\">fs</span>);\n<span style=\"color:#667eea\">const</span> zlib = require(<span style=\"color:#2ecc71\">zlib</span>);\n\n<span style=\"color:#888\">// ① 流式读: data事件逐块接收</span>\nfs.createReadStream(<span style=\"color:#2ecc71\">./big.log</span>)\n  .on(<span style=\"color:#2ecc71\">data</span>, c => console.log(<span style=\"color:#2ecc71\">块:</span>, c.length))\n  .on(<span style=\"color:#2ecc71\">end</span>, () => console.log(<span style=\"color:#2ecc71\">完毕</span>));\n\n<span style=\"color:#888\">// ② 文件压缩(一行!)</span>\nfs.createReadStream(<span style=\"color:#2ecc71\">./big.log</span>)\n  .pipe(zlib.createGzip())\n  .pipe(fs.createWriteStream(<span style=\"color:#2ecc71\">./big.log.gz</span>));\n\n<span style=\"color:#888\">// ③ HTTP: req=可读, res=可写</span>\nhttp.createServer((req, res) => {\n  fs.createReadStream(<span style=\"color:#2ecc71\">index.html</span>).pipe(res);\n}).listen(3000);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('fs.createReadStream → Readable(事件)');console.log('zlib.createGzip → Transform(压缩)');console.log('http req/res → 也是流!');"
+        },
+        "propRef": "node.stream"
+      },
+      {
+        "id": "n13-4",
+        "title": "🎯 实战:大文件压缩器",
+        "content": "用Stream实现大文件压缩工具:1.读取>10MB文件 2.用zlib.createGzip()流式压缩 3.输出到.gz文件 4.显示压缩前后大小和压缩率。💡对比:readFileSync一次加载 vs Stream流式——当文件>1GB时差别立现!",
+        "code": {
+          "html": "<!-- 🎯 compress.js -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "console.log('📦 压缩: bigdata.log(100MB) → bigdata.log.gz(15MB)');console.log('压缩率: 85% 🎉 全程只占几KB内存!');"
+        },
+        "propRef": "node.stream"
+      }
+    ]
+  },
+  {
+    "id": "n14",
+    "title": "🔐 crypto——加密与安全",
+    "desc": "哈希/HMAC/randomBytes/密码安全",
+    "category": "node",
+    "icon": "🔐",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "n14-1",
+        "title": "哈希(Hash)——数据的指纹",
+        "content": "哈希就像给数据<b>拍一张指纹照</b>:同样输入永远产生同样输出,但输出无法反推输入。<b>crypto.createHash(algorithm)</b>:hash.update(data)喂数据→hash.digest('hex')输出。用途:密码存储、文件完整性、Git commit ID。💡<b>SHA-256安全,MD5已破解别用。</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> crypto = require(<span style=\"color:#2ecc71\">crypto</span>);\n\n<span style=\"color:#667eea\">const</span> hash = crypto.createHash(<span style=\"color:#2ecc71\">sha256</span>);\nhash.update(<span style=\"color:#2ecc71\">Hello Node!</span>);\nconsole.log(hash.digest(<span style=\"color:#2ecc71\">hex</span>));\n<span style=\"color:#888\">// → d6a6bc... (64位十六进制)</span>\n\n<span style=\"color:#888\">// 相同输入 → 相同输出(确定性)</span>\n<span style=\"color:#888\">// 差一点 → 完全不同(雪崩效应)</span>\n<span style=\"color:#888\">// 支持: sha1 sha256 sha384 sha512 md5</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('SHA-256: 相同输入→相同输出, 不可逆');console.log('用途: 密码存储 | 文件校验 | 数字签名');"
+        },
+        "propRef": "node.crypto"
+      },
+      {
+        "id": "n14-2",
+        "title": "HMAC——加盐的哈希",
+        "content": "普通hash有彩虹表攻击风险(坏人提前算好常见密码的hash)。<b>HMAC</b>加上一个密钥(secret key):同一数据,不同密钥→完全不同的结果。<b>crypto.createHmac(algo,key)</b>用法同createHash。💡HMAC常用于:API签名验证(JWT)、数据完整性校验。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> crypto = require(<span style=\"color:#2ecc71\">crypto</span>);\n<span style=\"color:#667eea\">const</span> SECRET = <span style=\"color:#2ecc71\">my-app-key</span>;\n\n<span style=\"color:#667eea\">const</span> hmac = crypto.createHmac(<span style=\"color:#2ecc71\">sha256</span>, SECRET);\nhmac.update(<span style=\"color:#2ecc71\">Hello</span>);\nconsole.log(hmac.digest(<span style=\"color:#2ecc71\">hex</span>));\n<span style=\"color:#888\">// → 7f83b1...(带密钥)</span>\n\n<span style=\"color:#888\">// 同样数据+不同密钥 → 完全不同结果!</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('HMAC = Hash + Secret Key');console.log('用途: JWT签名 | API验证 | 防篡改');"
+        },
+        "propRef": "node.crypto"
+      },
+      {
+        "id": "n14-3",
+        "title": "randomBytes——安全的随机数",
+        "content": "Math.random()不安全(可被预测)。<b>crypto.randomBytes(size)</b>使用操作系统真随机源,<b>密码学安全</b>。场景:生成Session ID、重置密码Token、API Key。同步返回Buffer,异步(推荐)传callback。💡<b>所有安全场景必须用crypto.randomBytes,不能用Math.random!</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #ff375f\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> crypto = require(<span style=\"color:#2ecc71\">crypto</span>);\n\n<span style=\"color:#888\">// 同步: 16字节随机数</span>\n<span style=\"color:#667eea\">const</span> token = crypto.randomBytes(16);\nconsole.log(token.toString(<span style=\"color:#2ecc71\">hex</span>));\n<span style=\"color:#888\">// → a1b2c3... (32字符)</span>\n\n<span style=\"color:#888\">// 异步: 推荐,不阻塞</span>\ncrypto.randomBytes(64, (err, buf) => {\n  console.log(buf.toString(<span style=\"color:#2ecc71\">hex</span>));\n});\n\n<span style=\"color:#888\">// ❌ Math.random()× 不安全!</span>\n<span style=\"color:#888\">// ✅ crypto.randomBytes()√</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('crypto.randomBytes(16) → 32字符随机hex');console.log('⚠️ 永远不要用Math.random()生成密钥!');"
+        },
+        "propRef": "node.crypto"
+      },
+      {
+        "id": "n14-4",
+        "title": "🎯 实战:密码哈希工具",
+        "content": "写password-tool.js:1.加密:node tool.js hash mypass→用scrypt+randomBytes生成salt,输出 salt:hash 2.验证:node tool.js verify mypass salt:hash→判断是否正确。💡生产级密码存储=scrypt(password,salt,keylen,callback)!",
+        "code": {
+          "html": "<!-- 🎯 password-tool.js -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "console.log('$ node tool.js hash mypassword');console.log('  salt:abc...:hash:d4e5...');console.log('$ node tool.js verify mypassword salt:...:hash:...');console.log('  ✅ 密码正确!');"
+        },
+        "propRef": "node.crypto"
+      }
+    ]
+  },
+  {
+    "id": "n15",
+    "title": "🖥️ child_process——子进程",
+    "desc": "exec/spawn/fork/进程通信/CLI集成",
+    "category": "node",
+    "icon": "🖥️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "n15-1",
+        "title": "让Node做终端能做的任何事",
+        "content": "Node不是万能的——Python做AI、ffmpeg处理视频、git管理代码。child_process让Node<b>像终端一样执行任何命令</b>。<b>exec</b>→简单命令(缓冲全部输出)。<b>spawn</b>→大量输出(流式,不炸内存)。<b>fork</b>→运行另一个Node脚本(带IPC通信)。💡<b>exec简单但适合小输出,spawn强大但代码稍多。</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #f39c12\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> { exec, spawn } = require(<span style=\"color:#2ecc71\">child_process</span>);\n\n<span style=\"color:#888\">// exec: 简单命令,一次性拿结果</span>\nexec(<span style=\"color:#2ecc71\">ls -la</span>, (err, stdout) => {\n  console.log(stdout);\n});\n\n<span style=\"color:#888\">// spawn: 流式输出,适合持续运行</span>\n<span style=\"color:#667eea\">const</span> child = spawn(<span style=\"color:#2ecc71\">ping</span>, [<span style=\"color:#2ecc71\">-c</span>, <span style=\"color:#2ecc71\">3</span>, <span style=\"color:#2ecc71\">google.com</span>]);\nchild.stdout.on(<span style=\"color:#2ecc71\">data</span>, d => console.log(<span style=\"color:#2ecc71\">📶</span>, d.toString()));\nchild.on(<span style=\"color:#2ecc71\">close</span>, code => console.log(<span style=\"color:#2ecc71\">退出:</span>, code));</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('exec: 缓冲输出,拿完整结果');console.log('spawn: 流式输出,适合长运行');console.log('fork: Node脚本+IPC通信');"
+        },
+        "propRef": "node.child_process"
+      },
+      {
+        "id": "n15-2",
+        "title": "exec实战——Git统计工具",
+        "content": "<b>exec(cmd,opts,cb)</b>,options中:<b>cwd</b>→工作目录,<b>env</b>→环境变量,<b>timeout</b>→超时。<b>🔒安全警告:永远不要把用户输入直接拼进exec命令!</b>用util.promisify(exec)+async/await写更舒服。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #f39c12\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> { exec } = require(<span style=\"color:#2ecc71\">child_process</span>);\n<span style=\"color:#667eea\">const</span> util = require(<span style=\"color:#2ecc71\">util</span>);\n<span style=\"color:#667eea\">const</span> execP = util.promisify(exec);\n\n<span style=\"color:#667eea\">async function</span> gitInfo() {\n  <span style=\"color:#667eea\">const</span> { stdout } = <span style=\"color:#667eea\">await</span> execP(<span style=\"color:#2ecc71\">git log --oneline -5</span>, {\n    cwd: <span style=\"color:#2ecc71\">/path/to/repo</span>,\n    timeout: 5000\n  });\n  console.log(stdout);\n}\ngitInfo();</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('exec 典型: git status | ffprobe | script');console.log('⚠️ exec(\\'rm -rf \\' + userInput) 危险!');"
+        },
+        "propRef": "node.child_process"
+      },
+      {
+        "id": "n15-3",
+        "title": "fork——多进程Node应用",
+        "content": "<b>fork(modulePath)</b>创建新Node进程,<b>自动建立IPC通道</b>,父子通过send()和message事件通信。这就是「多进程」的雏形——利用多核CPU!注意:进程独立,不共享变量,只能消息通信。💡cluster模块(负载均衡)的底层就是fork。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"display:grid;grid-template-columns:1fr 1fr;gap:10px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:10px;border:1px solid #339933\"><div style=\"color:#339933;font-size:11px\">📄 parent.js</div><pre style=\"color:#ccc;margin:0;font-size:10px\"><span style=\"color:#667eea\">const</span> { fork } = require(<span style=\"color:#2ecc71\">child_process</span>);\n<span style=\"color:#667eea\">const</span> child = fork(<span style=\"color:#2ecc71\">worker.js</span>);\nchild.send({ task: <span style=\"color:#2ecc71\">sum</span>, nums: [1,2,3] });\nchild.on(<span style=\"color:#2ecc71\">message</span>, res => console.log(res));</pre></div><div style=\"background:#0a0a0a;border-radius:8px;padding:10px;border:1px solid #ff375f\"><div style=\"color:#ff375f;font-size:11px\">📄 worker.js</div><pre style=\"color:#ccc;margin:0;font-size:10px\">process.on(<span style=\"color:#2ecc71\">message</span>, msg => {\n  <span style=\"color:#667eea\">const</span> sum = msg.nums.reduce((a,b)=>a+b);\n  process.send({ result: sum });\n});</pre></div></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('fork=新开Node进程+IPC通道');console.log('parent.send()→child接收, child.send()→parent接收');"
+        },
+        "propRef": "node.child_process"
+      },
+      {
+        "id": "n15-4",
+        "title": "🎯 实战:Git提交统计器",
+        "content": "写git-stats.js:1.cd到项目目录 2.exec('git log --oneline --since=\"1 month ago\"') 3.解析stdout统计每人提交数 4.输出排行榜。💡CI/CD工具的基础逻辑!",
+        "code": {
+          "html": "<!-- 🎯 git-stats.js -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "console.log('📊 最近一月提交排行:');console.log('  小明:15 commits ████████████');console.log('  小红:12 commits ██████████');console.log('💡 exec(\\'git log\\')→解析→统计');"
+        },
+        "propRef": "node.child_process"
+      }
+    ]
+  },
+  {
+    "id": "n16",
+    "title": "🗜️ zlib——文件压缩与解压",
+    "desc": "createGzip/createGunzip/gzip/gunzip/流式压缩",
+    "category": "node",
+    "icon": "🗜️",
+    "difficulty": "基础",
+    "steps": [
+      {
+        "id": "n16-1",
+        "title": "压缩——省带宽省磁盘",
+        "content": "无论是HTTP响应(70%+压缩率)还是存档日志,压缩都是刚需。<b>zlib是Node内置压缩库</b>,支持gzip/deflate。两种用法:<b>①流式</b>(createGzip+pipe,大文件)。<b>②一次性</b>(gzipSync,小数据)。💡Express的compression中间件底层就是zlib!",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #f39c12\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">const</span> zlib = require(<span style=\"color:#2ecc71\">zlib</span>);\n<span style=\"color:#667eea\">const</span> fs = require(<span style=\"color:#2ecc71\">fs</span>);\n\n<span style=\"color:#888\">// ① 流式(大文件)</span>\nfs.createReadStream(<span style=\"color:#2ecc71\">bigfile.txt</span>)\n  .pipe(zlib.createGzip())\n  .pipe(fs.createWriteStream(<span style=\"color:#2ecc71\">bigfile.txt.gz</span>));\n\n<span style=\"color:#888\">// ② 一次性(小数据)</span>\n<span style=\"color:#667eea\">const</span> compressed = zlib.gzipSync(<span style=\"color:#2ecc71\">Hello World!</span>);\nconsole.log(<span style=\"color:#2ecc71\">压缩率:</span>, (1-compressed.length/12)*100, <span style=\"color:#2ecc71\">%</span>);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('gzip: 原始1000B→压缩485B, 51%压缩率');console.log('HTML/JSON/文本压缩效果最好!');"
+        },
+        "propRef": "node.zlib"
+      },
+      {
+        "id": "n16-2",
+        "title": "解压——反向操作",
+        "content": "<b>zlib.createGunzip()</b>流式解压,<b>zlib.gunzipSync()</b>一次性。<b>gzip vs deflate</b>:gzip多一个文件头(含文件名/时间戳),浏览器原生支持,<b>Web传输推荐gzip</b>。压缩率相近。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #f39c12\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\">// 流式解压: .gz → 解压 → 输出</span>\nfs.createReadStream(<span style=\"color:#2ecc71\">data.gz</span>)\n  .pipe(zlib.createGunzip())\n  .pipe(fs.createWriteStream(<span style=\"color:#2ecc71\">data.txt</span>));\n\n<span style=\"color:#888\">// 验证: 压缩→解压=原数据</span>\n<span style=\"color:#667eea\">const</span> p = zlib.gzipSync(<span style=\"color:#2ecc71\">Hello</span>);\n<span style=\"color:#667eea\">const</span> u = zlib.gunzipSync(p);\nconsole.log(u.toString() === <span style=\"color:#2ecc71\">Hello</span>); <span style=\"color:#888\">// true</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('gzipSync→gunzipSync 可逆');console.log('gzip=deflate+头部,浏览器原生支持gzip');"
+        },
+        "propRef": "node.zlib"
+      },
+      {
+        "id": "n16-3",
+        "title": "HTTP自动压缩响应",
+        "content": "生产环境最常用:浏览器发Accept-Encoding:gzip→服务器压缩→加Content-Encoding:gzip返回。**1MB JSON压缩后≈100KB,加载快10倍!** zlib的createGzip()是Transform流,直接pipe到res!",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #f39c12\"><pre style=\"color:#ccc;margin:0;font-size:12px\">http.createServer((req, res) => {\n  <span style=\"color:#667eea\">const</span> raw = fs.createReadStream(<span style=\"color:#2ecc71\">index.html</span>);\n  <span style=\"color:#667eea\">if</span> (req.headers[<span style=\"color:#2ecc71\">accept-encoding</span>]?.includes(<span style=\"color:#2ecc71\">gzip</span>)) {\n    res.writeHead(200, { <span style=\"color:#2ecc71\">Content-Encoding</span>: <span style=\"color:#2ecc71\">gzip</span> });\n    raw.pipe(zlib.createGzip()).pipe(res);\n  } <span style=\"color:#667eea\">else</span> {\n    raw.pipe(res); <span style=\"color:#888\">// 不支持→发原始数据</span>\n  }\n}).listen(3000);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('Accept-Encoding:gzip → Content-Encoding:gzip');console.log('浏览器自动解压,用户无感知!');"
+        },
+        "propRef": "node.zlib"
+      },
+      {
+        "id": "n16-4",
+        "title": "🎯 实战:日志归档压缩器",
+        "content": "写log-archiver.js:1.扫描目录下所有.log文件 2.用Stream逐个压缩成.gz 3.删除原文件 4.输出压缩前后大小对比。💡运维自动化的日志轮转(log rotation)核心!",
+        "code": {
+          "html": "<!-- 🎯 log-archiver.js -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "console.log('📦 日志归档: app.log(50MB)→app.log.gz(5MB)');console.log('error.log(10MB)→error.log.gz(1MB)');console.log('📊 总计160MB→14MB, 节省91%!');"
+        },
+        "propRef": "node.zlib"
+      }
+    ]
+  },
+  {
+    "id": "n17",
+    "title": "🛠️ 实战二——从零开发CLI工具并发布",
+    "desc": "综合项目:用全部所学模块开发CLI/发布到npm",
+    "category": "node",
+    "icon": "🛠️",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "n17-1",
+        "title": "项目设计——file-kit文件管家",
+        "content": "做CLI工具<b>file-kit</b>,功能:<b>①compress<文件></b>→gzip压缩。<b>②hash<文件></b>→SHA-256哈希。<b>③stats<目录></b>→文件类型统计。<b>④watch<目录></b>→监视变化。<b>结构:bin/(入口+shebang) → lib/(功能模块) → package.json(bin字段)。</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:500px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\">file-kit/\n├── package.json    <span style=\"color:#888\">← bin字段</span>\n├── bin/file-kit.js <span style=\"color:#888\">← #!/usr/bin/env node</span>\n└── lib/\n    ├── compress.js <span style=\"color:#888\">← zlib+fs+Stream</span>\n    ├── hash.js     <span style=\"color:#888\">← crypto+fs</span>\n    ├── stats.js    <span style=\"color:#888\">← fs+path+os</span>\n    └── watch.js    <span style=\"color:#888\">← fs.watch+EventEmitter</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('🛠️ file-kit: compress|hash|stats|watch');console.log('每个命令对应已学的模块!');"
+        },
+        "propRef": "node.project"
+      },
+      {
+        "id": "n17-2",
+        "title": "实现核心——模块组合的力量",
+        "content": "每个子命令组装你学过的模块:<b>compress</b>→fs.createReadStream+ zlib.createGzip + fs.createWriteStream。<b>hash</b>→fs.readFileSync(Buffer) + crypto.createHash('sha256')。<b>stats</b>→fs.readdirSync+path.extname类型统计。<b>watch</b>→fs.watch+EventEmitter。💡<b>看到没?你学的每个模块都派上用场了!</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:650px;margin:0 auto\"><div style=\"display:grid;grid-template-columns:1fr 1fr;gap:10px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:10px;border:1px solid #f39c12\"><div style=\"color:#f39c12;font-size:10px\">📄 lib/compress.js</div><pre style=\"color:#ccc;margin:0;font-size:10px\"><span style=\"color:#667eea\">const</span> fs = require(<span style=\"color:#2ecc71\">fs</span>);\n<span style=\"color:#667eea\">const</span> zlib = require(<span style=\"color:#2ecc71\">zlib</span>);\n<span style=\"color:#667eea\">function</span> compress(inp,out){\n  fs.createReadStream(inp)\n   .pipe(zlib.createGzip())\n   .pipe(fs.createWriteStream(\n    out||inp+<span style=\"color:#2ecc71\">.gz</span>));\n}\nmodule.exports=compress;</pre></div><div style=\"background:#0a0a0a;border-radius:8px;padding:10px;border:1px solid #ff375f\"><div style=\"color:#ff375f;font-size:10px\">📄 lib/hash.js</div><pre style=\"color:#ccc;margin:0;font-size:10px\"><span style=\"color:#667eea\">const</span> crypto=require(<span style=\"color:#2ecc71\">crypto</span>);\n<span style=\"color:#667eea\">const</span> fs=require(<span style=\"color:#2ecc71\">fs</span>);\n<span style=\"color:#667eea\">function</span> hashFile(fp){\n  <span style=\"color:#667eea\">const</span> d=fs.readFileSync(fp);\n  <span style=\"color:#667eea\">return</span> crypto.createHash(<span style=\"color:#2ecc71\">sha256</span>)\n    .update(d).digest(<span style=\"color:#2ecc71\">hex</span>);\n}\nmodule.exports=hashFile;</pre></div></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('compress: fs+zlib+Stream');console.log('hash: crypto+fs');console.log('stats: fs+path+os');console.log('💡 每个模块都是独立可测试的!');"
+        },
+        "propRef": "node.project"
+      },
+      {
+        "id": "n17-3",
+        "title": "CLI入口——process.argv+命令分发",
+        "content": "入口核心:解析process.argv[2]作为子命令→dispatch到模块。package.json<b>bin字段</b>定义命令,<b>npm link</b>本地测试。文件第一行<b>#!/usr/bin/env node</b>。💡知名CLI工具:npm/tsc/eslint都是这样写的!",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933;margin-bottom:8px\"><pre style=\"color:#ccc;margin:0;font-size:11px\">{ <span style=\"color:#2ecc71\">\"bin\"</span>: { <span style=\"color:#2ecc71\">\"file-kit\"</span>: <span style=\"color:#2ecc71\">\"./bin/file-kit.js\"</span> } }</pre></div><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #667eea\"><pre style=\"color:#ccc;margin:0;font-size:11px\"><span style=\"color:#888\">#!/usr/bin/env node</span>\n<span style=\"color:#667eea\">const</span> cmd = process.argv[2];\n<span style=\"color:#667eea\">switch</span>(cmd) {\n  <span style=\"color:#667eea\">case</span> <span style=\"color:#2ecc71\">compress</span>: compress(argv[3]); <span style=\"color:#667eea\">break</span>;\n  <span style=\"color:#667eea\">case</span> <span style=\"color:#2ecc71\">hash</span>: console.log(hashFile(argv[3])); <span style=\"color:#667eea\">break</span>;\n  <span style=\"color:#2ecc71\">// ...</span>\n}</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "console.log('bin字段→命令名, shebang→用Node执行');console.log('npm link本地测试, npm publish发布!');"
+        },
+        "propRef": "node.project"
+      },
+      {
+        "id": "n17-4",
+        "title": "🎉 终极挑战:发布到npm",
+        "content": "完成file-kit后:1.npm link本地测试 2.写README.md 3.npm login + npm publish 4.别人npm install -g file-kit就能用了!<b>从Node.js小白到npm包作者——你已经是一名真正的Node.js开发者了!🎉</b>",
+        "code": {
+          "html": "<!-- 🎉 恭喜完成18章! -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "var s=['运行环境','模块系统','内置API','文件系统','HTTP服务器','Buffer','Stream','crypto','npm','EventEmitter','子进程','zlib','REST API','CLI开发'];console.log('🎉 Node.js完全掌握!');s.forEach(function(x,i){console.log('  '+(i+1)+'. '+x);});console.log('下一步: Express→MySQL→DevOps→架构师!');"
+        },
+        "propRef": "node.project"
+      }
+    ]
+  }
+]

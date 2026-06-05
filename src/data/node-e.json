@@ -1,0 +1,66 @@
+[
+  {
+    "id": "n26", "title": "🎓 终极实战——Node.js全栈项目", "desc": "综合:API+CLI+多进程+测试+发布npm完整项目", "category": "node", "icon": "🎓", "difficulty": "进阶",
+    "steps": [
+      {"id":"n26-1","title":"项目骨架——规划+分层架构","content":"做一个「代码片段管理器」snippet-kit:<b>后端→HTTP API</b>(CRUD)。<b>CLI→命令行工具</b>(增删查)。<b>存储→JSON文件</b>。<b>测试→assert+node:test</b>。<b>发布→npm</b>。💡<b>这20章学的所有模块全用上!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc;font-size:12px\"><pre>snippet-kit/\n├── package.json\n├── server.js     ← http+fs+crypto\n├── cli.js        ← readline+process\n├── lib/store.js  ← fs+path JSON存储\n├── test/         ← assert+node:test\n└── data/</pre></div>","css":"","js":"console.log('🏗️ snippet-kit 全栈项目');console.log('API层: http + crypto');console.log('CLI层: readline + process.argv');"},"propRef":"node.summary"},
+      {"id":"n26-2","title":"核心实现——API+CLI双入口","content":"API端:http.createServer→路由→store.js(CRUD)→JSON响应(含CORS)。CLI端:readline交互→调store.js→输出结果。<b>两者共享同一个store模块!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc;font-size:11px\"><pre>// store.js (共享业务层)\nfunction add(title,code,lang){ fs.writeFileSync(...) }\nfunction list(){ fs.readFileSync(...) }\n// → server.js 和 cli.js 都require这个!</pre></div>","css":"","js":"console.log('store.js → 共享业务层');console.log('server.js → HTTP入口');console.log('cli.js → 命令行入口');"},"propRef":"node.summary"},
+      {"id":"n26-3","title":"发布与总结——你已经是Node.js开发者","content":"npm publish 发布snippet-kit!回顾20章学过的所有模块。💡<b>从0基础到独立开发/测试/发布npm包——你已经是一名Node.js全栈开发者了!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#0f0;text-align:center;font-size:14px\"><pre>🎉 Node.js 全栈掌握!</pre></div>","css":"","js":"console.log('✅ 运行环境+模块系统');console.log('✅ 6个核心内置模块');console.log('✅ 3大数据处理模块');console.log('✅ 工程化+并发+网络');"},"propRef":"node.summary"}
+    ]
+  },
+  {
+    "id": "n27", "title": "🔤 String Decoder——精准解码多字节字符", "desc": "StringDecoder/write/end/UTF-8断字处理", "category": "node", "icon": "🔤", "difficulty": "基础",
+    "steps": [
+      {"id":"n27-1","title":"多字节字符的陷阱","content":"UTF-8中文字=3字节,emoji=4字节。不完整的字节序列会导致乱码。<b>StringDecoder暂存不完整字符,凑齐再输出</b>。💡处理网络流/文件流必用!","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const {StringDecoder}=require('string_decoder');\nconst dec=new StringDecoder('utf8');\ndec.write(Buffer.from([0xE2]));\ndec.write(Buffer.from([0x82]));\nconsole.log(dec.end(Buffer.from([0xAC]))); // 欧元符号</pre></div>","css":"","js":"console.log('StringDecoder: 暂存不完整字节');console.log('buf.toString(): 不完整→乱码');"},"propRef":"node.decoder"},
+      {"id":"n27-2","title":"🎯 实战:安全解码网络数据流","content":"模拟TCP数据分片到达:每收到chunk就write,所有chunk收到后end,得到完整字符串。💡HTTP/WebSocket解析底层都用了类似机制!","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#0f0\"><pre>Socket数据流解码成功!</pre></div>","css":"","js":"console.log('chunk1: [0xE2,0x82] → write → 暂存');console.log('chunk2: [0xAC] → write → 输出正确字符');"},"propRef":"node.decoder"}
+    ]
+  },
+  {
+    "id": "n28", "title": "⚙️ V8——深入了解JS引擎", "desc": "getHeapStatistics/堆内存监控/cachedDataVersionTag", "category": "node", "icon": "⚙️", "difficulty": "进阶",
+    "steps": [
+      {"id":"n28-1","title":"V8引擎的内存——getHeapStatistics","content":"<b>v8.getHeapStatistics()</b>返回堆内存快照:total_heap_size、used_heap_size、heap_size_limit。<b>v8.getHeapSpaceStatistics()</b>返回各空间详情。💡排查内存泄漏必备!","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const v8=require('v8');\nconst stats=v8.getHeapStatistics();\nconsole.log('已用:',(stats.used_heap_size/1e6).toFixed(1),'MB');\nconsole.log('上限:',(stats.heap_size_limit/1e6).toFixed(1),'MB');</pre></div>","css":"","js":"console.log('v8.getHeapStatistics() → 堆内存快照');console.log('定时调用 → 监控内存趋势');"},"propRef":"node.v8"},
+      {"id":"n28-2","title":"代码缓存——cachedDataVersionTag","content":"<b>v8.cachedDataVersionTag()</b>生成版本标签,和vm.Script搭配判断代码缓存是否有效。💡性能调优必备工具!","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const tag=v8.cachedDataVersionTag();\nconsole.log('V8版本:',tag);</pre></div>","css":"","js":"console.log('cachedDataVersionTag: 代码缓存版本号');"},"propRef":"node.v8"}
+    ]
+  },
+  {
+    "id": "n29", "title": "🔒 VM——沙箱执行JavaScript", "desc": "createContext/runInContext/Script/沙箱安全/超时", "category": "node", "icon": "🔒", "difficulty": "进阶",
+    "steps": [
+      {"id":"n29-1","title":"在隔离环境中运行代码——沙箱","content":"<b>vm.createContext(obj)</b>创建沙箱,<b>runInContext(code,ctx)</b>执行代码。沙箱中不能访问process/fs/http。<b>不是安全沙箱!不要执行不可信代码!</b>真正用途:脚本引擎、模板渲染。","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const vm=require('vm');\nconst sandbox={x:10,result:0};\nvm.createContext(sandbox);\nvm.runInContext('result=x*x+2',sandbox);\nconsole.log(sandbox.result); // 102</pre></div>","css":"","js":"console.log('createContext → 创建沙箱');console.log('runInContext → 在沙箱中执行');"},"propRef":"node.vm"},
+      {"id":"n29-2","title":"Script类——预编译,多次执行","content":"<b>new vm.Script(code)</b>预编译,可用timeout限制执行时间,createCachedData缓存结果。<b>模板引擎(如EJS)的底层就是vm.Script!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const{createContext,Script}=require('vm');\nconst tpl=new Script('out=name+age');\nconst ctx={name:'小明',age:25,out:''};\ncreateContext(ctx);\ntpl.runInContext(ctx,{timeout:2000});</pre></div>","css":"","js":"console.log('new Script → 预编译一次');console.log('runInContext+timeout → 多次+防死循环');"},"propRef":"node.vm"}
+    ]
+  },
+  {
+    "id": "n30", "title": "🔐 TLS——加密传输与HTTPS", "desc": "createServer/证书/TLSSocket/HTTPS/客户端验证", "category": "node", "icon": "🔐", "difficulty": "进阶",
+    "steps": [
+      {"id":"n30-1","title":"HTTPS=HTTP+TLS——加密传输","content":"<b>tls.createServer({key,cert})</b>需要私钥+证书。<b>TLSSocket</b>继承net.Socket,自动加解密。💡生产环境用Let's Encrypt+Nginx,不在Node端做TLS。","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc;font-size:12px\"><pre>const tls=require('tls');\nconst server=tls.createServer({key,cert},s=>{\n  console.log('证书有效:',s.authorized);\n  s.pipe(s);\n});\nserver.listen(8443);</pre></div>","css":"","js":"console.log('tls.createServer({key,cert}) → HTTPS');console.log('TLSSocket: 自动加解密');"},"propRef":"node.tls"},
+      {"id":"n30-2","title":"TLS客户端——连接安全服务","content":"<b>tls.connect(options)</b>创建加密客户端。authorized→证书有效性,getProtocol()→TLS版本,getCipher()→加密算法。<b>生产环境设置rejectUnauthorized:true!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const client=tls.connect({host:'nodejs.org',port:443});\nconsole.log('TLS:',client.getProtocol());\nconsole.log('证书:',client.authorized);</pre></div>","css":"","js":"console.log('tls.connect → TLS客户端');console.log('authorized/getProtocol/getCipher');"},"propRef":"node.tls"}
+    ]
+  },
+  {
+    "id": "n31", "title": "📊 Performance Hooks——性能测量", "desc": "mark/measure/PerformanceObserver/timerify/性能监控", "category": "node", "icon": "📊", "difficulty": "进阶",
+    "steps": [
+      {"id":"n31-1","title":"不用第三方,Node自带性能监控","content":"<b>performance.mark('A')</b>打标记,<b>performance.measure('耗时','A','B')</b>测时差。<b>PerformanceObserver</b>自动订阅收集。💡和浏览器Performance API一模一样!","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const{performance}=require('perf_hooks');\nperformance.mark('A'); /* … */ performance.mark('B');\nperformance.measure('耗时','A','B');\nconst m=performance.getEntriesByType('measure')[0];</pre></div>","css":"","js":"console.log('performance.mark → measure → getEntries');console.log('和浏览器Performance API一致!');"},"propRef":"node.perf"},
+      {"id":"n31-2","title":"PerformanceObserver——自动收集性能数据","content":"<b>timerify(fn)</b>包装函数,每次调用自动测量耗时。可传入RecordableHistogram收集纳秒级分布。💡<b>生产环境API响应时间埋点!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const obs=new PerformanceObserver(list=>{\n  list.getEntries().forEach(e=>console.log(e.duration));\n});\nobs.observe({entryTypes:['measure']});\nconst timed=performance.timerify(heavyFunc);</pre></div>","css":"","js":"console.log('PerformanceObserver: 自动订阅性能事件');console.log('timerify: 函数级别耗时测量');"},"propRef":"node.perf"}
+    ]
+  },
+  {
+    "id": "n32", "title": "🌍 Web Streams——浏览器标准的流", "desc": "ReadableStream/WritableStream/TransformStream/pipeTo", "category": "node", "icon": "🌍", "difficulty": "进阶",
+    "steps": [
+      {"id":"n32-1","title":"Node.js也有Web Streams了","content":"<b>ReadableStream/WritableStream/TransformStream</b>→和浏览器fetch API一致!<b>pipeThrough(t).pipeTo(w)</b>管道组合。💡代码可同时跑在Node和浏览器!","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const{ReadableStream,TransformStream,WritableStream}=require('stream/web');\nconst r=new ReadableStream({start(c){c.enqueue('hi');c.close()}});\nconst t=new TransformStream({transform(chunk,ctrl){ctrl.enqueue(chunk.toUpperCase())}});\nconst w=new WritableStream({write(chunk){console.log(chunk)}});\nr.pipeThrough(t).pipeTo(w); // HI</pre></div>","css":"","js":"console.log('ReadableStream→TransformStream→WritableStream');console.log('pipeThrough+pipeTo 管道组合');"},"propRef":"node.webstreams"},
+      {"id":"n32-2","title":"Node Stream vs Web Stream","content":"Node Stream更强大(Duplex/背压/pipe),Web Stream跨平台。两者可通过<b>Readable.toWeb()</b>和<b>Readable.fromWeb()</b>互转!","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const ns=Readable.from(['hi']);\nconst ws=Readable.toWeb(ns); // Node→Web\nconst ns2=Readable.fromWeb(ws); // Web→Node</pre></div>","css":"","js":"console.log('Readable.toWeb → 转Web Stream');console.log('Readable.fromWeb → 转Node Stream');"},"propRef":"node.webstreams"}
+    ]
+  },
+  {
+    "id": "n33", "title": "🔄 Async Hooks——异步上下文追踪", "desc": "executionAsyncId/AsyncLocalStorage/上下文传递", "category": "node", "icon": "🔄", "difficulty": "进阶",
+    "steps": [
+      {"id":"n33-1","title":"异步资源的生命周期","content":"<b>async_hooks</b>跟踪异步操作:init→before→after→destroy(实验性)。<b>executionAsyncId()</b>获取当前异步ID。<b>⚠️实验性API,生产用AsyncLocalStorage!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const ah=require('async_hooks');\nconst hook=ah.createHook({\n  init(id,type,tid){},before(id){},after(id){},destroy(id){}\n}).enable();\nconsole.log('当前:',ah.executionAsyncId());</pre></div>","css":"","js":"console.log('async_hooks: 追踪异步资源');console.log('实验性API,生产用AsyncLocalStorage');"},"propRef":"node.async"},
+      {"id":"n33-2","title":"AsyncLocalStorage——上下文传递(稳定)","content":"<b>als.run(ctx,fn)</b>设置上下文,<b>als.getStore()</b>任意深度获取。<b>不需要层层传参!</b>💡<b>Web框架的请求级上下文就是靠这个!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const{AsyncLocalStorage}=require('async_hooks');\nconst als=new AsyncLocalStorage();\nals.run({uid:42},()=>{\n  setTimeout(()=>console.log(als.getStore().uid),100); // 42\n});</pre></div>","css":"","js":"console.log('als.run(ctx,fn): 设置异步上下文');console.log('als.getStore(): 任意深度获取');"},"propRef":"node.async"}
+    ]
+  },
+  {
+    "id": "n34", "title": "🔍 Inspector + 终章——Node.js大师", "desc": "inspector/ChromeDevTools/CPU Profile/Heap Snapshot/总结", "category": "node", "icon": "🔍", "difficulty": "进阶",
+    "steps": [
+      {"id":"n34-1","title":"用Chrome DevTools调试Node.js","content":"<b>inspector.open()</b>开启调试端口。<b>inspector.Session</b>做CPU Profiling和Heap Snapshot。💡<b>node --inspect自动用这个模块!</b>","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;color:#ccc\"><pre>const inspector=require('inspector');\ninspector.open(9229);\nconst session=new inspector.Session();\nsession.connect();\nsession.post('Profiler.start');\nsession.post('Profiler.stop',(err,{profile})=>{...});</pre></div>","css":"","js":"console.log('inspector.open → 开启调试端口');console.log('node --inspect → chrome://inspect');"},"propRef":"node.inspector"},
+      {"id":"n34-2","title":"🎓 终章——你已经是Node.js大师","content":"回顾34章路程:<b>从Hello World到独立开发/测试/部署/调试Node.js应用。</b>掌握28+核心模块,覆盖官方API 90%+。下一站:Express→MySQL→Docker→K8s→架构师!","code":{"html":"<div style=\"font-family:monospace;padding:20px;background:#0a0a0a;text-align:center\"><pre style=\"color:#0f0;font-size:14px\">🎉 Node.js 34章完成!<br>0基础 → 全栈大师</pre></div>","css":"","js":"var m=['fs','http','path','os','url','buffer','stream','crypto','child_process','zlib','events','npm','timers','util','net','dns','assert','readline','cluster','worker_threads','decoder','v8','vm','tls','perf','webstreams','async','inspector'];console.log('🎉 34章完成! 掌握'+m.length+'个模块');"},"propRef":"node.summary"}
+    ]
+  }
+]

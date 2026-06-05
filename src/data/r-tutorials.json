@@ -1,0 +1,274 @@
+[
+  {
+    "id": "r0",
+    "title": "📑 React 完整学习大纲",
+    "desc": "9篇教程 · 从 JSX 到 Hooks 实战",
+    "category": "react2",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "r0-1",
+        "title": "大纲——按 React 官方教程顺序学习",
+        "content": "<div style='max-width:720px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'>\n  <h2 style='text-align:center;color:#61dafb;margin:0 0 4px'>📑 React 学习路径</h2>\n  <p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>9篇 · 组件化 → Hooks → 实战</p>\n  <table style='width:100%;border-collapse:collapse;font-size:12px'>\n    <tr style='background:#61dafb'><th style='padding:6px 10px;color:#000;text-align:left'>#</th><th style='padding:6px 10px;color:#000;text-align:left'>章节</th><th style='padding:6px 10px;color:#000;text-align:left'>核心</th></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>⚛️ React 是什么——组件化思想</td><td style='padding:5px 10px;color:#888;font-size:11px'>声明式UI、createElement、ReactDOM</td></tr>\n    <tr><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>📝 JSX——像写HTML一样写UI</td><td style='padding:5px 10px;color:#888;font-size:11px'>JSX语法、{}表达式、className</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🧩 组件与Props——积木传参</td><td style='padding:5px 10px;color:#888;font-size:11px'>函数组件、Props单向流、children</td></tr>\n    <tr><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔄 State与事件——让UI「活」起来</td><td style='padding:5px 10px;color:#888;font-size:11px'>useState、事件处理、setState</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>5</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔀 条件与列表渲染</td><td style='padding:5px 10px;color:#888;font-size:11px'>&& 三元、map()、key</td></tr>\n    <tr><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>6</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🪝 useEffect——副作用管理</td><td style='padding:5px 10px;color:#888;font-size:11px'>副作用、依赖数组、清理函数</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>7</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>📋 表单与受控组件</td><td style='padding:5px 10px;color:#888;font-size:11px'>controlled、onChange、value绑定</td></tr>\n    <tr><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>8</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🌐 useContext——跨组件共享</td><td style='padding:5px 10px;color:#888;font-size:11px'>createContext、Provider、useContext</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#61dafb;font-weight:bold'>9</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🚀 综合实战——Todo应用</td><td style='padding:5px 10px;color:#888;font-size:11px'>整合Hooks全家桶</td></tr>\n  </table>\n  <p style='text-align:center;color:#61dafb;font-size:11px;margin-top:12px'><b>💡 每步都有可运行的 React 实时代码</b></p>\n</div>",
+        "propRef": "react.summary"
+      }
+    ]
+  },
+  {
+    "id": "r1",
+    "title": "⚛️ React 是什么——组件化的 UI 库",
+    "desc": "声明式UI / createElement / ReactDOM / 组件思想",
+    "category": "react2",
+    "icon": "⚛️",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "r1-1",
+        "title": "比喻：React 是「乐高工厂」——做积木、拼积木",
+        "content": "传统：界面 = HTML 写死的静态结构。<br>React：界面 = <b>组件的组合</b>。你定义一个个小组件，React 负责把它们拼起来并高效更新。<br><br>三大核心：<br>① <b>声明式</b>：描述 UI「应该长什么样」，React 自动更新 DOM<br>② <b>组件化</b>：每个组件是独立的函数，有输入（Props）和输出（JSX）<br>③ <b>一次学习，随处编写</b>：Web（ReactDOM）+ 移动端（React Native）共用同一套思维<br><br>💡 和 Vue3 的区别：React 更偏函数式（UI = f(state)），Vue 更偏模板式。两者设计哲学不同，但都能构建复杂应用。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px;text-align:center}",
+          "js": "// React = 声明式 UI 库\n// 界面 = 组件的组合\n\nfunction App() {\n  return React.createElement('div', null,\n    React.createElement('h2', null, '⚛️ Hello React!'),\n    React.createElement('p', null, '这是用 React.createElement 创建的'),\n    React.createElement('button', {\n      onClick: function() { alert('你点击了按钮！') }\n    }, '点我')\n  )\n}\n\nvar root = ReactDOM.createRoot(document.getElementById('root'))\nroot.render(React.createElement(App))"
+        },
+        "propRef": "react.intro"
+      },
+      {
+        "id": "r1-2",
+        "title": "JSX——让组件代码像 HTML",
+        "content": "上面用的 <code>React.createElement</code> 写起来太繁琐了。<br>React 提供了 <b>JSX</b>——在 JS 里直接写类 HTML 标签：<br><br><code>&lt;h1&gt;Hello&lt;/h1&gt;</code> 比 <code>React.createElement('h1', null, 'Hello')</code> 直观多了。<br><br>JSX 规则：① 必须关闭所有标签（<img /> 不是 <img>）② 最外层只能有一个父元素 ③ 用 `{}` 嵌入 JS 表达式 ④ class → <b>className</b><br><br>💡 JSX 本质上就是 <code>React.createElement</code> 的语法糖，编译后完全一样。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px;text-align:center}",
+          "js": "// JSX 让写 React 组件像写 HTML\n// 注意：class → className，事件用驼峰 onClick\n\nfunction Welcome() {\n  var name = '小明'\n  return React.createElement('div', null,\n    React.createElement('h2', { className: 'title' }, '👋 你好，' + name),\n    React.createElement('p', null, new Date().toLocaleTimeString()),\n    React.createElement('small', { style: { color: '#888' } }, 'JSX = createElement 的语法糖')\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(Welcome)\n)"
+        },
+        "propRef": "react.jsx"
+      },
+      {
+        "id": "r1-3",
+        "title": "🎯 练习：用 createElement 写一个卡片组件",
+        "content": "用 <code>React.createElement</code> 创建一张卡片，包含标题、描述、按钮三个元素。理解：① 每个函数返回一个元素树 ② ReactDOM.render 把它挂到页面上 ③ 这就是 React 最核心的工作流。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px;text-align:center}",
+          "js": "// 练习：用 createElement 写一个卡片组件\n\nfunction Card(props) {\n  return React.createElement('div', {\n    style: {\n      background: '#2a2a3e',\n      borderRadius: '12px',\n      padding: '24px',\n      maxWidth: '300px',\n      margin: '0 auto',\n      border: '1px solid #61dafb'\n    }\n  },\n    React.createElement('h3', { style: { color: '#61dafb', margin: '0 0 8px' } }, props.title),\n    React.createElement('p', { style: { color: '#ccc', margin: '0 0 12px' } }, props.desc),\n    React.createElement('button', {\n      style: {\n        background: '#61dafb',\n        border: 'none',\n        padding: '8px 16px',\n        borderRadius: '6px',\n        fontWeight: 'bold',\n        cursor: 'pointer'\n      },\n      onClick: function() { alert('React！') }\n    }, 'Learn More')\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(Card, {\n    title: 'React 入门',\n    desc: '组件化是 React 的核心思想，每个组件都是独立的函数。'\n  })\n)"
+        },
+        "propRef": "react.intro"
+      }
+    ]
+  },
+  {
+    "id": "r2",
+    "title": "🧩 组件与 Props——积木的拼装说明书",
+    "desc": "函数组件 / Props 传参 / 组合组件 / children",
+    "category": "react2",
+    "icon": "🧩",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "r2-1",
+        "title": "函数组件——组件就是返回 UI 的函数",
+        "content": "React 组件本质上就是一个<b>返回 React 元素的 JavaScript 函数</b>。<br><br>规则：① 组件名必须<b>大写开头</b>（&lt;MyButton /&gt;，不是 &lt;myButton /&gt;）② 返回一个 React 元素树 ③ <b>Props</b> 是唯一参数（只读！）<br><br>💡 和 Vue 组件对比：Vue 用 template+script 分离，React 用纯 JS 函数（更函数式）。Props 在两者都是单向数据流的核心。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px;text-align:center}",
+          "js": "// 组件 = 接收 Props，返回 UI 的函数\n\nfunction Avatar(props) {\n  return React.createElement('div', {\n    style: {\n      width: '60px',\n      height: '60px',\n      borderRadius: '50%',\n      background: '#61dafb',\n      display: 'flex',\n      alignItems: 'center',\n      justifyContent: 'center',\n      margin: '0 auto 8px',\n      fontSize: '24px',\n      color: '#000'\n    }\n  }, props.name[0])\n}\n\nfunction UserCard(props) {\n  return React.createElement('div', {\n    style: { background: '#2a2a3e', padding: '16px', borderRadius: '12px', maxWidth: '220px', margin: '8px auto' }\n  },\n    React.createElement(Avatar, { name: props.name }),\n    React.createElement('p', { style: { color: '#61dafb', fontWeight: 'bold', margin: '4px 0' } }, props.name),\n    React.createElement('p', { style: { color: '#888', fontSize: '12px' } }, props.role)\n  )\n}\n\nvar users = [{ name: '张三', role: '前端工程师' }, { name: '李四', role: '设计师' }]\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement('div', { style: { display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' } },\n    users.map(function(u) {\n      return React.createElement(UserCard, { key: u.name, name: u.name, role: u.role })\n    })\n  )\n)"
+        },
+        "propRef": "react.components"
+      },
+      {
+        "id": "r2-2",
+        "title": "Props 是只读的——「单向数据流」",
+        "content": "父组件通过 Props 把数据传给子组件。<b>Props 是只读的</b>——子组件绝对不能修改 props。<br><br>如果子组件需要「改变」数据，正确的做法是：<br>① 父组件把<b>修改函数</b>也通过 props 传下去<br>② 子组件调用这个函数「通知」父组件修改<br><br>💡 和 Vue 的 Emits 对比：React 没有专门的事件系统，回调函数就是通信方式。更简单直接。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px;text-align:center}",
+          "js": "// Props 向下流，回调函数向上流\n\nfunction Child(props) {\n  return React.createElement('div', {\n    style: { background: '#2a2a3e', padding: '16px', borderRadius: '8px', maxWidth: '280px', margin: '0 auto' }\n  },\n    React.createElement('p', { style: { color: '#61dafb' } }, '子组件: count = ' + props.count),\n    React.createElement('button', {\n      style: { padding: '6px 14px', background: '#61dafb', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', margin: '4px' },\n      onClick: function() { props.onIncrement() }\n    }, '子组件 +1'),\n    React.createElement('button', {\n      style: { padding: '6px 14px', background: '#ff4757', border: 'none', borderRadius: '6px', fontWeight: 'bold', color: '#fff', cursor: 'pointer', margin: '4px' },\n      onClick: function() { props.onReset() }\n    }, '子组件 重置')\n  )\n}\n\nfunction Parent() {\n  var count = React.useRef(0)  // useState 在下一步讲，先用这个\n  var [, forceUpdate] = React.useState(0)\n  var cnt = { val: 0 }\n\n  function increment() { cnt.val++; forceUpdate(cnt.val) }\n  function reset() { cnt.val = 0; forceUpdate(0) }\n\n  return React.createElement('div', null,\n    React.createElement('p', { style: { color: '#ccc' } }, '父组件 count: ' + cnt.val),\n    React.createElement(Child, { count: cnt.val, onIncrement: increment, onReset: reset })\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(Parent)\n)"
+        },
+        "propRef": "react.props"
+      }
+    ]
+  },
+  {
+    "id": "r3",
+    "title": "🔄 State——让组件「记住」东西",
+    "desc": "useState / 事件处理 / 状态更新与重渲染",
+    "category": "react2",
+    "icon": "🔄",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "r3-1",
+        "title": "useState——组件的「记忆口袋」",
+        "content": "Props 是父组件给的（不可变），那组件自己的数据怎么存？<br><b>useState Hook</b> 给函数组件增加了「记忆」能力：<br><br><code>const [count, setCount] = useState(0)</code><br><br>• <b>count</b>：当前状态值<br>• <b>setCount</b>：更新状态的函数（调用后触发重渲染）<br>• <b>0</b>：初始值<br><br>💡 这就是 React 的「响应式」——状态变了，UI 自动重渲染。和 Vue 的 ref 是同一个思路，但 React 是「不可变更新」。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:20px}",
+          "js": "// useState = 函数组件的「状态」\n\nfunction Counter() {\n  var state = React.useState(0)\n  var count = state[0]\n  var setCount = state[1]\n\n  return React.createElement('div', null,\n    React.createElement('h2', { style: { color: '#61dafb' } }, '计数器'),\n    React.createElement('p', { style: { fontSize: '32px', fontWeight: 'bold' } }, count),\n    React.createElement('button', {\n      style: { padding: '8px 16px', background: '#61dafb', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', margin: '4px' },\n      onClick: function() { setCount(function(c) { return c + 1 }) }\n    }, '+1'),\n    React.createElement('button', {\n      style: { padding: '8px 16px', background: '#ff4757', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', margin: '4px' },\n      onClick: function() { setCount(0) }\n    }, '重置')\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(Counter)\n)"
+        },
+        "propRef": "react.usestate"
+      },
+      {
+        "id": "r3-2",
+        "title": "事件处理——React 的 onClick 和原生不一样",
+        "content": "React 事件用小驼峰命名：<code>onClick</code>（不是 onclick）、<code>onChange</code>、<code>onSubmit</code>。<br><br>关键区别：<br>① 传函数引用，不是调用结果：<code>onClick={handleClick}</code>（不是 <code>handleClick()</code>）<br>② 合成事件（SyntheticEvent）：React 封装的原生事件对象<br>③ 不需要 addEventListener——声明式绑定<br><br>💡 和 Vue 的 @click 对比：React 用大括号传函数，Vue 用字符串写表达式。结果一样，风格不同。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:20px}",
+          "js": "// React 事件处理 = 声明式绑定\n\nfunction ClickDemo() {\n  var state = React.useState('还没有点击')\n  var msg = state[0]\n  var setMsg = state[1]\n  var countState = React.useState(0)\n  var count = countState[0]\n  var setCount = countState[1]\n\n  function handleClick() {\n    setMsg('按钮被点击了！')\n    setCount(function(c) { return c + 1 })\n  }\n\n  function handleSubmit(e) {\n    e.preventDefault()\n    setMsg('表单提交已阻止')\n  }\n\n  return React.createElement('div', null,\n    React.createElement('p', { style: { color: '#ccc' } }, msg),\n    React.createElement('p', { style: { color: '#888', fontSize: '12px' } }, '点击次数: ' + count),\n    React.createElement('button', {\n      onClick: handleClick,\n      style: { padding: '6px 14px', background: '#61dafb', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', margin: '4px' }\n    }, '点我'),\n    React.createElement('form', { onSubmit: handleSubmit },\n      React.createElement('button', {\n        type: 'submit',\n        style: { padding: '6px 14px', background: '#ff9f0a', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', margin: '4px' }\n      }, '提交（.prevent阻止刷新）')\n    )\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(ClickDemo)\n)"
+        },
+        "propRef": "react.events"
+      }
+    ]
+  },
+  {
+    "id": "r4",
+    "title": "🔀 条件与列表——React 的动态渲染",
+    "desc": "三元表达式 / && / map() / key",
+    "category": "react2",
+    "icon": "🔀",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "r4-1",
+        "title": "条件渲染——if、三元、&& 三件套",
+        "content": "React 没有 v-if/v-show 指令——直接在 JS 里用原生语法！<br><br>① <b>三元表达式</b>：<code>{isLoggedIn ? &lt;User /&gt; : &lt;Login /&gt;}</code><br>② <b>&& 逻辑与</b>：<code>{showBanner && &lt;Banner /&gt;}</code><br>③ <b>if 提前返回</b>：<code>if (!data) return &lt;Loading /&gt;</code><br><br>💡 和 Vue 的区别：React 不用指令，直接用 JS 语法。这是「库 vs 框架」理念差异的体现。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:20px}",
+          "js": "// React 条件渲染 = 纯 JS 逻辑\n\nfunction ConditionDemo() {\n  var state = React.useState(75)\n  var score = state[0]\n  var setScore = state[1]\n\n  return React.createElement('div', null,\n    React.createElement('p', { style: { color: '#ccc' } }, '分数: ' + score),\n    React.createElement('input', {\n      type: 'range',\n      min: 0, max: 100, value: score,\n      onChange: function(e) { setScore(Number(e.target.value)) },\n      style: { width: '200px' }\n    }),\n    // 三元表达式\n    score >= 90\n      ? React.createElement('p', { style: { color: '#42d392' } }, '🥇 优秀')\n      : score >= 60\n        ? React.createElement('p', { style: { color: '#ff9f0a' } }, '🥈 及格')\n        : React.createElement('p', { style: { color: '#ff4757' } }, '🥉 不及格'),\n    // && 快捷条件\n    score === 100\n      ? React.createElement('p', { style: { color: '#61dafb' } }, '🎉 满分！')\n      : null\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(ConditionDemo)\n)"
+        },
+        "propRef": "react.condition"
+      },
+      {
+        "id": "r4-2",
+        "title": "列表渲染——map() + key",
+        "content": "React 没有 v-for——直接用 JS 的 <code>map()</code> 渲染列表。<br><br>每个列表项必须有唯一的 <b>key</b> 属性（和 Vue 的 :key 一样，为了高效 diff）。<br><br>💡 key 规则：用数据自带唯一 ID（如 item.id），<b>不要用 index</b>（数据增删时会出 bug）。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:20px}",
+          "js": "// React 列表 = 用 map() 返回元素数组\n\nfunction TodoList() {\n  var state = React.useState('')\n  var text = state[0]\n  var setText = state[1]\n  var listState = React.useState([\n    { id: 1, text: '学 React', done: true },\n    { id: 2, text: '用 useState', done: false },\n    { id: 3, text: '写项目', done: false }\n  ])\n  var list = listState[0]\n  var setList = listState[1]\n  var nextId = React.useRef(4)\n\n  function add() {\n    if (text.trim()) {\n      setList(list.concat({ id: nextId.current, text: text.trim(), done: false }))\n      nextId.current++\n      setText('')\n    }\n  }\n\n  function toggle(id) {\n    setList(list.map(function(item) {\n      return item.id === id ? Object.assign({}, item, { done: !item.done }) : item\n    }))\n  }\n\n  function remove(id) {\n    setList(list.filter(function(item) { return item.id !== id }))\n  }\n\n  return React.createElement('div', { style: { maxWidth: '360px', margin: '0 auto' } },\n    React.createElement('h4', { style: { color: '#61dafb' } }, '📋 任务列表'),\n    React.createElement('div', { style: { display: 'flex', gap: '8px', marginBottom: '8px' } },\n      React.createElement('input', {\n        value: text,\n        onChange: function(e) { setText(e.target.value) },\n        onKeyUp: function(e) { if (e.key === 'Enter') add() },\n        placeholder: '输入待办...',\n        style: { flex: 1, padding: '6px', borderRadius: '4px', border: '1px solid #444', background: '#2a2a3e', color: '#eee' }\n      }),\n      React.createElement('button', { onClick: add, style: { padding: '6px 14px', background: '#61dafb', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' } }, '+')\n    ),\n    list.map(function(item) {\n      return React.createElement('div', {\n        key: item.id,\n        onClick: function() { toggle(item.id) },\n        style: { display: 'flex', justifyContent: 'space-between', padding: '6px 0', color: item.done ? '#666' : '#ccc', cursor: 'pointer', textDecoration: item.done ? 'line-through' : 'none' }\n      },\n        React.createElement('span', null, item.text),\n        React.createElement('button', {\n          onClick: function(e) { e.stopPropagation(); remove(item.id) },\n          style: { background: 'transparent', color: '#ff4757', border: 'none', cursor: 'pointer', fontSize: '16px' }\n        }, '✕')\n      )\n    })\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(TodoList)\n)"
+        },
+        "propRef": "react.lists"
+      }
+    ]
+  },
+  {
+    "id": "r5",
+    "title": "🪝 useEffect——组件与外界的「桥梁」",
+    "desc": "副作用管理 / 依赖数组 / 清理函数 / setTimeout",
+    "category": "react2",
+    "icon": "🪝",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "r5-1",
+        "title": "副作用 (Side Effect) —— 渲染之外的事情",
+        "content": "React 组件的核心是「状态 → UI」。但总有一些操作在「渲染之外」：<br>• 发起网络请求（fetch data）<br>• 操作 DOM（focus input）<br>• 设置定时器<br>• 订阅事件<br><br>这些就是<b>副作用（Side Effect）</b>，用 <b>useEffect</b> 来处理。<br><br>💡 和 Vue 的 onMounted/onUnmounted 对比：useEffect 把这些都合在一个函数里，用依赖数组控制执行时机。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:20px}",
+          "js": "// useEffect = 在渲染后执行副作用\n\nfunction Clock() {\n  var state = React.useState(new Date().toLocaleTimeString())\n  var time = state[0]\n  var setTime = state[1]\n  var timerRef = React.useRef(null)\n\n  React.useEffect(function() {\n    console.log('⏰ 时钟已挂载')\n    timerRef.current = setInterval(function() {\n      setTime(new Date().toLocaleTimeString())\n    }, 1000)\n\n    // 清理函数：组件卸载时调用\n    return function() {\n      console.log('🔌 时钟已卸载，清理定时器')\n      clearInterval(timerRef.current)\n    }\n  }, [])  // [] 表示只在挂载时执行一次\n\n  return React.createElement('div', { style: { padding: '20px', background: '#2a2a3e', borderRadius: '12px', maxWidth: '300px', margin: '0 auto' } },\n    React.createElement('p', { style: { fontSize: '32px', fontWeight: 'bold', color: '#61dafb' } }, time),\n    React.createElement('p', { style: { fontSize: '11px', color: '#888' } }, 'useEffect 示例 —— 每秒更新')\n  )\n}\n\nfunction App() {\n  var state = React.useState(true)\n  var show = state[0]\n  var setShow = state[1]\n\n  return React.createElement('div', null,\n    React.createElement('button', {\n      onClick: function() { setShow(!show) },\n      style: { padding: '8px 16px', background: '#61dafb', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', marginBottom: '16px' }\n    }, show ? '卸载时钟' : '挂载时钟'),\n    show ? React.createElement(Clock) : React.createElement('p', { style: { color: '#888' } }, '时钟已卸载')\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(App)\n)"
+        },
+        "propRef": "react.useeffect"
+      },
+      {
+        "id": "r5-2",
+        "title": "依赖数组——精确控制 effect 触发时机",
+        "content": "useEffect 的第二个参数是<b>依赖数组</b>：<br><br>• <code>[]</code>（空数组）→ 只在<b>挂载和卸载</b>时运行<br>• <code>[count]</code> → count 变化时运行<br>• 不传 → 每次渲染都运行（慎用！）<br><br>💡 实战：搜索框防抖、数据预加载、DOM 操作都在 useEffect 里做。清理函数返回值防止内存泄漏。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:20px}",
+          "js": "// useEffect 依赖数组控制执行时机\n\nfunction SearchDemo() {\n  var state = React.useState('')\n  var keyword = state[0]\n  var setKeyword = state[1]\n  var resultState = React.useState('等待搜索...')\n  var result = resultState[0]\n  var setResult = resultState[1]\n\n  React.useEffect(function() {\n    if (!keyword) {\n      setResult('等待搜索...')\n      return\n    }\n    // 模拟搜索\n    var timer = setTimeout(function() {\n      setResult('搜索「' + keyword + '」: 找到 ' + Math.floor(Math.random() * 100) + ' 条结果')\n    }, 500)\n    return function() { clearTimeout(timer) }\n  }, [keyword])  // keyword 变化时执行\n\n  return React.createElement('div', { style: { maxWidth: '360px', margin: '0 auto' } },\n    React.createElement('input', {\n      value: keyword,\n      onChange: function(e) { setKeyword(e.target.value) },\n      placeholder: '搜索...（500ms防抖）',\n      style: { padding: '8px 12px', borderRadius: '6px', border: '1px solid #444', background: '#2a2a3e', color: '#eee', width: '220px' }\n    }),\n    React.createElement('p', { style: { color: '#61dafb', marginTop: '12px' } }, result)\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(SearchDemo)\n)"
+        },
+        "propRef": "react.useeffect"
+      }
+    ]
+  },
+  {
+    "id": "r6",
+    "title": "📋 表单与受控组件",
+    "desc": "controlled 受控组件 / onChange / value 绑定",
+    "category": "react2",
+    "icon": "📋",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "r6-1",
+        "title": "受控组件——React 掌管表单的一切",
+        "content": "React 中表单元素的值由 <b>state</b> 控制（不是 DOM 自己管）：<br><br><code>&lt;input value={text} onChange={e =&gt; setText(e.target.value)} /&gt;</code><br><br>这种模式叫<b>受控组件（Controlled Component）</b>：<br>• 输入框的 value = state<br>• onChange = 更新 state<br>• React 是「唯一数据源」<br><br>💡 和 Vue 的 v-model 对比：React 没有语法糖，自己写 onChange → setState，更显式但稍繁琐。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// React 受控组件 = state 掌管一切表单数据\n\nfunction SignupForm() {\n  var nameState = React.useState('')\n  var name = nameState[0]; var setName = nameState[1]\n  var emailState = React.useState('')\n  var email = emailState[0]; var setEmail = emailState[1]\n  var genderState = React.useState('男')\n  var gender = genderState[0]; var setGender = genderState[1]\n  var agreeState = React.useState(false)\n  var agree = agreeState[0]; var setAgree = agreeState[1]\n  var subState = React.useState(false)\n  var submitted = subState[0]; var setSubmitted = subState[1]\n\n  function handleSubmit(e) {\n    e.preventDefault()\n    setSubmitted(true)\n  }\n\n  if (submitted) {\n    return React.createElement('div', { style: { maxWidth: '360px', margin: '0 auto', padding: '20px', background: '#2a2a3e', borderRadius: '12px' } },\n      React.createElement('h3', { style: { color: '#61dafb' } }, '✅ 注册成功'),\n      React.createElement('p', { style: { color: '#ccc' } }, '姓名: ' + name),\n      React.createElement('p', { style: { color: '#ccc' } }, '邮箱: ' + email),\n      React.createElement('p', { style: { color: '#ccc' } }, '性别: ' + gender)\n    )\n  }\n\n  return React.createElement('form', { onSubmit: handleSubmit, style: { maxWidth: '360px', margin: '0 auto' } },\n    React.createElement('h4', { style: { color: '#61dafb' } }, '📝 注册表单'),\n    React.createElement('input', { value: name, onChange: function(e) { setName(e.target.value) }, placeholder: '姓名', style: { padding: '6px', borderRadius: '4px', border: '1px solid #444', background: '#2a2a3e', color: '#eee', width: '100%', marginBottom: '8px' } }),\n    React.createElement('input', { value: email, onChange: function(e) { setEmail(e.target.value) }, placeholder: '邮箱', style: { padding: '6px', borderRadius: '4px', border: '1px solid #444', background: '#2a2a3e', color: '#eee', width: '100%', marginBottom: '8px' } }),\n    React.createElement('select', { value: gender, onChange: function(e) { setGender(e.target.value) }, style: { padding: '6px', borderRadius: '4px', border: '1px solid #444', background: '#2a2a3e', color: '#eee', width: '100%', marginBottom: '8px' } },\n      React.createElement('option', { value: '男' }, '男'),\n      React.createElement('option', { value: '女' }, '女')\n    ),\n    React.createElement('label', { style: { display: 'block', color: '#ccc', marginBottom: '12px' } },\n      React.createElement('input', { type: 'checkbox', checked: agree, onChange: function(e) { setAgree(e.target.checked) }, style: { marginRight: '8px' } }), '同意条款'),\n    React.createElement('button', { type: 'submit', disabled: !agree, style: { padding: '8px 16px', background: agree ? '#61dafb' : '#444', color: agree ? '#000' : '#888', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: agree ? 'pointer' : 'not-allowed' } }, '提交')\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(SignupForm)\n)"
+        },
+        "propRef": "react.forms"
+      }
+    ]
+  },
+  {
+    "id": "r7",
+    "title": "🌐 useContext——跨组件共享数据",
+    "desc": "createContext / Provider / useContext / 避免 prop drilling",
+    "category": "react2",
+    "icon": "🌐",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "r7-1",
+        "title": "Context——不用层层传 props 的「直通车」",
+        "content": "Props 一层层传太痛苦（prop drilling）。<b>Context</b> 让祖先直接向所有后代提供数据：<br><br>① <code>const Ctx = React.createContext(defaultValue)</code> 创建上下文<br>② <b>&lt;Provider value={data}&gt;</b> 包裹后代组件<br>③ <b>useContext(Ctx)</b> 在任何后代中消费<br><br>💡 场景：主题色、语言、登录用户信息。和 Vue 的 provide/inject 是同样的思路！",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:20px}",
+          "js": "// Context = 跨组件共享数据，不用层层传 props\n\nvar ThemeCtx = React.createContext('light')\n\nfunction ThemedButton() {\n  var theme = React.useContext(ThemeCtx)\n  var isDark = theme === 'dark'\n  return React.createElement('button', {\n    style: {\n      padding: '8px 16px',\n      background: isDark ? '#333' : '#61dafb',\n      color: isDark ? '#fff' : '#000',\n      border: 'none',\n      borderRadius: '6px',\n      fontWeight: 'bold',\n      cursor: 'pointer'\n    }\n  }, '当前主题: ' + theme)\n}\n\nfunction Toolbar() {\n  return React.createElement('div', { style: { padding: '16px', background: '#2a2a3e', borderRadius: '8px' } },\n    React.createElement(ThemedButton)\n  )\n}\n\nfunction App() {\n  var state = React.useState('light')\n  var theme = state[0]\n  var setTheme = state[1]\n\n  return React.createElement(ThemeCtx.Provider, { value: theme },\n    React.createElement('div', { style: { maxWidth: '300px', margin: '0 auto' } },\n      React.createElement(Toolbar),\n      React.createElement('button', {\n        onClick: function() { setTheme(theme === 'light' ? 'dark' : 'light') },\n        style: { padding: '6px 14px', background: '#5856d6', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', marginTop: '12px' }\n      }, '切换主题')\n    )\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(App)\n)"
+        },
+        "propRef": "react.context"
+      },
+      {
+        "id": "r7-2",
+        "title": "🎯 练习：用 Context 做全局通知系统",
+        "content": "用 createContext 存储通知数据（type: success/error/warning），Provider 包裹整个应用，子组件通过 useContext 消费和添加通知。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:20px}",
+          "js": "// 练习：Context 通知系统\n\nvar NotiCtx = React.createContext({ list: [], add: function() {} })\n\nfunction NotificationList() {\n  var ctx = React.useContext(NotiCtx)\n  return React.createElement('div', null,\n    ctx.list.map(function(n, i) {\n      return React.createElement('div', {\n        key: i,\n        style: { padding: '8px 12px', background: n.type === 'success' ? 'rgba(66,211,146,.2)' : 'rgba(255,71,87,.2)', borderRadius: '6px', margin: '4px 0', color: n.type === 'success' ? '#42d392' : '#ff4757', fontSize: '13px' }\n      }, n.text)\n    })\n  )\n}\n\nfunction AddButton() {\n  var ctx = React.useContext(NotiCtx)\n  return React.createElement('div', { style: { marginTop: '12px' } },\n    React.createElement('button', {\n      onClick: function() { ctx.add('success', '✅ 操作成功！') },\n      style: { padding: '6px 14px', background: '#42d392', color: '#000', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', margin: '4px' }\n    }, '添加成功通知'),\n    React.createElement('button', {\n      onClick: function() { ctx.add('error', '❌ 操作失败！') },\n      style: { padding: '6px 14px', background: '#ff4757', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', margin: '4px' }\n    }, '添加错误通知')\n  )\n}\n\nfunction App() {\n  var state = React.useState([])\n  var list = state[0]\n  var setList = state[1]\n  var idRef = React.useRef(0)\n\n  function add(type, text) {\n    idRef.current++\n    setList(list.concat({ id: idRef.current, type: type, text: text }))\n  }\n\n  return React.createElement(NotiCtx.Provider, { value: { list: list, add: add } },\n    React.createElement('div', { style: { maxWidth: '340px', margin: '0 auto' } },\n      React.createElement('h4', { style: { color: '#61dafb' } }, '📢 通知中心'),\n      React.createElement(NotificationList),\n      React.createElement(AddButton)\n    )\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App))"
+        },
+        "propRef": "react.context"
+      }
+    ]
+  },
+  {
+    "id": "r8",
+    "title": "🚀 综合实战——React Todo 应用",
+    "desc": "整合 useState/useEffect/Context/受控组件",
+    "category": "react2",
+    "icon": "🚀",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "r8-1",
+        "title": "整合所有 Hooks——Todo 应用",
+        "content": "这个 Todo 应用整合了 React 核心能力：<br><br>① <b>useState</b> —— 管理输入框和待办列表<br>② <b>useEffect</b> —— 自动保存到 localStorage<br>③ <b>useContext</b> —— 主题切换<br>④ <b>条件渲染</b> —— 筛选 Tab（全部/未完成/已完成）<br>⑤ <b>列表渲染</b> —— map() 渲染 Todo 项<br><br>💡 这就是你在真实项目中的 React 代码——Hooks 让函数组件也能管理状态。",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// React Todo App = Hooks 全家桶\n\nfunction TodoApp() {\n  var textState = React.useState('')\n  var text = textState[0]; var setText = textState[1]\n  var filterState = React.useState('全部')\n  var filter = filterState[0]; var setFilter = filterState[1]\n\n  // 从 localStorage 恢复数据\n  var initTodos = []\n  try { var saved = localStorage.getItem('react-todos'); if (saved) initTodos = JSON.parse(saved) } catch(e) {}\n  if (initTodos.length === 0) initTodos = [{ id: 1, text: '学 React', done: true }, { id: 2, text: '用 useState', done: false }]\n  var todoState = React.useState(initTodos)\n  var todos = todoState[0]; var setTodos = todoState[1]\n  var nextId = React.useRef(initTodos.length ? initTodos[initTodos.length-1].id + 1 : 1)\n\n  // 自动保存\n  React.useEffect(function() {\n    localStorage.setItem('react-todos', JSON.stringify(todos))\n  }, [todos])\n\n  function add() {\n    if (text.trim()) {\n      setTodos(todos.concat({ id: nextId.current, text: text.trim(), done: false }))\n      nextId.current++\n      setText('')\n    }\n  }\n\n  function toggle(id) {\n    setTodos(todos.map(function(t) { return t.id === id ? Object.assign({}, t, { done: !t.done }) : t }))\n  }\n\n  function remove(id) {\n    setTodos(todos.filter(function(t) { return t.id !== id }))\n  }\n\n  var filtered = todos.filter(function(t) {\n    if (filter === '已完成') return t.done\n    if (filter === '未完成') return !t.done\n    return true\n  })\n\n  var doneCount = todos.filter(function(t) { return t.done }).length\n\n  return React.createElement('div', { style: { maxWidth: '420px', margin: '0 auto' } },\n    React.createElement('h3', { style: { color: '#61dafb', textAlign: 'center' } }, '⚛️ React Todo'),\n    React.createElement('div', { style: { display: 'flex', gap: '8px', marginBottom: '8px' } },\n      React.createElement('input', {\n        value: text, onChange: function(e) { setText(e.target.value) },\n        onKeyUp: function(e) { if (e.key === 'Enter') add() },\n        placeholder: '输入待办...',\n        style: { flex: 1, padding: '8px', borderRadius: '6px', border: '1px solid #444', background: '#2a2a3e', color: '#eee' }\n      }),\n      React.createElement('button', { onClick: add, style: { padding: '8px 16px', background: '#61dafb', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' } }, '+')\n    ),\n    ['全部', '未完成', '已完成'].map(function(f) {\n      return React.createElement('button', {\n        key: f, onClick: function() { setFilter(f) },\n        style: { padding: '4px 12px', border: '1px solid', borderColor: filter === f ? '#61dafb' : '#444', background: filter === f ? '#61dafb' : 'transparent', color: filter === f ? '#000' : '#ccc', borderRadius: '4px', cursor: 'pointer', marginRight: '4px', marginBottom: '12px', fontSize: '12px' }\n      }, f)\n    }),\n    React.createElement('p', { style: { fontSize: '12px', color: '#888', marginBottom: '4px' } }, doneCount + '/' + todos.length + ' 已完成'),\n    filtered.map(function(t) {\n      return React.createElement('div', {\n        key: t.id,\n        onClick: function() { toggle(t.id) },\n        style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 0', color: t.done ? '#666' : '#ccc', cursor: 'pointer', textDecoration: t.done ? 'line-through' : 'none' }\n      },\n        React.createElement('span', null, t.text),\n        React.createElement('button', {\n          onClick: function(e) { e.stopPropagation(); remove(t.id) },\n          style: { background: 'transparent', color: '#ff4757', border: 'none', cursor: 'pointer', fontSize: '16px' }\n        }, '✕')\n      )\n    })\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(TodoApp)\n)"
+        },
+        "propRef": "react.summary"
+      },
+      {
+        "id": "r8-2",
+        "title": "🎯 终极挑战 + 完成总结",
+        "content": "在 Todo 基础上实现：① 编辑（双击修改文字）② 拖拽排序 ③ 主题切换（Context）④ 动画（react-transition-group）<br><br>✅ React 教程总结：<br>声明式 UI · 组件化 · Props · useState · useEffect · 条件/列表 · Context · 受控组件<br><br>💡 下一步：学习 <b>Next.js</b>（React 全栈框架）、<b>Redux/Zustand</b>（状态管理）、<b>React Router</b>（路由）！",
+        "code": {
+          "html": "<div id='root'></div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;text-align:center;padding:40px}",
+          "js": "// 恭喜完成 React 教程！\n\nfunction Final() {\n  return React.createElement('div', { style: { maxWidth: '400px', margin: '0 auto' } },\n    React.createElement('h2', { style: { color: '#61dafb' } }, '🎉 恭喜完成 React 全部教程！'),\n    React.createElement('p', { style: { color: '#ccc' } }, '你已掌握：'),\n    React.createElement('ul', { style: { textAlign: 'left', display: 'inline-block', color: '#ccc' } },\n      ['声明式组件', 'JSX 语法', 'Props 单向流', 'useState 状态', 'useEffect 副作用', 'Context 共享', '受控组件', '综合实战'].map(function(s) {\n        return React.createElement('li', { key: s, style: { padding: '2px 0' } }, '✅ ' + s)\n      })\n    ),\n    React.createElement('p', { style: { color: '#61dafb', fontWeight: 'bold', marginTop: '16px' } }, '下一步：Next.js + React Router！')\n  )\n}\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  React.createElement(Final)\n)"
+        },
+        "propRef": "react.summary"
+      }
+    ]
+  }
+]

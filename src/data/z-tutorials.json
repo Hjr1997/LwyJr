@@ -1,0 +1,135 @@
+[
+  {
+    "id": "z0",
+    "title": "📑 Zustand 完整学习大纲",
+    "desc": "4篇教程 · React 轻量状态管理",
+    "category": "zustand",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "z0-1",
+        "title": "大纲——Zustand = React 最简状态管理",
+        "content": "<div style='max-width:600px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'><h2 style='text-align:center;color:#a78bfa;margin:0 0 4px'>📑 Zustand 学习路径</h2><p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>4篇 · 从零到实战</p><table style='width:100%;border-collapse:collapse;font-size:12px'><tr style='background:#a78bfa'><th style='padding:6px 10px;color:#000;text-align:left'>#</th><th style='padding:6px 10px;color:#000;text-align:left'>章节</th><th style='padding:6px 10px;color:#000;text-align:left'>核心</th></tr><tr style='background:#222'><td style='padding:5px 10px;color:#a78bfa;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>安装并创建第一个 Store</td><td style='padding:5px 10px;color:#888;font-size:11px'>npm i zustand / create() / set / get</td></tr><tr><td style='padding:5px 10px;color:#a78bfa;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>State + Actions + Selector</td><td style='padding:5px 10px;color:#888;font-size:11px'>set/get/selector/精准订阅</td></tr><tr style='background:#222'><td style='padding:5px 10px;color:#a78bfa;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>组件中使用 + 中间件</td><td style='padding:5px 10px;color:#888;font-size:11px'>useStore/subscribe/persist/devtools</td></tr><tr><td style='padding:5px 10px;color:#a78bfa;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>实战——购物车 Store</td><td style='padding:5px 10px;color:#888;font-size:11px'>完整 CRUD + persist + 组件</td></tr></table><p style='text-align:center;color:#888;font-size:11px;margin-top:12px'>💡 Zustand 代码需在本地 React 项目中运行，点 Copy 复制到编辑器</p></div>",
+        "propRef": "zustand.summary"
+      }
+    ]
+  },
+  {
+    "id": "z1",
+    "title": "🗄 安装 Zustand 并创建第一个 Store",
+    "desc": "npm install zustand / create / set / get",
+    "category": "zustand",
+    "icon": "🗄",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "z1-1",
+        "title": "create()——Zustand 的唯一入口",
+        "content": "Zustand 是 React 社区最受欢迎的轻量状态管理库。<br><br>安装：<code>npm install zustand</code><br>一个 <code>create()</code> 调用搞定一切——不需要 Provider、reducer、action type。<br><br>💡 和 Redux 对比：Redux 需要 4 个文件，Zustand 一个 create 完事。和 Pinia 对比：Zustand 不区分 state/getters/actions——全部平铺。",
+        "code": {
+          "html": "<div style='color:#a78bfa;font-size:13px'>🗄 create((set, get) => ({ state, actions }))</div>",
+          "css": "",
+          "js": "# ===== npm install =====\n\n$ npm install zustand\n\n# ===== stores/counter.js =====\n\nimport { create } from 'zustand'\n\nconst useCounterStore = create((set, get) => ({\n  // ===== State =====\n  count: 0,\n  name: 'Zustand',\n\n  // ===== Actions =====\n  increment: () =>\n    set((state) => ({ count: state.count + 1 })),\n\n  decrement: () =>\n    set((state) => ({ count: state.count - 1 })),\n\n  reset: () =>\n    set({ count: 0 }),\n\n  // ===== 读当前 state（组件外也能调用） =====\n  getDouble: () => get().count * 2\n}))\n\nexport default useCounterStore\n\n\n💡 create((set, get) => ({...})) 一个函数搞定\n💡 set(fn) → 函数式更新（推荐）\n💡 set(obj) → 对象式更新（浅合并）\n💡 get()  → 组件外读取 state"
+        },
+        "propRef": "zustand.create"
+      },
+      {
+        "id": "z1-2",
+        "title": "set/get 用法详解——和 Pinia 的对比",
+        "content": "<b>set()</b> 两种调用方式：<br>• <code>set(state => ({ count: state.count + 1 }))</code> —— 函数式（推荐）<br>• <code>set({ count: 10 })</code> —— 对象式（浅合并，不覆盖其他字段）<br><br><b>get()</b> 在 actions 中读取当前 state（不需要从组件传进来）。<br><br>💡 和 Pinia 的对比：Zustand 的 set 默认浅合并，Pinia 的 this.xxx = 直接赋值。两者都是响应式更新。",
+        "code": {
+          "html": "<div style='color:#a78bfa;font-size:13px'>📦 set(fn) 推荐 / set(obj) 合并 / get() 组件外读</div>",
+          "css": "",
+          "js": "# ===== Zustand vs Pinia 代码量对比 =====\n\n# Zustand（1个函数）\nimport { create } from 'zustand'\n\nconst useXxx = create((set, get) => ({\n  value: 0,\n  setValue: (v) => set({ value: v }),\n  getValue: () => get().value\n}))\n\n\n# Pinia（1个函数）\nimport { defineStore } from 'pinia'\n\nexport const useXxx = defineStore('xxx', {\n  state: () => ({ value: 0 }),\n  getters: { doubleValue: (s) => s.value * 2 },\n  actions: {\n    setValue(v) { this.value = v }\n  }\n})\n\n\n💡 Zustand：不区分 state/getters/actions（全平铺）\n💡 Pinia： 分 state/getters/actions（结构清晰）\n💡 选哪个？ 团队偏好 — 两者都非常成熟"
+        },
+        "propRef": "zustand.state"
+      }
+    ]
+  },
+  {
+    "id": "z2",
+    "title": "🎯 Selector——精准订阅，避免无效渲染",
+    "desc": "selector选择器/避免全量订阅/性能优化/async actions",
+    "category": "zustand",
+    "icon": "🎯",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "z2-1",
+        "title": "selector 选择器——只订阅你需要的字段",
+        "content": "不用 selector：<code>const store = useStore()</code> → 任何字段变都重渲染<br>用 selector：<code>const count = useStore(<b>s => s.count</b>)</code> → 只 count 变才重渲染<br><br>这是 Zustand 性能优化的核心——比 Redux 的 memo/mapStateToProps 简洁太多。<br><br>💡 对比 Pinia：Pinia 用 storeToRefs 解构后也是精准订阅，理念相同。",
+        "code": {
+          "html": "<div style='color:#a78bfa;font-size:13px'>🎯 selector = 精准订阅，性能最优</div>",
+          "css": "",
+          "js": "# ===== Selector 的正确姿势 =====\n\nimport useCounterStore from '@/stores/counter'\n\nfunction Counter() {\n  // ❌ 错误：订阅了整个 Store\n  // const store = useCounterStore()\n\n  // ✅ 正确：只订阅需要的字段\n  const count = useCounterStore((s) => s.count)\n  const increment = useCounterStore((s) => s.increment)\n\n  return (\n    <div>\n      <h2>Count: {count}</h2>\n      <button onClick={increment}>+1</button>\n    </div>\n  )\n}\n\n# 也可以一个 selector 拿多个字段\nconst { count, name } = useCounterStore((s) => ({\n  count: s.count,\n  name: s.name\n}))\n# 默认用 Object.is 做浅比较\n\n\n💡 用 selector 后，只 count 变化才重渲染\n💡 如果只用了 increment（不变），组件永远不重渲染\n💡 默认 Object.is 比较，可自定义 equality 函数"
+        },
+        "propRef": "zustand.selector"
+      },
+      {
+        "id": "z2-2",
+        "title": "Async Actions——直接 async/await",
+        "content": "Zustand 的 actions 可以直接 <b>async/await</b>（不需要中间件！）：<br><br><code>fetchUser: async (id) => { set({ loading: true }); const data = await api.fetch(id); set({ user: data, loading: false }) }</code><br><br>💡 和 Redux 对比：不需要 redux-thunk 或 redux-saga，Zustand 原生支持异步。",
+        "code": {
+          "html": "<div style='color:#a78bfa;font-size:13px'>⚡ async/await 原生支持，不要中间件</div>",
+          "css": "",
+          "js": "# ===== stores/user.js —— 异步 Actions =====\n\nimport { create } from 'zustand'\n\nconst useUserStore = create((set, get) => ({\n  user: null,\n  loading: false,\n  error: null,\n\n  // 同步 Action\n  setUser: (user) => set({ user }),\n  logout: () => set({ user: null }),\n\n  // 异步 Action（直接 async/await）\n  fetchUser: async (id) => {\n    set({ loading: true, error: null })\n    try {\n      const res = await fetch(`/api/users/${id}`)\n      const user = await res.json()\n      set({ user, loading: false })\n    } catch (e) {\n      set({ error: e.message, loading: false })\n    }\n  },\n\n  // Action 中使用 get() 读当前 state\n  refreshUser: async () => {\n    const { user } = get()\n    if (user) {\n      await useUserStore.getState().fetchUser(user.id)\n    }\n  }\n}))\n\n\n💡 async/await 直接用，不需要中间件\n💡 get() 在 actions 中读取当前 state\n💡 对比 Redux：省掉 thunk/saga + dispatch"
+        },
+        "propRef": "zustand.selector"
+      }
+    ]
+  },
+  {
+    "id": "z3",
+    "title": "🔌 组件中使用 + 中间件",
+    "desc": "useStore/subscribe/persist/devtools/immer",
+    "category": "zustand",
+    "icon": "🔌",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "z3-1",
+        "title": "在 React 组件中使用 Zustand",
+        "content": "Zustand 使用超简单——<b>不需要 Provider！</b><br><br>① import Store Hook → ② <code>const count = useStore(s => s.count)</code> 读取 → ③ 直接在 JSX 中使用<br><br>组件外也能读写：<code>useStore.getState()</code> / <code>useStore.setState()</code><br><br>💡 和 Pinia 对比：Zustand 不需要 Provider 包裹 App、不需要 storeToRefs——selector 天然保持响应性。",
+        "code": {
+          "html": "<div style='color:#a78bfa;font-size:13px'>🔌 不需要 Provider！直接 import 就能用</div>",
+          "css": "",
+          "js": "# ===== React 组件中使用 Zustand =====\n\nimport useCounterStore from '@/stores/counter'\n\nfunction Counter() {\n  const count = useCounterStore((s) => s.count)\n  const increment = useCounterStore((s) => s.increment)\n\n  return (\n    <div>\n      <h2>{count}</h2>\n      <button onClick={increment}>+1</button>\n    </div>\n  )\n}\n\n# ===== 组件外也能读/写 Store =====\nconst count = useCounterStore.getState().count\nuseCounterStore.setState({ count: 100 })\n\n# ===== subscribe 监听变化 =====\nconst unsub = useCounterStore.subscribe(\n  (state, prevState) => {\n    console.log('count 变了:', state.count)\n  }\n)\n// 取消订阅\n// unsub()\n\n\n💡 不需要 Provider 包裹 App\n💡 组件外也能读写 Store（SSR/测试友好）\n💡 同一个 Store 在任意组件里状态共享"
+        },
+        "propRef": "zustand.usage"
+      },
+      {
+        "id": "z3-2",
+        "title": "中间件——persist + devtools + immer",
+        "content": "Zustand 通过<b>中间件（middleware）</b>扩展功能：<br><br>• <b>persist</b>：自动保存到 localStorage（刷新不丢）<br>• <b>devtools</b>：Redux DevTools 浏览器扩展调试<br>• <b>immer</b>：简化嵌套对象的不可变更新<br><br>用法：<code>create(persist((set) => ({ ... }), { name: 'key' }))</code>",
+        "code": {
+          "html": "<div style='color:#a78bfa;font-size:13px'>🔌 persist/localStorage + devtools/调试</div>",
+          "css": "",
+          "js": "# ===== persist 中间件 —— 自动持久化 =====\n\nimport { create } from 'zustand'\nimport { persist } from 'zustand/middleware'\n\nconst useTodoStore = create(\n  persist(\n    (set) => ({\n      todos: [],\n      addTodo: (text) =>\n        set((state) => ({\n          todos: [...state.todos,\n            { id: Date.now(), text, done: false }\n          ]\n        })),\n      toggleTodo: (id) =>\n        set((state) => ({\n          todos: state.todos.map(t =>\n            t.id === id ? { ...t, done: !t.done } : t\n          )\n        }))\n    }),\n    { name: 'todo-storage' }  // localStorage key\n  )\n)\n\n\n# ===== devtools 中间件 —— 浏览器调试 =====\nimport { devtools } from 'zustand/middleware'\n\nconst useStore = create(\n  devtools(\n    (set) => ({\n      count: 0,\n      increment: () =>\n        set((s) => ({ count: s.count + 1 }),\n          false, 'increment')  // action name\n    }),\n    { name: 'MyStore' }  // DevTools 里显示的名字\n  )\n)\n\n\n💡 persist → 自动同步 localStorage\n💡 devtools → Redux DevTools 浏览器扩展\n💡 immer → 复杂嵌套对象的不可变更新\n💡 多个中间件可嵌套：devtools(persist(...))"
+        },
+        "propRef": "zustand.middleware"
+      }
+    ]
+  },
+  {
+    "id": "z4",
+    "title": "🛒 实战——购物车 Store",
+    "desc": "完整 CRUD + persist + selector + 组件代码",
+    "category": "zustand",
+    "icon": "🛒",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "z4-1",
+        "title": "完整购物车——React + Zustand 实战",
+        "content": "整合 Zustand 全部核心：create → set/get → selector → persist<br><br>功能：添加/修改数量/删除/清空/总数总价计算/持久化<br><br>💡 复制下面代码到你的 React 项目，配合之前 React 教程的组件写法。",
+        "code": {
+          "html": "<div style='color:#a78bfa;font-size:13px'>🛒 完整 Zustand 购物车 = create + persist + selector</div>",
+          "css": "",
+          "js": "# ===== stores/cart.js =====\n\nimport { create } from 'zustand'\nimport { persist } from 'zustand/middleware'\n\nconst useCartStore = create(\n  persist(\n    (set, get) => ({\n      // State\n      items: [\n        { id: 1, name: 'React 教程', price: 99, qty: 1 },\n        { id: 2, name: 'Zustand 指南', price: 79, qty: 2 }\n      ],\n\n      // Actions\n      addItem: (item) =>\n        set((state) => {\n          const exist = state.items.find(i => i.id === item.id)\n          if (exist) {\n            return { items: state.items.map(i =>\n              i.id === item.id\n                ? { ...i, qty: i.qty + (item.qty || 1) }\n                : i\n            )}\n          }\n          return { items: [...state.items,\n            { ...item, qty: item.qty || 1 }] }\n        }),\n\n      updateQty: (id, qty) =>\n        set((state) => ({\n          items: state.items.map(i =>\n            i.id === id ? { ...i, qty } : i\n          )\n        })),\n\n      removeItem: (id) =>\n        set((state) => ({\n          items: state.items.filter(i => i.id !== id)\n        })),\n\n      clear: () => set({ items: [] }),\n\n      // 计算（用 get 读）\n      total: () =>\n        get().items.reduce((s, i) => s + i.price * i.qty, 0),\n      count: () =>\n        get().items.reduce((s, i) => s + i.qty, 0)\n    }),\n    { name: 'cart-storage' }\n  )\n)\n\nexport default useCartStore\n\n\n# ===== 组件中使用（CartPage.jsx） =====\nimport useCartStore from '@/stores/cart'\n\nfunction CartPage() {\n  const items = useCartStore((s) => s.items)\n  const addItem = useCartStore((s) => s.addItem)\n  const removeItem = useCartStore((s) => s.removeItem)\n  const total = useCartStore().total()\n  const count = useCartStore().count()\n\n  return (<div>\n    <h2>购物车 ({count})</h2>\n    {items.map(item => (\n      <div key={item.id}>\n        <span>{item.name} ¥{item.price}</span>\n        <span>×{item.qty}</span>\n        <button onClick={() => removeItem(item.id)}>删除</button>\n      </div>\n    ))}\n    <h3>总价: ¥{total}</h3>\n  </div>)\n}\n\n\n💡 完整 Zustand 购物车 = create + set/get + persist + selector\n💡 和 React 教程的组件无缝结合"
+        },
+        "propRef": "zustand.summary"
+      }
+    ]
+  }
+]

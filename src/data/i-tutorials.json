@@ -1,0 +1,274 @@
+[
+  {
+    "id": "i0",
+    "title": "📑 Vite 完整学习大纲",
+    "desc": "8篇教程 · 从极速构建到全栈部署",
+    "category": "vite",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "i0-1",
+        "title": "大纲——Vite + Vue/React 联动教学",
+        "content": "<div style='max-width:720px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'><h2 style='text-align:center;color:#646cff;margin:0 0 4px'>📑 Vite 学习路径</h2><p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>8篇 · Vue3 + React 双轨联动</p><table style='width:100%;border-collapse:collapse;font-size:12px'><tr style='background:#646cff'><th style='padding:6px 10px;color:#fff;text-align:left'>#</th><th style='padding:6px 10px;color:#fff;text-align:left'>章节</th><th style='padding:6px 10px;color:#fff;text-align:left'>Vue3/React 联动</th></tr><tr style='background:#222'><td style='padding:5px 10px;color:#646cff;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>⚡ Vite 是什么</td><td style='padding:5px 10px;color:#888;font-size:11px'>ESM原生/预构建/HMR原理</td></tr><tr><td style='padding:5px 10px;color:#646cff;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>💚 Vue3 + Vite 项目</td><td style='padding:5px 10px;color:#888;font-size:11px'>npm create vite → Vue模板 → 目录结构</td></tr><tr style='background:#222'><td style='padding:5px 10px;color:#646cff;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>⚛️ React + Vite 项目</td><td style='padding:5px 10px;color:#888;font-size:11px'>npm create vite → React模板 → 目录结构</td></tr><tr><td style='padding:5px 10px;color:#646cff;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>⚙️ vite.config.js 详解</td><td style='padding:5px 10px;color:#888;font-size:11px'>plugin/alias/proxy 配置对比</td></tr><tr style='background:#222'><td style='padding:5px 10px;color:#646cff;font-weight:bold'>5</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔥 HMR 热模块替换</td><td style='padding:5px 10px;color:#888;font-size:11px'>秒级更新/状态保留/对比演示</td></tr><tr><td style='padding:5px 10px;color:#646cff;font-weight:bold'>6</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🌍 环境变量与多模式</td><td style='padding:5px 10px;color:#888;font-size:11px'>.env.development/production</td></tr><tr style='background:#222'><td style='padding:5px 10px;color:#646cff;font-weight:bold'>7</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>📦 构建与部署</td><td style='padding:5px 10px;color:#888;font-size:11px'>vite build/preview/优化</td></tr><tr><td style='padding:5px 10px;color:#646cff;font-weight:bold'>8</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🚀 综合实战</td><td style='padding:5px 10px;color:#888;font-size:11px'>Vue3+React双项目部署对比</td></tr></table><p style='text-align:center;color:#646cff;font-size:11px;margin-top:12px'><b>💡 串联之前学的 Vue3 和 React，看 Vite 如何给它们加速</b></p></div>",
+        "propRef": "vite.summary"
+      }
+    ]
+  },
+  {
+    "id": "i1",
+    "title": "⚡ Vite 是什么——比 Webpack 快 10 倍的构建工具",
+    "desc": "ESM 原生/极速冷启动/HMR/预构建原理",
+    "category": "vite",
+    "icon": "⚡",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "i1-1",
+        "title": "比喻：Webpack 是厨房炒菜，Vite 是开袋即食",
+        "content": "传统打包工具启动时要打包所有文件成 bundle，项目越大越慢。<br><br><b>Vite 的革命性思路</b>：利用浏览器原生 <b>ES Module(ESM)</b>，开发时<b>不打包</b>！<br><br>核心原理：①依赖用 <b>esbuild</b>（Go 语言）预构建 ②源码用浏览器 ESM 按需加载 ③<b>HMR</b> 只更新改动模块<br><br>💡 Vite 是 Vue.js 作者尤雨溪开发的，因此 Vue3 默认构建工具就是 Vite。React 项目也可以用 Vite——它是框架无关的。",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:14px'>⚡ Vite = 开发时不打包，利用浏览器 ESM 按需加载</div>\n<div style='color:#888;font-size:11px;margin-top:4px'>冷启动 ~2 秒 | HMR < 100ms | 框架无关</div>",
+          "css": "",
+          "js": "$ npx create-vite@latest my-app -- --template vue\n\n> 选择 Vue → Vue3 项目模板\n> 选择 React → React 项目模板\n> 选择 Vanilla → 纯 JS 项目模板\n\n同一个 create-vite 脚手架，生成不同框架的项目！\n\n💡 之前 Vue3/React 教程开头的 npm create xxx\n   底层都是 Vite 在生成项目骨架"
+        },
+        "propRef": "vite.intro"
+      },
+      {
+        "id": "i1-2",
+        "title": "一行命令创建项目——框架随便选",
+        "content": "<code>npm create vite@latest</code> 是 Vite 官方脚手架：<br>→ 选 <b>Vue</b> 就是 Vue3 项目<br>→ 选 <b>React</b> 就是 React 项目<br>→ 选 <b>Vanilla</b> 就是纯 JS 项目<br><br>💡 之前 Vue3 的 <code>npm create vue</code> 和 React 的 <code>npm create vite --template react</code>，底层是完全一样的 Vite 脚手架。",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:13px'>📦 Vite 三命令，Vue/React/Vanilla 通用</div>",
+          "css": "",
+          "js": "$ npm create vite@latest my-project\n✔ Select a framework: » Vue\n✔ Select a variant: » JavaScript\n\nScaffolding project in my-project...\nDone. Now run:\n\n  cd my-project\n  npm install\n  npm run dev\n\n→ 浏览器打开 http://localhost:5173\n\n📦 Vite 项目三大命令：\n  npm run dev     → 启动开发服务器（端口 5173）\n  npm run build   → 生产构建（输出到 dist/）\n  npm run preview → 预览构建结果"
+        },
+        "propRef": "vite.create"
+      }
+    ]
+  },
+  {
+    "id": "i2",
+    "title": "💚 创建 Vue3 + Vite 项目",
+    "desc": "Vite生成Vue项目 / 目录结构 / index.html在根目录",
+    "category": "vite",
+    "icon": "💚",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "i2-1",
+        "title": "Vite 生成的 Vue3 项目目录结构",
+        "content": "<code>npm create vite@latest my-vue -- --template vue</code> 生成的项目：<br><br>关键特征：<br>• <b>index.html 在项目根目录</b>（这是 Vite 的标志！不是放 public/ 里）<br>• <b>src/main.js</b> → createApp().mount()<br>• <b>vite.config.js</b> → 加载 @vitejs/plugin-vue<br><br>💡 回顾 Vue3 教程 v1-4——那个项目底层就是这个 Vite 模板！",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:13px'>📁 index.html 在根目录 = Vite 的身份证</div>\n<div style='color:#888;font-size:11px'>这是和 Webpack/CRA 最大的区别</div>",
+          "css": "",
+          "js": "$ npm create vite@latest my-vue -- --template vue\n$ cd my-vue && npm install\n$ tree -L 2\n\nmy-vue/\n├── index.html          # ← Vite 入口（在根目录！）\n├── package.json\n├── vite.config.js      # Vite 配置\n├── public/             # 静态资源（不处理）\n└── src/\n    ├── main.js         # createApp().mount()\n    ├── App.vue         # 根 SFC\n    ├── components/     # 子组件\n    └── assets/         # 会被 Vite 处理\n\n$ npm run dev\n  VITE v3.x  ready in 320ms\n  ➜  Local:   http://localhost:5173/"
+        },
+        "propRef": "vite.vue"
+      },
+      {
+        "id": "i2-2",
+        "title": "vite.config.js——让 Vite 认识 .vue 文件",
+        "content": "Vue SFC 的处理全链路：①浏览器请求 / → ②Vite 返回 index.html → ③浏览器 import main.js → ④Vite 编译返回 → ⑤import App.vue → ⑥@vitejs/plugin-vue 解析 SFC<br><br>核心就是一行：<code>plugins: [vue()]</code>",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:13px'>🔌 @vitejs/plugin-vue = Vite 的 SFC 翻译官</div>\n<div style='color:#888;font-size:11px'>把 .vue 文件翻译成浏览器能懂的 JS</div>",
+          "css": "",
+          "js": "$ cat vite.config.js\n\nimport { defineConfig } from 'vite'\nimport vue from '@vitejs/plugin-vue'\n\nexport default defineConfig({\n  plugins: [vue()]  // ← 只需一行！让 Vite 认识 .vue\n})\n\n---\n\n# Vite 处理 .vue 文件的全流程：\n# 1. import App from './App.vue'\n# 2. Vite 收到请求 → @vitejs/plugin-vue\n# 3. 解析 <template> → render 函数\n# 4. 解析 <script> → JS 代码\n# 5. 解析 <style> → 注入 CSS\n# 6. 返回可执行的 JS 模块\n#\n# 💡 这就是 .vue 能在浏览器里跑的原因！"
+        },
+        "propRef": "vite.vue"
+      }
+    ]
+  },
+  {
+    "id": "i3",
+    "title": "⚛️ 创建 React + Vite 项目",
+    "desc": "Vite生成React项目 / JSX处理 / @vitejs/plugin-react",
+    "category": "vite",
+    "icon": "⚛️",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "i3-1",
+        "title": "React + Vite 项目结构——和 Vue3 的对比",
+        "content": "<code>npm create vite@latest my-react -- --template react</code><br><br>和 Vue3 的核心区别只有一行：<br>• Vue 用 <b>@vitejs/plugin-vue</b><br>• React 用 <b>@vitejs/plugin-react</b><br>其余配置、目录结构、dev server 完全一样！",
+        "code": {
+          "html": "<div style='display:flex;gap:12px;font-size:11px'><span style='color:#42d392'>Vue: plugins: [vue()]</span><span style='color:#61dafb'>React: plugins: [react()]</span></div>\n<div style='color:#888;font-size:10px;margin-top:4px'>唯一区别 —— 其余 100% 相同</div>",
+          "css": "",
+          "js": "$ npm create vite@latest my-react -- --template react\n$ cd my-react && npm install\n$ tree -L 2\n\nmy-react/\n├── index.html          # ← Vite 入口（和 Vue 一样！）\n├── package.json\n├── vite.config.js      # Vite 配置\n├── public/\n└── src/\n    ├── main.jsx        # createRoot().render()\n    ├── App.jsx         # 根组件\n    └── assets/\n\n# vite.config.js 对比：\n# Vue:  plugins: [vue()]\n# React: plugins: [react()]\n# 只有这一行不同！\n\n$ npm run dev\n  VITE v3.x  ready in 280ms\n  ➜  Local:   http://localhost:5173/"
+        },
+        "propRef": "vite.react"
+      },
+      {
+        "id": "i3-2",
+        "title": "同一个 Vite——换框架只需换插件",
+        "content": "Vite 是「引擎」，Vue/React 是「车身」。从 Vue3 切到 React，只需改 vite.config.js 里的一行 plugins。<br><br>dev server / HMR / proxy / build 全流程完全一致。<br><br>💡 这就是 Vite 的最大价值：<b>统一构建体验</b>，不管选哪个框架。",
+        "code": {
+          "html": "<div style='color:#646cff;font-size:13px'>⚡ Vite = 统一构建引擎</div>\n<div style='color:#888;font-size:11px'>换框架换插件，其余不变</div>",
+          "css": "",
+          "js": "         Vite（引擎）\n       ╱            ╲\n  Vue3 项目         React 项目\n  @vitejs/          @vitejs/\n  plugin-vue        plugin-react\n  .vue 文件          .jsx 文件\n  createApp()       createRoot()\n   ↓  ↓  ↓          ↓  ↓  ↓\n  都跑在 localhost:5173\n\n配置对比：\n  Vue3  vite.config.js:  plugins: [vue()]\n  React vite.config.js:  plugins: [react()]\n\n构建对比：\n  npm run dev   → 都启动在 :5173\n  npm run build → 都输出到 dist/\n  npm preview   → 都预览 dist/\n\n✅ 同一个 Vite，不同框架 —— 体验完全一致"
+        },
+        "propRef": "vite.react"
+      }
+    ]
+  },
+  {
+    "id": "i4",
+    "title": "⚙️ vite.config.js——Vite 的「控制面板」",
+    "desc": "defineConfig/plugins/alias/proxy/server/resolve",
+    "category": "vite",
+    "icon": "⚙️",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "i4-1",
+        "title": "核心配置项——Vue 和 React 共用同一套",
+        "content": "Vite 配置文件核心选项：<b>server.port</b>（端口）、<b>server.proxy</b>（代理跨域）、<b>resolve.alias</b>（路径别名 @→src）、<b>base</b>（部署路径）、<b>build.outDir</b>（输出目录）<br><br>💡 这些配置在 Vue 和 React 项目中完全通用——因为它们是 Vite 的功能。",
+        "code": {
+          "html": "<div style='color:#646cff;font-size:13px'>⚙️ server / resolve / build — Vue 和 React 通用</div>",
+          "css": "",
+          "js": "$ cat vite.config.js\n\nimport { defineConfig } from 'vite'\nimport vue from '@vitejs/plugin-vue'\n\nexport default defineConfig({\n  plugins: [vue()],\n\n  // 开发服务器\n  server: {\n    port: 3000,                              // 自定义端口\n    proxy: {\n      '/api': 'http://localhost:8080'        // 代理跨域\n    }\n  },\n\n  // 路径别名\n  resolve: {\n    alias: {\n      '@': '/src'                            // @ → /src\n    }\n  },\n\n  // 构建配置\n  build: {\n    outDir: 'dist'                           // 输出目录\n  }\n})\n\n# 💡 React 项目只需把 vue() 换成 react()，其余一样！"
+        },
+        "propRef": "vite.config"
+      },
+      {
+        "id": "i4-2",
+        "title": "server.proxy——一行解决前后端联调跨域",
+        "content": "前后端分离开发时，Vite 的 <b>server.proxy</b> 一行搞定：<br><code>proxy: { '/api': 'http://localhost:8080' }</code><br><br>效果：前端 fetch('/api/users') → Vite 代发请求 → 返回数据<br>浏览器以为是同源，不触发跨域错误。<br><br>💡 这个配置在 Vue 和 React 中<b>完全一样</b>——Vite 是独立于框架的通用层。",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:13px'>🌉 proxy 在开发环境解决跨域</div>\n<div style='color:#888;font-size:11px'>生产环境用 Nginx 或同源部署</div>",
+          "css": "",
+          "js": "           浏览器（localhost:5173）\n              │  fetch('/api/users')\n              ▼\n     Vite Dev Server（代理中间件）\n              │  proxy: { '/api': 'localhost:8080' }\n              ▼\n        后端 API（localhost:8080）\n              │  返回 JSON 数据\n              ▼\n        浏览器 ← 收到数据（以为同源）\n\n# 配置方法：\n# vite.config.js\nexport default defineConfig({\n  server: {\n    proxy: {\n      '/api': 'http://localhost:8080',\n      '/ws': {\n        target: 'ws://localhost:8080',\n        ws: true                             // WebSocket 代理\n      }\n    }\n  }\n})\n\n✅ 一行配置，解决跨域！\n✅ Vue/React 项目中写法完全一样"
+        },
+        "propRef": "vite.config"
+      }
+    ]
+  },
+  {
+    "id": "i5",
+    "title": "🔥 HMR 热模块替换——改动代码瞬间看到效果",
+    "desc": "HMR原理/状态保留/CSS热更新/Vue3和React的HMR",
+    "category": "vite",
+    "icon": "🔥",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "i5-1",
+        "title": "HMR vs LiveReload——不只是「自动刷新」",
+        "content": "传统 LiveReload：你改了代码 → <b>整个页面刷新</b> → 状态全丢。<br>Vite <b>HMR</b>：你改了代码 → <b>只替换改动的模块</b> → 状态保留！<br><br>CSS 更新更夸张：<b>直接注入新样式，连组件都不重渲染</b>。<br><br>💡 在 Vue3/React 项目里改组件代码，不需要刷新就能看到效果，而且计数器/表单都还在——这就是 HMR。",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:13px'>🔥 HMR = 改代码不丢状态 | CSS 极速注入</div>",
+          "css": "",
+          "js": "# 修改 src/App.vue 第 12 行（Ctrl+S）\n\n  LiveReload（传统）流程：\n  1. 检测文件变化\n  2. 通知浏览器刷新\n  3. 整个页面重新加载\n  4. ❌ 所有状态丢失（计数器归零、表单清空）\n  5. ⏱ 耗时：1-3 秒\n\n  HMR（Vite）流程：\n  1. 文件监听检测到变化\n  2. 只重新编译 App.vue（一个文件！）\n  3. WebSocket 推送更新给浏览器\n  4. 浏览器只替换 App 组件\n  5. ✅ 其他组件和状态保留\n  6. ⏱ 耗时：< 100ms\n\n# CSS 更新更夸张：\n# 改 .css 文件 → 直接注入新样式 → 不重渲染组件\n# 连组件的 state 都不碰！⏱ < 10ms"
+        },
+        "propRef": "vite.hmr"
+      },
+      {
+        "id": "i5-2",
+        "title": "Vue3 和 React 的 HMR——底层都是 Vite",
+        "content": "Vue3 用 <b>@vitejs/plugin-vue</b> 的 HMR 实现，React 用 <b>@vitejs/plugin-react</b> 的 Fast Refresh。<br><br>底层都是 Vite 的 HMR API，通过 WebSocket 推送更新。体验完全一致。",
+        "code": {
+          "html": "<div style='color:#646cff;font-size:13px'>🔌 Vue3/React HMR 都基于 Vite 的同一个 API</div>",
+          "css": "",
+          "js": "# Vue3 项目的 HMR（@vitejs/plugin-vue）\n\n$ npm run dev\n  VITE v3.x  ready\n\n# 修改 src/components/Hello.vue：\n# <p>{{ msg }}</p>  →  <p>Hello {{ msg }}</p>\n\n  [vite] hmr update /src/components/Hello.vue  ← WebSocket 推送\n  浏览器 → 只替换 Hello 组件\n  页面 → 其他组件/状态保持不变\n  ⏱ < 100ms\n\n---\n\n# React 项目的 HMR（@vitejs/plugin-react Fast Refresh）\n\n$ npm run dev\n  VITE v3.x  ready\n\n# 修改 src/App.jsx：\n# <h1>Hello</h1>  →  <h1>Hello React!</h1>\n\n  [vite] hmr update /src/App.jsx\n  浏览器 → Fast Refresh 替换 App 组件\n  页面 → state 保持不变\n  ⏱ < 100ms\n\n✅ Vue3 和 React 的 HMR 体验完全一致\n   因为底层都是 Vite！"
+        },
+        "propRef": "vite.hmr"
+      }
+    ]
+  },
+  {
+    "id": "i6",
+    "title": "🌍 环境变量——开发/生产两套配置",
+    "desc": ".env文件/import.meta.env/模式/VITE_前缀",
+    "category": "vite",
+    "icon": "🌍",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "i6-1",
+        "title": ".env 文件——开发和生产用不同的配置",
+        "content": "Vite 用 <b>.env 文件</b>管理环境变量：<b>.env</b>（通用）、<b>.env.development</b>（npm run dev）、<b>.env.production</b>（npm run build）。<br><br>变量名必须 <b>VITE_</b> 开头，代码中 <code>import.meta.env.VITE_XXX</code> 读取。<br><br>💡 Vue3 和 React 中用法<b>完全一样</b>——这是 Vite 的功能。",
+        "code": {
+          "html": "<div style='color:#646cff;font-size:13px'>🌍 .env 文件 → import.meta.env 读取</div>\n<div style='color:#ff4757;font-size:11px'>⚠ 密钥不要用 VITE_ 前缀</div>",
+          "css": "",
+          "js": "# .env.development（npm run dev 时加载）\nVITE_API_URL = http://localhost:8080\nVITE_APP_TITLE = 开发模式\n\n# .env.production（npm run build 时加载）\nVITE_API_URL = https://api.prod.com\nVITE_APP_TITLE = 我的应用\n\n# 代码中读取（Vue3 和 React 一样）\nconsole.log(import.meta.env.VITE_API_URL)\n// npm run dev  → http://localhost:8080\n// npm run build → https://api.prod.com\n\n# ⚠ 注意：\n# 1. 只有 VITE_ 前缀才暴露给客户端代码\n# 2. 环境变量在构建时替换为静态值\n# 3. 敏感信息（密钥/密码）绝不能用 VITE_ 前缀！\n\n# 错误示范：\n# ❌ API_SECRET = xxx  → 客户端不可读\n# ❌ DB_PASSWORD = xxx  → 客户端不可读\n# ✅ VITE_PUBLIC_KEY = xxx → 客户端可读"
+        },
+        "propRef": "vite.env"
+      },
+      {
+        "id": "i6-2",
+        "title": "Vue3 和 React 中环境变量用法完全一致",
+        "content": "用法：<code>const url = import.meta.env.VITE_API_URL</code><br><br>Vue3 的 SFC 和 React 的 JSX 中读取方式完全相同。<br><br>💡 再次证明：环境变量是 Vite 的功能，不是框架的。Vue3/React 项目中的 .env 文件名、VITE_ 前缀、import.meta.env 语法全部一致。",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:13px'>✅ import.meta.env 在 Vue/React 中完全一致</div>",
+          "css": "",
+          "js": "# 创建环境配置文件\n$ touch .env\n$ touch .env.development\n$ touch .env.production\n\n# .env.development\nVITE_API_URL = http://localhost:3000/api\nVITE_DEBUG = true\n\n# .env.production\nVITE_API_URL = https://api.example.com\nVITE_DEBUG = false\n\n# Vue3 组件中（App.vue / 任何 .vue 文件）\nconst apiUrl = import.meta.env.VITE_API_URL\n\n# React 组件中（App.jsx / 任何 .jsx 文件）\nconst apiUrl = import.meta.env.VITE_API_URL\n\n# 构建时自动替换：\n# npm run dev  → import.meta.env 读取 .env.development\n# npm run build → import.meta.env 读取 .env.production\n\n✅ Vue3 和 React 读写方式 100% 相同\n✅ 自动根据 npm 命令切换 .env 文件"
+        },
+        "propRef": "vite.env"
+      }
+    ]
+  },
+  {
+    "id": "i7",
+    "title": "📦 构建与部署——从开发到上线",
+    "desc": "vite build/dist目录/部署平台/优化策略",
+    "category": "vite",
+    "icon": "📦",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "i7-1",
+        "title": "vite build——一键生成生产代码",
+        "content": "<code>npm run build</code> 执行后：①用 <b>Rollup</b> 打包（Tree Shaking）②压缩 CSS/JS ③文件名带 <b>hash</b>（浏览器长缓存）④输出到 <b>dist/</b><br><br>然后 <code>npm run preview</code> 预览结果。dist/ 可直接部署到任何静态服务器。",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:13px'>📦 Rollup 打包 → Tree Shaking → hash 缓存</div>",
+          "css": "",
+          "js": "$ npm run build\n\nvite v3.x building for production...\ntransforming...\n✓ 42 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.45 KiB\ndist/assets/index-abc123.css      2.31 KiB\ndist/assets/index-def456.js      15.82 KiB\ndist/assets/About-ghi789.js       3.14 KiB  # 懒加载\n\n✓ built in 2.8s\n\n$ tree dist/\ndist/\n├── index.html              # 带 hash 引用的入口\n├── assets/\n│   ├── index-abc123.css    # 主 CSS（压缩）\n│   ├── index-def456.js     # 主 JS（Tree Shaking 后）\n│   └── About-ghi789.js     # 路由懒加载的 chunk\n└── favicon.ico\n\n📏 文件带 hash：内容变 → hash 变 → 浏览器加载新文件\n📏 Tree Shaking：删除未使用的代码\n📏 Code Splitting：按路由拆分 chunk（懒加载）"
+        },
+        "propRef": "vite.build"
+      },
+      {
+        "id": "i7-2",
+        "title": "部署——Vue3 和 React 项目流程完全相同",
+        "content": "dist/ 可部署到任何静态服务器：<b>Vercel</b>（导入 Git 仓库，自动识别）、<b>Netlify</b>（拖拽 dist/）、<b>GitHub Pages</b>（gh-pages + base）、<b>Nginx</b>（root /app/dist）。<br><br>💡 注意：部署子路径需设 <code>base: '/my-app/'</code>。Vue3 和 React 部署流程 <b>100% 相同</b>。",
+        "code": {
+          "html": "<div style='color:#646cff;font-size:13px'>🚀 dist/ → 四平台部署，Vue/React 通用</div>",
+          "css": "",
+          "js": "# Vercel 部署（推荐）\n$ npm i -g vercel\n$ vercel --prod\n  → 自动识别 Vite → 自动 npm run build → 部署\n\n# Netlify 部署\n$ npm run build\n$ npx netlify deploy --prod --dir=dist\n\n# GitHub Pages 部署\n$ npm run build\n$ npx gh-pages -d dist\n  # 注意：vite.config.js 需设 base: '/repo-name/'\n\n# Nginx 部署\nserver {\n  listen 80;\n  server_name example.com;\n  root /var/www/app/dist;   # ← 指向 dist/\n  index index.html;\n\n  location / {\n    try_files $uri $uri/ /index.html;  # SPA 回退\n  }\n}\n\n# 子路径部署特别注意：\n# vite.config.js\n# export default { base: '/my-app/' }\n\n✅ Vue3 和 React 项目部署流程 100% 相同！\n✅ Vite 屏蔽了框架差异 = 统一部署体验"
+        },
+        "propRef": "vite.build"
+      }
+    ]
+  },
+  {
+    "id": "i8",
+    "title": "🚀 综合实战——Vite + Vue3/React 全栈项目",
+    "desc": "双框架完整项目结构/部署对比/选型建议",
+    "category": "vite",
+    "icon": "🚀",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "i8-1",
+        "title": "真实项目结构——Vue3 和 React 两套版本对比",
+        "content": "同一个「任务管理系统」双技术栈：<br><b>Vue3 版</b>：vue-router + Pinia + Element Plus<br><b>React 版</b>：react-router + Zustand + Ant Design<br><br>两个版本 Vite 配置、dev server、build/部署流程完全一样。选型只看团队偏好。<br><br>💡 你已掌握从 HTML 到 TS、从 Vue3 到 React、从 Vite 构建到部署的<b>全栈前端体系</b>。",
+        "code": {
+          "html": "<div style='color:#646cff;font-size:13px'>🏗 同一个项目结构，换插件即可切换框架</div>",
+          "css": "",
+          "js": "       任务管理系统（双版本 Vite 项目）\n\n💚 Vue3 版本：                      ⚛️ React 版本：\n\n├── vite.config.js                  ├── vite.config.js\n│   plugins: [vue()]                │   plugins: [react()]\n├── src/                            ├── src/\n│   ├── router/ (vue-router)        │   ├── router/ (react-router)\n│   ├── stores/ (Pinia)             │   ├── stores/ (Zustand)\n│   ├── views/                      │   ├── pages/\n│   ├── components/                 │   ├── components/\n│   ├── App.vue                     │   ├── App.jsx\n│   └── main.js                     │   └── main.jsx\n├── .env.development                ├── .env.development\n├── .env.production                 ├── .env.production\n├── package.json                    ├── package.json\n└── index.html                      └── index.html\n\n  👆 唯一不同的：插件 + 组件文件后缀 + 路由/状态库\n  👆 完全相同的：Vite 配置结构、dev/build/deploy 流程\n\n# 同一个功能，两种写法：\n# Vue3:  createApp().mount('#app')\n# React: createRoot(document.getElementById('root')).render(<App />)\n\n# 都跑在 localhost:5173\n# 都 npm run build → dist/\n# 都部署到 Vercel/Netlify/Nginx"
+        },
+        "propRef": "vite.summary"
+      },
+      {
+        "id": "i8-2",
+        "title": "🎯 选型建议 + 完成总结",
+        "content": "① <b>Vue3 全栈</b>：Vite + Vue3 + Pinia + Vue Router → 做个博客<br>② <b>React 全栈</b>：Vite + React + Zustand + React Router → 做个后台<br>③ <b>双框架对比</b>：同一个功能用两个框架各写一遍<br><br>💡 <b>选型建议</b>：Vue3 适合中小团队快速开发（模板直观），React 适合大型项目和生态丰富。Vite 给你统一体验——选哪个都不会错。",
+        "code": {
+          "html": "<div style='color:#42d392;font-size:13px'>🎉 Vite + Vue3/React 全栈技能树解锁！</div>",
+          "css": "",
+          "js": "# 🎉 恭喜完成 Vite 全部教程！\n\n已完成学习：\n✅ Vite 极速构建原理（ESM + esbuild）\n✅ Vue3 + Vite 项目搭建（@vitejs/plugin-vue）\n✅ React + Vite 项目搭建（@vitejs/plugin-react）\n✅ vite.config.js 配置详解（proxy/alias/server）\n✅ HMR 热模块替换（<100ms，状态保留）\n✅ 环境变量与多模式（.env.development/production）\n✅ 构建优化与部署（Rollup → dist/ → 四平台）\n✅ Vue3/React 双框架联动对比\n\n🎯 下一步：\n  • Nuxt3     → Vue3 的全栈框架（基于 Vite）\n  • Next.js   → React 的全栈框架\n  • Vitest    → 基于 Vite 的测试框架\n  • unplugin  → Vite 插件生态\n\n💡 Vite = Vue3/React 共用发动机\n   换框架换插件，构建体验不变"
+        },
+        "propRef": "vite.summary"
+      }
+    ]
+  }
+]

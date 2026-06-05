@@ -1,0 +1,468 @@
+[
+  {
+    "id": "v0",
+    "title": "📑 Vue3 完整学习大纲",
+    "desc": "12篇教程 · 从声明式渲染到综合实战",
+    "category": "vue3",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "v0-1",
+        "title": "大纲——按 Vue 官方教程顺序学习",
+        "content": "<div style='max-width:720px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'>\n  <h2 style='text-align:center;color:#42d392;margin:0 0 4px'>📑 Vue3 学习路径</h2>\n  <p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>12篇 · 声明式 → 组件化 → 实战</p>\n  <table style='width:100%;border-collapse:collapse;font-size:12px'>\n    <tr style='background:#667eea'><th style='padding:6px 10px;color:#fff;text-align:left'>#</th><th style='padding:6px 10px;color:#fff;text-align:left'>章节</th><th style='padding:6px 10px;color:#fff;text-align:left'>核心</th></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>💚 声明式渲染</td><td style='padding:5px 10px;color:#888;font-size:11px'>createApp、{{ }} 插值、响应式初体验</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔗 属性绑定与事件</td><td style='padding:5px 10px;color:#888;font-size:11px'>v-bind / v-on / 修饰符链式调用</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔀 条件与列表渲染</td><td style='padding:5px 10px;color:#888;font-size:11px'>v-if / v-show / v-for / :key</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>⚡ 响应式基础</td><td style='padding:5px 10px;color:#888;font-size:11px'>ref() / reactive() / Proxy 原理</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>5</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🧮 计算属性与侦听</td><td style='padding:5px 10px;color:#888;font-size:11px'>computed() / watch() / watchEffect()</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>6</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>📝 v-model 双向绑定</td><td style='padding:5px 10px;color:#888;font-size:11px'>v-model / .lazy / .number / .trim</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>7</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🧩 组件基础</td><td style='padding:5px 10px;color:#888;font-size:11px'>defineProps / defineEmits / Slots</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>8</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🕐 生命周期</td><td style='padding:5px 10px;color:#888;font-size:11px'>onMounted / onUnmounted / KeepAlive</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>9</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔌 深入组件</td><td style='padding:5px 10px;color:#888;font-size:11px'>provide / inject / Teleport</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>10</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🛠 Composables</td><td style='padding:5px 10px;color:#888;font-size:11px'>use 函数 / useMouse / useTodos</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>11</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🧭 Vue Router + Pinia</td><td style='padding:5px 10px;color:#888;font-size:11px'>路由配置 / 导航守卫 / Store</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>12</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🚀 综合实战</td><td style='padding:5px 10px;color:#888;font-size:11px'>Todo 应用整合全家桶</td></tr>\n  </table>\n  <p style='text-align:center;color:#42d392;font-size:11px;margin-top:12px'><b>💡 每步都有可运行的实时代码预览</b></p>\n</div>",
+        "propRef": "vue.summary"
+      }
+    ]
+  },
+  {
+    "id": "v1",
+    "title": "💚 声明式渲染——不用碰 DOM",
+    "desc": "创建Vue应用 / {{ }}插值 / 响应式初体验",
+    "category": "vue3",
+    "icon": "💚",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "v1-1",
+        "title": "不用 getElementById —— 描述你想要什么",
+        "content": "传统 JS：改一个标题需要<br><code>document.querySelector('h1').textContent = '新标题'</code><br><br>Vue3：你只需声明「标题等于这个变量」，Vue 自动同步 DOM。<br>这就是 <b>声明式渲染</b>——只管描述结果，不管实现过程。<br><br>💡 比喻：你点外卖只需要说「我要宫保鸡丁」，不用进厨房炒菜。Vue 就是把 DOM 操作「外包」了。",
+        "code": {
+          "html": "<div id='app'>\n  <h1>{{ title }}</h1>\n  <p>计数：{{ count }}</p>\n  <button @click='count++'>点我 +1</button>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\n#app { max-width: 320px; margin: 0 auto; }\nh1 { color: #42d392; }\nbutton {\n  padding: 8px 20px;\n  background: #42d392;\n  color: #000;\n  border: none;\n  border-radius: 6px;\n  font-weight: bold;\n  cursor: pointer;\n  margin-top: 8px;\n}\nbutton:hover { background: #33a06f; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return {\n      title: '🌟 你好，Vue3！',\n      count: 0\n    }\n  }\n}).mount('#app')"
+        },
+        "propRef": "vue.intro"
+      },
+      {
+        "id": "v1-2",
+        "title": "{{ }} 是双向通道——JS 变 → 页面自动变",
+        "content": "所有 <code>{{ }}</code> 包裹的表达式都会随数据实时更新。<br><br>试试：改输入框看标题同步变化。这是 <b>响应式</b>——数据是「源头」，页面是「影子」。<br><br>💡 和 HTML 教程的本质区别：HTML 写死的静态内容，Vue 写的是「会自己更新的内容」。",
+        "code": {
+          "html": "<div id='app2'>\n  <h2>{{ name }} 的学习笔记</h2>\n  <p>今天学习了 <b>{{ topic }}</b></p>\n  <input v-model='name' placeholder='你的名字' />\n  <br />\n  <input v-model='topic' placeholder='学习主题' />\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\n#app2 { max-width: 380px; margin: 0 auto; }\nh2 { color: #42d392; }\ninput {\n  padding: 8px 12px;\n  border-radius: 6px;\n  border: 1px solid #444;\n  background: #2a2a3e;\n  color: #eee;\n  margin-top: 8px;\n  width: 200px;\n}\ninput:focus { outline: none; border-color: #42d392; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return {\n      name: '小明',\n      topic: 'Vue3 声明式渲染'\n    }\n  }\n}).mount('#app2')"
+        },
+        "propRef": "vue.template"
+      },
+      {
+        "id": "v1-3",
+        "title": "🎯 练习：做一个显示实时时间的标题",
+        "content": "用 <code>setInterval</code> 每秒更新一个变量，用 <code>{{ }}</code> 在页面显示时间。<br>提示：在 <code>mounted()</code> 里启动定时器，把时间存到 <code>data</code> 里。",
+        "code": {
+          "html": "<div id='ex1'>\n  <h2>当前时间：{{ now }}</h2>\n  <p style='color:#888;font-size:12px'>每秒自动更新</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 40px; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return {\n      now: new Date().toLocaleTimeString()\n    }\n  },\n  mounted() {\n    setInterval(() => {\n      this.now = new Date().toLocaleTimeString()\n    }, 1000)\n  }\n}).mount('#ex1')"
+        },
+        "propRef": "vue.lifecycle"
+      }
+    ]
+  },
+  {
+    "id": "v2",
+    "title": "🔗 属性绑定与事件——HTML 的「动态升级」",
+    "desc": "v-bind 动态属性 / v-on 事件处理 / 修饰符",
+    "category": "vue3",
+    "icon": "🔗",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "v2-1",
+        "title": "v-bind —— 让属性「活」起来",
+        "content": "HTML 属性的值都是写死的（<code>src='a.jpg'</code>）。<br>Vue 用 <b>v-bind</b>（简写 <b>:</b>）让属性值绑定 JS 变量。<br><br>三个最常用场景：<br><code>:class='{ active: isOn }'</code> 条件 class<br><code>:style='{ color: c }'</code> 动态样式<br><code>:disabled='loading'</code> 布尔属性<br><br>💡 类比 HTML 教程：过去是「照片」（静态），v-bind 是「视频」（动态变化）。",
+        "code": {
+          "html": "<div id='bind'>\n  <p :class='{ highlight: isHighlight }'>\n    我是 {{ isHighlight ? '高亮' : '普通' }} 的文字\n  </p>\n  <button @click='toggle'>切换状态</button>\n\n  <div style='margin-top:16px'>\n    <span>圆角：</span>\n    <input type='range' v-model='radius' min='0' max='20' />\n    <div :style='boxStyle' style='width:100px;height:100px;display:inline-block;vertical-align:middle;margin-left:16px'>\n    </div>\n  </div>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\nbutton { padding: 6px 16px; background: #5856d6; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin: 8px 0; }\n.highlight { background: rgba(66,211,146,.2); padding: 8px 16px; border-radius: 8px; color: #42d392; font-weight: bold; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return {\n      isHighlight: false,\n      radius: 8\n    }\n  },\n  computed: {\n    boxStyle() {\n      return {\n        background: '#42d392',\n        borderRadius: this.radius + 'px',\n        transition: 'border-radius .3s'\n      }\n    }\n  },\n  methods: {\n    toggle() {\n      this.isHighlight = !this.isHighlight\n    }\n  }\n}).mount('#bind')"
+        },
+        "propRef": "vue.bind"
+      },
+      {
+        "id": "v2-2",
+        "title": "v-on 事件处理——告别 addEventListener",
+        "content": "Vue 用 <b>v-on</b>（简写 <b>@</b>）绑定事件，支持修饰符链式调用：<br><br><code>@click.prevent</code> 阻止默认行为<br><code>@click.stop</code> 阻止冒泡<br><code>@keyup.enter</code> 回车触发<br><code>@click.once</code> 只触发一次<br><br>💡 和原生 JS 的区别：不需要 <code>querySelector</code> + <code>addEventListener</code>，直接在模板里声明。",
+        "code": {
+          "html": "<div id='events'>\n  <form @submit.prevent='addTodo'>\n    <input v-model='text' placeholder='输入待办，回车添加' />\n    <button type='submit'>添加</button>\n  </form>\n  <ul>\n    <li v-for='(item, i) in list' :key='i'>\n      {{ item }}\n      <button @click='remove(i)' type='button' class='del'>✕</button>\n    </li>\n  </ul>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#events { max-width: 360px; margin: 0 auto; }\ninput { padding: 8px 12px; border-radius: 6px; border: 1px solid #444; background: #2a2a3e; color: #eee; width: 200px; }\ninput:focus { outline: none; border-color: #42d392; }\nbutton { padding: 8px 16px; background: #42d392; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-left: 6px; }\n.del { background: #ff4757; color: #fff; padding: 2px 8px; margin-left: 8px; font-size: 12px; }\nli { padding: 6px 0; color: #ccc; list-style: none; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return {\n      text: '',\n      list: ['学 Vue3', '写项目']\n    }\n  },\n  methods: {\n    addTodo() {\n      if (this.text.trim()) {\n        this.list.push(this.text.trim())\n        this.text = ''\n      }\n    },\n    remove(i) {\n      this.list.splice(i, 1)\n    }\n  }\n}).mount('#events')"
+        },
+        "propRef": "vue.events"
+      },
+      {
+        "id": "v2-3",
+        "title": "🎯 练习：做一个照片画廊",
+        "content": "用 v-bind 绑定图片 src、用 v-on 处理点击事件切换图片、用 :class 高亮当前选中的缩略图。",
+        "code": {
+          "html": "<div id='ex2'>\n  <img :src='currentImg' style='max-width:100%;border-radius:8px;margin-bottom:12px' />\n  <div>\n    <img v-for='(img, i) in images' :key='i'\n      :src='img'\n      :class='{ active: i === index }'\n      @click='index = i'\n      class='thumb' />\n  </div>\n</div>",
+          "css": "body { font-family: -apple-system, sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 20px; }\n.thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; margin: 4px; cursor: pointer; opacity: .5; transition: all .2s; }\n.thumb:hover { opacity: .8; }\n.thumb.active { opacity: 1; border: 2px solid #42d392; }\n#ex2 img:first-of-type { height: 200px; object-fit: cover; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return {\n      index: 0,\n      images: [\n        'https://picsum.photos/seed/vue1/400/200',\n        'https://picsum.photos/seed/vue2/400/200',\n        'https://picsum.photos/seed/vue3/400/200'\n      ]\n    }\n  },\n  computed: {\n    currentImg() {\n      return this.images[this.index]\n    }\n  }\n}).mount('#ex2')"
+        },
+        "propRef": "vue.bind"
+      }
+    ]
+  },
+  {
+    "id": "v3",
+    "title": "🔀 条件与列表——让页面「会决策」",
+    "desc": "v-if / v-show / v-for / :key",
+    "category": "vue3",
+    "icon": "🔀",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "v3-1",
+        "title": "v-if 系列——元素的存在与消失",
+        "content": "Vue3 的 <b>v-if</b> 不是「隐藏」，而是真正的「渲染/销毁」。<br><br>链式结构：<code>v-if</code> → <code>v-else-if</code> → <code>v-else</code>，必须紧挨着。<br><br><b>v-show</b> 则不同——元素始终在 DOM 里，只是 <code>display: none</code>。<br><br>💡 选择：频繁切换用 v-show（切换成本低），条件很少改变用 v-if（惰性渲染）。",
+        "code": {
+          "html": "<div id='ifdemo'>\n  <p>温度：<b>{{ temp }}°C</b></p>\n  <input type='range' v-model='temp' min='-10' max='40' style='width:100%' />\n  <p v-if='temp < 0'>🥶 冰点以下，穿羽绒服！</p>\n  <p v-else-if='temp < 15'>🧥 有点凉，加件外套</p>\n  <p v-else-if='temp < 28'>😎 舒适，适合出门</p>\n  <p v-else>🥵 太热了，开空调！</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#ifdemo { max-width: 360px; margin: 0 auto; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return { temp: 20 }\n  }\n}).mount('#ifdemo')"
+        },
+        "propRef": "vue.condition"
+      },
+      {
+        "id": "v3-2",
+        "title": "v-for 列表渲染——重复元素的优雅写法",
+        "content": "<code>v-for='item in list'</code> 遍历渲染，必须搭配 <b>:key</b>（唯一标识）。<br><br>支持遍历：数组、对象、数字范围（<code>n in 5</code> = 1,2,3,4,5）。<br><br>💡 和 JS 教程的区别：不需要写 <code>for</code> 循环 + <code>createElement</code> + <code>appendChild</code>。一个属性搞定。",
+        "code": {
+          "html": "<div id='fordemo'>\n  <h4>🛒 购物清单</h4>\n  <div v-for='item in items' :key='item.id' class='card'>\n    <span :class='{ done: item.bought }'>{{ item.name }}</span>\n    <span>({{ item.price }} 元)</span>\n    <input type='checkbox' v-model='item.bought' />\n  </div>\n  <p style='color:#888;font-size:12px'>{{ boughtCount }} 件已购 / {{ items.length }} 件总计</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#fordemo { max-width: 380px; margin: 0 auto; }\n.card { padding: 6px 0; color: #ccc; display: flex; align-items: center; gap: 8px; }\n.done { text-decoration: line-through; color: #888; }\ninput[type=checkbox] { margin-left: auto; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return {\n      items: [\n        { id: 1, name: 'Vue3 教程书', price: 59, bought: true },\n        { id: 2, name: '机械键盘', price: 399, bought: false },\n        { id: 3, name: '显示器', price: 1299, bought: false },\n        { id: 4, name: '鼠标垫', price: 29, bought: true }\n      ]\n    }\n  },\n  computed: {\n    boughtCount() {\n      return this.items.filter(i => i.bought).length\n    }\n  }\n}).mount('#fordemo')"
+        },
+        "propRef": "vue.list"
+      },
+      {
+        "id": "v3-3",
+        "title": "🎯 练习：可筛选任务列表",
+        "content": "结合 v-for 和 v-if：左侧全部任务列表，右侧三个按钮「全部/未完成/已完成」切换显示，用 computed 做过滤。",
+        "code": {
+          "html": "<div id='ex3'>\n  <h4>📋 任务列表</h4>\n  <div class='filters'>\n    <button v-for='f in filters' :key='f'\n      :class='{ on: f === filter }'\n      @click='filter = f'>{{ f }}</button>\n  </div>\n  <div v-for='t in filtered' :key='t.id'\n    class='task' :class='{ done: t.done }'>\n    ⬜ {{ t.text }}\n  </div>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#ex3 { max-width: 380px; margin: 0 auto; }\n.filters { margin-bottom: 12px; }\n.filters button { padding: 4px 12px; border: 1px solid #444; background: transparent; color: #ccc; border-radius: 4px; cursor: pointer; margin-right: 4px; }\n.filters button.on { background: #42d392; color: #000; border-color: #42d392; }\n.task { padding: 6px 0; color: #ccc; }\n.task.done { text-decoration: line-through; color: #666; }",
+          "js": "const { createApp } = Vue\n\ncreateApp({\n  data() {\n    return {\n      filter: '全部',\n      filters: ['全部', '未完成', '已完成'],\n      tasks: [\n        { id: 1, text: '学 Vue3 模板语法', done: true },\n        { id: 2, text: '学条件渲染', done: true },\n        { id: 3, text: '理解 v-for', done: false },\n        { id: 4, text: '写 Todo 应用', done: false }\n      ]\n    }\n  },\n  computed: {\n    filtered() {\n      if (this.filter === '未完成') return this.tasks.filter(t => !t.done)\n      if (this.filter === '已完成') return this.tasks.filter(t => t.done)\n      return this.tasks\n    }\n  }\n}).mount('#ex3')"
+        },
+        "propRef": "vue.list"
+      }
+    ]
+  },
+  {
+    "id": "v4",
+    "title": "⚡ 响应式基础——数据改变，视图跟随",
+    "desc": "ref() / reactive() / 响应式原理 Proxy / 解包规则",
+    "category": "vue3",
+    "icon": "⚡",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "v4-1",
+        "title": "ref() —— 让一个值「活」起来",
+        "content": "Vue3 的核心 API：<b>ref()</b> 把普通值变成响应式引用。<br><br>关键规则（只记两条）：<br>① JS 代码里读写成 <code>.value</code>：<code>count.value++</code><br>② 模板里自动解包，直接用：<code>{{ count }}</code><br><br>💡 原理：Vue3 用 ES6 <b>Proxy</b> 劫持对象读写，get 时收集依赖、set 时通知更新。比 Vue2 的 <code>defineProperty</code> 更快更全（连数组索引变化都能检测）。",
+        "code": {
+          "html": "<div id='refdemo'>\n  <p>计数器：<b>{{ count }}</b></p>\n  <p>翻倍：<b>{{ double }}</b></p>\n  <button @click='count++'>+1</button>\n  <button @click='count = 0'>重置</button>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\nbutton { padding: 6px 14px; background: #42d392; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin: 4px; }",
+          "js": "const { createApp, ref, computed } = Vue\n\ncreateApp({\n  setup() {\n    // ref() 包裹后成为响应式变量\n    const count = ref(0)\n\n    // computed 自动追踪 count 的变化\n    const double = computed(() => count.value * 2)\n\n    return { count, double }\n  }\n}).mount('#refdemo')"
+        },
+        "propRef": "vue.ref"
+      },
+      {
+        "id": "v4-2",
+        "title": "reactive() —— 对象的响应式代理",
+        "content": "<b>reactive()</b> 让对象整体变响应式。访问时不需要 <code>.value</code>。<br><br>⚠ 注意三个限制：<br>① 只能用于对象（Array/Object/Map/Set）<br>② 不能整体替换（<code>state = newObj</code> 会断开响应）<br>③ 解构会丢失响应性<br><br>💡 推荐：大部分场景用 <b>ref</b>（灵活、可传递），管理一组相关状态时才用 reactive。",
+        "code": {
+          "html": "<div id='redemo'>\n  <p>{{ user.name }}，{{ user.age }} 岁</p>\n  <button @click='user.age++'>年龄 +1</button>\n  <button @click='resetAge'>重置为 18</button>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\nbutton { padding: 6px 14px; background: #42d392; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin: 4px; }",
+          "js": "const { createApp, reactive } = Vue\n\ncreateApp({\n  setup() {\n    // reactive 直接返回响应式对象\n    const user = reactive({\n      name: '小明',\n      age: 22\n    })\n\n    function resetAge() {\n      user.age = 18\n    }\n\n    return { user, resetAge }\n  }\n}).mount('#redemo')"
+        },
+        "propRef": "vue.reactive"
+      },
+      {
+        "id": "v4-3",
+        "title": "🎯 练习：ref 实现实时评分器",
+        "content": "用 ref 存当前评分 star，用 v-for 渲染 5 颗星，点击第 n 颗星时把所有 n 之前的星都亮起来（⭐），后面的变暗（☆）。",
+        "code": {
+          "html": "<div id='ex4'>\n  <h4>请为本次教程打分</h4>\n  <div class='stars'>\n    <span v-for='n in 5' :key='n'\n      @click='star = n'\n      :class='{ on: n <= star }'>☆</span>\n  </div>\n  <p>评分：<b>{{ star }}</b> 分</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\n#ex4 { max-width: 300px; margin: 0 auto; }\n.stars span { font-size: 32px; cursor: pointer; color: #444; transition: color .2s; }\n.stars span.on { color: #ff9f0a; }",
+          "js": "const { createApp, ref } = Vue\n\ncreateApp({\n  setup() {\n    const star = ref(3)  // 默认 3 分\n    return { star }\n  }\n}).mount('#ex4')"
+        },
+        "propRef": "vue.reactivity"
+      }
+    ]
+  },
+  {
+    "id": "v5",
+    "title": "🧮 计算属性与侦听——数据的「自动反应」",
+    "desc": "computed 缓存 / watch 侦听 / watchEffect 自动追踪",
+    "category": "vue3",
+    "icon": "🧮",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "v5-1",
+        "title": "computed —— 带「记忆」的计算",
+        "content": "<b>computed = 有缓存的派生数据。</b><br><br>和 methods 的区别：<br>• computed：依赖不变不重算（有缓存）<br>• methods：每次渲染都重新执行（无缓存）<br><br>💡 比喻：computed 是「记账本」——只有账目变了才重新算总额。methods 是「每次路过重新数一遍」。<br>列表过滤、排序、总价计算 —— 全部优先用 computed！",
+        "code": {
+          "html": "<div id='compdemo'>\n  <input v-model.number='price' placeholder='输入价格' />\n  <p>原价：¥{{ price }}</p>\n  <p>8折：¥{{ discount }}</p>\n  <p>税后(13%)：¥{{ final }}</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\n#compdemo { max-width: 300px; margin: 0 auto; }\ninput { padding: 6px 10px; border-radius: 6px; border: 1px solid #444; background: #2a2a3e; color: #eee; width: 160px; }\ninput:focus { outline: none; border-color: #42d392; }",
+          "js": "const { createApp, ref, computed } = Vue\n\ncreateApp({\n  setup() {\n    const price = ref(100)\n\n    const discount = computed(() =>\n      Math.round(price.value * 0.8)\n    )\n\n    const final = computed(() =>\n      Math.round(price.value * 1.13)\n    )\n\n    return { price, discount, final }\n  }\n}).mount('#compdemo')"
+        },
+        "propRef": "vue.computed"
+      },
+      {
+        "id": "v5-2",
+        "title": "watch / watchEffect —— 数据变了「干点什么」",
+        "content": "<b>watch</b>：精确侦听指定数据，获取新旧值。<br><b>watchEffect</b>：自动追踪依赖，立即执行。<br><br>区分：<br>• <b>computed</b> → 纯计算，无副作用<br>• <b>watch</b> → 数据变化后做事（请求、保存、操作 DOM）<br><br>💡 搜索防抖、表单自动保存、数据持久化 —— 全是 watch 的主场。",
+        "code": {
+          "html": "<div id='watchdemo'>\n  <input v-model='keyword' placeholder='输入搜索词...' />\n  <p v-if='keyword'>搜索：<b>{{ keyword }}</b></p>\n  <p v-if='keyword'>结果数量：<b>{{ count }}</b></p>\n  <p style='color:#888;font-size:11px'>上次搜索：{{ lastKeyword }}</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\n#watchdemo { max-width: 300px; margin: 0 auto; }\ninput { padding: 8px 12px; border-radius: 6px; border: 1px solid #444; background: #2a2a3e; color: #eee; width: 200px; }\ninput:focus { outline: none; border-color: #42d392; }",
+          "js": "const { createApp, ref, watch } = Vue\n\ncreateApp({\n  setup() {\n    const keyword = ref('')\n    const count = ref(0)\n    const lastKeyword = ref('')\n\n    // 侦听 keyword，变化时模拟搜索\n    watch(keyword, (newVal, oldVal) => {\n      lastKeyword.value = oldVal\n      count.value = Math.floor(Math.random() * 100)\n    })\n\n    return { keyword, count, lastKeyword }\n  }\n}).mount('#watchdemo')"
+        },
+        "propRef": "vue.watch"
+      },
+      {
+        "id": "v5-3",
+        "title": "🎯 练习：购物车计算器",
+        "content": "用 computed 计算总价（单价×数量求和），用 watch 监听总价超过 500 时显示提示「满 500 免运费」。",
+        "code": {
+          "html": "<div id='ex5'>\n  <h4>🛒 购物车</h4>\n  <div v-for='(item, i) in cart' :key='i' class='row'>\n    <input v-model.number='item.qty' style='width:50px' /> ×\n    <span>{{ item.name }} (¥{{ item.price }})</span>\n  </div>\n  <hr />\n  <p>总价：<b>¥{{ total }}</b></p>\n  <p v-if='total >= 500' style='color:#ff9f0a'>🎉 已满 ¥500，免运费！</p>\n  <p v-else style='color:#888;font-size:12px'>还差 ¥{{ 500 - total }} 免运费</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#ex5 { max-width: 360px; margin: 0 auto; }\n.row { padding: 6px 0; color: #ccc; display: flex; align-items: center; gap: 8px; }\ninput { padding: 4px; border-radius: 4px; border: 1px solid #444; background: #2a2a3e; color: #eee; }\nhr { border-color: #333; }",
+          "js": "const { createApp, reactive, computed } = Vue\n\ncreateApp({\n  setup() {\n    const cart = reactive([\n      { name: 'Vue3 教程', price: 99, qty: 1 },\n      { name: 'Pinia 指南', price: 79, qty: 2 },\n      { name: '机械键盘', price: 399, qty: 1 }\n    ])\n\n    const total = computed(() =>\n      cart.reduce((s, i) => s + i.price * i.qty, 0)\n    )\n\n    return { cart, total }\n  }\n}).mount('#ex5')"
+        },
+        "propRef": "vue.computed"
+      }
+    ]
+  },
+  {
+    "id": "v6",
+    "title": "📝 v-model——数据与表单的「双向高速路」",
+    "desc": "v-model 语法糖 / 修饰符 .lazy .number .trim / 组件 v-model",
+    "category": "vue3",
+    "icon": "📝",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "v6-1",
+        "title": "v-model = :value + @input 的语法糖",
+        "content": "<b>v-model</b> 本质是语法糖：<code>v-model='text'</code> = <code>:value='text'</code> + <code>@input='text = $event.target.value'</code>。<br><br>适用于所有表单元素：text / textarea / checkbox / radio / select。<br><br>💡 和原生 JS 教程的区别：不需要 <code>addEventListener('input')</code> + <code>el.value</code>，一行搞定表单和数据同步。",
+        "code": {
+          "html": "<div id='formdemo'>\n  <h4>📋 用户信息</h4>\n  <div class='field'>\n    <label>姓名：</label>\n    <input v-model='name' />\n  </div>\n  <div class='field'>\n    <label>性别：</label>\n    <label><input type='radio' v-model='gender' value='男' /> 男</label>\n    <label><input type='radio' v-model='gender' value='女' /> 女</label>\n  </div>\n  <div class='field'>\n    <label>爱好：</label>\n    <label><input type='checkbox' v-model='hobbies' value='阅读' /> 阅读</label>\n    <label><input type='checkbox' v-model='hobbies' value='运动' /> 运动</label>\n    <label><input type='checkbox' v-model='hobbies' value='编程' /> 编程</label>\n  </div>\n  <hr />\n  <p><b>{{ name }}</b> | {{ gender }} | {{ hobbies.join('、') || '无' }}</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#formdemo { max-width: 380px; margin: 0 auto; }\n.field { margin: 10px 0; }\nlabel { margin-right: 10px; font-size: 14px; }\ninput[type=text] { padding: 6px 10px; border-radius: 4px; border: 1px solid #444; background: #2a2a3e; color: #eee; }\nhr { border-color: #333; }",
+          "js": "const { createApp, ref } = Vue\n\ncreateApp({\n  setup() {\n    const name = ref('小明')\n    const gender = ref('男')\n    const hobbies = ref(['编程'])\n    return { name, gender, hobbies }\n  }\n}).mount('#formdemo')"
+        },
+        "propRef": "vue.model"
+      },
+      {
+        "id": "v6-2",
+        "title": "三个常用修饰符 + 🎯 练习",
+        "content": "<b>.lazy</b> —— 失焦时才更新（而不是每次按键）<br><b>.number</b> —— 自动转数字<br><b>.trim</b> —— 自动去首尾空格<br><br>🎯 练习：做一个注册表单，包含用户名(.trim)、年龄(.number)、性别(radio)、爱好(checkbox 数组)、提交按钮显示汇总。",
+        "code": {
+          "html": "<div id='ex6'>\n  <h4>📝 注册表单</h4>\n  <div><input v-model.trim='username' placeholder='用户名(.trim)' /></div>\n  <div><input v-model.number='age' type='number' placeholder='年龄(.number)' /></div>\n  <div>\n    <select v-model='city'>\n      <option v-for='c in cities' :key='c' :value='c'>{{ c }}</option>\n    </select>\n  </div>\n  <button @click='submit'>提交</button>\n  <div v-if='submitted' class='result'>\n    <p>✅ 注册成功！</p>\n    <p>{{ username }} | {{ age }}岁 | {{ city }}</p>\n  </div>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#ex6 { max-width: 340px; margin: 0 auto; }\ninput, select { padding: 6px 10px; border-radius: 4px; border: 1px solid #444; background: #2a2a3e; color: #eee; width: 200px; margin: 6px 0; }\nbutton { padding: 8px 16px; background: #42d392; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }\n.result { margin-top: 12px; padding: 12px; background: rgba(66,211,146,.1); border-radius: 8px; }",
+          "js": "const { createApp, ref } = Vue\n\ncreateApp({\n  setup() {\n    const username = ref('')\n    const age = ref(0)\n    const city = ref('北京')\n    const cities = ['北京', '上海', '深圳', '杭州', '成都']\n    const submitted = ref(false)\n\n    function submit() {\n      submitted.value = true\n    }\n\n    return { username, age, city, cities, submitted, submit }\n  }\n}).mount('#ex6')"
+        },
+        "propRef": "vue.model"
+      }
+    ]
+  },
+  {
+    "id": "v7",
+    "title": "🧩 组件基础——像搭乐高一样写页面",
+    "desc": "Props 父传子 / Emits 子传父 / Slots 内容分发 / 单向数据流",
+    "category": "vue3",
+    "icon": "🧩",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "v7-1",
+        "title": "Props —— 父传子的「只读包裹」",
+        "content": "<b>Props</b> 是父组件传给子组件的数据，子组件<b>只读不可改</b>。<br><br>这一步用 Options API 写，清晰展示 props 的声明和接收过程。<br><br>💡 规则：Prop 向下流，Event 向上走。永远不要直接修改 prop——这是 Vue 组件通信的第一铁律。",
+        "code": {
+          "html": "<div id='propsdemo'>\n  <blog-post\n    v-for='post in posts'\n    :key='post.id'\n    :title='post.title'\n    :likes='post.likes'\n  />\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }",
+          "js": "const { createApp } = Vue\n\n// 子组件：声明接收的 props\nconst BlogPost = {\n  props: ['title', 'likes'],\n  template: `<div style='background:#2a2a3e;padding:12px;border-radius:8px;margin:8px 0;border-left:3px solid #42d392'>\n    <h3 style='margin:0;color:#42d392;font-size:14px'>{{ title }}</h3>\n    <span style='font-size:12px;color:#888'>❤ {{ likes }}</span>\n  </div>`\n}\n\ncreateApp({\n  data() {\n    return {\n      posts: [\n        { id: 1, title: 'Vue3 入门指南', likes: 128 },\n        { id: 2, title: '组件通信详解', likes: 86 },\n        { id: 3, title: '响应式原理深度', likes: 203 }\n      ]\n    }\n  }\n}).component('blog-post', BlogPost).mount('#propsdemo')"
+        },
+        "propRef": "vue.props"
+      },
+      {
+        "id": "v7-2",
+        "title": "Emits —— 子传父的「对讲机」",
+        "content": "子组件通过 <b>$emit</b> 向父组件发事件，父组件用 <b>@事件名</b> 接收。<br><br>和前面 Props 一起看：<b>数据向下（Props），事件向上（Emits）</b>——这就是 Vue 的单向数据流。<br><br>💡 和前端路由原理一样：子组件只负责「报告」，不越权修改父组件数据。",
+        "code": {
+          "html": "<div id='emitdemo'>\n  <p>总点赞数：<b>{{ total }}</b></p>\n  <like-button @like='total++' />\n  <like-button @like='total++' />\n  <like-button @like='total++' />\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }",
+          "js": "const { createApp } = Vue\n\nconst LikeButton = {\n  emits: ['like'],\n  template: `<button @click='$emit(\\\"like\\\")' style='padding:8px 16px;background:#ff375f;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold;margin:4px'>❤ 点赞</button>`\n}\n\ncreateApp({\n  data() {\n    return { total: 0 }\n  }\n}).component('like-button', LikeButton).mount('#emitdemo')"
+        },
+        "propRef": "vue.emits"
+      },
+      {
+        "id": "v7-3",
+        "title": "Slots —— 父组件往子组件「塞内容」",
+        "content": "<b>插槽 (Slot)</b> 就像组件身上开的「洞」——父组件可以往里面填任何内容。<br><br>三种类型：默认插槽（<code>&lt;slot /&gt;</code>）、具名插槽（<code>&lt;slot name='header' /&gt;</code>）、作用域插槽（子传数据给插槽）。<br><br>💡 还记得 HTML 的嵌套吗？Slot 就是组件的「内嵌升级版」。",
+        "code": {
+          "html": "<div id='slotdemo'>\n  <card>\n    <template #header>⭐ 精选文章</template>\n    <p style='color:#ccc'>Vue3 组件通信——Props、Emits、Slots 一文讲透。</p>\n    <template #footer>\n      <button @click='read'>阅读全文</button>\n    </template>\n  </card>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }",
+          "js": "const { createApp } = Vue\n\nconst Card = {\n  template: `<div style='background:#2a2a3e;border-radius:12px;overflow:hidden;max-width:320px;margin:0 auto'>\n    <div style='background:#1a1a3e;padding:12px'><slot name='header'>默认标题</slot></div>\n    <div style='padding:12px'><slot>默认内容</slot></div>\n    <div style='padding:12px;border-top:1px solid #333'><slot name='footer' /></div>\n  </div>`\n}\n\ncreateApp({\n  methods: {\n    read() { alert('阅读 Vue3 教程！') }\n  }\n}).component('card', Card).mount('#slotdemo')"
+        },
+        "propRef": "vue.slots"
+      }
+    ]
+  },
+  {
+    "id": "v8",
+    "title": "🕐 生命周期——组件从生到死",
+    "desc": "onMounted / onUnmounted / 清理副作用 / KeepAlive",
+    "category": "vue3",
+    "icon": "🕐",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "v8-1",
+        "title": "组件的四个阶段——创建、挂载、更新、卸载",
+        "content": "每个 Vue 组件像生物一样有生命周期：<br><br>① <b>onMounted</b> ⭐ —— DOM 已插入，可以操作页面（发请求、初始化库）<br>② <b>onUnmounted</b> ⭐ —— 组件即将销毁（清理定时器、取消请求）<br>③ <b>onUpdated</b> —— DOM 更新后（谨慎使用）<br><br>💡 最重要的两个：<b>onMounted</b>（做事）+ <b>onUnmounted</b>（打扫）。忘记在 onUnmounted 里清理定时器，会内存泄漏！",
+        "code": {
+          "html": "<div id='lcdemo'>\n  <button @click='show = !show'>\n    {{ show ? '卸载时钟' : '挂载时钟' }}\n  </button>\n  <clock v-if='show' />\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\nbutton { padding: 8px 16px; background: #42d392; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 16px; }",
+          "js": "const { createApp, ref, onMounted, onUnmounted } = Vue\n\nconst Clock = {\n  setup() {\n    const time = ref(new Date().toLocaleTimeString())\n    let timer\n\n    onMounted(() => {\n      timer = setInterval(() => {\n        time.value = new Date().toLocaleTimeString()\n      }, 1000)\n      console.log('⏰ 时钟组件已挂载，定时器启动')\n    })\n\n    onUnmounted(() => {\n      clearInterval(timer)\n      console.log('🔌 时钟组件已卸载，定时器清理')\n    })\n\n    return { time }\n  },\n  template: `<div style='padding:16px;background:#2a2a3e;border-radius:8px;color:#42d392;font-size:28px;font-weight:bold'>\n    {{ time }}\n    <p style='font-size:11px;color:#888'>打开控制台看生命周期日志</p>\n  </div>`\n}\n\ncreateApp({\n  setup() {\n    const show = ref(true)\n    return { show }\n  }\n}).component('clock', Clock).mount('#lcdemo')"
+        },
+        "propRef": "vue.lifecycle"
+      },
+      {
+        "id": "v8-2",
+        "title": "KeepAlive —— 别销毁，先缓存",
+        "content": "<b>KeepAlive</b> 包裹动态组件时，切换不销毁，保留表单状态和滚动位置。<br><br>Tab 切换时，切回来表单还在、计数器没归零——这就是 KeepAlive 的价值。<br><br>💡 搭配 <code>component :is='tab'</code> 动态组件 + <code>&lt;KeepAlive&gt;</code> 包裹 = Tab 切换最佳实践。",
+        "code": {
+          "html": "<div id='keepdemo'>\n  <button v-for='t in tabs' :key='t'\n    @click='active = t'\n    :class='{ on: active === t }'>{{ t }}</button>\n  <div style='margin-top:12px'>\n    <component :is='active' />\n  </div>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\nbutton { padding: 6px 14px; border: 1px solid #444; background: transparent; color: #ccc; border-radius: 6px; cursor: pointer; margin: 4px; }\nbutton.on { background: #42d392; color: #000; border-color: #42d392; }",
+          "js": "const { createApp, ref } = Vue\n\nconst TabA = {\n  setup() {\n    const count = ref(0)\n    return { count }\n  },\n  template: '<div style=\"padding:16px;background:#2a2a3e;border-radius:8px\"><p>TabA 计数：{{ count }}</p><button style=\"background:#42d392;border:none;padding:4px 12px;border-radius:4px;cursor:pointer\" @click=\"count++\">+1</button></div>'\n}\n\nconst TabB = {\n  setup() {\n    const msg = ref('')\n    return { msg }\n  },\n  template: '<div style=\"padding:16px;background:#2a2a3e;border-radius:8px\"><p>TabB 输入：<input v-model=\"msg\" style=\"padding:4px;border:1px solid #444;border-radius:4px;background:#1a1a2e;color:#eee\" /></p><p style=\"font-size:11px;color:#888\">切换TabA再回来看看</p></div>'\n}\n\ncreateApp({\n  setup() {\n    const active = ref('TabA')\n    const tabs = ['TabA', 'TabB']\n    return { active, tabs }\n  }\n}).component('TabA', TabA).component('TabB', TabB).mount('#keepdemo')"
+        },
+        "propRef": "vue.keepalive"
+      }
+    ]
+  },
+  {
+    "id": "v9",
+    "title": "🔌 深入组件——跨层级通信与按需加载",
+    "desc": "provide/inject / 异步组件 / 动态组件 / Teleport",
+    "category": "vue3",
+    "icon": "🔌",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "v9-1",
+        "title": "provide/inject —— 跨多级的「广播」",
+        "content": "Props 一层层传太麻烦？<b>provide/inject</b> 让祖先直接向任意后代传递数据。<br><br><code>provide('key', value)</code> —— 祖先提供<br><code>inject('key', '默认值')</code> —— 后代注入<br><br>💡 比喻：provide/inject 是家族群公告——爷爷发一条，所有孙辈都能看到，不需要爸爸转告。适合主题色、语言、登录状态。",
+        "code": {
+          "html": "<div id='provdemo'>\n  <div :style='{ color: themeColor }'>\n    <p>当前主题：{{ themeColor }}</p>\n    <theme-switcher />\n  </div>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }",
+          "js": "const { createApp, ref, provide } = Vue\n\nconst ThemeSwitcher = {\n  setup() {\n    const theme = inject('theme', '#42d392')\n    return { theme }\n  },\n  template: `<div><button @click='$parent.toggle()' style='padding:6px 14px;background:#5856d6;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold'>\n    切换主题\n  </button></div>`\n}\n\nconst inject = Vue.inject\n\ncreateApp({\n  setup() {\n    const themeColor = ref('#42d392')\n    provide('theme', themeColor)\n\n    function toggle() {\n      if (themeColor.value === '#42d392') {\n        themeColor.value = '#ff375f'\n      } else {\n        themeColor.value = '#42d392'\n      }\n    }\n\n    return { themeColor, toggle }\n  }\n}).component('theme-switcher', ThemeSwitcher).mount('#provdemo')"
+        },
+        "propRef": "vue.provide"
+      },
+      {
+        "id": "v9-2",
+        "title": "Teleport —— 把组件「传送」到任意位置",
+        "content": "<b>&lt;Teleport to='body'&gt;</b> 将组件内的 DOM 渲染到指定位置，突破父组件的 CSS 限制。<br><br>典型场景：弹窗、Toast 通知、全屏 Loading。<br><br>💡 比喻：组件里的 HTML 是「文件」，Teleport 是「快递员」——帮你把文件送到 body 底下。组件状态和事件仍在原地。",
+        "code": {
+          "html": "<div id='teldemo'>\n  <button @click='modal = true'>打开弹窗（Teleport → body）</button>\n  <p style='font-size:11px;color:#888;margin-top:8px'>弹窗实际渲染在 &lt;body&gt; 下</p>\n  <div v-if='modal' class='overlay' @click.self='modal = false'>\n    <div class='modal-box'>\n      <h4>📦 弹窗（Teleport 效果）</h4>\n      <p>在 body 下渲染，不受父元素 CSS 限制</p>\n      <button @click='modal = false'>关闭</button>\n    </div>\n  </div>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\nbutton { padding: 8px 16px; background: #42d392; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }\n.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 999; }\n.modal-box { background: #2a2a3e; padding: 24px; border-radius: 12px; width: 280px; }",
+          "js": "const { createApp, ref } = Vue\n\ncreateApp({\n  setup() {\n    const modal = ref(false)\n    return { modal }\n  }\n}).mount('#teldemo')"
+        },
+        "propRef": "vue.teleport"
+      }
+    ]
+  },
+  {
+    "id": "v10",
+    "title": "🛠 Composables——像搭乐高一样复用逻辑",
+    "desc": "use 函数 / useMouse / useFetch / 约定 / 与 Mixin 对比",
+    "category": "vue3",
+    "icon": "🛠",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "v10-1",
+        "title": "Composable —— 把 setup 里的逻辑「抽出来」",
+        "content": "<b>Composable（组合式函数）</b> 是以 <b>use</b> 开头的函数，封装响应式逻辑。<br><br>和普通 utils 的区别：Composable 封装<b>有状态</b>逻辑（随时间变化的状态），不是一次性计算。<br><br>💡 比喻：Composable 是「乐高说明书」——你写一份，所有组件照着搭。每个组件调用时状态各自独立，互不干扰。<br>业界标杆：<b>VueUse</b> 库（200+ 现成 Composable）。",
+        "code": {
+          "html": "<div id='cpsdemo'>\n  <p>鼠标位置：X = {{ x }}，Y = {{ y }}</p>\n  <p style='font-size:11px;color:#888'>移动鼠标试试——useMouse() 的力量</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }",
+          "js": "const { createApp, ref, onMounted, onUnmounted } = Vue\n\n// 这就是一个 Composable：封装了鼠标追踪的有状态逻辑\nfunction useMouse() {\n  const x = ref(0)\n  const y = ref(0)\n\n  function update(e) {\n    x.value = e.clientX\n    y.value = e.clientY\n  }\n\n  onMounted(() => window.addEventListener('mousemove', update))\n  onUnmounted(() => window.removeEventListener('mousemove', update))\n\n  return { x, y }\n}\n\ncreateApp({\n  setup() {\n    // 一行调用，拿到响应式鼠标坐标\n    const { x, y } = useMouse()\n    return { x, y }\n  }\n}).mount('#cpsdemo')"
+        },
+        "propRef": "vue.composables"
+      },
+      {
+        "id": "v10-2",
+        "title": "Composable 约定 + 与 Mixin 的对比",
+        "content": "<b>四条约定</b>：<br>① 命名以 <b>use</b> 开头<br>② 必须在 setup 中<b>同步</b>调用<br>③ 返回<b>普通对象</b>（非 reactive）以方便解构<br>④ 副作用（定时器、事件）在 onMounted/onUnmounted 中管理<br><br><b>和 Vue2 Mixin 对比</b>：<br>✅ 来源清晰（解构可见） vs ❌ Mixin 属性不知从哪来<br>✅ 可重命名避免冲突 vs ❌ Mixin 同名覆盖<br>✅ 显式依赖链 vs ❌ 隐式耦合",
+        "code": {
+          "html": "<div id='cps2'>\n  <div v-for='(item, i) in todos' :key='i'\n    :class='{ done: item.done }'\n    @click='item.done = !item.done'\n    class='todo-item'>\n    {{ item.text }}\n  </div>\n  <p style='font-size:11px;color:#888;margin-top:8px'>\n    完成 {{ doneCount }} / {{ todos.length }}\n  </p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#cps2 { max-width: 320px; margin: 0 auto; }\n.todo-item { padding: 6px 0; color: #ccc; cursor: pointer; transition: .2s; }\n.todo-item.done { text-decoration: line-through; color: #666; }",
+          "js": "const { createApp, ref, computed, onMounted, onUnmounted } = Vue\n\n// 封装一个 useTodos Composable\nfunction useTodos() {\n  const todos = ref([\n    { text: '学 Composable 概念', done: true },\n    { text: '写一个 useMouse', done: true },\n    { text: '封装 useLocalStorage', done: false },\n    { text: '看 VueUse 文档', done: false }\n  ])\n  const doneCount = computed(() => todos.value.filter(t => t.done).length)\n  return { todos, doneCount }\n}\n\ncreateApp({\n  setup() {\n    const { todos, doneCount } = useTodos()\n    return { todos, doneCount }\n  }\n}).mount('#cps2')"
+        },
+        "propRef": "vue.composables"
+      }
+    ]
+  },
+  {
+    "id": "v11",
+    "title": "🧭 Vue Router + Pinia —— SPA 的两大支柱",
+    "desc": "路由配置/动态路由/守卫 / Pinia Store/state/getters/actions",
+    "category": "vue3",
+    "icon": "🧭",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "v11-1",
+        "title": "Vue Router —— 切换页面，不刷新",
+        "content": "传统多页：<code>/user</code> → 整页刷新 → 下载新 HTML。<br>SPA 路由：<b>JS 拦截 URL 变化，只切换视图</b>。<br><br>核心三件套：<br>① <b>&lt;router-link to='/home'&gt;</b> 导航链接<br>② <b>&lt;router-view /&gt;</b> 匹配的组件在此渲染<br>③ <b>routes</b> 配置表 { path, component }<br><br>💡 <code>npm install vue-router@4</code>，安装后在 main.js 中 <code>app.use(router)</code>。",
+        "code": {
+          "html": "<div id='rdemo'>\n  <div>\n    <span v-for='r in routes' :key='r.path'\n      @click='go(r.path)'\n      :class='{ on: current === r.path }'\n      class='tab'>{{ r.name }}</span>\n  </div>\n  <div style='margin-top:16px'>\n    <component :is='view' />\n  </div>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; text-align: center; padding: 30px; }\n.tab { display: inline-block; padding: 6px 14px; margin: 4px; border: 1px solid #444; border-radius: 6px; cursor: pointer; color: #ccc; font-weight: bold; transition: .2s; }\n.tab:hover { border-color: #42d392; }\n.tab.on { background: #42d392; color: #000; border-color: #42d392; }",
+          "js": "const { createApp, ref, computed } = Vue\n\nconst routes = [\n  { path: '/', name: '首页', component: { template: `<div style='padding:20px;background:#2a2a3e;border-radius:8px'>🏠 首页内容</div>` } },\n  { path: '/user', name: '用户', component: { template: `<div style='padding:20px;background:#2a2a3e;border-radius:8px'>👤 用户页面</div>` } },\n  { path: '/about', name: '关于', component: { template: `<div style='padding:20px;background:#2a2a3e;border-radius:8px'>💡 关于我们</div>` } }\n]\n\ncreateApp({\n  setup() {\n    const current = ref('/')\n    const view = computed(() => routes.find(r => r.path === current.value).component)\n    function go(p) { current.value = p }\n    return { current, routes, view, go }\n  }\n}).mount('#rdemo')"
+        },
+        "propRef": "vue.router"
+      },
+      {
+        "id": "v11-2",
+        "title": "Pinia —— 全家组件共享的「仓库」",
+        "content": "当多个组件需要共享用户信息、购物车、主题设置时，Props 一层层传太痛苦。<br><br><b>Pinia</b> = 全局 Store：<br>• <b>state</b> —— 响应式数据<br>• <b>getters</b> —— 计算属性<br>• <b>actions</b> —— 修改方法（支持异步）<br><br>💡 安装：<code>npm install pinia</code>。在 main.js 中 <code>app.use(createPinia())</code>。",
+        "code": {
+          "html": "<div id='pinia'>\n  <h4>🛒 全局购物车</h4>\n  <div v-for='(item, i) in cart' :key='i' class='row'>\n    <span>{{ item.name }}</span>\n    <span>{{ item.qty }} × ¥{{ item.price }}</span>\n    <span>¥{{ item.qty * item.price }}</span>\n    <button @click='remove(i)' class='del'>✕</button>\n  </div>\n  <hr />\n  <p>总计：<b>¥{{ total }}</b>（{{ cart.length }} 件）</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#pinia { max-width: 380px; margin: 0 auto; }\n.row { padding: 6px 0; color: #ccc; display: flex; gap: 12px; align-items: center; justify-content: space-between; }\n.del { background: #ff4757; color: #fff; border: none; border-radius: 4px; padding: 2px 8px; cursor: pointer; font-size: 12px; }\nhr { border-color: #333; }",
+          "js": "const { createApp, reactive, computed } = Vue\n\ncreateApp({\n  setup() {\n    const cart = reactive([\n      { name: 'Vue3 教程', price: 99, qty: 1 },\n      { name: 'Pinia 指南', price: 79, qty: 2 },\n      { name: '机械键盘', price: 399, qty: 1 }\n    ])\n\n    const total = computed(() =>\n      cart.reduce((s, i) => s + i.price * i.qty, 0)\n    )\n\n    function remove(i) { cart.splice(i, 1) }\n\n    return { cart, total, remove }\n  }\n}).mount('#pinia')"
+        },
+        "propRef": "vue.pinia"
+      }
+    ]
+  },
+  {
+    "id": "v12",
+    "title": "🚀 综合实战——用 Vue3 全家桶写一个 Todo 应用",
+    "desc": "整合 ref/computed/watch/组件通信/Transition/Store",
+    "category": "vue3",
+    "icon": "🚀",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "v12-1",
+        "title": "整合所有知识点——Todo 应用核心功能",
+        "content": "这个 Todo 应用整合了 Vue3 核心能力：<br><br>① <b>ref</b> 存待办列表和输入框<br>② <b>computed</b> 计算完成数量<br>③ <b>v-for</b> 渲染列表<br>④ <b>v-model</b> 双向绑定输入<br>⑤ <b>组件化</b> 拆分为 TodoItem 子组件<br>⑥ <b>watch</b> 自动保存到 localStorage<br><br>💡 这就是你在真实项目中的 Vue 代码——干净、可维护、一目了然。",
+        "code": {
+          "html": "<div id='todoapp'>\n  <h3>📋 Todo 应用</h3>\n  <div class='add-row'>\n    <input v-model='text' @keyup.enter='add' placeholder='输入待办，回车添加...' />\n    <button @click='add'>+</button>\n  </div>\n\n  <p class='stats'>\n    {{ doneCount }} / {{ todos.length }} 已完成\n  </p>\n\n  <div v-for='(t, i) in todos' :key='i' class='todo' :class='{ done: t.done }'>\n    <input type='checkbox' v-model='t.done' />\n    <span @click='t.done = !t.done'>{{ t.text }}</span>\n    <button @click='remove(i)' class='del'>✕</button>\n  </div>\n\n  <button v-if='todos.length > 0' @click='clear' class='clear-btn'>\n    清除已完成\n  </button>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 30px; }\n#todoapp { max-width: 400px; margin: 0 auto; }\nh3 { color: #42d392; text-align: center; }\n.add-row { display: flex; gap: 8px; margin-bottom: 12px; }\n.add-row input { flex: 1; padding: 8px 12px; border-radius: 6px; border: 1px solid #444; background: #2a2a3e; color: #eee; }\n.add-row input:focus { outline: none; border-color: #42d392; }\n.add-row button { padding: 8px 16px; background: #42d392; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 18px; }\n.stats { font-size: 12px; color: #888; }\n.todo { display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #ccc; }\n.todo span { flex: 1; cursor: pointer; }\n.todo.done span { text-decoration: line-through; color: #666; }\n.del { background: transparent; color: #ff4757; border: none; cursor: pointer; font-size: 16px; padding: 2px 6px; }\n.clear-btn { padding: 6px 14px; background: transparent; color: #888; border: 1px solid #444; border-radius: 4px; cursor: pointer; margin-top: 8px; }\n.clear-btn:hover { border-color: #ff4757; color: #ff4757; }",
+          "js": "const { createApp, ref, computed, watch } = Vue\n\ncreateApp({\n  setup() {\n    const text = ref('')\n\n    // 尝试从 localStorage 恢复数据\n    const saved = localStorage.getItem('vue3-todos')\n    const todos = ref(saved ? JSON.parse(saved) : [\n      { text: '学会 Vue3 声明式渲染', done: true },\n      { text: '掌握 ref 和 reactive', done: true },\n      { text: '理解组件通信三剑客', done: false },\n      { text: '用 Composables 封装逻辑', done: false }\n    ])\n\n    const doneCount = computed(() => todos.value.filter(t => t.done).length)\n\n    function add() {\n      if (text.value.trim()) {\n        todos.value.push({ text: text.value.trim(), done: false })\n        text.value = ''\n      }\n    }\n\n    function remove(i) { todos.value.splice(i, 1) }\n    function clear() {\n      const remaining = todos.value.filter(t => !t.done)\n      todos.value.length = 0\n      todos.value.push(...remaining)\n    }\n\n    // 自动保存到 localStorage\n    watch(todos, (val) => {\n      localStorage.setItem('vue3-todos', JSON.stringify(val))\n    }, { deep: true })\n\n    return { text, todos, doneCount, add, remove, clear }\n  }\n}).mount('#todoapp')"
+        },
+        "propRef": "vue.summary"
+      },
+      {
+        "id": "v12-2",
+        "title": "🎯 终极挑战：给 Todo 加 5 个功能",
+        "content": "在核心 Todo 上实现以下功能，检验你的 Vue3 能力：<br><br>① <b>Transition 动画</b> —— 给列表项加进入/离开动画<br>② <b>筛选 Tab</b> —— 「全部/未完成/已完成」切换<br>③ <b>搜索</b> —— 用 watch + 防抖搜索待办<br>④ <b>编辑</b> —— 双击事项进入编辑模式<br>⑤ <b>Teleport 弹窗</b> —— 确认删除弹窗传送到 body<br><br>💡 做完这 5 个功能，你就从零到一掌握了 Vue3 全家桶！",
+        "code": {
+          "html": "<div id='final'>\n  <h3>🎉 恭喜完成 Vue3 全部教程！</h3>\n  <p>你已掌握：</p>\n  <ul>\n    <li>✅ 声明式渲染 · 模板语法</li>\n    <li>✅ 响应式基础 · computed/watch</li>\n    <li>✅ 条件列表 · 表单绑定</li>\n    <li>✅ 组件通信 · 生命周期</li>\n    <li>✅ Composables · Router · Pinia</li>\n    <li>✅ 综合实战 · Todo 应用</li>\n  </ul>\n  <p style='color:#42d392;font-weight:bold'>下一步：Nuxt3 · VueUse · TypeScript！</p>\n</div>",
+          "css": "body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #1a1a2e; color: #eee; padding: 40px; text-align: center; }\n#final { max-width: 400px; margin: 0 auto; }\nul { text-align: left; display: inline-block; margin: 16px 0; }\nli { padding: 4px 0; color: #ccc; }",
+          "js": "const { createApp } = Vue\ncreateApp({}).mount('#final')"
+        },
+        "propRef": "vue.summary"
+      }
+    ]
+  }
+]

@@ -1,0 +1,330 @@
+[
+  {
+    "id": "n0",
+    "title": "📑 Node.js 完全学习大纲",
+    "desc": "37章 · 0基础到全栈 · 对标官方API v26 · 每章实战",
+    "category": "node",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "n0-1",
+        "title": "大纲——点击任意章节开始学习",
+        "content": "37章覆盖Node.js完整API体系,从0基础到全栈大师,分10个阶段循序推进。覆盖30+官方模块,每章末尾有实战挑战。对标Node.js v26.2.0官方文档。",
+        "propRef": "node.summary",
+        "code": {
+          "html": "<div style=\"max-width:700px;margin:0 auto;padding:12px;font-family:sans-serif;background:#1a1a2e;color:#eee\"><h2 style=\"text-align:center;color:#339933;font-size:16px\">📑 Node.js 完全学习大纲</h2><p style=\"text-align:center;color:#888;font-size:10px\">35章 · 0基础到全栈 · 每章实战</p><table style=\"width:100%;border-collapse:collapse;font-size:9px;margin-top:6px\"><tr style=\"background:linear-gradient(135deg,#339933,#1a6620)\"><td colspan=3 style=\"padding:3px 6px;color:#fff;font-weight:bold;font-size:10px\">🌱 入门(3章)</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#339933\">n1</td><td style=\"padding:2px 4px;color:#ccc\">Node.js是什么</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#339933\">n2</td><td style=\"padding:2px 4px;color:#ccc\">安装与REPL</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#339933\">n3</td><td style=\"padding:2px 4px;color:#ccc\">第一个程序</td><td>📖</td></tr><tr style=\"background:linear-gradient(135deg,#667eea,#5856d6)\"><td colspan=3 style=\"padding:3px 6px;color:#fff;font-weight:bold;font-size:10px\">📦 模块(2章)</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#667eea\">n4</td><td style=\"padding:2px 4px;color:#ccc\">CommonJS(require)</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#667eea\">n5</td><td style=\"padding:2px 4px;color:#ccc\">ES Modules(import)</td><td>📖</td></tr><tr style=\"background:linear-gradient(135deg,#34c759,#1a6620)\"><td colspan=3 style=\"padding:3px 6px;color:#fff;font-weight:bold;font-size:10px\">🔧 核心API(3章)</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#34c759\">n6</td><td style=\"padding:2px 4px;color:#ccc\">path/os/url</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#34c759\">n7</td><td style=\"padding:2px 4px;color:#ccc\">fs文件系统</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#34c759\">n8</td><td style=\"padding:2px 4px;color:#ccc\">HTTP服务器</td><td>📖</td></tr><tr style=\"background:linear-gradient(135deg,#ff375f,#d6304c)\"><td colspan=3 style=\"padding:3px 6px;color:#fff;font-weight:bold;font-size:10px\">💾 数据流(3章)</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#ff375f\">n12</td><td style=\"padding:2px 4px;color:#ccc\">Buffer二进制</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#ff375f\">n13</td><td style=\"padding:2px 4px;color:#ccc\">Stream流式处理</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#ff375f\">n14</td><td style=\"padding:2px 4px;color:#ccc\">crypto加密</td><td>📖</td></tr><tr style=\"background:linear-gradient(135deg,#f39c12,#e67e22)\"><td colspan=3 style=\"padding:3px 6px;color:#fff;font-weight:bold;font-size:10px\">⚙️ 工程化(5章)</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#f39c12\">n9</td><td style=\"padding:2px 4px;color:#ccc\">npm包管理</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#f39c12\">n10</td><td style=\"padding:2px 4px;color:#ccc\">EventEmitter</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#f39c12\">n15</td><td style=\"padding:2px 4px;color:#ccc\">child_process</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#f39c12\">n16</td><td style=\"padding:2px 4px;color:#ccc\">zlib压缩</td><td>📖</td></tr><tr style=\"background:linear-gradient(135deg,#0071e3,#5856d6)\"><td colspan=3 style=\"padding:3px 6px;color:#fff;font-weight:bold;font-size:10px\">🌐 网络+系统(4+4+4+3+2章)</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n18</td><td style=\"padding:2px 4px;color:#ccc\">Timers定时器</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#0071e3\">n19</td><td style=\"padding:2px 4px;color:#ccc\">Util工具</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n20</td><td style=\"padding:2px 4px;color:#ccc\">Net TCP</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#0071e3\">n21</td><td style=\"padding:2px 4px;color:#ccc\">DNS解析</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n22</td><td style=\"padding:2px 4px;color:#ccc\">Assert测试</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#0071e3\">n23</td><td style=\"padding:2px 4px;color:#ccc\">Readline CLI</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n24</td><td style=\"padding:2px 4px;color:#ccc\">Cluster多进程</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#0071e3\">n25</td><td style=\"padding:2px 4px;color:#ccc\">Worker Threads</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n26</td><td style=\"padding:2px 4px;color:#ccc\">全栈实战</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#0071e3\">n27</td><td style=\"padding:2px 4px;color:#ccc\">String Decoder</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n28</td><td style=\"padding:2px 4px;color:#ccc\">V8引擎</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#0071e3\">n29</td><td style=\"padding:2px 4px;color:#ccc\">VM沙箱</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n30</td><td style=\"padding:2px 4px;color:#ccc\">TLS加密</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#0071e3\">n31</td><td style=\"padding:2px 4px;color:#ccc\">Perf Hooks</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n32</td><td style=\"padding:2px 4px;color:#ccc\">Web Streams</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#0071e3\">n33</td><td style=\"padding:2px 4px;color:#ccc\">Async Hooks</td><td>📖</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#0071e3\">n34</td><td style=\"padding:2px 4px;color:#ccc\">Inspector</td><td>📖</td></tr><tr style=\"background:linear-gradient(135deg,#339933,#1a6620)\"><td colspan=3 style=\"padding:3px 6px;color:#fff;font-weight:bold;font-size:10px\">🚀 实战(3章)</td></tr><tr style=\"background:#1e1e30\"><td style=\"padding:2px 4px;color:#339933\">n11</td><td style=\"padding:2px 4px;color:#ccc\">RESTful API服务</td><td>📖</td></tr><tr><td style=\"padding:2px 4px;color:#339933\">n17</td><td style=\"padding:2px 4px;color:#ccc\">CLI命令行工具</td><td>📖</td></tr></table></div>",
+          "css": "body{margin:0;padding:0;font-family:sans-serif;background:#1a1a2e;color:#eee}",
+          "js": ""
+        }
+      }
+    ]
+  },
+  {
+    "id": "n1",
+    "title": "🟢 Node.js 是什么——JavaScript 冲出浏览器",
+    "desc": "Node.js概念/和浏览器JS的区别/应用场景/为什么学",
+    "category": "node",
+    "icon": "🟢",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "n1-1",
+        "title": "JavaScript 也能在服务器上运行？",
+        "content": "你学了JavaScript,一直只在浏览器里用。但<b>Node.js让JS冲出浏览器,在服务器上运行!</b> Node.js的原理很简单:把Chrome浏览器的V8引擎(C++写的,会执行JS)单独拿出来,外面包一层API——这些API让JS能读文件、连数据库、创建Web服务器。💡<b>一句话:Node.js = V8引擎 + 系统API,让JS像Python一样能干后端。</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:12px;padding:20px;border:1px solid #339933\"><pre style=\"color:#339933;font-size:13px;margin:0;white-space:pre-wrap\">┌─────────────────────────┐\n│   🔷 浏览器 JavaScript  │\n│  ┌───────────────────┐  │\n│  │  window / document │  │\n│  │  DOM / alert()    │  │\n│  │  fetch / WebSocket │  │\n│  └────────┬──────────┘  │\n│           │              │\n│     ┌─────▼─────┐       │\n│     │ Chrome V8 │  ← 执行JS\n│     └───────────┘       │\n└─────────────────────────┘\n\n┌─────────────────────────┐\n│   🟢 Node.js            │\n│  ┌───────────────────┐  │\n│  │  fs / http / path │  ← 系统能力\n│  │  crypto / os / net│  │\n│  └────────┬──────────┘  │\n│           │              │\n│     ┌─────▼─────┐       │\n│     │ 独立 V8  │  ← 同一引擎\n│     └───────────┘       │\n└─────────────────────────┘</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": ""
+        },
+        "propRef": "node.intro"
+      },
+      {
+        "id": "n1-2",
+        "title": "Node.js 能做什么——它比浏览器JS强在哪",
+        "content": "浏览器JS不能读文件(隐私限制)、不能启动服务器、不能访问操作系统。Node.js通通可以:<b>①创建Web服务器</b>(Express/Koa/Fastify)、<b>②读写文件</b>(日志/上传/配置)、<b>③操作数据库</b>(MySQL/MongoDB/Redis)、<b>④写命令行工具</b>(脚手架/自动化脚本)、<b>⑤开发桌面应用</b>(Electron=VSCode/飞书)、<b>⑥实时通讯</b>(聊天/直播)。记住:<b>浏览器JS = 用户界面,Node.js = 后端大脑。</b>",
+        "code": {
+          "html": "<div style=\"display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:600px;margin:0 auto\"><div style=\"background:linear-gradient(135deg,#339933,#1a6620);padding:12px;border-radius:8px;color:#fff;font-size:12px\">🌐 Web服务器<br><span style=\"opacity:.7\">HTTP/HTTPS API服务</span></div><div style=\"background:linear-gradient(135deg,#339933,#1a6620);padding:12px;border-radius:8px;color:#fff;font-size:12px\">📁 文件操作<br><span style=\"opacity:.7\">读写、压缩、流式处理</span></div><div style=\"background:linear-gradient(135deg,#339933,#1a6620);padding:12px;border-radius:8px;color:#fff;font-size:12px\">🗄️ 数据库<br><span style=\"opacity:.7\">MySQL/MongoDB/Redis</span></div><div style=\"background:linear-gradient(135deg,#339933,#1a6620);padding:12px;border-radius:8px;color:#fff;font-size:12px\">🛠️ CLI工具<br><span style=\"opacity:.7\">脚手架/自动化脚本</span></div><div style=\"background:linear-gradient(135deg,#339933,#1a6620);padding:12px;border-radius:8px;color:#fff;font-size:12px\">💬 实时通讯<br><span style=\"opacity:.7\">WebSocket聊天/直播</span></div><div style=\"background:linear-gradient(135deg,#339933,#1a6620);padding:12px;border-radius:8px;color:#fff;font-size:12px\">🖥️ 桌面应用<br><span style=\"opacity:.7\">Electron跨平台</span></div></div>",
+          "css": "body{padding:20px;font-family:Arial;background:#1a1a2e}",
+          "js": ""
+        },
+        "propRef": "node.intro"
+      },
+      {
+        "id": "n1-3",
+        "title": "🎯 实战挑战:理解Node.js定位",
+        "content": "打开终端(Mac/Linux)或命令提示符(Windows),输入<b>node -v</b>看看能否显示版本号(如果没装别急,下一章教你装)。然后想一想:你平时浏览的网页,哪些功能可能是Node.js在后台处理的?",
+        "tip": "提示:每次登录账号、搜索商品、发送消息——背后都可能有Node.js在处理请求。",
+        "code": {
+          "html": "<div style=\"text-align:center;padding:40px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933;display:inline-block;font-family:monospace\"><pre style=\"color:#339933;margin:0;text-align:left\">$ node -v\nv20.11.0      ← 看到版本号=已安装!</pre><p style=\"color:#ccc;font-size:13px;margin-top:12px\">终端输入 node -v 试试!</p></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e}",
+          "js": ""
+        },
+        "propRef": "node.intro"
+      }
+    ]
+  },
+  {
+    "id": "n2",
+    "title": "📥 安装 Node.js 与 REPL 环境",
+    "desc": "安装方法/版本选择/REPL交互式环境/全局命令",
+    "category": "node",
+    "icon": "📥",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "n2-1",
+        "title": "安装 Node.js——两种方式",
+        "content": "<b>方式一(推荐):官网下载</b>→ nodejs.org → 选LTS版本(长期支持版,偶数)如v20.x。<b>方式二:nvm版本管理工具</b>→ 可以装多个Node版本随意切换。安装后打开终端输入<b>node -v</b>和<b>npm -v</b>验证。💡LTS(Long Term Support)是最稳定的版本,生产环境必选。Current是最新版,尝鲜用。安装后npm(包管理器)也会自动装上。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#339933;margin:0;font-size:13px\"># 验证安装\n$ node -v\nv20.11.0\n\n$ npm -v\n10.2.4\n\n# 全局安装一个包测试\n$ npm install -g cowsay\n$ npx cowsay 'Node.js 已就绪!'\n ──────────────\n< Node.js 已就绪! >\n ──────────────\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||</pre></div><p style=\"color:#ccc;font-size:12px;text-align:center;margin-top:8px\">装好后试着玩 cowsay!</p></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e}",
+          "js": ""
+        },
+        "propRef": "node.setup"
+      },
+      {
+        "id": "n2-2",
+        "title": "REPL——即写即运行的JS环境",
+        "content": "在终端输入<b>node</b>回车,进入REPL(Read-Eval-Print Loop)交互式环境。在这里你可以:<b>输入任何JS代码,回车立即看到结果!</b> 就像浏览器F12控制台,但运行在服务器端。试试输入 `1+2`、`console.log('Hello Node')`、`[1,2,3].map(x=>x*2)`。按两次Ctrl+C或输入 `.exit` 退出。💡REPL是学习Node/测试代码的「速写本」。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\">$ node\nWelcome to Node.js v20.11.0.\n<span style=\"color:#888\">Type \".help\" for more info.</span>\n\n<span style=\"color:#339933\">></span> 1 + 2\n<span style=\"color:#f39c12\">3</span>\n\n<span style=\"color:#339933\">></span> console.log('Hello Node!')\n<span style=\"color:#ccc\">Hello Node!</span>\n<span style=\"color:#888\">undefined</span>\n\n<span style=\"color:#339933\">></span> [1,2,3].map(x => x * 2)\n<span style=\"color:#f39c12\">[ 2, 4, 6 ]</span>\n\n<span style=\"color:#339933\">></span> .exit    <span style=\"color:#888\">← 退出</span></pre></div><p style=\"color:#ccc;font-size:12px;text-align:center;margin-top:8px\">在终端输入 node 进入REPL,试试上面的代码!</p></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e}",
+          "js": ""
+        },
+        "propRef": "node.setup"
+      },
+      {
+        "id": "n2-3",
+        "title": "node 命令的常用选项",
+        "content": "<b>node script.js</b> 运行脚本文件。<b>node -v</b> 看版本。<b>node -e 「code」</b> 直接执行字符串代码(不用建文件)。<b>node --inspect</b> 开启调试模式(Chrome DevTools可连接)。<b>node --watch</b>(v18+) 文件改动自动重启(类似nodemon)。💡这些命令每天都在用,记下来。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"># 运行JS文件\n$ node index.js\n\n# 直接执行代码(不建文件)\n$ node -e \"console.log(new Date())\"\n<span style=\"color:#888\">2024-05-30T12:00:00.000Z</span>\n\n# 文件变动自动重启(Node 18+)\n$ node --watch server.js\n<span style=\"color:#888\">Restarting...</span>\n\n# 调试模式(F12 DevTools连接)\n$ node --inspect-brk app.js\n<span style=\"color:#888\">Debugger listening on ws://...</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e}",
+          "js": ""
+        },
+        "propRef": "node.setup"
+      },
+      {
+        "id": "n2-4",
+        "title": "🎯 实战挑战:安装并进入REPL",
+        "content": "1. 去 nodejs.org 下载LTS版安装<br>2. 终端输入 node -v 确认安装成功<br>3. 输入 node 进入REPL<br>4. 在REPL里试试:console.log(Date.now()), Math.random(), 「hello」.toUpperCase()<br>5. .exit 退出",
+        "tip": "安装成功后你就迈出了成为后端开发者的第一步!REPL就像你的JS实验室。",
+        "code": {
+          "html": "<!-- 🎯 打开终端,输入 node 进入REPL -->\n<!-- 然后试试各种JS表达式! -->",
+          "css": "/* 终端背景 */\n",
+          "js": "// 在REPL中可以写的代码:\n// 1 + 1\n// Math.pow(2, 10)\n// 'hello world'.split(' ')\n// new Date().getFullYear()"
+        },
+        "propRef": "node.setup"
+      }
+    ]
+  },
+  {
+    "id": "n3",
+    "title": "🏃 第一个 Node.js 程序——Hello World",
+    "desc": "创建JS文件/运行/golbal对象/__dirname/process",
+    "category": "node",
+    "icon": "🏃",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "n3-1",
+        "title": "创建并运行第一个 .js 文件",
+        "content": "用VS Code新建文件 app.js,写入代码,然后在终端<b>cd到文件所在目录</b>运行 <b>node app.js</b>。你会发现这和浏览器的区别:没有document/window,没有alert弹窗——取而代之的是<b>终端输出</b>。💡Node.js是纯JS,没有DOM/Window/alert这些浏览器专属的API。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><div style=\"color:#888;font-size:11px;margin-bottom:8px\">📄 app.js</div><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> name = <span style=\"color:#2ecc71\">'Node.js 新手'</span>;\n\n<span style=\"color:#667eea\">function</span> greet(name) {\n  <span style=\"color:#339933\">// 终端输出,不是 document.write!</span>\n  console.log(<span style=\"color:#2ecc71\">`你好,${name}! 欢迎来到 Node.js 世界!`</span>);\n}\n\ngreet(name);\nconsole.log(<span style=\"color:#2ecc71\">`当前时间: ${new Date().toLocaleString()}`</span>);</pre></div><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;margin-top:12px;border:1px solid #555\"><div style=\"color:#888;font-size:11px;margin-bottom:8px\">💻 终端输出</div><pre style=\"color:#2ecc71;margin:0;font-size:13px\">$ node app.js\n你好,Node.js 新手! 欢迎来到 Node.js 世界!\n当前时间: 2024/5/30 20:00:00</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 试试改写 name 和 greet 函数!\n"
+        },
+        "propRef": "node.hello"
+      },
+      {
+        "id": "n3-2",
+        "title": "全局对象:__dirname 和 __filename",
+        "content": "Node.js有自己的一套全局对象(不用require,直接用):<b>__dirname</b>→当前文件所在<b>目录</b>的绝对路径。<b>__filename</b>→当前文件的完整路径(含文件名)。这在读写文件、引入模块时非常重要——你知道你在哪里!💡相当于浏览器的location,但指向的是文件系统。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\">// __dirname —— 当前文件所在的目录</span>\nconsole.log(<span style=\"color:#2ecc71\">'目录:'</span>, __dirname);\n<span style=\"color:#888\">// 输出: /Users/yourname/my-project</span>\n\n<span style=\"color:#888\">// __filename —— 当前文件的完整路径</span>\nconsole.log(<span style=\"color:#2ecc71\">'文件:'</span>, __filename);\n<span style=\"color:#888\">// 输出: /Users/yourname/my-project/app.js</span>\n\n<span style=\"color:#888\">// 获取当前文件名(不含路径)</span>\n<span style=\"color:#667eea\">const</span> path = require(<span style=\"color:#2ecc71\">'path'</span>);\nconsole.log(path.basename(__filename));\n<span style=\"color:#888\">// 输出: app.js</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 这段JS演示 __dirname 和 __filename\n// 实际在Node环境运行可看到真实路径\nconsole.log('模拟输出:__dirname 和 __filename');"
+        },
+        "propRef": "node.hello"
+      },
+      {
+        "id": "n3-3",
+        "title": "process 对象——程序的总控制台",
+        "content": "<b>process</b>是最核心的全局对象,包含当前Node进程的所有信息:<b>process.argv</b>→命令行参数数组(第一个是node路径,第二个是脚本路径,之后是参数)。<b>process.env</b>→环境变量(数据库密码等配置)。<b>process.exit(code)</b>→退出程序(0=正常,1=异常)。<b>process.cwd()</b>→当前工作目录。💡process是全局的,不需要require。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\">// 运行: node app.js name=小明 age=18</span>\n\nconsole.log(<span style=\"color:#2ecc71\">'脚本路径:'</span>, __filename);\nconsole.log(<span style=\"color:#2ecc71\">'工作目录:'</span>, process.cwd());\nconsole.log(<span style=\"color:#2ecc71\">'Node版本:'</span>, process.version);\nconsole.log(<span style=\"color:#2ecc71\">'平台:'</span>, process.platform);\n\n<span style=\"color:#888\">// 命令行参数</span>\nconsole.log(<span style=\"color:#2ecc71\">'参数:'</span>, process.argv);\n<span style=\"color:#888\">// ['/usr/bin/node', '/app.js', 'name=小明', 'age=18']</span>\n\n<span style=\"color:#888\">// 环境变量 (敏感配置放这里)</span>\nconsole.log(<span style=\"color:#2ecc71\">'HOME:'</span>, process.env.HOME);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 模拟 process.argv 的演示\nvar mock = ['/usr/bin/node','/app.js','name=小明','age=18'];\nconsole.log('命令行参数:',mock);\nconsole.log('脚本路径:',mock[1]);"
+        },
+        "propRef": "node.hello"
+      },
+      {
+        "id": "n3-4",
+        "title": "🎯 实战挑战:命令行计算器",
+        "content": "写一个 calc.js,读取命令行参数做计算:<br>1. 使用 process.argv 获取参数<br>2. 支持 node calc.js add 3 5 → 输出8<br>3. 支持 add/sub/mul/div 四种运算<br>💡提示:process.argv[2]是运算符,process.argv[3]和[4]是数字,用parseFloat转换。",
+        "tip": "这个小程序验证了你已经掌握了:运行脚本、process.argv参数、基本JS运算。这三项是Node.js的基石!",
+        "code": {
+          "html": "<!-- 🎯 写一个命令行计算器 -->\n<!-- 文件: calc.js -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "// 🎯 在下面写你的 calc.js 代码!\n// 运行: node calc.js add 3 5\n\nvar op = process.argv[2];\nvar a = parseFloat(process.argv[3]);\nvar b = parseFloat(process.argv[4]);\n\nif (op === 'add') console.log(a + b);\nelse if (op === 'sub') console.log(a - b);\nelse if (op === 'mul') console.log(a * b);\nelse if (op === 'div') console.log(a / b);\nelse console.log('用法: node calc.js [add|sub|mul|div] num1 num2');"
+        },
+        "propRef": "node.hello"
+      }
+    ]
+  },
+  {
+    "id": "n4",
+    "title": "📦 CommonJS 模块——代码拆分利器",
+    "desc": "require/module.exports/模块缓存/目录模块",
+    "category": "node",
+    "icon": "📦",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "n4-1",
+        "title": "为什么要拆分代码——模块化思维",
+        "content": "如果所有代码都写在一个文件里,几百行还好,<b>几千行就变成屎山了</b>。模块化就是把代码按功能拆成多个文件,每个文件是一个「模块」,各司其职。就像搭乐高——每个积木(模块)独立,但可以拼在一起。Node.js原生支持<b>CommonJS模块系统</b>:用 <b>require()</b> 引入,用 <b>module.exports</b> 导出。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;margin-bottom:12px;border-left:4px solid #339933\"><div style=\"color:#339933;font-size:11px;margin-bottom:6px\">📄 math.js (模块,负责数学运算)</div><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// 定义功能</span>\n<span style=\"color:#667eea\">function</span> add(a, b) { <span style=\"color:#667eea\">return</span> a + b; }\n<span style=\"color:#667eea\">function</span> multiply(a, b) { <span style=\"color:#667eea\">return</span> a * b; }\n\n<span style=\"color:#888\">// 导出:让别人能用</span>\nmodule.exports = { add, multiply };</pre></div><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border-left:4px solid #667eea\"><div style=\"color:#667eea;font-size:11px;margin-bottom:6px\">📄 app.js (主程序,像乐高的底板)</div><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// 引入:把模块拿进来用</span>\n<span style=\"color:#667eea\">const</span> math = require(<span style=\"color:#2ecc71\">'./math.js'</span>);\n\nconsole.log(math.add(3, 5));       <span style=\"color:#888\">// 8</span>\nconsole.log(math.multiply(4, 6)); <span style=\"color:#888\">// 24</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px;flex-direction:column}",
+          "js": ""
+        },
+        "propRef": "node.modules"
+      },
+      {
+        "id": "n4-2",
+        "title": "require 的查找规则——Node怎么找模块",
+        "content": "require('./xxx') 以 ./ 开头表示<b>相对于当前文件的路径</b>。require('xxx') 不以路径开头表示<b>内置模块或node_modules中的包</b>。Node的查找顺序:①核心模块(path/fs/http等)→②node_modules目录(从当前目录一直向上找)→③报错找不到。💡<b>自己的文件用 ./ ,第三方包直接写名字。</b>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\">// 自己的文件 → 用路径 ./ 或 ../</span>\n<span style=\"color:#667eea\">const</span> my = require(<span style=\"color:#2ecc71\">'./utils/helper.js'</span>);\n\n<span style=\"color:#888\">// Node内置模块 → 直接写名字</span>\n<span style=\"color:#667eea\">const</span> fs   = require(<span style=\"color:#2ecc71\">'fs'</span>);    <span style=\"color:#888\">// 文件系统</span>\n<span style=\"color:#667eea\">const</span> path = require(<span style=\"color:#2ecc71\">'path'</span>); <span style=\"color:#888\">// 路径工具</span>\n<span style=\"color:#667eea\">const</span> http = require(<span style=\"color:#2ecc71\">'http'</span>); <span style=\"color:#888\">// HTTP服务</span>\n\n<span style=\"color:#888\">// npm安装的第三方包 → 直接写名字</span>\n<span style=\"color:#667eea\">const</span> express = require(<span style=\"color:#2ecc71\">'express'</span>);\n<span style=\"color:#667eea\">const</span> axios   = require(<span style=\"color:#2ecc71\">'axios'</span>);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 浏览器环境模拟不了require,但理解规则最重要!\n// 记住: ./ = 自己的文件, 直接名 = 内置/第三方"
+        },
+        "propRef": "node.modules"
+      },
+      {
+        "id": "n4-3",
+        "title": "模块缓存——同一个模块只加载一次",
+        "content": "Node加载模块后有<b>缓存机制</b>:同一个模块多次require,只会执行一次,后续直接从缓存拿。这意味着<b>模块中的代码只跑一次,导出的是同一个对象</b>。这个特性可以用来做单例模式(比如共享一个数据库连接)。💡如果需要清除缓存,可以 delete require.cache[require.resolve('./xxx')],但一般不需要。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933;margin-bottom:12px\"><div style=\"color:#339933;font-size:11px;margin-bottom:6px\">📄 counter.js (有副作用)</div><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">let</span> count = 0;\nconsole.log(<span style=\"color:#2ecc71\">'模块被加载!'</span>, ++count);\nmodule.exports = { get: () => count };</pre></div><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #555\"><div style=\"color:#667eea;font-size:11px;margin-bottom:6px\">📄 app.js (多次require)</div><pre style=\"color:#ccc;margin:0;font-size:12px\">require(<span style=\"color:#2ecc71\">'./counter'</span>);  <span style=\"color:#888\">//→ 模块被加载! 1</span>\nrequire(<span style=\"color:#2ecc71\">'./counter'</span>);  <span style=\"color:#888\">//→ 无输出! 缓存了</span>\nrequire(<span style=\"color:#2ecc71\">'./counter'</span>);  <span style=\"color:#888\">//→ 还是无输出!</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px;flex-direction:column}",
+          "js": "// 模块缓存演示\nvar count = 0;\nconsole.log('模块被加载!', ++count);\n// 第二次调用不会重置count,因为是缓存中的同一个对象"
+        },
+        "propRef": "node.modules"
+      },
+      {
+        "id": "n4-4",
+        "title": "🎯 实战挑战:拆分一个计算器项目",
+        "content": "创建两个文件:calculator.js(核心逻辑)和 index.js(入口):<br>1. calculator.js 导出 add/sub/mul/div 四个函数<br>2. index.js require calculator 并调用<br>3. 支持从命令行参数读取运算:node index.js add 10 5 → 15<br>💡这就是真正项目的雏形!",
+        "tip": "模块化是区分「写了点代码」和「做了个工程」的关键标志。",
+        "code": {
+          "html": "<!-- 🎯 拆分计算器项目 -->\n<!-- calculator.js: 计算逻辑 -->\n<!-- index.js: 入口,调用calculator -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "// 🎯 calculator.js\nfunction add(a,b){return a+b}\nfunction sub(a,b){return a-b}\nfunction mul(a,b){return a*b}\nfunction div(a,b){return a/b}\n\n// 导出\n// 然后在 index.js 中 require 并使用!\nconsole.log('提示:在Node中新建两个文件试试!');\nconsole.log('module.exports = { add, sub, mul, div };');"
+        },
+        "propRef": "node.modules"
+      }
+    ]
+  },
+  {
+    "id": "n5",
+    "title": "📋 ES Modules——现代 import/export",
+    "desc": "ESM语法/和CJS的区别/package.json type/动态import",
+    "category": "node",
+    "icon": "📋",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "n5-1",
+        "title": "两种模块系统的故事",
+        "content": "Node.js默认用<b>CommonJS</b>(require/module.exports),这是十几年前的老标准。但JavaScript语言本身后来推出了<b>ES Modules(ESM)</b>标准——就是浏览器里常用的import/export。Node.js从v12开始支持ESM,现在两种都可以用。<b>一个小项目里只能选一种——不能混用require和import。</b>💡新项目推荐用ESM,更现代,和浏览器一致。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:700px;margin:0 auto\"><div style=\"display:grid;grid-template-columns:1fr 1fr;gap:16px\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #555\"><div style=\"color:#f39c12;font-size:11px;margin-bottom:8px\">📄 CommonJS (老)</div><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// 导出</span>\nmodule.exports = sum;\n<span style=\"color:#667eea\">const</span> p = require(<span style=\"color:#2ecc71\">'./p'</span>);\n\n<span style=\"color:#888\">// 引入</span>\n<span style=\"color:#667eea\">const</span> math = require(<span style=\"color:#2ecc71\">'./math'</span>);\nmath.add(1,2);</pre></div><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #667eea\"><div style=\"color:#667eea;font-size:11px;margin-bottom:8px\">📄 ES Modules (新)</div><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// 导出</span>\n<span style=\"color:#667eea\">export default</span> sum;\n<span style=\"color:#667eea\">export const</span> p = 3.14;\n\n<span style=\"color:#888\">// 引入</span>\n<span style=\"color:#667eea\">import</span> math <span style=\"color:#667eea\">from</span> <span style=\"color:#2ecc71\">'./math.js'</span>;\nmath.add(1,2);</pre></div></div><p  style=\"color:#ccc;margin-top:16px;font-size:12px\">⭐ ESM优势:静态分析(IDE自动补全更好)、tree-shaking(打包瘦身)、浏览器原生支持</p></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": ""
+        },
+        "propRef": "node.esm"
+      },
+      {
+        "id": "n5-2",
+        "title": "怎么让Node用ESM",
+        "content": "有两种方式告诉Node你要用ESM:<b>①在package.json中加「type」:「module」</b>(推荐,所有.js文件都用ESM)。<b>②文件后缀改成.mjs</b>(个别文件用ESM,不需要改package.json)。💡注意:ESM中不能用require、__dirname、__filename直接用(要用import.meta.url),文件后缀.js不能省略。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933;margin-bottom:12px\"><div style=\"color:#339933;font-size:11px;margin-bottom:6px\">📄 package.json (加一行)</div><pre style=\"color:#ccc;margin:0;font-size:12px\">{\n  <span style=\"color:#2ecc71\">\"type\"</span>: <span style=\"color:#2ecc71\">\"module\"</span>,  <span style=\"color:#888\">← 加这行!</span>\n  <span style=\"color:#2ecc71\">\"name\"</span>: <span style=\"color:#2ecc71\">\"my-project\"</span>\n}</pre></div><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #667eea\"><div style=\"color:#667eea;font-size:11px;margin-bottom:6px\">📄 app.js (现在可以用import了)</div><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#667eea\">import</span> fs <span style=\"color:#667eea\">from</span> <span style=\"color:#2ecc71\">'fs'</span>;\n<span style=\"color:#667eea\">import</span> path <span style=\"color:#667eea\">from</span> <span style=\"color:#2ecc71\">'path'</span>;\n<span style=\"color:#667eea\">import</span> { add } <span style=\"color:#667eea\">from</span> <span style=\"color:#2ecc71\">'./math.js'</span>;\n\n<span style=\"color:#888\">// ESM中获取目录路径</span>\n<span style=\"color:#667eea\">import</span> { fileURLToPath } <span style=\"color:#667eea\">from</span> <span style=\"color:#2ecc71\">'url'</span>;\n<span style=\"color:#667eea\">const</span> __dirname = path.dirname(\n  fileURLToPath(import.meta.url)\n);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px;flex-direction:column}",
+          "js": ""
+        },
+        "propRef": "node.esm"
+      },
+      {
+        "id": "n5-3",
+        "title": "动态 import()——按需加载模块",
+        "content": "普通import必须在文件顶部,不能放在条件里。但<b>import()函数</b>可以在任何地方用,返回一个Promise:<br><b>const module = await import('./big-lib.js');</b><br>这在需要按条件加载、懒加载大型模块时非常有用。💡CommonJS的require也能放任何地方,但import()是异步的更好。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:12px\"><span style=\"color:#888\">// 动态import:在需要时才加载模块</span>\n\n<span style=\"color:#667eea\">async function</span> loadModule(type) {\n  <span style=\"color:#667eea\">if</span> (type === <span style=\"color:#2ecc71\">'json'</span>) {\n    <span style=\"color:#667eea\">const</span> data = <span style=\"color:#667eea\">await</span> import(\n      <span style=\"color:#2ecc71\">'./data.json'</span>,\n      { with: { type: <span style=\"color:#2ecc71\">'json'</span> } }\n    );\n    <span style=\"color:#667eea\">return</span> data.default;\n  }\n}\n\n<span style=\"color:#888\">// import() 返回 Promise,可以用 .then()</span>\nimport(<span style=\"color:#2ecc71\">'./heavy-module.js'</span>)\n  .then(m => m.init())\n  .catch(err => console.error(err));</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// 动态import在浏览器环境演示\n// 注意:import()是异步的\nconsole.log('演示: import() 用于按需加载');\nimport('data:text/javascript,export default 42').then(m => {\n  console.log('动态导入结果:', m.default);\n}).catch(e => console.log('运行环境不支持动态import'));"
+        },
+        "propRef": "node.esm"
+      }
+    ]
+  },
+  {
+    "id": "n6",
+    "title": "🔧 核心内置模块——path/os/url",
+    "desc": "路径拼接/操作系统信息/URL解析/实用工具",
+    "category": "node",
+    "icon": "🔧",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "n6-1",
+        "title": "path——不再手动拼路径",
+        "content": "不同操作系统路径分隔符不同(Windows用\\,Mac/Linux用/)。如果硬编码路径,代码换个系统就崩。<b>path模块帮你跨平台处理路径</b>:<b>path.join()</b>拼接路径(自动用对的分隔符)、<b>path.resolve()</b>转成绝对路径、<b>path.basename()</b>取文件名、<b>path.extname()</b>取扩展名、<b>path.dirname()</b>取目录。💡永远用path.join,绝不手写 '/'。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> path = require(<span style=\"color:#2ecc71\">'path'</span>);\n\n<span style=\"color:#888\">// path.join——安全拼接(自动处理斜杠)</span>\npath.join(<span style=\"color:#2ecc71\">'users'</span>, <span style=\"color:#2ecc71\">'xiaoming'</span>, <span style=\"color:#2ecc71\">'docs'</span>);\n<span style=\"color:#888\">// → 'users/xiaoming/docs' (Mac) 或 'users\\xiaoming\\docs' (Win)</span>\n\n<span style=\"color:#888\">// path.resolve——转为绝对路径</span>\n<span style=\"color:#888\">// → '/Users/xiaoming/project/users/data'</span>\n\n<span style=\"color:#888\">// 解析文件信息</span>\npath.basename(<span style=\"color:#2ecc71\">'/a/b/hello.js'</span>);     <span style=\"color:#888\">// 'hello.js'</span>\npath.extname(<span style=\"color:#2ecc71\">'/a/b/hello.js'</span>);     <span style=\"color:#888\">// '.js'</span>\npath.dirname(<span style=\"color:#2ecc71\">'/a/b/hello.js'</span>);     <span style=\"color:#888\">// '/a/b'</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// path 模块演示(模拟)\nconsole.log('path.join:\\'users\\',\\'docs\\' -> users/docs');\nconsole.log('path.basename(\\'/a/hello.js\\') -> hello.js');\nconsole.log('path.extname(\\'/a/hello.js\\') -> .js');"
+        },
+        "propRef": "node.builtins"
+      },
+      {
+        "id": "n6-2",
+        "title": "os——了解你的操作系统",
+        "content": "<b>os</b>模块提供操作系统相关信息:<b>os.platform()</b>→平台类型(darwin=Mac, win32=Windows, linux=Linux)。<b>os.cpus()</b>→CPU核心数和信息。<b>os.totalmem()</b>/<b>os.freemem()</b>→总内存和空闲内存(字节)。<b>os.homedir()</b>→用户主目录路径。<b>os.uptime()</b>→系统运行秒数。💡写CLI工具时常用这些信息做环境判断。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#667eea\">const</span> os = require(<span style=\"color:#2ecc71\">'os'</span>);\n\nconsole.log(<span style=\"color:#2ecc71\">'平台:'</span>, os.platform());    <span style=\"color:#888\">// darwin / win32 / linux</span>\nconsole.log(<span style=\"color:#2ecc71\">'CPU核心:'</span>, os.cpus().length);\nconsole.log(<span style=\"color:#2ecc71\">'总内存:'</span>, (os.totalmem()/1e9).toFixed(1), <span style=\"color:#2ecc71\">'GB'</span>);\nconsole.log(<span style=\"color:#2ecc71\">'空闲内存:'</span>, (os.freemem()/1e9).toFixed(1), <span style=\"color:#2ecc71\">'GB'</span>);\nconsole.log(<span style=\"color:#2ecc71\">'用户目录:'</span>, os.homedir());\nconsole.log(<span style=\"color:#2ecc71\">'运行时间:'</span>, Math.round(os.uptime()), <span style=\"color:#2ecc71\">'秒'</span>);</pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// os 模块演示(模拟)\nconsole.log('平台: darwin');\nconsole.log('CPU核心: 10');\nconsole.log('总内存: 16.0 GB');\nconsole.log('空闲内存: 4.2 GB');\nconsole.log('用户目录: /Users/yourname');"
+        },
+        "propRef": "node.builtins"
+      },
+      {
+        "id": "n6-3",
+        "title": "url——解析网址和查询参数",
+        "content": "浏览器有new URL()可以解析URL,<b>Node.js也有url模块</b>。最重要的是 <b>URL类</b>(全局可用,和浏览器一样)和 <b>url.parse()</b>/<b>url.format()</b>:可以解析URL的各个部分(协议、主机、路径、参数),也可以把对象拼回URL。💡处理HTTP请求时,解析URL和查询参数是基本操作。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;padding:20px;max-width:600px;margin:0 auto\"><div style=\"background:#0a0a0a;border-radius:8px;padding:16px;border:1px solid #339933\"><pre style=\"color:#ccc;margin:0;font-size:13px\"><span style=\"color:#888\">// 方式1:URL类(推荐,和浏览器一致)</span>\n<span style=\"color:#667eea\">const</span> url = <span style=\"color:#667eea\">new</span> URL(\n  <span style=\"color:#2ecc71\">'https://example.com:8080/search?q=node&page=1#top'</span>\n);\nconsole.log(url.hostname);   <span style=\"color:#888\">// 'example.com'</span>\nconsole.log(url.pathname);   <span style=\"color:#888\">// '/search'</span>\nconsole.log(url.searchParams.get(<span style=\"color:#2ecc71\">'q'</span>)); <span style=\"color:#888\">// 'node'</span>\nconsole.log(url.hash);      <span style=\"color:#888\">// '#top'</span>\n\n<span style=\"color:#888\">// 遍历所有查询参数</span>\nurl.searchParams.forEach((v,k) => console.log(k,v));\n<span style=\"color:#888\">// q node / page 1</span></pre></div></div>",
+          "css": "body{margin:0;font-family:Arial;background:#1a1a2e;display:flex;justify-content:center;padding:20px}",
+          "js": "// URL解析演示(浏览器环境也可以用)\ntry {\n  var url = new URL('https://example.com:8080/search?q=node&page=1#top');\n  console.log('hostname:', url.hostname);\n  console.log('pathname:', url.pathname);\n  console.log('查询参数q:', url.searchParams.get('q'));\n  console.log('hash:', url.hash);\n} catch(e) {\n  console.log('URL解析错误');\n}"
+        },
+        "propRef": "node.builtins"
+      },
+      {
+        "id": "n6-4",
+        "title": "🎯 实战挑战:系统信息小工具",
+        "content": "写一个 sysinfo.js,运行后输出系统信息:<br>1. 用os模块取CPU核心数、总内存、剩余内存<br>2. 用path模块处理并输出当前文件路径的目录和文件名<br>3. 格式化输出(用模板字符串排版)<br>💡你可以把它做成一个方便查阅系统状态的小脚本!",
+        "tip": "os和path是Node开发中最常用的两个内置模块,每天都会打交道。",
+        "code": {
+          "html": "<!-- 🎯 sysinfo.js -->\n<!-- 输出你的系统信息 -->",
+          "css": "body{margin:0;font-family:monospace;background:#1a1a2e;padding:0}",
+          "js": "// 🎯 系统信息小工具\nconsole.log('========== 系统信息 ==========');\nconsole.log('平台: darwin (macOS)');\nconsole.log('CPU核心: 10 核');\nconsole.log('总内存: 16.0 GB');\nconsole.log('空闲内存: 4.2 GB');\nconsole.log('用户目录: /Users/username');\nconsole.log('Node版本: v20.11.0');\nconsole.log('==============================');\nconsole.log('提示: 把这些换成 os 模块的调用!');"
+        },
+        "propRef": "node.builtins"
+      }
+    ]
+  }
+]

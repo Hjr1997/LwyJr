@@ -1,0 +1,133 @@
+[
+  {
+    "id": "d0",
+    "title": "📑 Dva 完整学习大纲",
+    "desc": "4篇教程 · React 企业级状态管理框架",
+    "category": "dva",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [{
+      "id": "d0-1",
+      "title": "大纲——Dva = Redux + Saga + Router 三合一",
+      "content": "<div style='max-width:600px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'><h2 style='text-align:center;color:#1890ff;margin:0 0 4px'>📑 Dva 学习路径</h2><p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>4篇 · 从 model 到实战</p><table style='width:100%;border-collapse:collapse;font-size:12px'><tr style='background:#1890ff'><th style='padding:6px 10px;color:#fff;text-align:left'>#</th><th style='padding:6px 10px;color:#fff;text-align:left'>章节</th><th style='padding:6px 10px;color:#fff;text-align:left'>核心</th></tr><tr style='background:#222'><td style='padding:5px 10px;color:#1890ff;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>什么是Dva + 项目结构</td><td style='padding:5px 10px;color:#888;font-size:11px'>dva()/app.model/router/start</td></tr><tr><td style='padding:5px 10px;color:#1890ff;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>Model 核心——state/reducers/effects</td><td style='padding:5px 10px;color:#888;font-size:11px'>reducers改state/effects处理异步</td></tr><tr style='background:#222'><td style='padding:5px 10px;color:#1890ff;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>connect 连接组件</td><td style='padding:5px 10px;color:#888;font-size:11px'>connect/dispatch/useSelector</td></tr><tr><td style='padding:5px 10px;color:#1890ff;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>实战——Todo应用</td><td style='padding:5px 10px;color:#888;font-size:11px'>完整model + connect + effects</td></tr></table><p style='text-align:center;color:#888;font-size:11px;margin-top:12px'>💡 Dva = Redux(reducers) + Redux-Saga(effects) + React-Router(路由) 的集成框架，ant-design团队出品</p></div>",
+      "propRef": "dva.summary"
+    }]
+  },
+  {
+    "id": "d1",
+    "title": "🔷 什么是 Dva？——Redux + Saga 二合一",
+    "desc": "dva()/app.model/router/start 项目初始化",
+    "category": "dva",
+    "icon": "🔷",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "d1-1",
+        "title": "Dva 是什么——Redux + Redux-Saga 的集成框架",
+        "content": "Dva 是阿里 ant-design 团队出品的企业级 React 框架。<br><br>它把 <b>Redux</b>（状态管理）+ <b>Redux-Saga</b>（异步处理）+ <b>React-Router</b>（路由）打包到一起，通过 <b>model</b> 概念统一管理。<br><br>安装：<code>npm install dva</code>（浏览器端）或 <code>npm install umi</code>（Umi 内置 dva）<br><br>💡 和 Zustand 对比：Zustand 极简（一个 create），Dva 更重型但提供完整的 MVC 模式——适合复杂的企业级项目。",
+        "code": {
+          "html": "<div style='color:#1890ff;font-size:13px'>📦 Dva = Redux + Redux-Saga + React-Router</div><div style='color:#888;font-size:11px;margin-top:4px'>比纯 Redux 少写 50% 的代码</div>",
+          "css": "",
+          "js": "# 安装\n$ npm install dva\n\n# Dva 对比纯 Redux 的代码量：\n\n# Redux 原生：actions.js + reducers.js + store.js\n#              + saga.js + Provider + connect\n# Dva：      model.js（一个文件搞定！）\n\n# Dva 核心概念：\n# model = {\n#   namespace: '唯一标识',\n#   state:     { 数据 },\n#   reducers:  { 同步修改 },\n#   effects:   { 异步操作 },\n#   subscriptions: { 路由监听 }\n# }\n\n# 💡 Dva 是 Redux 的最佳实践封装\n# 💡 企业级项目（特别是 antd 系）广泛使用"
+        },
+        "propRef": "dva.intro"
+      },
+      {
+        "id": "d1-2",
+        "title": "dva() + app.model() + app.start()——创建项目",
+        "content": "Dva 项目标准入口：<br><br><code>const app = dva()</code> ← 创建 app 实例<br><code>app.model({ namespace: 'count', ... })</code> ← 注册 model<br><code>app.router(() => &lt;App /&gt;)</code> ← 注册路由<br><code>app.start('#root')</code> ← 挂载到 DOM<br><br>💡 对比 React 教程的 createRoot().render()，dva 多了一层 Model-Router 的约定。每个 namespace 是一个独立的状态模块。",
+        "code": {
+          "html": "",
+          "css": "",
+          "js": "# src/index.js —— Dva 项目入口\n\nimport dva from 'dva'\n\n// 1. 创建 app 实例\nconst app = dva()\n\n// 2. 注册 Model（可注册多个）\napp.model({\n  namespace: 'counter',\n  state: { count: 0 },\n  reducers: {\n    add(state) {\n      return { ...state, count: state.count + 1 }\n    }\n  }\n})\n\n// 3. 注册路由\napp.router(({ history }) => {\n  return <div>Hello Dva</div>\n})\n\n// 4. 挂载到 #root\napp.start('#root')\n\n\n# 💡 dva() 会内部创建 Redux Store + Saga Middleware\n# 💡 app.model() 自动生成 reducer/saga/action type\n# 💡 省掉了手写 constants/actions/reducers 的繁琐"
+        },
+        "propRef": "dva.create"
+      }
+    ]
+  },
+  {
+    "id": "d2",
+    "title": "📦 Model 核心——state/reducers/effects/subscriptions",
+    "desc": "reducers改state / effects处理异步(yield call/put) / subscriptions",
+    "category": "dva",
+    "icon": "📦",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "d2-1",
+        "title": "reducers——同步修改 state（唯一方式）",
+        "content": "Dva 中修改 state 的<b>唯一方式</b>是 dispatch 一个 action 触发 <b>reducers</b>。<br><br>和 Redux 一样：reducers 是纯函数，接收 <code>(state, { payload })</code>，返回新 state。<br><br>触发：<code>dispatch({ type: 'namespace/reducerName', payload: data })</code><br><br>💡 对比 Zustand 的 set()：Dva 延续了 Redux 的 reducer 模式，更规范但代码更多。",
+        "code": {
+          "html": "<div style='color:#1890ff;font-size:13px'>🔧 reducers = 同步修改 state 的唯一入口</div>",
+          "css": "",
+          "js": "# models/counter.js —— 完整 model 示例\n\nexport default {\n  namespace: 'counter',\n\n  state: {\n    count: 0\n  },\n\n  # ===== Reducers（同步修改 state） =====\n  reducers: {\n    // state 是当前状态，{ payload } 是传入数据\n    add(state, { payload = 1 }) {\n      return { ...state, count: state.count + payload }\n    },\n\n    minus(state) {\n      return { ...state, count: state.count - 1 }\n    },\n\n    reset() {\n      return { count: 0 }  // 直接返回新state\n    },\n\n    // 和 Pinia $patch 类似的批量更新\n    setCount(state, { payload }) {\n      return { ...state, count: payload }\n    }\n  }\n}\n\n\n# 💡 reducers 的 key 变成 action type：\n#    'counter/add'      ← namespace/reducerName\n#    'counter/minus'\n# 💡 payload 是 dispatch 传入的第二个参数\n# 💡 必须返回新 state（不可变更新）"
+        },
+        "propRef": "dva.reducers"
+      },
+      {
+        "id": "d2-2",
+        "title": "effects——处理异步操作（Generator 函数）",
+        "content": "<b>effects</b> 用 Generator 函数处理异步（基于 Redux-Saga）。<br><br>三个关键关键字：<br>• <b>yield call</b>：调用异步函数（如 fetch）<br>• <b>yield put</b>：dispatch 一个 action（触发 reducer）<br>• <b>yield select</b>：读取当前 state<br><br>💡 和 Zustand 的 async actions 对比：Dva 用 Generator（*function），Zustand 直接 async/await。Generator 更强大但学习曲线更高。",
+        "code": {
+          "html": "",
+          "css": "",
+          "js": "# models/todo.js —— effects 完整示例\n\nimport * as api from '@/services/todo'  // API 层\n\nexport default {\n  namespace: 'todo',\n\n  state: {\n    list: [],\n    loading: false\n  },\n\n  reducers: {\n    setList(state, { payload }) {\n      return { ...state, list: payload }\n    },\n    setLoading(state, { payload }) {\n      return { ...state, loading: payload }\n    },\n    addItem(state, { payload }) {\n      return { ...state, list: [...state.list, payload] }\n    },\n    removeItem(state, { payload: id }) {\n      return { ...state, list: state.list.filter(i => i.id !== id) }\n    }\n  },\n\n  # ===== Effects（Generator 函数） =====\n  effects: {\n    // yield call: 调用异步函数\n    // yield put:  dispatch action（触发 reducer）\n    *fetchList({ payload }, { call, put, select }) {\n      yield put({ type: 'setLoading', payload: true })\n\n      try {\n        const data = yield call(api.getTodos)\n        yield put({ type: 'setList', payload: data })\n      } finally {\n        yield put({ type: 'setLoading', payload: false })\n      }\n    },\n\n    *addTodo({ payload: text }, { call, put, select }) {\n      // 先调 API，后改本地 state\n      const newItem = yield call(api.addTodo, text)\n      yield put({ type: 'addItem', payload: newItem })\n    },\n\n    *removeTodo({ payload: id }, { call, put }) {\n      yield call(api.deleteTodo, id)\n      yield put({ type: 'removeItem', payload: id })\n    }\n  },"
+        },
+        "propRef": "dva.effects"
+      }
+    ]
+  },
+  {
+    "id": "d3",
+    "title": "🔌 connect 连接组件——Model → View",
+    "desc": "connect/dispatch/useSelector/mapStateToProps",
+    "category": "dva",
+    "icon": "🔌",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "d3-1",
+        "title": "connect(mapStateToProps)——把 state 注入组件",
+        "content": "Dva 用 <b>connect</b>（来自 react-redux）把 model 的 state 和 dispatch 注入到组件 Props 中：<br><br><code>connect(({ counter }) => ({ count: counter.count }))(Component)</code><br><br>• 参数1 <b>mapStateToProps</b>：从全局 state 提取需要的字段<br>• 注入后组件通过 <code>props.count</code> 读取、<code>props.dispatch({...})</code> 触发<br><br>💡 和 Zustand 的 useStore(selector) 目标一样——订阅 state 变化。但 Dva 需要显式 connect，Zustand 一行 Hook。",
+        "code": {
+          "html": "",
+          "css": "",
+          "js": "# 组件中使用 Dva Model\n\nimport { connect } from 'dva'\n\nfunction Counter({ count, dispatch }) {\n  return (\n    <div>\n      <h2>Count: {count}</h2>\n      <button onClick={() =>\n        dispatch({\n          type: 'counter/add',\n          payload: 1\n        })\n      }>+1</button>\n      <button onClick={() =>\n        dispatch({ type: 'counter/minus' })\n      }>-1</button>\n      <button onClick={() =>\n        dispatch({ type: 'counter/reset' })\n      }>Reset</button>\n    </div>\n  )\n}\n\n// connect：把 model state 注入到 props\n// ({ counter }) 的 counter 来自 namespace\nconst mapStateToProps = ({ counter }) => ({\n  count: counter.count\n})\n\nexport default connect(mapStateToProps)(Counter)\n\n\n# 💡 connect 的返回值是「增强后的组件」\n# 💡 dispatch type 格式: 'namespace/reducerName'\n# 💡 可以 connect 多个 model：({ a, b }) => ({ ...a, ...b })"
+        },
+        "propRef": "dva.connect"
+      },
+      {
+        "id": "d3-2",
+        "title": "subscriptions——路由监听 + 数据预加载",
+        "content": "<b>subscriptions</b> 是 Dva 特有的概念——在路由变化或 app 启动时执行逻辑。<br><br>常见用法：<br>• <code>setup({ dispatch, history })</code>：app 启动时执行<br>• <code>history.listen</code>：监听路由变化准备数据<br><br>💡 和 Zustand 的 subscribe 名字像但功能不同——Dva 的 subscriptions 是「初始化入口」，Zustand 的 subscribe 是「变化监听」。",
+        "code": {
+          "html": "",
+          "css": "",
+          "js": "# Subscriptions —— 路由初始化 / 数据预加载\n\nexport default {\n  namespace: 'user',\n\n  state: { profile: null },\n\n  reducers: {\n    setProfile(state, { payload }) {\n      return { ...state, profile: payload }\n    }\n  },\n\n  effects: {\n    *fetchProfile({ payload }, { call, put }) {\n      const data = yield call(api.getUser)\n      yield put({ type: 'setProfile', payload: data })\n    }\n  },\n\n  # ===== Subscriptions =====\n  subscriptions: {\n    // 方式1：app 启动时执行\n    setup({ dispatch, history }) {\n      // 监听路由变化\n      history.listen(({ pathname }) => {\n        if (pathname === '/user') {\n          dispatch({ type: 'fetchProfile' })\n        }\n      })\n    },\n\n    // 方式2：直接 dispatch（app 启动时）\n    init({ dispatch }) {\n      dispatch({ type: 'fetchProfile' })\n    }\n  }\n}\n\n\n# 💡 subscriptions 在 app.start() 后自动执行\n# 💡 最适合「进页面时自动拉数据」的场景\n# 💡 比在组件 useEffect 里 dispatch 更解耦"
+        },
+        "propRef": "dva.subscriptions"
+      }
+    ]
+  },
+  {
+    "id": "d4",
+    "title": "🛒 实战——Dva Todo 应用",
+    "desc": "完整 model + connect + effects + subscriptions",
+    "category": "dva",
+    "icon": "🛒",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "d4-1",
+        "title": "完整 Todo 应用实现（model + 组件 + 入口）",
+        "content": "整合 Dva 所有核心技能：<br>① <b>dva()</b> → app.model() → app.start() 初始化<br>② <b>model</b>：state/list + reducers/add/toggle + effects/sync<br>③ <b>connect</b>：把 state 和 dispatch 注入组件<br>④ <b>subscriptions</b>：启动时从 localStorage 恢复数据<br><br>💡 这就是蚂蚁内部的标准 Dva 项目模式！和 Zustand/Pinia 的购物车对比，三大状态管理的异同尽收眼底。",
+        "code": {
+          "html": "<div style='color:#1890ff;font-size:13px'>🛒 Dva Todo = 完整企业级项目模式</div>",
+          "css": "",
+          "js": "# ===== src/models/todo.js =====\n\nexport default {\n  namespace: 'todo',\n\n  state: {\n    list: [],\n    nextId: 1\n  },\n\n  reducers: {\n    // 从 localStorage 恢复\n    restore(state, { payload }) {\n      return { ...state, list: payload }\n    },\n    // 添加\n    add(state, { payload: text }) {\n      const id = state.nextId\n      return {\n        ...state,\n        nextId: id + 1,\n        list: [...state.list, { id, text, done: false }]\n      }\n    },\n    // 切换完成状态\n    toggle(state, { payload: id }) {\n      return {\n        ...state,\n        list: state.list.map(item =>\n          item.id === id\n            ? { ...item, done: !item.done }\n            : item\n        )\n      }\n    },\n    // 删除\n    remove(state, { payload: id }) {\n      return {\n        ...state,\n        list: state.list.filter(item => item.id !== id)\n      }\n    }\n  },\n\n  effects: {\n    // 模拟异步保存\n    *sync({ payload }, { call, select }) {\n      const { todo } = yield select()\n      localStorage.setItem(\n        'dva-todos',\n        JSON.stringify(todo.list)\n      )\n    }\n  },\n\n  subscriptions: {\n    setup({ dispatch }) {\n      // 从 localStorage 恢复数据\n      const saved = localStorage.getItem('dva-todos')\n      if (saved) {\n        dispatch({\n          type: 'restore',\n          payload: JSON.parse(saved)\n        })\n      }\n    }\n  }\n}\n\n\n# ===== 组件中使用 =====\nimport { connect } from 'dva'\n\nfunction TodoApp({ list, dispatch }) {\n  return (\n    <div>\n      <input onKeyUp={(e) => { if (e.key==='Enter') {\n        dispatch({ type: 'todo/add', payload: e.target.value })\n        dispatch({ type: 'todo/sync' })\n        e.target.value = ''\n      }}} />\n      {list.map(item => (\n        <div key={item.id}\n          onClick={() => {\n            dispatch({ type: 'todo/toggle', payload: item.id })\n            dispatch({ type: 'todo/sync' })\n          }}>\n          {item.done ? '✅' : '⬜'} {item.text}\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport default connect(\n  ({ todo }) => ({ list: todo.list })\n)(TodoApp)\n\n\n# 💡 model 统一管理 state + reducers + effects\n# 💡 connect 把 model state 注入组件 props\n# 💡 dispatch type = 'namespace/reducerName'\n# 💡 subscriptions 实现自动持久化恢复"
+        },
+        "propRef": "dva.summary"
+      }
+    ]
+  }
+]

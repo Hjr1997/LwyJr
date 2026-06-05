@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lwyjr.com/sitemap.xml

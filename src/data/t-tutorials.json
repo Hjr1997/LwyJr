@@ -1,0 +1,360 @@
+[
+  {
+    "id": "t0",
+    "title": "📑 TypeScript 完整学习大纲",
+    "desc": "10篇教程 · 从类型注解到泛型实战",
+    "category": "ts",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "t0-1",
+        "title": "大纲——按 TypeScript 官方手册顺序学习",
+        "content": "<div style='max-width:720px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'>\n  <h2 style='text-align:center;color:#3178c6;margin:0 0 4px'>📑 TypeScript 学习路径</h2>\n  <p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>10篇 · 类型系统 → 泛型 → 工具类型</p>\n  <table style='width:100%;border-collapse:collapse;font-size:12px'>\n    <tr style='background:#3178c6'><th style='padding:6px 10px;color:#fff;text-align:left'>#</th><th style='padding:6px 10px;color:#fff;text-align:left'>章节</th><th style='padding:6px 10px;color:#fff;text-align:left'>核心</th></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔷 TS 是什么——给 JS 加类型</td><td style='padding:5px 10px;color:#888;font-size:11px'>编译原理、类型系统价值</td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🛠 基础类型——七大原始类型</td><td style='padding:5px 10px;color:#888;font-size:11px'>string、number、boolean、array、tuple、enum、any</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🏷 interface——给对象定形</td><td style='padding:5px 10px;color:#888;font-size:11px'>接口定义、可选属性、只读、索引签名</td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔗 函数类型——标注参和返</td><td style='padding:5px 10px;color:#888;font-size:11px'>参数类型、返回值、重载、this</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>5</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔀 联合类型与类型收窄</td><td style='padding:5px 10px;color:#888;font-size:11px'>union、Narrowing、typeof、instanceof</td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>6</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🎲 泛型——类型的「变量」</td><td style='padding:5px 10px;color:#888;font-size:11px'>Generic<T>、约束、工具类型</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>7</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>📦 枚举与断言</td><td style='padding:5px 10px;color:#888;font-size:11px'>enum、as、const assertion</td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>8</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🏗 class——面向对象</td><td style='padding:5px 10px;color:#888;font-size:11px'>修饰符、抽象类、实现接口</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>9</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🪄 类型别名与工具类型</td><td style='padding:5px 10px;color:#888;font-size:11px'>type、Partial<T>、Pick<T>、Record<K,V></td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>10</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🚀 综合实战</td><td style='padding:5px 10px;color:#888;font-size:11px'>TS 重构 JS 项目、类型声明文件</td></tr>\n  </table>\n  <p style='text-align:center;color:#3178c6;font-size:11px;margin-top:12px'><b>💡 每步都有类型对比展示（TS vs JS）</b></p>\n</div>",
+        "propRef": "ts.summary"
+      }
+    ]
+  },
+  {
+    "id": "t1",
+    "title": "🔷 TypeScript 是什么——给 JavaScript 加上「说明书」",
+    "desc": "TS 编译原理 / 类型系统价值 / 与 JS 的关系",
+    "category": "ts",
+    "icon": "🔷",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "t1-1",
+        "title": "比喻：JS 是口语交流，TS 是签合同",
+        "content": "JavaScript 是动态语言——类型在<b>运行时</b>才检查，传递了错误类型要到执行时才报错。<br><br><b>TypeScript = JavaScript + 类型系统</b>。你在写代码时用 TS 语法标注「这个变量是数字」、「这个函数返回字符串」，TS 编译器在<b>编译时</b>就帮你检查错误。<br><br>💡 比喻：JS 是口头约定（「你把钱给我」），TS 是签合同（「甲方于2026年5月30日支付100元整」）——类型就是合同的条款，有歧义直接报错。",
+        "code": {
+          "html": "<div id='demo1' style='text-align:center'>\n  <div style='display:flex;gap:12px;justify-content:center;flex-wrap:wrap'>\n    <div style='flex:1;min-width:200px;padding:16px;background:#2a2a3e;border-radius:8px;border:1px solid #f7df1e'>\n      <h4 style='color:#f7df1e;margin:0 0 8px'>JS（运行时）</h4>\n      <pre style='text-align:left;color:#ccc;font-size:12px;margin:0'><code>function add(a, b) {\n  return a + b;\n}\n// ❌ 运行时才发现错误\nadd(1, '2');\n// → '12'（字符串拼接）</code></pre>\n    </div>\n    <div style='flex:1;min-width:200px;padding:16px;background:#2a2a3e;border-radius:8px;border:1px solid #3178c6'>\n      <h4 style='color:#3178c6;margin:0 0 8px'>TS（编译时）</h4>\n      <pre style='text-align:left;color:#ccc;font-size:12px;margin:0'><code>function add(\n  a: number,\n  b: number\n): number {\n  return a + b;\n}\n// ✅ 编译时就报错\nadd(1, '2');\n// 错误！'2' 不是 number</code></pre>\n    </div>\n  </div>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:0}",
+          "js": "// TypeScript 是 JavaScript 的超集\n// 所有合法 JS 代码都是合法 TS 代码\n// 类型注解在编译后被擦除\n\nconst msg: string = 'Hello TypeScript!'\nconst count: number = 42\n\n// 这段代码在浏览器里也可以正常运行\n// 因为 TS 编译后 = 纯 JS\nconsole.log(msg, count)\ndocument.getElementById('demo1').innerHTML += '<p style=\"color:#3178c6;text-align:center\">✅ 类型标注编译后被擦除，最终执行的还是纯 JS</p>'"
+        },
+        "propRef": "ts.intro"
+      },
+      {
+        "id": "t1-2",
+        "title": "编译流程——TS 如何变成 JS",
+        "content": "TS 代码不是直接运行的——需要 <b>tsc</b>（TypeScript Compiler）编译成 JS。<br><br>流程：<code>tsc index.ts</code> → 生成 <code>index.js</code> → 浏览器/Node 运行。<br><br>核心机制：<b>类型擦除</b>（Type Erasure）——TS 的类型注解在编译后全部消失，只是给编译器看的「注释」，不影响运行时行为。<br><br>💡 类比：TS 是带批注的图纸，编译后是施工完成的建筑（纯 JS），图纸上的标注不会被建到楼里去。",
+        "code": {
+          "html": "<div style='background:#2a2a3e;padding:16px;border-radius:8px;text-align:left;font-size:12px;line-height:1.8'>\n  <p style='color:#3178c6;margin:0'># 终端执行：<p>\n  <p style='color:#ccc;margin:0'>$ npm install -g typescript<p>\n  <p style='color:#ccc;margin:0'>$ echo \"const msg: string = 'hi'\" > demo.ts<p>\n  <p style='color:#ccc;margin:0'>$ tsc demo.ts  # 编译 → demo.js<p>\n  <p style='color:#ccc;margin:0'>$ node demo.js  # 运行<p>\n  <p style='color:#888;margin:0'>输出: hi<p>\n</div>",
+          "css": "body{font-family:'SF Mono','Fira Code',monospace;background:#1a1a2e;padding:20px;color:#eee}",
+          "js": "// 展示：TS 代码 vs 编译后的 JS 代码\n\n// === TS 源码 ===\n// function greet(name: string): string {\n//   return 'Hello, ' + name\n// }\n\n// === 编译后的 JS ===\nfunction greet(name) {\n  return 'Hello, ' + name\n}\n\n// 类型标注全部消失了！但逻辑完全一样\nconsole.log(greet('TypeScript'))"
+        },
+        "propRef": "ts.intro"
+      },
+      {
+        "id": "t1-3",
+        "title": "🎯 练习：判断这段 TS 代码编译后会是什么样",
+        "content": "看下面这段 TS 代码，想一想：<br>① <code>: number</code> 和 <code>: string</code> 编译后会保留吗？<br>② <code>interface</code> 编译后会变成什么？<br>③ 最终运行的 JS 代码和 TS 代码有什么不同？<br><br>答案：类型注解和 interface 全部消失，只留下纯 JS 逻辑。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc'>看类型标注，想编译结果</p>\n  <div style='display:flex;gap:12px;justify-content:center;flex-wrap:wrap'>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;border:1px solid #3178c6'>\n      <p style='color:#3178c6;margin:0'>TS 源码</p>\n      <pre style='text-align:left;color:#ccc;font-size:11px'><code>interface User {\n  name: string\n  age: number\n}\nconst u: User = {\n  name: '小明',\n  age: 18\n}</code></pre>\n    </div>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;border:1px solid #f7df1e'>\n      <p style='color:#f7df1e;margin:0'>编译后 JS</p>\n      <pre style='text-align:left;color:#ccc;font-size:11px'><code>const u = {\n  name: '小明',\n  age: 18\n}</code></pre>\n    </div>\n  </div>\n  <p style='color:#888;font-size:11px;margin-top:12px'>interface 完全消失，类型标注被擦除</p>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:0}",
+          "js": "// TS 编译后类型全部消失，只留下 JS 逻辑\n// 验证：这段 JS 可以在浏览器中运行\n\nconst user = {\n  name: '小明',\n  age: 18\n}\nconsole.log('用户信息：', user.name, user.age + '岁')\n"
+        },
+        "propRef": "ts.intro"
+      }
+    ]
+  },
+  {
+    "id": "t2",
+    "title": "🛠 基础类型——TS 的七大原始类型",
+    "desc": "string/number/boolean/array/tuple/any/unknown/void/never",
+    "category": "ts",
+    "icon": "🛠",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "t2-1",
+        "title": "string、number、boolean——三大常用类型",
+        "content": "TS 最基础的三种类型，和 JS 原始类型对应：<br><br><code>let name: <b>string</b> = '小明'</code><br><code>let age: <b>number</b> = 18</code><br><code>let isDone: <b>boolean</b> = false</code><br><br>💡 一旦标注了类型，赋值其他类型就会<b>编译报错</b>：<br><code>name = 42</code> ❌ 错误！不能将 number 赋给 string。<br><br>另外还有 <b>void</b>（无返回值）、<b>never</b>（永不返回，如抛异常或死循环）、<b>unknown</b>（安全的 any）等进阶类型。",
+        "code": {
+          "html": "<div id='basic-types' style='text-align:center'>\n  <div style='display:flex;gap:8px;justify-content:center;flex-wrap:wrap'>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;min-width:140px'>\n      <p style='color:#ff9f0a;margin:0'>string</p>\n      <p style='color:#ccc;margin:4px 0;font-size:18px' id='strVal'>-</p>\n    </div>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;min-width:140px'>\n      <p style='color:#ff9f0a;margin:0'>number</p>\n      <p style='color:#ccc;margin:4px 0;font-size:18px' id='numVal'>-</p>\n    </div>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;min-width:140px'>\n      <p style='color:#ff9f0a;margin:0'>boolean</p>\n      <p style='color:#ccc;margin:4px 0;font-size:18px' id='boolVal'>-</p>\n    </div>\n  </div>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// 基础类型演示 —— 编译后类型消失，但逻辑保留\n\nvar nameVar = '小明'\nvar ageVar = 18\nvar isDoneVar = true\n\ndocument.getElementById('strVal').textContent = nameVar + ' (string)'\ndocument.getElementById('numVal').textContent = ageVar + ' (number)'\ndocument.getElementById('boolVal').textContent = isDoneVar + ' (boolean)'\n\n// 故意试试：把下面注释去掉，TS 编译器会报错\n// nameVar = 42  // Error: Type 'number' is not assignable to type 'string'\nconsole.log('✅ 三个基础类型演示完成')"
+        },
+        "propRef": "ts.basic"
+      },
+      {
+        "id": "t2-2",
+        "title": "array 和 tuple——数组与元组",
+        "content": "<b>array</b>：同一类型元素的集合。<br><code>let nums: <b>number[]</b> = [1, 2, 3]</code><br><br><b>tuple（元组）</b>：固定长度、各位置类型不同的数组（TS 独有！）。<br><code>let pair: <b>[string, number]</b> = ['小明', 18]</code><br><br>💡 tuple 和 array 的区别：array 所有元素同类型，tuple 每个位置有独立类型。元组在 React 的 useState 中大量使用！",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>数组 vs 元组对比</p>\n  <div style='display:flex;gap:12px;justify-content:center;flex-wrap:wrap'>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;border:1px solid #f7df1e'>\n      <p style='color:#f7df1e;margin:0'>Array (number[])</p>\n      <p style='color:#ccc;font-size:11px'>所有元素同类型</p>\n      <pre style='text-align:left;color:#ccc;font-size:11px'><code>let scores: number[]\n  = [98, 87, 95]\n// ✅ 都是数字</code></pre>\n    </div>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;border:1px solid #3178c6'>\n      <p style='color:#3178c6;margin:0'>Tuple ([string, number])</p>\n      <p style='color:#ccc;font-size:11px'>每位置定类型</p>\n      <pre style='text-align:left;color:#ccc;font-size:11px'><code>let user: [string, number]\n  = ['小明', 18]\n// ✅ 0位=string，1位=number</code></pre>\n    </div>\n  </div>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:0}",
+          "js": "// Array: 同类型元素集合\nvar scores = [98, 87, 95]\nconsole.log('数组 scores:', scores, '平均分:', (scores.reduce(function(a, b) { return a + b }) / scores.length).toFixed(1))\n\n// Tuple: 固定长度 + 各位置不同类型\nvar user = ['小明', 18]\nconsole.log('元组 user:', '姓名=' + user[0], '年龄=' + user[1])"
+        },
+        "propRef": "ts.array"
+      },
+      {
+        "id": "t2-3",
+        "title": "🎯 练习：定义自己的类型变量",
+        "content": "给以下变量加上正确的类型注解：<br>① 姓名 <code>let name</code><br>② 分数列表 <code>let scores</code><br>③ 坐标 [x, y] <code>let point</code><br>④ 是否登录 <code>let loggedIn</code><br><br>答案应该是：<code>string</code>、<code>number[]</code>、<code>[number, number]</code>、<code>boolean</code>",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc'>在脑海中给这些变量标类型：</p>\n  <table style='width:280px;margin:12px auto;border-collapse:collapse;font-size:13px'>\n    <tr style='background:#222'><td style='padding:6px;color:#ccc'>变量</td><td style='padding:6px;color:#888'>应标注类型</td></tr>\n    <tr><td style='padding:6px;color:#ccc'>name = '小明'</td><td style='padding:6px;color:#42d392'>string</td></tr>\n    <tr style='background:#222'><td style='padding:6px;color:#ccc'>scores = [95, 88]</td><td style='padding:6px;color:#42d392'>number[]</td></tr>\n    <tr><td style='padding:6px;color:#ccc'>point = [10, 20]</td><td style='padding:6px;color:#42d392'>[number, number]</td></tr>\n    <tr style='background:#222'><td style='padding:6px;color:#ccc'>loggedIn = true</td><td style='padding:6px;color:#42d392'>boolean</td></tr>\n  </table>\n  <p style='color:#888;font-size:11px'>多做几次，类型推断就成肌肉记忆了</p>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// 练习答案：对应的 JS 运行时验证\nvar nameStr = '小明'\nvar scoresArr = [95, 88]\nvar pointTuple = [10, 20]\nvar loggedInFlag = true\n\nconsole.log(nameStr, '(' + typeof nameStr + ')')\nconsole.log(scoresArr, '(数组长度=' + scoresArr.length + ')')\nconsole.log(pointTuple, '(元组)')\nconsole.log(loggedInFlag, '(' + typeof loggedInFlag + ')')"
+        },
+        "propRef": "ts.basic"
+      }
+    ]
+  },
+  {
+    "id": "t3",
+    "title": "🏷 interface——给对象「定形」",
+    "desc": "接口定义 / 可选属性 ? / readonly / 索引签名",
+    "category": "ts",
+    "icon": "🏷",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "t3-1",
+        "title": "interface —— 描述对象的「形状」",
+        "content": "在 JS 里，对象可以随意增减属性，代码里根本不知道它「应该长什么样」。<br><br>TS 的 <b>interface</b> 解决了这个问题——它描述了对象必须具备哪些属性、每个属性是什么类型。<br><br><code>interface User { name: <b>string</b>; age: <b>number</b> }</code><br>→ 任何 User 对象必须同时有 name 和 age。<br><br>💡 比喻：interface 就是对象的「身份证模板」——照片栏必须有、姓名栏必须有、缺一个都不行。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <div style='display:flex;gap:12px;justify-content:center;flex-wrap:wrap'>\n    <div style='padding:16px;background:#2a2a3e;border-radius:8px;border:1px solid #ff4757'>\n      <p style='color:#ff4757;margin:0'>❌ JS：对象形状不明确</p>\n      <pre style='text-align:left;font-size:11px;color:#ccc'><code>function greet(user) {\n  // user 有什么属性？\n  // 不知道，只能猜\n  return user.name\n}</code></pre>\n    </div>\n    <div style='padding:16px;background:#2a2a3e;border-radius:8px;border:1px solid #3178c6'>\n      <p style='color:#3178c6;margin:0'>✅ TS：interface 明确形状</p>\n      <pre style='text-align:left;font-size:11px;color:#ccc'><code>interface User {\n  name: string\n  age: number\n}\nfunction greet(\n  user: User\n): string {\n  return user.name\n}</code></pre>\n    </div>\n  </div>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:0}",
+          "js": "// JS 等价实现：虽然没有类型检查，\n// 但我们可以通过注释 + 运行时验证来保证正确性\n\nfunction greet(user) {\n  // 期望 user 有 name 和 age\n  if (!user || !user.name) {\n    return '❌ 无效用户'\n  }\n  return '你好，' + user.name + '（' + user.age + '岁）'\n}\n\nvar user1 = { name: '小明', age: 18 }\nconsole.log('✅', greet(user1))\n\n// 如果属性缺失，JS 只能运行时崩溃\nvar user2 = { name: '无年龄' }\nconsole.log('⚠', greet(user2))"
+        },
+        "propRef": "ts.interface"
+      },
+      {
+        "id": "t3-2",
+        "title": "可选属性 ? 与只读 readonly",
+        "content": "<b>可选属性 ?</b>：允许这个属性不存在。<br><code>age?: number</code> → user 可以没有 age<br><br><b>readonly</b>：属性创建后不可修改。<br><code>readonly id: number</code> → user.id = 5 编译报错<br><br>💡 实战场景：API 返回的用户对象中，id 不应被修改（readonly），头像可能为空（可选 ?）。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>完整的 User 接口定义</p>\n  <pre style='display:inline-block;text-align:left;background:#2a2a3e;color:#ccc;padding:16px;border-radius:8px;font-size:12px;line-height:1.8;border:1px solid #3178c6'><code>interface User {\n  readonly id: number    // 只读\n  name: string           // 必填\n  age?: number           // 可选\n  email?: string         // 可选\n}\n\nconst u: User = {\n  id: 1,\n  name: '张三'\n  // age 和 email 可选，可以不传\n}\n\n// u.id = 2  ❌ 编译报错！readonly</code></pre>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// JS 演示：readonly 的效果\n// （JS 没有真正的 readonly，但可以用 const + Object.freeze）\n\nvar user = Object.freeze({\n  id: 1,\n  name: '张三',\n  age: 25\n})\n\nconsole.log('用户 ID:', user.id, '(readonly)')\nconsole.log('姓名:', user.name)\n\n// 尝试修改\n// user.id = 2  // 不会生效（Object.freeze）\nconsole.log('尝试修改 ID 后:', user.id, '(未变)')"
+        },
+        "propRef": "ts.interface"
+      }
+    ]
+  },
+  {
+    "id": "t4",
+    "title": "🔗 函数类型——给参数和返回值「上锁」",
+    "desc": "参数类型 / 返回值类型 / 可选参数 / 函数重载",
+    "category": "ts",
+    "icon": "🔗",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "t4-1",
+        "title": "给函数参数和返回值加类型",
+        "content": "JS 函数参数没有类型约束，什么都能传——直到运行时 crash。<br><br>TS 让你在<b>定义函数时</b>就声明参数和返回值的类型：<br><code>function add(a: <b>number</b>, b: <b>number</b>): <b>number</b> { return a + b }</code><br><br>• <b>参数类型</b>写在 <code>: 类型</code><br>• <b>返回值类型</b>写在 <code>): 类型 {</code><br><br>💡 和 JS 教程的区别：JS 函数签名只是名字，TS 的函数签名是「合同的条款」。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>参数类型对比</p>\n  <table style='width:100%;border-collapse:collapse;font-size:12px;margin-top:8px'>\n    <tr style='background:#3178c6'><th style='padding:4px 8px;color:#fff'>参数</th><th style='padding:4px 8px;color:#fff'>类型</th><th style='padding:4px 8px;color:#fff'>可否省略</th></tr>\n    <tr><td style='padding:4px 8px;color:#ccc'>(a: number)</td><td style='padding:4px 8px;color:#42d392'>number</td><td style='padding:4px 8px;color:#ff4757'>必传</td></tr>\n    <tr style='background:#222'><td style='padding:4px 8px;color:#ccc'>(a?: number)</td><td style='padding:4px 8px;color:#42d392'>number | undefined</td><td style='padding:4px 8px;color:#42d392'>可选</td></tr>\n    <tr><td style='padding:4px 8px;color:#ccc'>(a = 10)</td><td style='padding:4px 8px;color:#42d392'>number</td><td style='padding:4px 8px;color:#42d392'>有默认值，可选</td></tr>\n  </table>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// TS 函数 → JS 等价\n\nfunction add(a, b) {\n  return a + b\n}\n\nfunction greet(name, greeting) {\n  if (greeting === void 0) { greeting = '你好' }\n  return greeting + '，' + name + '！'\n}\n\nconsole.log('add(1, 2) =', add(1, 2))\nconsole.log(greet('小明'))\nconsole.log(greet('小红', 'Hello'))\n\n// ❌ 如果你写了 add('1', 2)，\n// 在 JS 中结果为 '12'（字符串拼接）\n// 在 TS 中编译时就报错！"
+        },
+        "propRef": "ts.function"
+      },
+      {
+        "id": "t4-2",
+        "title": "🎯 练习：给真实函数加类型签名",
+        "content": "这个函数接收一个用户对象和格式化选项，返回格式化后的字符串。<br><br>思考：① user 参数是什么类型？② options 里有什么？③ 返回值是什么类型？<br><br>答案：<code>interface User { name: string; age: number }</code>、<code>interface Options { showAge?: boolean }</code>、返回 <code>string</code>",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#3178c6;font-size:14px'>给这个函数加 TS 类型</p>\n  <pre style='display:inline-block;text-align:left;background:#2a2a3e;color:#ccc;padding:14px;border-radius:8px;font-size:12px;line-height:1.8;border:1px solid #3178c6'><code>function formatUser(user, options) {\n  let result = user.name\n  if (options.showAge) {\n    result += '（' + user.age + '岁）'\n  }\n  return result\n}\n\n// TS 类型应该怎么写？\n// 1. user 类型:\n// 2. options 类型:\n// 3. 返回值类型:</code></pre>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// 答案：对应的 JS 实现\n\nfunction formatUser(user, options) {\n  var result = user.name\n  if (options && options.showAge) {\n    result += '（' + user.age + '岁）'\n  }\n  return result\n}\n\nvar u = { name: '小明', age: 25 }\nconsole.log(formatUser(u, { showAge: false }))\nconsole.log(formatUser(u, { showAge: true }))"
+        },
+        "propRef": "ts.function"
+      }
+    ]
+  },
+  {
+    "id": "t5",
+    "title": "🔀 联合类型与类型收窄——一个变量，多种可能",
+    "desc": "Union Types / Type Narrowing / typeof / instanceof",
+    "category": "ts",
+    "icon": "🔀",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "t5-1",
+        "title": "联合类型 (Union) —— 「或」的类型",
+        "content": "<b>联合类型</b>用 <code>|</code> 表示「A 或 B 都可以」：<br><code>let id: <b>string | number</b></code> → id 可以是字符串或数字<br><br>最常见的例子：API 返回的结果可能是成功数据，也可能是错误对象。<br><br>💡 比喻：联合类型就像「今天可以穿T恤<b>或</b>衬衫」——两者之一都可以，但不能穿「T恤衫」这种不存在的东西。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>联合类型演示</p>\n  <div style='display:flex;gap:12px;justify-content:center;flex-wrap:wrap'>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;border:1px solid #3178c6'>\n      <p style='color:#3178c6;margin:0'>string | number</p>\n      <pre style='text-align:left;font-size:11px;color:#ccc'><code>let id: string | number\nid = 'abc'   // ✅\nid = 123     // ✅</code></pre>\n    </div>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;border:1px solid #ff9f0a'>\n      <p style='color:#ff9f0a;margin:0'>API Result</p>\n      <pre style='text-align:left;font-size:11px;color:#ccc'><code>type Result =\n  | { ok: true; data: any }\n  | { ok: false; error: string }\n// 成功 或 失败</code></pre>\n    </div>\n  </div>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:0}",
+          "js": "// Union 类型演示\n\nfunction getLength(value) {\n  // string | number → 需要区分处理\n  if (typeof value === 'string') {\n    return value.length  // string 有 .length\n  }\n  return String(value).length  // number 转 string 再取长度\n}\n\nconsole.log('abc 长度:', getLength('abc'))\nconsole.log('12345 长度:', getLength(12345))\nconsole.log('100 长度:', getLength(100))"
+        },
+        "propRef": "ts.union"
+      },
+      {
+        "id": "t5-2",
+        "title": "类型收窄 (Narrowing) —— 逐步确定类型",
+        "content": "拿到联合类型变量后，你<b>不知道它到底是哪个类型</b>。需要用 JS 逻辑来「收窄」类型范围。<br><br><b>typeof</b> 收窄基本类型：<code>typeof x === 'string'</code><br><b>instanceof</b> 收窄类实例：<code>x instanceof Date</code><br><b>in</b> 收窄对象：<code>'length' in x</code><br><br>💡 这是 TS 最常用的模式之一——API 返回值处理、表单验证、数据转换都靠它。",
+        "code": {
+          "html": "<div id='narrowing' style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>类型收窄示例</p>\n  <input id='narrowInput' placeholder='输入任意值...' style='padding:6px;border-radius:4px;border:1px solid #444;background:#2a2a3e;color:#eee;width:200px'>\n  <p id='narrowResult' style='color:#42d392;font-size:13px;margin-top:8px'></p>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}input:focus{outline:none;border-color:#3178c6}",
+          "js": "var input = document.getElementById('narrowInput')\nvar result = document.getElementById('narrowResult')\n\nfunction processValue(value) {\n  // typeof 收窄：区分 string 和 number\n  if (typeof value === 'number') {\n    return '数值 → 平方 = ' + (value * value)\n  }\n  if (typeof value === 'string') {\n    if (value.length === 0) return '空字符串'\n    return '字符串 → 长度 = ' + value.length + '，大写 = ' + value.toUpperCase()\n  }\n  return '其他类型'\n}\n\ninput.oninput = function() {\n  var val = input.value\n  // 尝试转数字\n  if (!isNaN(Number(val)) && val !== '') {\n    result.textContent = processValue(Number(val))\n  } else {\n    result.textContent = processValue(val)\n  }\n}\n\ninput.value = 'hello'\nresult.textContent = processValue('hello')"
+        },
+        "propRef": "ts.narrowing"
+      }
+    ]
+  },
+  {
+    "id": "t6",
+    "title": "🎲 泛型——类型的「变量」",
+    "desc": "Generic<T> / 泛型约束 / 泛型函数和接口",
+    "category": "ts",
+    "icon": "🎲",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "t6-1",
+        "title": "泛型——不写死类型，用参数代替",
+        "content": "写函数时，你不知道参数到底是什么类型——可能是 string、number、自定义对象。<br><br><b>泛型</b>就是「类型的占位符」：<br><code>function first&lt;<b>T</b>&gt;(arr: <b>T[]</b>): <b>T</b> { return arr[0] }</code><br><br>T 是「类型变量」，调用时才确定：<br><code>first([1,2,3])</code> → T = number<br><code>first(['a','b'])</code> → T = string<br><br>💡 比喻：泛型就是「填空」——你给什么类型，函数就用什么类型，不用为每种类型重写一遍代码。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>泛型：一份代码，多种类型</p>\n  <div style='display:flex;gap:12px;justify-content:center;flex-wrap:wrap'>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;border:1px solid #ff4757'>\n      <p style='color:#ff4757;margin:0'>没有泛型</p>\n      <pre style='text-align:left;font-size:11px;color:#ccc'><code>function firstNum(\n  arr: number[]\n): number { ... }\n\nfunction firstStr(\n  arr: string[]\n): string { ... }\n// 每种类型写一遍！</code></pre>\n    </div>\n    <div style='padding:12px;background:#2a2a3e;border-radius:8px;border:1px solid #3178c6'>\n      <p style='color:#3178c6;margin:0'>有了泛型</p>\n      <pre style='text-align:left;font-size:11px;color:#ccc'><code>function first&lt;T&gt;(\n  arr: T[]\n): T { return arr[0] }\n\nfirst([1,2,3])   // T=number\nfirst(['a','b']) // T=string\n// 一份代码通吃！</code></pre>\n    </div>\n  </div>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:0}",
+          "js": "// 泛型的 JS 等价实现（JS 没有类型，所以不需要泛型）\n// 但泛型的思想可以用 JS 日志来演示\n\nfunction first(arr) {\n  if (arr.length === 0) return undefined\n  return arr[0]\n}\n\nconsole.log('first([1,2,3]) =', first([1, 2, 3]), '(类型:', typeof first([1, 2, 3]), ')')\nconsole.log('first([\"a\",\"b\"]) =', first(['a', 'b']), '(类型:', typeof first(['a', 'b']), ')')\nconsole.log('first([{name:\"x\"}]) =', JSON.stringify(first([{ name: 'x' }])), '(对象)')"
+        },
+        "propRef": "ts.generic"
+      },
+      {
+        "id": "t6-2",
+        "title": "泛型约束——限定 T 的范围",
+        "content": "有时候 T 不能是「任意类型」，需要有一定的限制。<br><br><code>function longest&lt;T extends <b>{ length: number }</b>&gt;(a: T, b: T): T</code><br>→ T 必须是有 .length 属性的类型（string、Array 等）<br><br>💡 常见场景：要求参数有特定属性（如 name）、要求参数是对象、要求参数是类的实例。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#3178c6;font-size:14px'>TS 泛型约束 → JS 运行时检查</p>\n  <input id='genInputA' placeholder='输入 a...' style='padding:6px;border-radius:4px;border:1px solid #444;background:#2a2a3e;color:#eee;width:150px'>\n  <input id='genInputB' placeholder='输入 b...' style='padding:6px;border-radius:4px;border:1px solid #444;background:#2a2a3e;color:#eee;width:150px;margin-left:8px'>\n  <p id='genResult' style='color:#42d392;font-size:13px;margin-top:8px'></p>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}input:focus{outline:none;border-color:#3178c6}",
+          "js": "// 泛型约束等价于：要求参数有 .length 属性\n\nfunction longer(a, b) {\n  if (a.length === undefined || b.length === undefined) {\n    return '❌ 参数必须有 .length 属性！'\n  }\n  return a.length > b.length ? a : b\n}\n\nvar inpA = document.getElementById('genInputA')\nvar inpB = document.getElementById('genInputB')\nvar res = document.getElementById('genResult')\n\nfunction update() {\n  var a = inpA.value\n  var b = inpB.value\n  var r = longer(a, b)\n  res.textContent = typeof r === 'string' ? r : ('较长的：' + r)\n}\n\ninpA.value = 'hello'\ninpB.value = 'world!'\ninpA.oninput = update\ninpB.oninput = update\nupdate()"
+        },
+        "propRef": "ts.generic"
+      }
+    ]
+  },
+  {
+    "id": "t7",
+    "title": "📦 枚举与类型断言",
+    "desc": "enum / as 断言 / const assertion / ! 非空断言",
+    "category": "ts",
+    "icon": "📦",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "t7-1",
+        "title": "enum 枚举——一组有名字的常量",
+        "content": "JS 里状态通常用字符串表示（'pending'、'done'），容易拼错。<br><br><b>enum</b> 给一组相关常量起统一的名字：<br><code>enum Status { Pending, Done, Failed }</code><br><br>默认从 0 开始编号，可自定义值。<br><code>Status.Done</code> → 1<br><br>💡 这是在 JS 教程中没有的概念！enum 是 TS 最实用的特性之一，完美替代写一坨 'pending' | 'done' | 'failed' 的魔法字符串。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>枚举 vs 魔法字符串</p>\n  <table style='width:320px;margin:8px auto;border-collapse:collapse;font-size:12px'>\n    <tr style='background:#3178c6'><th style='padding:4px 8px;color:#fff'>方式</th><th style='padding:4px 8px;color:#fff'>示例</th></tr>\n    <tr><td style='padding:4px 8px;color:#ff4757'>魔法字符串</td><td style='padding:4px 8px;color:#ccc'>if(status === 'pending')</td></tr>\n    <tr style='background:#222'><td style='padding:4px 8px;color:#42d392'>枚举 enum</td><td style='padding:4px 8px;color:#ccc'>if(status === Status.Pending)</td></tr>\n  </table>\n  <p style='color:#888;font-size:11px'>拼错 'pending' 不报错，拼错 Status.Pending 立即报错</p>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// JS 中等价枚举的实现：对象模拟\n\nvar Status = {\n  Pending: 0,\n  Done: 1,\n  Failed: 2\n}\n\nfunction getStatusText(status) {\n  switch (status) {\n    case Status.Pending: return '⏳ 待处理'\n    case Status.Done: return '✅ 已完成'\n    case Status.Failed: return '❌ 失败'\n    default: return '未知'\n  }\n}\n\nconsole.log('Status.Pending =', Status.Pending, '→', getStatusText(Status.Pending))\nconsole.log('Status.Done =', Status.Done, '→', getStatusText(Status.Done))\nconsole.log('Status.Failed =', Status.Failed, '→', getStatusText(Status.Failed))"
+        },
+        "propRef": "ts.enum"
+      },
+      {
+        "id": "t7-2",
+        "title": "as 类型断言——告诉编译器「相信我」",
+        "content": "TS 的类型推断不是万能的。当你比编译器更了解类型时，用 <b>as</b> 断言：<br><br><code>const canvas = document.getElementById('c') <b>as HTMLCanvasElement</b></code><br>→ 告诉 TS「getElementById 返回的是 Canvas，不是普通的 HTMLElement」<br><br><b>const assertion</b>：<code>const config = { url: '/api' } <b>as const</b></code><br>→ 把对象变成不可变的字面量类型。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>类型断言场景</p>\n  <div style='text-align:left;max-width:400px;margin:0 auto;font-size:12px;color:#ccc'>\n    <p>① <b style='color:#3178c6'>DOM 断言</b>：TS 不知道具体元素类型</p>\n    <pre style='background:#2a2a3e;padding:8px;border-radius:4px;font-size:11px'><code>const canvas = document.getElementById('c') as HTMLCanvasElement\ncanvas.getContext('2d')  // TS 知道这是 Canvas</code></pre>\n    <p>② <b style='color:#3178c6'>const assertion</b>：锁死字面量</p>\n    <pre style='background:#2a2a3e;padding:8px;border-radius:4px;font-size:11px'><code>const roles = ['admin', 'user'] as const\n// 类型变成 readonly ['admin', 'user']\n// 比 string[] 更精确！</code></pre>\n  </div>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:8px 0}",
+          "js": "// JS 演示：类型断言在运行时被擦除\n// 但 const assertion 的思想可以用 Object.freeze 体现\n\nvar roles = Object.freeze(['admin', 'user'])\nconsole.log('roles:', roles)\nconsole.log('roles 是否包含 admin:', roles.indexOf('admin') > -1)\n\n// as const 在运行时等价于普通数组\n// 区别只在编译时 TS 知道它是 readonly 元组类型"
+        },
+        "propRef": "ts.assertion"
+      }
+    ]
+  },
+  {
+    "id": "t8",
+    "title": "🏗 class——TS 的面向对象升级",
+    "desc": "修饰符 public/private/protected / 抽象类 / implements",
+    "category": "ts",
+    "icon": "🏗",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "t8-1",
+        "title": "TS 的 class——比 JS 多了「权限控制」",
+        "content": "JS 的 class 所有成员都是公开的（public）。<br><br>TS 增加了三种<b>访问修饰符</b>：<br>• <b>public</b>（默认）——任何地方可访问<br>• <b>private</b>——只在类内部可访问<br>• <b>protected</b>——类内部 + 子类可访问<br><br>💡 比喻：public 是公司大厅（谁都能进），private 是女厕所（只有特定人能进），protected 是家族内部（只有自家和亲戚能进）。注意：修饰符<b>只在编译时存在</b>，运行时全部消失！",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#3178c6;font-size:14px'>TS Class 修饰符 → JS Class</p>\n  <pre style='display:inline-block;text-align:left;background:#2a2a3e;padding:14px;border-radius:8px;font-size:11px;color:#ccc;line-height:1.8;border:1px solid #3178c6'><code>// TS 源码\nclass User {\n  public name: string\n  private _secret: string\n  protected role: string\n\n  constructor(n: string) {\n    this.name = n\n    this._secret = 'xxx'\n    this.role = 'user'\n  }\n}\n\n// 编译后 JS\nclass User {\n  constructor(n) {\n    this.name = n\n    // private/protected 消失！\n  }\n}</code></pre>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// JS 演示：等价逻辑\n\nfunction createUser(name) {\n  // private 变量用闭包模拟\n  var secret = 'xxx'\n\n  return {\n    name: name,\n    getSecret: function() { return secret },\n    role: 'user'\n  }\n}\n\nvar user1 = createUser('小明')\nconsole.log('公开 name:', user1.name)\nconsole.log('私有 secret:', user1.getSecret())\nconsole.log('直接访问 .secret:', user1.secret)  // undefined"
+        },
+        "propRef": "ts.class"
+      },
+      {
+        "id": "t8-2",
+        "title": "abstract 和 implements——定义「必须做什么」",
+        "content": "<b>abstract class</b>（抽象类）：定义子类必须实现的方法，但不能直接实例化。<br><code>abstract class Animal { abstract makeSound(): void }</code><br><br><b>implements</b>（实现接口）：类必须满足 interface 的定义。<br><code>class Dog <b>implements</b> Animal { makeSound() { console.log('Woof') } }</code><br><br>💡 类比：abstract 是「所有动物都要会叫」，但「动物」本身不能叫（太抽象了），所以由具体的狗/猫来实现「叫」的方法。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>抽象类 → JS 实现（无直接等价）</p>\n  <p style='color:#888;font-size:11px'>JS 可以用 throw Error 模拟抽象方法</p>\n  <pre style='display:inline-block;text-align:left;background:#2a2a3e;padding:14px;border-radius:8px;font-size:11px;color:#ccc;line-height:1.8;border:1px solid #3178c6'><code>class Animal {\n  makeSound() {\n    throw new Error('必须实现 makeSound')\n  }\n}\n\nclass Dog extends Animal {\n  makeSound() { return '🐶 Woof!' }\n}\n\nclass Cat extends Animal {\n  makeSound() { return '🐱 Meow!' }\n}\n\nconst dog = new Dog()\nconst cat = new Cat()\nconsole.log(dog.makeSound())\nconsole.log(cat.makeSound())\n\n// const a = new Animal()\n// a.makeSound() // 💥 Error!</code></pre>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// JS 等价：抽象方法用 throw 模拟\n\nclass Animal {\n  makeSound() {\n    throw new Error('子类必须实现 makeSound 方法')\n  }\n}\n\nclass Dog extends Animal {\n  makeSound() { return '🐶 Woof!' }\n}\n\nclass Cat extends Animal {\n  makeSound() { return '🐱 Meow!' }\n}\n\nvar dog = new Dog()\nvar cat = new Cat()\nconsole.log(dog.makeSound())\nconsole.log(cat.makeSound())\n\n// var a = new Animal()  // 去掉注释会抛错"
+        },
+        "propRef": "ts.class"
+      }
+    ]
+  },
+  {
+    "id": "t9",
+    "title": "🪄 类型别名与工具类型——TS 的魔法工具箱",
+    "desc": "type / Utility Types: Partial Pick Record Readonly Exclude",
+    "category": "ts",
+    "icon": "🪄",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "t9-1",
+        "title": "type 别名——给类型起个短名",
+        "content": "<b>type</b> 给复杂类型起别名，提升可读性：<br><code>type Point = { x: number; y: number }</code><br><code>type ID = string | number</code><br><br><b>type vs interface 区别</b>：<br>• interface 可以 extends 扩展<br>• type 可以做联合类型、交叉类型<br>• 推荐：描述对象用 interface，别名/联合用 type<br><br>💡 实战：API 返回一个超长类型，用 type 起个短名，代码清爽十倍。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#ccc;font-size:14px'>type 别名让复杂类型变简单</p>\n  <div style='text-align:left;max-width:450px;margin:0 auto;font-size:12px'>\n    <div style='background:#2a2a3e;padding:10px;border-radius:8px;margin:8px 0;border:1px solid #3178c6'>\n      <p style='color:#3178c6;margin:0'>联合类型别名</p>\n      <pre style='color:#ccc;font-size:11px;margin:4px 0'><code>type Status = 'pending' | 'done' | 'failed'\ntype ID = string | number</code></pre>\n    </div>\n    <div style='background:#2a2a3e;padding:10px;border-radius:8px;margin:8px 0;border:1px solid #3178c6'>\n      <p style='color:#3178c6;margin:0'>函数类型别名</p>\n      <pre style='color:#ccc;font-size:11px;margin:4px 0'><code>type Callback = (data: any) => void\ntype Validator = (value: string) => boolean</code></pre>\n    </div>\n  </div>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:0}",
+          "js": "// type 别名在编译后消失，运行时不需要\n// 但思想：用常量代替复杂的类型描述\n\nvar VALID_STATUS = ['pending', 'done', 'failed']\n\nfunction checkStatus(s) {\n  return VALID_STATUS.indexOf(s) > -1\n}\n\nconsole.log(\"checkStatus('done'):\", checkStatus('done'))\nconsole.log(\"checkStatus('deleted'):\", checkStatus('deleted'))"
+        },
+        "propRef": "ts.typealias"
+      },
+      {
+        "id": "t9-2",
+        "title": "工具类型 (Utility Types) —— 内置的「类型处理器」",
+        "content": "TS 内置了强大的工具类型，对已有类型做变换：<br><br>• <b>Partial&lt;T&gt;</b> → 所有属性变成可选<br>• <b>Required&lt;T&gt;</b> → 所有属性变成必填<br>• <b>Pick&lt;T, K&gt;</b> → 只取指定属性<br>• <b>Omit&lt;T, K&gt;</b> → 去掉指定属性<br>• <b>Record&lt;K, V&gt;</b> → 创建 { K: V } 类型<br>• <b>Readonly&lt;T&gt;</b> → 所有属性只读<br><br>💡 这些是 TS 的「瑞士军刀」，用得好可以少写一半类型代码。",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#3178c6;font-size:14px'>TS 工具类型速览</p>\n  <table style='width:100%;border-collapse:collapse;font-size:11px;margin-top:8px'>\n    <tr style='background:#3178c6'><th style='padding:4px 8px;color:#fff'>工具类型</th><th style='padding:4px 8px;color:#fff'>作用</th><th style='padding:4px 8px;color:#fff'>示例</th></tr>\n    <tr><td style='padding:4px 8px;color:#42d392'>Partial&lt;T&gt;</td><td style='padding:4px 8px;color:#ccc'>全部可选</td><td style='padding:4px 8px;color:#888'>Partial&lt;User&gt;</td></tr>\n    <tr style='background:#222'><td style='padding:4px 8px;color:#42d392'>Pick&lt;T,K&gt;</td><td style='padding:4px 8px;color:#ccc'>提取</td><td style='padding:4px 8px;color:#888'>Pick&lt;User,'name'|'age'&gt;</td></tr>\n    <tr><td style='padding:4px 8px;color:#42d392'>Omit&lt;T,K&gt;</td><td style='padding:4px 8px;color:#ccc'>删除</td><td style='padding:4px 8px;color:#888'>Omit&lt;User,'password'&gt;</td></tr>\n    <tr style='background:#222'><td style='padding:4px 8px;color:#42d392'>Record&lt;K,V&gt;</td><td style='padding:4px 8px;color:#ccc'>键值对</td><td style='padding:4px 8px;color:#888'>Record&lt;string, number&gt;</td></tr>\n    <tr><td style='padding:4px 8px;color:#42d392'>Readonly&lt;T&gt;</td><td style='padding:4px 8px;color:#ccc'>只读</td><td style='padding:4px 8px;color:#888'>Readonly&lt;Config&gt;</td></tr>\n  </table>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// 工具类型在编译后消失，但逻辑可在 JS 中体现\n\nvar fullUser = { name: '小明', age: 25, password: '123456' }\n\n// Partial 等价：允许部分属性缺失\nfunction updateUser(id, partial) {\n  console.log('更新用户', id, '部分字段:', JSON.stringify(partial))\n  return Object.assign({}, fullUser, partial)\n}\n\nconsole.log(updateUser(1, { age: 26 }))\n\n// Pick 等价：只提取指定字段\nconsole.log('提取 name+age:')\nconsole.log({ name: fullUser.name, age: fullUser.age })"
+        },
+        "propRef": "ts.utility"
+      }
+    ]
+  },
+  {
+    "id": "t10",
+    "title": "🚀 综合实战——用 TS 重构 JS 项目",
+    "desc": "类型声明 d.ts / 迁移策略 / tsconfig.json",
+    "category": "ts",
+    "icon": "🚀",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "t10-1",
+        "title": "从 JS 到 TS——渐进式迁移策略",
+        "content": "大型 JS 项目迁移 TS 不需要一次到位，可以<b>渐进式</b>：<br><br>① 安装 TypeScript：<code>npm i -D typescript</code><br>② 创建 <code>tsconfig.json</code>（允许 JS 和 TS 混用）<br>③ 文件后缀从 <code>.js</code> 逐步改为 <code>.ts</code><br>④ 从核心模块开始加类型，逐步覆盖边缘代码<br><br>💡 tsconfig 关键配置：<code>allowJs: true</code>（允许混用）、<code>strict: true</code>（严格模式）、<code>noImplicitAny: false</code>（渐进式关闭）",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <p style='color:#3178c6;font-size:14px'>tsconfig.json 核心配置</p>\n  <pre style='display:inline-block;text-align:left;background:#2a2a3e;padding:14px;border-radius:8px;font-size:11px;color:#ccc;line-height:1.8;border:1px solid #3178c6'><code>{\n  \"compilerOptions\": {\n    \"target\": \"ES2020\",\n    \"module\": \"ESNext\",\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"skipLibCheck\": true,\n    \"outDir\": \"./dist\",\n    \"rootDir\": \"./src\"\n  },\n  \"include\": [\"src/**/*\"]\n}</code></pre>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}pre{margin:0}",
+          "js": "// TS 项目最终执行的还是 JS\n// 演示一个完整的类型安全函数\n\nfunction validateUser(user) {\n  if (!user || typeof user !== 'object') {\n    return { ok: false, error: '参数必须是对象' }\n  }\n  if (!user.name || typeof user.name !== 'string') {\n    return { ok: false, error: '缺少 name 字段' }\n  }\n  if (typeof user.age !== 'number' || user.age < 0) {\n    return { ok: false, error: 'age 必须是非负数字' }\n  }\n  return { ok: true, data: user }\n}\n\nconsole.log('✅', validateUser({ name: '小明', age: 25 }))\nconsole.log('❌', validateUser({ name: '小红' }))\nconsole.log('❌', validateUser({ age: 18 }))\n\n// TS 让这些检查从「运行时」提前到「编译时」\n// 不用写一堆 if 校验，编译器帮你做！"
+        },
+        "propRef": "ts.tsconfig"
+      },
+      {
+        "id": "t10-2",
+        "title": "🎯 终极挑战：为 JS 库写类型声明文件",
+        "content": "<b>.d.ts</b> 文件是 TS 的类型声明文件，为 JS 库提供类型信息。<br><br>场景：你的项目用了 lodash（JS 库），写 <code>lodash.d.ts</code> 描述它的 API 类型，这样 TS 就能做智能提示和类型检查。<br><br>💡 做完这个练习，你就掌握了 TS 全部核心能力：基础类型 → interface → 泛型 → 工具类型 → 声明文件。<br>下一步：深入学习 <b>泛型编程、装饰器</b>！",
+        "code": {
+          "html": "<div style='text-align:center'>\n  <h3 style='color:#3178c6'>🎉 恭喜完成 TS 全部教程！</h3>\n  <div style='text-align:left;max-width:400px;margin:0 auto;font-size:13px;color:#ccc;line-height:1.8'>\n    <p>✅ 基础类型与类型注解</p>\n    <p>✅ interface 对象定形</p>\n    <p>✅ 函数类型与重载</p>\n    <p>✅ 联合类型与类型收窄</p>\n    <p>✅ 泛型 Generic&lt;T&gt;</p>\n    <p>✅ enum 枚举与 as 断言</p>\n    <p>✅ Class 访问修饰符</p>\n    <p>✅ 工具类型 Partial/Pick/Record</p>\n    <p>✅ tsconfig 与 d.ts 声明文件</p>\n  </div>\n  <p style='color:#3178c6;font-weight:bold;margin-top:16px'>下一步：Vue3 + TypeScript 实战开发！</p>\n</div>",
+          "css": "body{font-family:-apple-system,'PingFang SC',sans-serif;background:#1a1a2e;color:#eee;padding:20px}",
+          "js": "// 最终演示：类型安全的工具函数集合\n\nfunction safeGet(obj, key, defaultValue) {\n  if (obj && typeof obj === 'object' && key in obj) {\n    return obj[key]\n  }\n  return defaultValue\n}\n\nconsole.log('safeGet 演示:')\nconsole.log(safeGet({ name: '小明' }, 'name', '未知'))\nconsole.log(safeGet({ name: '小明' }, 'age', '未知'))\n\n// TS 让我们告别这种运行时防御代码\n// 编译器在写代码时就告诉我们字段存不存在！"
+        },
+        "propRef": "ts.summary"
+      }
+    ]
+  }
+]
