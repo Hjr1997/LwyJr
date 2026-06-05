@@ -263,7 +263,7 @@ function postBuild(distDir) {
   console.log(`  → server.mjs`)
   console.log(`  → .env.local`)
   console.log(`\n  Deploy: upload "${distDir}/" to server, then run:`)
-  console.log(`    node server.mjs . ${port || 80}`)
+  // console.log(`    node server.mjs . ${port || 80}`)
 }
 
 
