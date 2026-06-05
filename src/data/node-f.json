@@ -1,0 +1,89 @@
+[
+  {
+    "id": "n35",
+    "title": "🚂 Express.js 入门——用框架写 API",
+    "desc": "安装/Hello World/路由/中间件概念",
+    "category": "node",
+    "icon": "🚂",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "n35-1",
+        "title": "Express 是什么？为什么不用原生 http？",
+        "content": "原生 <code>http.createServer()</code> 写 API 太繁琐——手动解析 URL、处理路由、设置响应头。Express 是 Node.js 最流行的 Web 框架，让这些操作变得简单优雅。<p><b>安装</b>：<code>npm install express</code></p><p><b>核心特点</b>：路由系统、中间件机制、模板引擎支持、丰富的生态。</p>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#f8f9fa;padding:16px;border-radius:8px;color:#24292e;line-height:1.6\">\n<b># 创建项目</b>\n$ mkdir my-api && cd my-api\n$ npm init -y\n$ npm install express\n\n<b># 创建 server.js</b>\n$ touch server.js\n$ node server.js\n<b>Express running on http://localhost:3000</b>\n</div>",
+          "css": "",
+          "js": "const express = require('express');\nconst app = express();\nconst PORT = 3000;\n\napp.get('/', (req, res) => {\n  res.json({ message: 'Hello Express!' });\n});\n\napp.listen(PORT, () => {\n  console.log(`Express running on http://localhost:${PORT}`);\n});"
+        },
+        "propRef": "node.express"
+      },
+      {
+        "id": "n35-2",
+        "title": "路由——定义 API 端点",
+        "content": "Express 用 <code>app.get() / app.post() / app.put() / app.delete()</code> 定义路由：<pre><code>app.get('/api/users', (req, res) => {\n  res.json(users);\n});\napp.post('/api/users', (req, res) => {\n  // 创建用户\n});</code></pre><p><b>路由参数</b>：<code>/api/users/:id</code> → <code>req.params.id</code></p><p><b>查询参数</b>：<code>/api/users?limit=10</code> → <code>req.query.limit</code></p>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\nGET    /api/users          → 获取用户列表\nGET    /api/users/1        → 获取单个用户\nPOST   /api/users          → 创建用户\nPUT    /api/users/1        → 更新用户\nDELETE /api/users/1        → 删除用户\n\n<b># 测试 API</b>\n$ curl http://localhost:3000/api/users\n$ curl -X POST -H \"Content-Type: application/json\" \\\n  -d '{\"name\":\"LwyJr\"}' http://localhost:3000/api/users\n</div>",
+          "css": "",
+          "js": "const express = require('express');\nconst app = express();\napp.use(express.json());\n\nlet users = [\n  { id: 1, name: '张三', age: 25 },\n  { id: 2, name: '李四', age: 30 }\n];\nlet nextId = 3;\n\napp.get('/api/users', (req, res) => res.json(users));\n\napp.get('/api/users/:id', (req, res) => {\n  const user = users.find(u => u.id === +req.params.id);\n  user ? res.json(user) : res.status(404).json({ error: '用户不存在' });\n});\n\napp.post('/api/users', (req, res) => {\n  const user = { id: nextId++, ...req.body };\n  users.push(user);\n  res.status(201).json(user);\n});\n\napp.delete('/api/users/:id', (req, res) => {\n  users = users.filter(u => u.id !== +req.params.id);\n  res.json({ message: '已删除' });\n});\n\napp.listen(3000, () => console.log('API running on :3000'));"
+        },
+        "propRef": "node.express"
+      },
+      {
+        "id": "n35-3",
+        "title": "中间件——Express 的灵魂",
+        "content": "中间件是一个函数，每个请求都会经过它：<pre><code>app.use((req, res, next) => {\n  console.log(`${req.method} ${req.url}`);\n  next(); // 传给下一个中间件\n});</code></pre><p><b>常用内置中间件</b>：</p><ul><li><code>express.json()</code> — 解析 JSON 请求体</li><li><code>express.static('public')</code> — 托管静态文件</li><li><code>express.urlencoded()</code> — 解析表单数据</li></ul><p><b>中间件执行顺序</b>：按 <code>app.use()</code> 的注册顺序执行，<code>next()</code> 传递控制权。</p>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\n<b># 请求日志中间件</b>\nGET /api/users 200 5ms\nPOST /api/users 201 3ms\nGET /api/users/99 404 1ms\n\n<b># 执行顺序</b>\n1. 日志中间件 → console.log\n2. auth 中间件 → 检查 token\n3. 路由处理器 → 返回数据\n4. 错误中间件 → 捕获异常</div>",
+          "css": "",
+          "js": "const express = require('express');\nconst app = express();\napp.use(express.json());\n\n// 自定义日志中间件\napp.use((req, res, next) => {\n  const start = Date.now();\n  res.on('finish', () => {\n    const ms = Date.now() - start;\n    console.log(`${req.method} ${req.url} ${res.statusCode} ${ms}ms`);\n  });\n  next();\n});\n\n// 模拟认证中间件\napp.use('/api', (req, res, next) => {\n  const token = req.headers['authorization'];\n  if (!token && req.method !== 'GET') {\n    return res.status(401).json({ error: '需要登录' });\n  }\n  next();\n});\n\napp.get('/api/hello', (req, res) => res.json({ msg: '你好' }));\n\n// 错误处理中间件\napp.use((err, req, res, next) => {\n  console.error(err.stack);\n  res.status(500).json({ error: '服务器错误' });\n});\n\napp.listen(3000, () => console.log('Server on :3000'));"
+        },
+        "propRef": "node.express"
+      },
+      {
+        "id": "n35-4",
+        "title": "实战挑战——构建完整 REST API",
+        "content": "综合运用路由 + 中间件，构建一个完整的 TODO API。<p><b>功能要求</b>：</p><ol><li>CRUD 操作 (增删改查)</li><li>请求日志中间件</li><li>参数验证</li><li>错误处理</li></ol>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\n<b># API 测试</b>\nGET    /api/todos           → 所有任务\nPOST   /api/todos           → 创建任务\nPUT    /api/todos/1         → 更新任务\nDELETE /api/todos/1         → 删除任务\n\n<b># 创建任务</b>\n$ curl -X POST -H \"Content-Type: application/json\" \\\n  -d '{\"title\":\"学习Express\"}' \\\n  http://localhost:3000/api/todos\n\n<b># 标记完成</b>\n$ curl -X PUT http://localhost:3000/api/todos/1\n</div>",
+          "css": "",
+          "js": "const express = require('express');\nconst app = express();\napp.use(express.json());\n\n// 日志中间件\napp.use((req, res, next) => {\n  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);\n  next();\n});\n\nlet todos = [\n  { id: 1, title: '学习 Node.js', done: true },\n  { id: 2, title: '学习 Express', done: false }\n];\nlet nextId = 3;\n\n// 获取所有\napp.get('/api/todos', (req, res) => {\n  const { done } = req.query;\n  if (done !== undefined) {\n    return res.json(todos.filter(t => String(t.done) === done));\n  }\n  res.json(todos);\n});\n\n// 创建\napp.post('/api/todos', (req, res) => {\n  const { title } = req.body;\n  if (!title) return res.status(400).json({ error: 'title 必填' });\n  const todo = { id: nextId++, title, done: false };\n  todos.push(todo);\n  res.status(201).json(todo);\n});\n\n// 更新\napp.put('/api/todos/:id', (req, res) => {\n  const todo = todos.find(t => t.id === +req.params.id);\n  if (!todo) return res.status(404).json({ error: '不存在' });\n  Object.assign(todo, req.body);\n  res.json(todo);\n});\n\n// 删除\napp.delete('/api/todos/:id', (req, res) => {\n  todos = todos.filter(t => t.id !== +req.params.id);\n  res.json({ message: '已删除' });\n});\n\napp.listen(3000, () => console.log('TODO API on :3000'));"
+        },
+        "tip": "恭喜！你已经会用 Express 构建完整的 REST API 了！下一步学习数据库集成。",
+        "propRef": "node.express"
+      }
+    ]
+  },
+  {
+    "id": "n36",
+    "title": "🛤️ Express 路由拆分与项目结构",
+    "desc": "Router/模块化/错误处理",
+    "category": "node",
+    "icon": "🛤️",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "n36-1",
+        "title": "express.Router()——模块化路由",
+        "content": "把路由拆到独立文件，不再全部堆在 server.js：<pre><code>// routes/users.js\nconst router = require('express').Router();\nrouter.get('/', (req, res) => { ... });\nrouter.post('/', (req, res) => { ... });\nmodule.exports = router;\n\n// server.js\nconst userRoutes = require('./routes/users');\napp.use('/api/users', userRoutes);</code></pre><p><b>好处</b>：代码清晰、团队协作、每个模块独立维护。</p>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\nproject/\n├── server.js          # 入口\n├── routes/\n│   ├── users.js       # 用户路由\n│   └── posts.js       # 帖子路由\n├── middleware/\n│   └── auth.js        # 认证中间件\n└── package.json\n\n<b># 每个 router 文件:</b>\nconst router = require('express').Router();\nrouter.get('/', handler);\nmodule.exports = router;</div>",
+          "css": "",
+          "js": "// 模拟模块化路由结构\nconst express = require('express');\nconst app = express();\napp.use(express.json());\n\n// users 路由模块\nconst userRouter = express.Router();\nuserRouter.get('/', (req, res) => {\n  res.json([{ id: 1, name: '张三' }, { id: 2, name: '李四' }]);\n});\nuserRouter.get('/:id', (req, res) => {\n  res.json({ id: +req.params.id, name: '用户' + req.params.id });\n});\nuserRouter.post('/', (req, res) => {\n  res.status(201).json({ id: 3, ...req.body });\n});\n\n// posts 路由模块\nconst postRouter = express.Router();\npostRouter.get('/', (req, res) => {\n  res.json([{ id: 1, title: '第一篇' }, { id: 2, title: '第二篇' }]);\n});\n\napp.use('/api/users', userRouter);\napp.use('/api/posts', postRouter);\n\napp.listen(3000, () => console.log('Modular API on :3000'));"
+        },
+        "propRef": "node.express"
+      },
+      {
+        "id": "n36-2",
+        "title": "全局错误处理",
+        "content": "Express 有 4 个参数的中间件专门处理错误：<pre><code>app.use((err, req, res, next) => {\n  console.error(err);\n  res.status(err.status || 500).json({\n    error: err.message\n  });\n});</code></pre><p>在路由中用 <code>next(err)</code> 传递错误给错误处理器。</p>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\n<b># 测试错误处理</b>\nGET /api/error → { \"error\": \"这是一个测试错误\" }\nGET /api/not-found → 404 { \"error\": \"路由不存在\" }\n\n<b># 自定义错误类</b>\nclass AppError extends Error {\n  constructor(msg, status) {\n    super(msg);\n    this.status = status;\n  }\n}</div>",
+          "css": "",
+          "js": "const express = require('express');\nconst app = express();\n\nclass AppError extends Error {\n  constructor(message, status = 500) {\n    super(message);\n    this.status = status;\n  }\n}\n\n// 模拟成功路由\napp.get('/api/ok', (req, res) => {\n  res.json({ status: 'ok' });\n});\n\n// 模拟业务错误\napp.get('/api/error', (req, res, next) => {\n  next(new AppError('这是一个测试错误', 400));\n});\n\n// 404 处理\napp.use((req, res) => {\n  res.status(404).json({ error: `路由不存在: ${req.method} ${req.url}` });\n});\n\n// 全局错误处理\napp.use((err, req, res, next) => {\n  console.error(`[ERROR] ${err.message}`);\n  res.status(err.status || 500).json({ error: err.message });\n});\n\napp.listen(3000, () => console.log('Error handling demo on :3000'));"
+        },
+        "propRef": "node.express"
+      }
+    ]
+  }
+]

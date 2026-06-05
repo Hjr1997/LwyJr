@@ -148,6 +148,9 @@ onMounted(() => {
 .roadmap-card:hover .roadmap-hint {
   opacity: 1; transform: translateX(0);
 }
+@media (hover: none) {
+  .roadmap-hint { opacity: .7; transform: translateX(0); }
+}
 
 /* Detail Modal */
 .detail-modal {
@@ -166,6 +169,7 @@ onMounted(() => {
 .detail-meta { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px; }
 .detail-skills h4 { font-size: 0.9rem; margin-bottom: 8px; }
 .skill-cloud { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
-.skill-tag { padding: 4px 12px; background: rgba(102,126,234,0.1); color: var(--primary); border-radius: 6px; font-size: 0.78rem; }
-.detail-actions { display: flex; gap: 12px; }
+.skill-tag { padding: 4px 12px; background: var(--tag-bg); color: var(--primary); border-radius: 6px; font-size: 0.78rem; }
+.detail-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+@media(max-width:640px){ .detail-modal { padding: 24px 20px; } }
 </style>

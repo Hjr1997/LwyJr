@@ -214,5 +214,6 @@ function dismiss(){if(leaving.value)return;leaving.value=true;progress.value=100
 .cta-btn svg{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
 .cta-btn:hover svg{transform:translateX(4px)}
 
-@media(max-width:600px){.hero-title{font-size:2rem}.code-block{max-width:94vw}.cb-code{font-size:.65rem;min-height:110px}.capsules-row{gap:5px}.cap-item{padding:5px 10px;font-size:.66rem}.counters-row{gap:10px}.counter-card{padding:8px 14px}.c-num{font-size:1.2rem}.cta-btn{padding:12px 28px;font-size:.9rem}}
+@media(max-width:600px){.hero-title{font-size:2rem}.code-block{max-width:94vw}.cb-code{font-size:.65rem;min-height:110px}.capsules-row{gap:5px}.cap-item{padding:5px 10px;font-size:.66rem}.counters-row{gap:10px}.counter-card{padding:8px 14px}.c-num{font-size:1.2rem}.cta-btn{padding:14px 32px;font-size:.9rem;min-height:44px}}
+@media(orientation:landscape) and (max-height:500px){.hero-title{font-size:1.6rem}.code-block{display:none}.capsules-row{display:none}.counters-row{gap:8px}.counter-card{padding:6px 10px}.c-num{font-size:1rem}}
 </style>

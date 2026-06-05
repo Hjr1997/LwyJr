@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import type { IQExample } from '@/data/interview-questions'
 
 const visible = ref(false)
@@ -69,6 +69,13 @@ function close() {
   visible.value = false
   document.body.style.overflow = ''
 }
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape' && visible.value) close()
+}
+
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
 function copyCode() {
   navigator.clipboard.writeText(data.value.code).then(() => {
@@ -130,7 +137,7 @@ defineExpose({ open, close })
   border: none;
   cursor: pointer;
   color: var(--text-secondary, #888);
-  padding: 4px;
+  padding: 10px;
   flex-shrink: 0;
   border-radius: 50%;
   transition: background .2s;
@@ -238,6 +245,7 @@ defineExpose({ open, close })
   .ex-sheet {
     border-radius: 20px 20px 0 0;
     max-height: 90vh;
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
 }
 </style>

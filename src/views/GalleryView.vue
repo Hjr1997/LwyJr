@@ -140,7 +140,7 @@ onMounted(() => {
 @media (max-width: 768px) { .modal-body { grid-template-columns: 1fr; } }
 .modal-preview-panel { background: var(--preview-bg); display: flex; flex-direction: column; }
 .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; color: var(--preview-header-text); font-size: 0.85rem; border-bottom: 1px solid var(--preview-border); }
-.btn-run { padding: 6px 18px; background: linear-gradient(135deg, #4ade80, #22c55e); color: #000; border: none; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+.btn-run { padding: 6px 18px; background: var(--success); color: #fff; border: none; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
 .btn-run:hover { transform: scale(1.05); box-shadow: 0 0 12px rgba(74,222,128,0.5); }
 .preview-iframe-wrap { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .preview-iframe { width: 100%; height: 100%; border: none; background: var(--preview-bg); min-height: 350px; }

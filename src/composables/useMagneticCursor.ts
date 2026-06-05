@@ -1,15 +1,9 @@
 import { onMounted, onUnmounted } from 'vue'
 
-/**
- * Magnetic cursor effect — elements gently "attract" the cursor position.
- * Applied sparingly to primary CTA buttons and interactive cards.
- *
- * @param selector CSS selector for elements to magnetize
- * @param strength Strength of attraction (px), default 8
- */
+const handlerMap = new WeakMap<HTMLElement, { onMove: (e: MouseEvent) => void; onLeave: () => void }>()
+
 export function useMagneticCursor(selector: string, strength = 8) {
   const items: HTMLElement[] = []
-  let rafId = 0
 
   function bind(el: HTMLElement) {
     el.style.transition = 'transform 0.35s cubic-bezier(.16,1,.3,1)'
@@ -31,7 +25,7 @@ export function useMagneticCursor(selector: string, strength = 8) {
     el.addEventListener('mouseleave', onLeave)
 
     items.push(el)
-    el._magHandlers = { onMove, onLeave }
+    handlerMap.set(el, { onMove, onLeave })
   }
 
   onMounted(() => {
@@ -40,19 +34,13 @@ export function useMagneticCursor(selector: string, strength = 8) {
 
   onUnmounted(() => {
     items.forEach((el) => {
-      if (el._magHandlers) {
-        el.removeEventListener('mousemove', el._magHandlers.onMove)
-        el.removeEventListener('mouseleave', el._magHandlers.onLeave)
+      const handlers = handlerMap.get(el)
+      if (handlers) {
+        el.removeEventListener('mousemove', handlers.onMove)
+        el.removeEventListener('mouseleave', handlers.onLeave)
+        handlerMap.delete(el)
       }
     })
     items.length = 0
-    cancelAnimationFrame(rafId)
   })
-}
-
-// Augment HTMLElement for handler storage
-declare global {
-  interface HTMLElement {
-    _magHandlers?: { onMove: (e: MouseEvent) => void; onLeave: () => void }
-  }
 }

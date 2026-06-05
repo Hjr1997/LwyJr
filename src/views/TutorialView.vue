@@ -4,11 +4,21 @@
     <p class="ss">从零到全栈的系统化学习，每一步都有可运行代码</p>
     <div class="tt">
       <button v-for="t in tabList" :key="t.v" class="tb" :class="{on:curTab===t.v}" @click="curTab=t.v">{{t.i}} {{t.l}} <span class="tc">{{stepCounts[t.v]||0}}</span></button>
+      <button class="tb adv-toggle" @click="showAdv=!showAdv">更多 {{showAdv?'▴':'▾'}}</button>
+    </div>
+    <div v-if="showAdv" class="tt tt-adv">
+      <button v-for="t in advTabList" :key="t.v" class="tb" :class="{on:curTab===t.v}" @click="curTab=t.v">{{t.i}} {{t.l}} <span class="tc">{{stepCounts[t.v]||0}}</span></button>
     </div>
     <div class="tl">
       <aside class="ts">
         <h4>📚 {{activeLabel}} 课程</h4>
-        <div v-for="tu in filteredList" :key="tu.id" class="ci" :class="{on:ch===tu.id}" @click="ch=tu.id;renderCodes()"><div><div class="ct">{{tu.title}}</div><div class="cm">{{tu.steps.length}}节·{{tu.difficulty}}</div></div></div>
+        <div v-for="tu in filteredList" :key="tu.id" class="ci" :class="{on:ch===tu.id}" @click="ch=tu.id;renderCodes()">
+          <div>
+            <div class="ct">{{tu.title}}</div>
+            <div class="cm">{{tu.steps.length}}节·{{tu.difficulty}}</div>
+          </div>
+          <div class="ci-prog">{{tu.steps.filter(s=>store.isTutorialDone(s.id)).length}}/{{tu.steps.length}}</div>
+        </div>
         <div v-if="filteredList.length===0" class="em">暂无教程</div>
       </aside>
       <div class="tm">
@@ -37,10 +47,14 @@
               <div class="noutput" style="border-top:none;border-radius:0" v-html="sanitize(stepCodes[s.id].html)"></div>
             </div>
             <div v-if="s.tip" class="tip" v-html="sanitize(s.tip)"></div>
-            <button class="bcom" :class="{done:store.isTutorialDone(s.id)}" @click="store.markTutorialComplete(s.id)">{{store.isTutorialDone(s.id)?'Done':'Mark Done'}}</button>
+            <button class="bcom" :class="{done:store.isTutorialDone(s.id)}" @click="store.markTutorialComplete(s.id)">{{store.isTutorialDone(s.id)?'✓ Completed':'Mark Done'}}</button>
+            <div class="step-nav">
+              <button v-if="i>0" class="snav-btn" @click="scrollToStep(i-1)">← 上一步</button>
+              <button v-if="i<cur.steps.length-1" class="snav-btn snav-next" @click="scrollToStep(i+1)">下一步 →</button>
+            </div>
           </div>
         </div>
-        <div v-else class="ph"><span style="font-size:3rem">👈</span><h3>Select a course</h3><p>Start from HTML basics</p></div>
+        <div v-else class="ph"><span class="ph-icon">👆</span><h3>Select a course</h3><p>Start from HTML basics</p></div>
       </div>
     </div>
   </div>
@@ -64,18 +78,23 @@ const stepCodes = reactive<Record<string,Record<string,string>>>({})
 const propModal = ref<InstanceType<typeof PropModal>|null>(null)
 
 const tabList = [
-  {i:'🌐',l:'互联网基础',v:'internet'},{i:'📄',l:'HTML',v:'html'},{i:'🎨',l:'CSS',v:'css'},
+  {i:'📄',l:'HTML',v:'html'},{i:'🎨',l:'CSS',v:'css'},
   {i:'⚡',l:'JavaScript',v:'js'},{i:'🔷',l:'TypeScript',v:'ts'},{i:'💚',l:'Vue 3',v:'vue3'},
-  {i:'🗄',l:'Zustand',v:'zustand'},{i:'🔷',l:'Dva',v:'dva'},{i:'⚛️',l:'React',v:'react2'},
-  {i:'🧩',l:'Pinia',v:'pinia'},{i:'⚡',l:'Vite',v:'vite'},{i:'🎯',l:'Canvas/SVG',v:'canvas'},
-  {i:'🔧',l:'构建工具',v:'build'},{i:'🚀',l:'项目实战',v:'project'},{i:'🟢',l:'Node.js',v:'node'},
-  {i:'🗄',l:'数据库',v:'db'},{i:'🔗',l:'Fullstack',v:'fullstack'},
+  {i:'⚛️',l:'React',v:'react2'},{i:'🟢',l:'Node.js',v:'node'},
 ]
+const advTabList = [
+  {i:'🧩',l:'Pinia',v:'pinia'},{i:'🗄',l:'Zustand',v:'zustand'},{i:'🔷',l:'Dva',v:'dva'},
+  {i:'⚡',l:'Vite',v:'vite'},{i:'🎯',l:'Canvas/SVG',v:'canvas'},{i:'🔧',l:'构建工具',v:'build'},
+  {i:'🚀',l:'项目实战',v:'project'},{i:'🗄',l:'数据库',v:'db'},{i:'🔗',l:'Fullstack',v:'fullstack'},
+  {i:'🌐',l:'互联网基础',v:'internet'},
+]
+const allTabs = [...tabList, ...advTabList]
+const showAdv = ref(false)
 const stepCounts:Record<string,number>={}
 tutorials.forEach(t=>{stepCounts[t.category]=(stepCounts[t.category]||0)+t.steps.length})
 const filteredList = computed(()=>tutorials.filter(t=>t.category===curTab.value))
 const cur = computed(()=>filteredList.value.find(t=>t.id===ch.value)||null)
-const activeLabel = computed(()=>tabList.find(t=>t.v===curTab.value)?.l||'')
+const activeLabel = computed(()=>allTabs.find(t=>t.v===curTab.value)?.l||'')
 const isNode = computed(()=>{const c=cur.value?.category;return c==='node'||c==='vite'||c==='dva'||c==='pinia'||c==='zustand'})
 const overviewIds = new Set(['h0','c25','j33','t0','r0','v0','i0'])
 const isOverview = computed(()=>!!(cur.value&&overviewIds.has(cur.value.id)))
@@ -123,11 +142,12 @@ function runCode(stepId:string){
 function isFullscreenStep():boolean{if(!cur.value)return false;const cid=cur.value.id;if(cid==='c25'||cid==='c23'||cid==='j33'||cid==='h20')return true;const s=cur.value.steps.find(s=>s.code);return!!(s&&s.title.includes('🎮'))}
 function renderCodes(){nextTick(()=>{const t=cur.value;if(t){initStepCodes(t.id);const isN=t.category==='node';t.steps.forEach(s=>{if(hasCode(s)&&!isN)setTimeout(()=>runCode(s.id),100)});window.scrollTo({top:0,behavior:'smooth'})}})}
 watch(curTab,()=>{if(filteredList.value.length>0){ch.value=filteredList.value[0].id;renderCodes()}else ch.value=''})
-watch(()=>route.query.tab,(tab)=>{if(tab&&tabList.some(t=>t.v===tab)){curTab.value=tab as string}},{immediate:false})
+watch(()=>route.query.tab,(tab)=>{if(tab&&allTabs.some(t=>t.v===tab)){curTab.value=tab as string}},{immediate:false})
 const onTutNav=(e:Event)=>{const id=(e as CustomEvent).detail;if(!id)return;const tgt=tutorials.find(t=>t.id===id);if(tgt){curTab.value=tgt.category;nextTick(()=>{ch.value=id;renderCodes()})}}
 onMounted(()=>{if(filteredList.value.length>0){ch.value=filteredList.value[0].id;renderCodes()}});document.addEventListener('tutNav',onTutNav)
 onUnmounted(()=>{document.removeEventListener('tutNav',onTutNav)})
 function openPropModal(propRef:string){const[cat,key]=propRef.split('.');if(cat&&key)propModal.value?.open(cat,key)}
+function scrollToStep(idx:number){nextTick(()=>{const steps=document.querySelectorAll('.step');if(steps[idx])steps[idx].scrollIntoView({behavior:'smooth',block:'start'})})}
 const copiedBtns = new Set<string>()
 function copyNodeCode(stepId:string,e:MouseEvent){const cm=stepCodes[stepId];if(!cm||!cm.js)return;const btn=e.currentTarget as HTMLElement;if(!btn||copiedBtns.has(stepId))return;copiedBtns.add(stepId);const orig=btn.textContent;btn.textContent='Copied!';navigator.clipboard.writeText(cm.js).then(()=>{setTimeout(()=>{btn.textContent=orig;copiedBtns.delete(stepId)},1500)}).catch(()=>{btn.textContent=orig;copiedBtns.delete(stepId)})}
 </script>
@@ -137,8 +157,14 @@ function copyNodeCode(stepId:string,e:MouseEvent){const cm=stepCodes[stepId];if(
 .st{font-size:clamp(2rem,4vw,3rem);text-align:center;margin-bottom:8px;font-weight:900;letter-spacing:-.03em}
 .gt{background:var(--gradient-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .ss{text-align:center;color:var(--text-secondary);max-width:560px;margin:0 auto 36px;font-size:1.05rem;font-weight:400}
-.tt{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;background:var(--bg-glass);padding:4px;border-radius:var(--radius-full);backdrop-filter:blur(12px);max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tt{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;background:var(--bg-glass);padding:4px;border-radius:var(--radius-full);backdrop-filter:blur(12px);max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative}
 .tt::-webkit-scrollbar{display:none}
+.tt::before,.tt::after{content:'';position:sticky;top:0;bottom:0;min-width:24px;flex-shrink:0;z-index:1;pointer-events:none}
+.tt::before{left:0;background:linear-gradient(to right,var(--bg-glass),transparent)}
+.tt::after{right:0;margin-left:auto;background:linear-gradient(to left,var(--bg-glass),transparent)}
+.tt-adv{margin-top:8px;margin-bottom:24px;border-top:1px solid var(--border);padding-top:8px}
+.adv-toggle{color:var(--text-tertiary);font-size:.78rem}
+.adv-toggle:hover{color:var(--primary)}
 .tb{padding:9px 16px;border-radius:var(--radius-full);background:transparent;border:none;color:var(--text-secondary);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .3s var(--spring-bouncy);white-space:nowrap;min-height:44px;min-width:44px;display:inline-flex;align-items:center;gap:4px}
 .tb:hover{color:var(--text)}
 .tb.on{background:var(--bg-card);color:var(--primary);box-shadow:var(--shadow-sm);font-weight:600;transform:scale(1.02)}
@@ -174,6 +200,7 @@ function copyNodeCode(stepId:string,e:MouseEvent){const cm=stepCodes[stepId];if(
 .ci.on::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;background:var(--primary);border-radius:2px;animation:barIn .3s ease}
 @keyframes barIn{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 .ct{font-size:.82rem;font-weight:600}.cm{font-size:.7rem;color:var(--text-secondary)}
+.ci-prog{font-size:.65rem;color:var(--text-tertiary);margin-left:auto;white-space:nowrap}
 .em{text-align:center;padding:24px;color:var(--text-secondary);font-size:.82rem}
 .tm{min-height:400px}
 .chapter-enter{animation:chapterIn .4s cubic-bezier(.16,1,.3,1) both}
@@ -199,7 +226,7 @@ function copyNodeCode(stepId:string,e:MouseEvent){const cm=stepCodes[stepId];if(
 .crun:hover{transform:scale(1.08);box-shadow:0 0 12px rgba(52,199,89,.35)}
 .cbody{display:grid;grid-template-columns:1fr 1fr;min-height:220px}
 .cbodyFull{grid-template-columns:1fr}
-@media(max-width:700px){.cbody{grid-template-columns:1fr}}
+@media(max-width:768px){.cbody{grid-template-columns:1fr}}
 .ced{border-right:1px solid var(--code-border)}
 .ctx{width:100%;height:100%;min-height:220px;resize:none}
 .cpv{position:relative;background:var(--preview-bg)}
@@ -210,12 +237,19 @@ function copyNodeCode(stepId:string,e:MouseEvent){const cm=stepCodes[stepId];if(
 .bcom{margin-top:12px;padding:8px 20px;border-radius:var(--radius-full);background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:.85rem;cursor:pointer;transition:all .3s var(--spring-bouncy)}
 .bcom:hover{border-color:var(--primary);color:var(--primary)}
 .bcom.done{background:rgba(52,199,89,.1);border-color:var(--success);color:var(--success)}
+.step-nav{display:flex;gap:10px;margin-top:12px}
+.snav-btn{padding:6px 18px;border-radius:var(--radius-full);background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);font-size:.82rem;cursor:pointer;transition:all .25s var(--spring-bouncy)}
+.snav-btn:hover{border-color:var(--primary);color:var(--primary)}
+.snav-next{margin-left:auto;background:var(--primary);color:#fff;border-color:var(--primary)}
+.snav-next:hover{background:var(--primary-dark);transform:translateY(-1px)}
 .ph{text-align:center;padding:100px 20px;color:var(--text-secondary);background:var(--bg-glass);border-radius:var(--radius-xl);border:1px solid var(--border);backdrop-filter:blur(20px)}
+.ph-icon{font-size:3rem;display:block;margin-bottom:8px}
 .ph h3{margin:16px 0 8px;color:var(--text);font-weight:700}
-.node-cp{border:1px solid rgba(51,153,51,.3)}
-.node-bar{background:rgba(51,153,51,.08);gap:8px}
+.node-cp{border:1px solid var(--node-border)}
+.node-bar{background:rgba(52,199,89,.08);gap:8px}
 .nlabel{color:#339933;font-size:.75rem;font-weight:600}
-.ncode-pre{color:#e6edf3;padding:12px 14px;margin:0;font-family:'SF Mono','Fira Code',monospace;font-size:.78rem;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:#0d1117}
+.ncode-pre{color:#e6edf3;padding:12px 14px;margin:0;font-family:'SF Mono','Fira Code',monospace;font-size:.82rem;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:#0d1117}
+@media(max-width:640px){.ncode-pre{font-size:.85rem}}
 .noutput{background:#0a0a0a;padding:8px 14px;min-height:20px;color:#ccc;font-size:.82rem;line-height:1.7}
 .copy-btn{padding:3px 10px;background:rgba(0,113,227,.08);color:var(--primary);border:1px solid rgba(0,113,227,.15);border-radius:20px;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .22s cubic-bezier(.34,1.56,.64,1);white-space:nowrap}
 .copy-btn:hover{background:rgba(0,113,227,.15);border-color:var(--primary);transform:scale(1.06)}

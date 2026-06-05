@@ -963,6 +963,258 @@ onMounted(() => {
 
 ---
 
+## 2026-06 全面优化方案 (移动端重设计 + UX + 架构)
+
+> 基于 2026-06 全项目审计，涵盖 6 大模块 42 项优化。
+
+### 模块 1: P0 关键 Bug 修复
+
+#### 1.1 DeskLamp 四层光效 CSS 重构 (CRITICAL)
+- **Bug**: `@media (max-width: 768px)` 内的 `opacity`/`background`/`transition` 脱离选择器，移动端灯效完全失效
+- **方案**: 每个 overlay 的完整属性放在主选择器内，`@media` 仅覆盖 z-index / 尺寸差异
+- **修复后结构**:
+  ```css
+  .lamp-overlay-dark {
+    /* 所有基础属性在主选择器内 */
+    position: fixed; inset: 0; pointer-events: none;
+    z-index: 99990;
+    opacity: 0;
+    background: radial-gradient(...);
+    transition: opacity 0.8s ...;
+  }
+  @media (max-width: 768px) {
+    .lamp-overlay-dark { z-index: 990; }
+  }
+  ```
+- **禁止**: 在 `@media` 块内放置除 `z-index`/`transform`/`top`/`right`/`scale` 以外的属性
+
+#### 1.2 `@media (hover: none)` 提升 (CRITICAL)
+- **Bug**: `@media (hover: none)` 嵌套在 `@media (max-width: 768px)` 内，iPad 等宽屏触控设备 sticky hover 不修复
+- **方案**: 提升为顶层独立规则，覆盖所有宽度的触控设备
+- **禁止**: `@media (hover: none)` 嵌套在其他 `@media` 内
+
+#### 1.3 添加 `--danger` CSS 变量
+- InterviewView 硬难度标签使用 `var(--danger)` 但该变量从未定义
+- 添加: `:root { --danger: #ff3b30; }` + `[data-theme='dark'] { --danger: #ff453a; }`
+
+### 模块 2: 移动端响应式重设计
+
+#### 2.1 断点体系统一
+- **规范**: 仅使用 3 个标准断点: `sm=640px`, `md=768px`, `lg=1024px`
+- **迁移映射**:
+  - `480px` (SplineScene) → `640px`
+  - `600px` (SplashScreen, PropModal) → `640px`
+  - `700px` (InterviewView) → `640px`
+  - `900px` (PlaygroundView, TutorialView sidebar) → 保留（侧边栏折叠需要中间断点）
+- **禁止**: 引入新的非标准断点值
+
+#### 2.2 移动端 GPU 组件裁剪
+- **≤768px**: SplineScene 通过 `v-if="!isMobile"` 不渲染
+- **≤768px**: SpotlightWrapper 通过 `v-if="!isMobile"` 不渲染
+- **检测方式**: `useReducedMotion.ts` 中新增 `isMobile` ref: `window.matchMedia('(max-width: 768px)').matches`
+- **保留**: WebGLBackground（轻量，已优化 DPR + Page Visibility）
+
+#### 2.3 触控目标 44px 全覆盖
+- **补充到全局触控列表**: `.chatbot-close, .chatbot-send, .chatbot-selector-trigger, .ex-copy, .copy-btn, .btn-run`
+- **已覆盖**: `.btn, .nav-link, .filter-btn, .editor-tab, .code-tab-btn, .pg-tab, .abtn, .tb, .hot-item, .q-h, .cat-h, .tlk, .crun, .pg-run, .prop-btn, .ex-btn, .bcom`
+
+#### 2.4 Safe Area 覆盖补全
+- TutorialView `.bcom` (Mark Done 按钮) → `margin-bottom` 加 `env(safe-area-inset-bottom)`
+- SearchModal `.search-modal` → `padding-bottom: env(safe-area-inset-bottom, 0)`
+- GalleryView modal `.modal-content` → 已有 safe area（通过 main.css）
+
+#### 2.5 WebGL 移动端 FBM 降级
+- 检测 `window.innerWidth <= 768` → FBM 循环从 4 层降到 2 层
+- 或检测 `devicePixelRatio > 1.5 && innerWidth <= 768` → DPR 降到 1
+
+#### 2.6 SpotlightWrapper 触控设备禁用
+- 检测 `matchMedia('(hover: none)').matches` → 不挂载 `mousemove` 监听，不启动 RAF 循环
+- 组件完全变为透明无操作（无渐变背景渲染）
+
+#### 2.7 TutorialView 横向课程列表增强
+- 渐变遮罩增强: `::before`/`::after` 宽度从 12px 增加到 24px，颜色加深
+- 添加右侧 peek 效果: 下一张卡片露出 16px 边缘
+
+#### 2.8 TutorialView 移动端代码/预览 Tab 切换
+- **≤768px**: `.cbody` 不再堆叠（编辑器在上、预览在下），改为 Tab 切换模式
+- 新增 `.cbody-tabs`（代码 | 预览）切换按钮，切换显示对应面板
+- 避免移动端单步需滚动 440px+ 的体验问题
+
+#### 2.9 Gallery/Roadmap Modal 底部 Sheet 增强
+- 添加 `.handle` 拖拽指示条（40×4px 圆角条）
+- RoadmapView `.detail-modal` 添加 `@media (max-width: 768px)` 底部 sheet 样式
+
+#### 2.10 TechStackView 展开详情限高
+- `.tde` 移动端 `max-height: 300px; overflow-y: auto`
+
+#### 2.11 骨架屏移动端压缩
+- App.vue `.skeleton-hero`: `≤640px` 高度 280px → 160px
+
+#### 2.12 HomeView 卡片移动端 padding 缩减
+- `.feature-card`: `≤640px` padding 36px → 20px
+- `.preview-card`: `≤640px` padding 28px → 16px
+
+#### 2.13 硬编码颜色替换为 CSS 变量
+- RoadmapView `.skill-tag`: `rgba(102,126,234,0.1)` → `var(--tag-bg)`
+- GalleryView `.btn-run`: `#4ade80,#22c55e` → `var(--success)` 渐变
+- TutorialView `.node-cp`: `rgba(51,153,51,.3)` → `var(--node-border, rgba(52,199,89,.3))`
+
+#### 2.14 全局 `-webkit-tap-highlight-color`
+- 在 `main.css` 全局规则中: `a, button, [role="button"] { -webkit-tap-highlight-color: transparent; }`
+- 添加 `touch-action: manipulation` 防止双击缩放
+
+#### 2.15 use3DTilt 移动端禁用
+- 检测 `window.matchMedia('(max-width: 768px)')` → 不挂载 tilt 监听器
+- 移动端卡片不执行 requestAnimationFrame tilt 动画
+
+### 模块 3: 教学流程优化
+
+#### 3.1 TutorialView 分层 Tab 系统
+- **核心层** (默认显示): HTML / CSS / JavaScript / TypeScript / Vue 3 / React / Node.js
+- **进阶层** (折叠/可展开): Pinia / Zustand / Dva / Vite / Canvas / Build / Project / DB / Fullstack / Internet
+- **实现**: Tab 切换区分为两个 `<div>` 容器，进阶区有「更多 ▾」展开按钮
+- **URL 参数不变**: 仍然是 `?tab=vue3`，无需修改路由
+
+#### 3.2 步骤间「上一步 / 下一步」导航
+- 每个步骤底部 `.step-nav` 区域:
+  ```html
+  <div class="step-nav">
+    <button v-if="stepIdx > 0" @click="scrollToStep(stepIdx-1)">← 上一步</button>
+    <button v-if="stepIdx < steps.length-1" @click="scrollToStep(stepIdx+1)">下一步 →</button>
+  </div>
+  ```
+- `scrollToStep(idx)` 使用 `scrollIntoView({ behavior: 'smooth', block: 'start' })`
+
+#### 3.3 课程级进度条
+- 侧边栏课程卡片 `.ci` 添加进度指示:
+  - 右上角显示 `3/8` 已完成步骤数
+  - 卡片底部 2px 高的 `linear-gradient` 进度条
+- 使用 `store.tutorialState` 查询已完成步骤
+
+#### 3.4 「Mark Done」按钮增强
+- 按钮高度提升到 44px
+- 完成时添加勾选动画 (scale → rotate spring)
+- 已完成状态添加绿色背景渐变
+
+#### 3.5 Playground 模板代码格式化
+- 所有模板代码 (tpls) 添加 `\n` 换行 + 缩进 + 中文注释
+- 示例: `'body{margin:0...}'` → `'body {\n  margin: 0;\n  /* 全屏居中 */\n  display: flex;\n  ...'`
+
+#### 3.6 NavBar 搜索入口
+- `.nav-actions` 中添加搜索图标按钮 (🔍)
+- 点击触发 `searchModal.open()`
+- `≤768px`: 搜索按钮放在移动端菜单顶部
+
+#### 3.7 Footer 链接补全
+- 补充: 代码演练 (`/playground`)、技术栈 (`/techstack`)、面试题 (`/interview`)
+- Footer 链接变为 7 项（与 NavBar 对齐）
+
+#### 3.8 InterviewView Easy 筛选
+- 模式按钮新增 `easy` 选项: 「基础」模式 — 仅显示 difficulty=1 的题目
+- 过滤逻辑: `questions.filter(q => q.difficulty === 1)`
+
+### 模块 4: 视觉设计统一
+
+#### 4.1 卡片 hover 动画统一
+- **标准**: 所有卡片 hover 统一为 `translateY(-2px)` + `box-shadow: var(--shadow-lg)`
+- **禁止**: 卡片使用 `translateY(-4px)` 或 `translateY(-6px)` 或 `scale(1.02)`
+- **受影响**: `.card`(-4px→-2px), `.gallery-card`(-6px→-2px), `.tech-card`(-4px→-2px)
+- **transition 统一**: `all .35s var(--spring-smooth)`
+
+#### 4.2 Emoji → SVG 图标 (渐进替换)
+- **阶段 1**: NavBar 菜单项 emoji 保留（跨平台一致性问题优先级低）
+- **阶段 2**: 功能性图标（搜索、关闭、运行、复制）替换为 SVG 内联
+- **禁止**: 引入图标库 npm 包（保持零依赖增量）
+
+#### 4.3 字号 3 级标准
+| 用途 | 变量 | 值 |
+|------|------|-----|
+| 正文 | `--text-body` | 0.88rem |
+| 小字/标签 | `--text-small` | 0.8rem |
+| 说明/注释 | `--text-caption` | 0.72rem |
+- 迁移: 所有 `.8rem`, `.82rem`, `.85rem` → `var(--text-small)`; `.9rem`, `.95rem` → `var(--text-body)`
+
+#### 4.4 首页动画负载削减
+- 桌面: WebGL 背景 + SplineScene + SpotlightWrapper + 浮动形状（4 层）
+- 移动端 ≤768px: 仅 WebGL 背景（1 层）
+- 3D tilt + 磁吸光标: 仅桌面端启用
+
+#### 4.5 空状态 placeholder 方向适配
+- TutorialView 空状态: 桌面用 `👈 选择课程`，移动端用 `👆 选择课程`
+- 通过 `@media (max-width: 900px)` 切换内容
+
+### 模块 5: 代码架构改进
+
+#### 5.1 useRobotMind 重构
+- 模块级状态 (`thought`, `isThinking`, `abortController` 等) 移入 composable 函数内部
+- 系统 Prompt 通过 `POST /api/think` 由服务端注入，不在客户端代码中
+
+#### 5.2 HomeView typewriter 清理
+- `setTimeout` 链改为 `ref` 持有 timer ID
+- 添加 `onUnmounted(() => clearTimeout(typewriterTimer))` 清理
+
+#### 5.3 共享组件提取
+- `PageLayout.vue`: 页面包装器（padding-top: nav-height + page-in class + section-padding）
+- `SectionHeader.vue`: `<h2 class="section-title gradient-text">` + `<p class="section-subtitle">`
+- **渐进式**: 新页面使用共享组件，旧页面不强制迁移
+
+#### 5.4 依赖清理
+- 移除 `@esbuild/darwin-x64` from `dependencies`（由 Vite 隐式管理）
+- 验证 `three` npm 包是否实际被 import（CLAUDE.md 说 0 引用，仅 CDN importmap）
+
+#### 5.5 useMagneticCursor DOM 类型清理
+- `declare global { interface HTMLElement { _magHandlers } }` → `WeakMap<HTMLElement, Handler>`
+- 移除未使用的 `rafId` 变量
+
+### 模块 6: 移动端性能专项
+
+#### 6.1 双 WebGL 上下文裁剪
+- 桌面: WebGLBackground + SplineScene（2 个 GPU 上下文）
+- 移动端 ≤768px: 仅 WebGLBackground（1 个）
+- 实现: `App.vue` 中 SplineScene 组件添加 `v-if="!isMobile"`
+
+#### 6.2 SpotlightWrapper 触控设备完全不挂载
+- `matchMedia('(hover: none)')` → `onMounted` 不注册事件、不启动 RAF
+
+#### 6.3 3D Tilt 移动端禁用
+- `use3DTilt.ts` 检测屏幕宽度 → ≤768px 不绑定 tilt 事件
+- 节省每张卡片的 `requestAnimationFrame` 开销
+
+#### 6.4 WebGL 移动端 FBM 降级
+- 片段着色器中: `for (int i = 0; i < 4; i++)` → 通过 uniform `u_quality` 控制
+- 移动端: `u_quality = 2` (2层 FBM)
+- 桌面: `u_quality = 4` (4层 FBM)
+
+### 实施顺序
+1. **模块 1** (P0 Bug): DeskLamp CSS 重构 → hover:none 提升 → --danger 变量
+2. **模块 2** (移动端): 断点统一 → GPU 裁剪 → 触控/安全区 → 组件适配
+3. **模块 6** (性能): 与模块 2 同步实施
+4. **模块 3** (教学): 分层 Tab → 进度条 → 下一步 → 搜索入口
+5. **模块 4** (视觉): 卡片统一 → 字号标准 → 动画削减
+6. **模块 5** (架构): useRobotMind → 共享组件 → 依赖清理
+
+### 检查清单 (新)
+- [ ] DeskLamp 四层光效 CSS 属性在主选择器内（非 @media 块内）？
+- [ ] `@media (hover: none)` 是顶层规则（未嵌套在 max-width 内）？
+- [ ] `--danger` CSS 变量已定义？
+- [ ] 断点仅使用 640/768/1024 三个值？
+- [ ] ≤768px SplineScene 不渲染？
+- [ ] ≤768px SpotlightWrapper 不渲染？
+- [ ] 所有交互元素触控目标 ≥44px？
+- [ ] 底部 sheet/modal 有 safe area padding？
+- [ ] WebGL FBM 移动端降至 2 层？
+- [ ] TutorialView 分层 Tab（核心 + 进阶）？
+- [ ] 每个步骤有「上一步/下一步」导航？
+- [ ] 课程卡片有进度指示？
+- [ ] NavBar 有搜索入口图标？
+- [ ] Footer 链接覆盖全部 7 个页面？
+- [ ] 卡片 hover 统一为 translateY(-2px)？
+- [ ] 字号使用 3 级变量 (--text-body/small/caption)？
+- [ ] useRobotMind 状态在 composable 函数内部？
+- [ ] HomeView typewriter 有 onUnmounted 清理？
+
+---
+
 ## AI 编码行为准则 (Karpathy Principles)
 
 > 精选自 andrej-karpathy-skills，适配本项目。AI 助手在编码时须遵守以下四条。

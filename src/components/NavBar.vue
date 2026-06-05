@@ -21,6 +21,9 @@
         </li>
       </ul>
       <div class="nav-actions">
+        <button class="nav-search-btn" @click="searchModal?.open()" aria-label="搜索">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
         <DeskLamp />
         <button
           class="mobile-menu-btn"
@@ -33,19 +36,25 @@
         </button>
       </div>
     </div>
+    <div v-if="menuOpen" class="menu-backdrop" @click="menuOpen = false" />
   </nav>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import DeskLamp from '@/components/DeskLamp.vue'
 
 const route = useRoute()
 const menuOpen = ref(false)
 const scrolled = ref(false)
+const searchModal = ref<{open:()=>void}|null>(null)
 
 const currentPath = computed(() => route.path)
+
+watch(menuOpen, (v) => {
+  document.body.style.overflow = v ? 'hidden' : ''
+})
 
 const navItems = [
   { icon: '🏠', text: '首页', path: '/' },
@@ -87,5 +96,34 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+.nav-search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all .25s var(--spring-bouncy);
+}
+.nav-search-btn:hover {
+  color: var(--text);
+  background: var(--hero-badge-bg);
+}
+.menu-backdrop {
+  display: none;
+}
+@media (max-width: 768px) {
+  .menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    top: calc(var(--nav-height) + env(safe-area-inset-top, 0));
+    background: rgba(0,0,0,.3);
+    z-index: 999;
+  }
 }
 </style>

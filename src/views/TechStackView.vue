@@ -160,7 +160,7 @@ const faqs = reactive([
 .tde div{margin-bottom:5px}
 .tde b{color:var(--primary)}
 .tli{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;align-items:center}
-.tlk{display:inline-flex;align-items:center;gap:3px;padding:6px 12px;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:.75rem;color:var(--primary);text-decoration:none;min-height:36px;min-width:36px}
+.tlk{display:inline-flex;align-items:center;gap:3px;padding:6px 12px;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:.75rem;color:var(--primary);text-decoration:none;min-height:44px;min-width:44px}
 .tlk:hover{border-color:var(--primary)}
 .tlk-go{background:rgba(74,222,128,.15);border-color:#4ade80;color:#22c55e;font-weight:600}
 .tlk-go:hover{background:rgba(74,222,128,.25)}
@@ -183,4 +183,13 @@ const faqs = reactive([
 .fa{font-size:.65rem;color:var(--text-secondary);transition:transform .3s}
 .fa.on{transform:rotate(180deg)}
 .faa{padding:0 20px 16px;color:var(--text-secondary);font-size:.9rem;line-height:1.8}
+
+@media(max-width:640px){
+  .sp{padding:0 16px 60px}
+  .ss{font-size:.92rem;margin-bottom:32px}
+  .tg{grid-template-columns:1fr;gap:10px}
+  .tc{padding:16px}
+  .lp{padding:20px;margin-top:28px}
+  .fqq{padding:12px 16px;font-size:.88rem}
+}
 </style>

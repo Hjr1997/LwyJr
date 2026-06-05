@@ -138,6 +138,8 @@ function init() {
 
   const onMove = (e: MouseEvent) => { mouseX = e.clientX; mouseY = e.clientY }
   window.addEventListener('mousemove', onMove, { passive: true })
+  const onTouch = (e: TouchEvent) => { if (e.touches[0]) { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY } }
+  window.addEventListener('touchmove', onTouch, { passive: true })
 
   const start = performance.now()
   let running = true
@@ -160,6 +162,7 @@ function init() {
     cancelAnimationFrame(animId)
     window.removeEventListener('resize', resize)
     window.removeEventListener('mousemove', onMove)
+    window.removeEventListener('touchmove', onTouch)
     document.removeEventListener('visibilitychange', onVisible)
     gl.deleteProgram(program)
     gl.deleteBuffer(buf)
@@ -175,5 +178,11 @@ onMounted(init)
   inset: 0;
   z-index: 0;
   pointer-events: none;
+}
+</style>
+
+<style>
+@media (prefers-reduced-motion: reduce) {
+  .webgl-bg { opacity: 0.12; }
 }
 </style>

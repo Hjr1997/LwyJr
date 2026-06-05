@@ -3,7 +3,7 @@
     <!-- Accessibility: keyboard skip-to-content -->
     <a href="#main-content" class="skip-link">跳到主要内容</a>
     <WebGLBackground />
-    <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" :robotAction="robotAction" :thought="robotThought" :isThinking="robotThinking" :onRobotInteract="triggerThought" />
+    <SplineScene v-if="!isMobile" scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" :robotAction="robotAction" :thought="robotThought" :isThinking="robotThinking" :onRobotInteract="triggerThought" />
     <div class="scroll-progress-bar" :style="{ transform: `scaleX(${scrollProgress})` }"></div>
     <NavBar />
     <SearchModal ref="searchModal" />
@@ -41,12 +41,14 @@ import FloatingChatBot from '@/components/FloatingChatBot.vue'
 import SearchModal from '@/components/SearchModal.vue'
 import { useScrollProgress } from '@/composables/useScrollProgress'
 import { useRobotMind } from '@/composables/useRobotMind'
+import { useReducedMotion } from '@/composables/useReducedMotion'
 
 const searchModal = ref<InstanceType<typeof SearchModal> | null>(null)
 
 const SplineScene = defineAsyncComponent(() => import('@/components/SplineScene.vue'))
 const { progress: scrollProgress } = useScrollProgress()
 const { thought: robotThought, isThinking: robotThinking, triggerThought } = useRobotMind()
+const { isMobile } = useReducedMotion()
 
 const robotAction = computed(() => robotThought.value?.action || null)
 
@@ -114,9 +116,12 @@ onMounted(() => {
   animation: shimmer 1.5s infinite;
   margin-bottom: 40px;
 }
+@media (max-width: 640px) {
+  .skeleton-hero { height: 160px; margin-bottom: 24px; }
+}
 .skeleton-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 24px;
 }
 .skeleton-card {

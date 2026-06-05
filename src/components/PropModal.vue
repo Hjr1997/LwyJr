@@ -296,7 +296,7 @@ defineExpose({ open, close })
 /* Header */
 .sheet-header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 12px;flex-shrink:0}
 .sheet-title{margin:0;font-size:1.2rem;font-weight:700;color:var(--text);letter-spacing:-.02em}
-.sheet-close{width:32px;height:32px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all .2s var(--spring-smooth,cubic-bezier(.16,1,.3,1));flex-shrink:0}
+.sheet-close{width:44px;height:44px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all .2s var(--spring-smooth,cubic-bezier(.16,1,.3,1));flex-shrink:0}
 .sheet-close:hover{background:rgba(0,0,0,.06);transform:scale(1.1)}
 [data-theme='dark'] .sheet-close:hover{background:rgba(255,255,255,.08)}
 

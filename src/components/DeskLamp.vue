@@ -26,8 +26,8 @@
     <canvas
       ref="lampCanvas"
       class="lamp-canvas"
-      @mousedown.prevent="onDown"
-      @touchstart.prevent="onDown"
+      @mousedown="onDown"
+      @touchstart="onDown"
     ></canvas>
   </Teleport>
 </template>
@@ -296,6 +296,7 @@ function onDown(e: MouseEvent | TouchEvent) {
 
   if (!hitTest(localX, localY)) return
 
+  e.preventDefault()
   dragging.value = true
   triggered.value = false
   pullX.value = 0
@@ -567,6 +568,8 @@ onUnmounted(() => {
   position: fixed;
   top: -29px;
   right: 15px;
+  width: 165px;
+  height: 165px;
   z-index: 99999;
   cursor: grab;
   -webkit-tap-highlight-color: transparent;
@@ -574,6 +577,16 @@ onUnmounted(() => {
   transform-origin: top right;
   pointer-events: auto;
   overflow: visible;
+}
+@media (max-width: 768px) {
+  .lamp-canvas {
+    z-index: 998;
+    right: 6px;
+    top: -20px;
+    width: 126px;
+    height: 126px;
+    transform: scale(0.38);
+  }
 }
 .lamp-canvas:active { cursor: grabbing; }
 
@@ -590,6 +603,9 @@ onUnmounted(() => {
   transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
 }
 .lamp-overlay-dark.on { opacity: 1; }
+@media (max-width: 768px) {
+  .lamp-overlay-dark { z-index: 990; }
+}
 
 /* ═══════════════════════════════════════════════
    2. LIGHT OVERLAY
@@ -606,6 +622,9 @@ onUnmounted(() => {
       rgba(255,224,140,0.12) 0%, rgba(255,183,77,0.05) 50%, transparent 80%),
     radial-gradient(ellipse 100vmax 70vmax at var(--bx,50vw) var(--by,45vh),
       rgba(255,245,220,0.06) 0%, transparent 75%);
+}
+@media (max-width: 768px) {
+  .lamp-overlay-light { z-index: 991; }
 }
 
 /* steady on */
@@ -627,6 +646,9 @@ onUnmounted(() => {
       rgba(255,248,218,0.09) 0%, rgba(255,235,170,0.04) 35%, transparent 68%);
   transition: opacity 0.8s ease 0.3s;
 }
+@media (max-width: 768px) {
+  .lamp-overlay-ambient { z-index: 992; }
+}
 .lamp-overlay-ambient.on { opacity: 1; }
 .lamp-overlay-ambient.in  { opacity: 1; transition: opacity 0.7s ease 0.8s; }
 .lamp-overlay-ambient.out { opacity: 0; transition: opacity 0.6s ease 0.1s; }
@@ -640,6 +662,9 @@ onUnmounted(() => {
   background:
     radial-gradient(circle at var(--bx,50vw) var(--by,50vh),
       rgba(255,255,255,0.88) 0%, rgba(255,255,220,0.2) 12%, transparent 42%);
+}
+@media (max-width: 768px) {
+  .lamp-overlay-flash { z-index: 993; }
 }
 .lamp-overlay-flash.fire { animation: flashPop 0.18s ease-out forwards; }
 @keyframes flashPop {

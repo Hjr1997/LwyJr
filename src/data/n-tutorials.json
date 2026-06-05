@@ -1,22 +1,109 @@
 [
   {
-    "id": "n1",
-    "title": "全栈入门",
-    "desc": "Node/Express + 部署",
+    "id": "fs1",
+    "title": "🏗️ 全栈架构概览",
+    "desc": "三层架构/前后端分离/API设计",
     "category": "fullstack",
-    "icon": "🖥️",
+    "icon": "🏗️",
     "difficulty": "高级",
     "steps": [
       {
-        "id": "n1-1",
-        "title": "三层架构",
-        "content": "浏览器→Vue→Express→MySQL。Node.js后端,Express框架,RESTful API。"
+        "id": "fs1-1",
+        "title": "什么是全栈？三层架构详解",
+        "content": "全栈 = 前端 + 后端 + 数据库，三层各司其职：<ul><li><b>表现层</b>（前端）: Vue/React，用户看到的界面</li><li><b>业务层</b>（后端）: Express/Koa，处理业务逻辑</li><li><b>数据层</b>（数据库）: MySQL/MongoDB，存储数据</li></ul><p>前后端通过 <b>REST API</b> 通信：前端发 HTTP 请求，后端返回 JSON。</p>",
+        "code": {
+          "html": "<div style=\"max-width:700px;font-family:-apple-system,sans-serif;line-height:1.8;padding:20px\">\n<h3 style=\"color:#0071e3\">🏗️ 三层架构</h3>\n<div style=\"background:#e8f0fe;padding:16px;border-radius:12px;margin:8px 0;text-align:center\">\n<b style=\"font-size:18px\">📱 表现层 (Vue 3)</b><br>用户界面 · 组件 · 路由 · 状态管理</div>\n<div style=\"text-align:center;font-size:24px;color:#0071e3\">↕️ HTTP / JSON</div>\n<div style=\"background:#fff3e0;padding:16px;border-radius:12px;margin:8px 0;text-align:center\">\n<b style=\"font-size:18px\">⚙️ 业务层 (Express)</b><br>路由 · 中间件 · 认证 · 业务逻辑</div>\n<div style=\"text-align:center;font-size:24px;color:#ff9f0a\">↕️ SQL / Query</div>\n<div style=\"background:#e8f5e9;padding:16px;border-radius:12px;margin:8px 0;text-align:center\">\n<b style=\"font-size:18px\">🗄️ 数据层 (MySQL/MongoDB)</b><br>用户表 · 帖子表 · 评论表 · 关联</div>\n</div>",
+          "css": "body{margin:0;padding:0;font-family:-apple-system,sans-serif;background:#fff}",
+          "js": ""
+        },
+        "propRef": "fullstack.architecture"
       },
       {
-        "id": "n1-2",
-        "title": "部署+挑战",
-        "content": "部署:build→start→PM2→Nginx→HTTPS。做全栈项目:Express API返回JSON,前端fetch渲染。",
-        "tip": "你就是全栈大牛!"
+        "id": "fs1-2",
+        "title": "RESTful API 设计规范",
+        "content": "设计好的 API 是全栈项目的基础：<p><b>URL 设计原则</b>：</p><ul><li>用名词不用动词：<code>/api/users</code> ✓ <code>/api/getUsers</code> ✗</li><li>复数形式：<code>/api/posts</code></li><li>嵌套资源：<code>/api/users/1/posts</code></li></ul><p><b>HTTP 方法映射</b>：</p><pre><code>GET    /api/users      → 获取列表\nGET    /api/users/1    → 获取单个\nPOST   /api/users      → 创建\nPUT    /api/users/1    → 全量更新\nPATCH  /api/users/1    → 部分更新\nDELETE /api/users/1    → 删除</code></pre>",
+        "code": {
+          "html": "<div style=\"max-width:700px;font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\n<b style=\"color:#5856d6\">API 设计示例——博客系统</b>\n\n<b># 文章</b>\nGET    /api/posts            获取所有文章\nGET    /api/posts/42         获取文章 #42\nPOST   /api/posts            创建文章\nPUT    /api/posts/42         更新文章\nDELETE /api/posts/42         删除文章\n\n<b># 评论 (嵌套资源)</b>\nGET    /api/posts/42/comments  文章 #42 的评论\nPOST   /api/posts/42/comments  给 #42 添加评论\n\n<b># 认证</b>\nPOST   /api/auth/register     注册\nPOST   /api/auth/login        登录\nGET    /api/auth/me            当前用户\n\n<b># 状态码</b>\n200 成功 | 201 创建 | 400 参数错误\n401 未登录 | 403 无权限 | 404 不存在\n500 服务器错误</div>",
+          "css": "",
+          "js": ""
+        },
+        "propRef": "fullstack.rest"
+      },
+      {
+        "id": "fs1-3",
+        "title": "项目结构初始化",
+        "content": "全栈项目的标准目录结构：<pre><code>blog-app/\n├── client/          # Vue 3 前端\n│   ├── src/\n│   │   ├── views/\n│   │   ├── components/\n│   │   ├── api/      # fetch 请求封装\n│   │   └── stores/\n│   └── package.json\n├── server/          # Express 后端\n│   ├── routes/\n│   ├── middleware/\n│   ├── models/      # 数据模型\n│   ├── server.js\n│   └── package.json\n└── README.md</code></pre>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\n<b># 后端初始化</b>\n$ mkdir blog-api && cd blog-api\n$ npm init -y\n$ npm install express cors dotenv\n$ npm install -D nodemon\n\n<b># 前端初始化</b>\n$ npm create vite@latest blog-ui -- --template vue\n$ cd blog-ui && npm install\n\n<b># 同时运行</b>\n$ cd blog-api && npm run dev   # 后端 :3000\n$ cd blog-ui && npm run dev    # 前端 :5173</div>",
+          "css": "",
+          "js": "const express = require('express');\nconst cors = require('cors');\nrequire('dotenv').config();\n\nconst app = express();\napp.use(cors());\napp.use(express.json());\n\n// 路由\napp.get('/api/posts', (req, res) => {\n  res.json([{ id: 1, title: '第一篇博客', content: 'Hello World' }]);\n});\n\nconst PORT = process.env.PORT || 3000;\napp.listen(PORT, () => {\n  console.log(`Blog API running on http://localhost:${PORT}`);\n});"
+        },
+        "propRef": "fullstack.setup"
+      }
+    ]
+  },
+  {
+    "id": "fs2",
+    "title": "🔗 Express + MySQL 后端实战",
+    "desc": "完整 CRUD API/连接池/错误处理",
+    "category": "fullstack",
+    "icon": "🔗",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "fs2-1",
+        "title": "数据库设计与建表",
+        "content": "博客系统的核心表：<ul><li><b>users</b> — 用户 (id, name, email, password_hash)</li><li><b>posts</b> — 文章 (id, title, content, user_id, created_at)</li><li><b>comments</b> — 评论 (id, post_id, user_id, content, created_at)</li></ul>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\n<b># 创建数据库和表</b>\nCREATE DATABASE blog_app;\nUSE blog_app;\n\nCREATE TABLE users (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  name VARCHAR(50) NOT NULL,\n  email VARCHAR(100) UNIQUE NOT NULL,\n  password_hash VARCHAR(255) NOT NULL,\n  avatar VARCHAR(255),\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);\n\nCREATE TABLE posts (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  title VARCHAR(200) NOT NULL,\n  content TEXT,\n  user_id INT NOT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (user_id) REFERENCES users(id)\n);\n\nCREATE TABLE comments (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  content TEXT NOT NULL,\n  post_id INT NOT NULL,\n  user_id INT NOT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (post_id) REFERENCES posts(id),\n  FOREIGN KEY (user_id) REFERENCES users(id)\n);</div>",
+          "css": "",
+          "js": "const mysql = require('mysql2/promise');\n\nasync function initDB() {\n  const pool = mysql.createPool({\n    host: process.env.DB_HOST || 'localhost',\n    user: process.env.DB_USER || 'root',\n    password: process.env.DB_PASS || '',\n    database: 'blog_app',\n    waitForConnections: true,\n    connectionLimit: 10\n  });\n\n  await pool.execute(`\n    CREATE TABLE IF NOT EXISTS posts (\n      id INT PRIMARY KEY AUTO_INCREMENT,\n      title VARCHAR(200) NOT NULL,\n      content TEXT,\n      user_id INT DEFAULT 1,\n      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n    )\n  `);\n\n  console.log('数据库初始化完成');\n  return pool;\n}\n\nmodule.exports = initDB;"
+        },
+        "propRef": "fullstack.database"
+      },
+      {
+        "id": "fs2-2",
+        "title": "构建 REST API 路由",
+        "content": "实现文章的完整 CRUD API，包含参数验证和错误处理。",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\n<b># API 端点</b>\nGET    /api/posts           所有文章(支持分页)\nGET    /api/posts/1         单篇文章\nPOST   /api/posts           创建文章\nPUT    /api/posts/1         更新文章\nDELETE /api/posts/1         删除文章\n\n<b># 分页参数</b>\nGET /api/posts?page=1&limit=10\n\n<b># 响应格式</b>\n{\n  \"data\": [...],\n  \"page\": 1,\n  \"total\": 42\n}</div>",
+          "css": "",
+          "js": "const express = require('express');\nconst mysql = require('mysql2/promise');\nconst app = express();\napp.use(express.json());\n\nconst pool = mysql.createPool({\n  host: 'localhost', user: 'root', password: '', database: 'blog_app'\n});\n\n// 获取文章列表 (分页)\napp.get('/api/posts', async (req, res) => {\n  try {\n    const page = Math.max(1, +req.query.page || 1);\n    const limit = Math.min(50, Math.max(1, +req.query.limit || 10));\n    const offset = (page - 1) * limit;\n    const [rows] = await pool.execute(\n      'SELECT id, title, LEFT(content,100) as excerpt, user_id, created_at FROM posts ORDER BY created_at DESC LIMIT ? OFFSET ?',\n      [limit, offset]\n    );\n    const [countRes] = await pool.execute('SELECT COUNT(*) as total FROM posts');\n    res.json({ data: rows, page, total: countRes[0].total });\n  } catch (e) {\n    res.status(500).json({ error: e.message });\n  }\n});\n\n// 创建文章\napp.post('/api/posts', async (req, res) => {\n  const { title, content } = req.body;\n  if (!title) return res.status(400).json({ error: '标题必填' });\n  try {\n    const [result] = await pool.execute(\n      'INSERT INTO posts (title, content) VALUES (?, ?)',\n      [title, content || '']\n    );\n    res.status(201).json({ id: result.insertId, title, content });\n  } catch (e) {\n    res.status(500).json({ error: e.message });\n  }\n});\n\napp.listen(3000, () => console.log('Blog API on :3000'));"
+        },
+        "propRef": "fullstack.api"
+      }
+    ]
+  },
+  {
+    "id": "fs3",
+    "title": "🏆 全栈毕业项目——个人博客",
+    "desc": "前端对接/认证/部署",
+    "category": "fullstack",
+    "icon": "🏆",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "fs3-1",
+        "title": "前端 fetch 对接后端 API",
+        "content": "Vue 3 前端通过 fetch 调用 Express API：<pre><code>// api/posts.js\nexport async function getPosts(page = 1) {\n  const res = await fetch(`/api/posts?page=${page}`);\n  if (!res.ok) throw new Error('获取失败');\n  return res.json();\n}</code></pre><p>开发环境需要配置 Vite proxy 转发 API 请求：</p><pre><code>// vite.config.js\nserver: {\n  proxy: {\n    '/api': 'http://localhost:3000'\n  }\n}</code></pre>",
+        "code": {
+          "html": "<div id=\"app\">\n  <h2>📝 我的博客</h2>\n  <div id=\"posts\">加载中...</div>\n  <div id=\"pagination\" style=\"margin-top:16px;display:flex;gap:8px\"></div>\n</div>",
+          "css": "body{margin:0;padding:20px;font-family:-apple-system,sans-serif;background:#fff;color:#1d1d1f}\n.post-card{padding:16px;border:1px solid #e5e5ea;border-radius:12px;margin-bottom:12px;cursor:pointer;transition:all .2s}\n.post-card:hover{border-color:#0071e3;transform:translateY(-2px)}\n.post-card h3{margin:0 0 4px;font-size:16px}\n.post-card p{margin:0;color:#86868b;font-size:14px}\n.post-card time{font-size:12px;color:#86868b}\n.page-btn{padding:6px 14px;border:1px solid #d2d2d7;border-radius:6px;background:#fff;cursor:pointer}\n.page-btn:hover{border-color:#0071e3}\n.page-btn.active{background:#0071e3;color:#fff;border-color:#0071e3}",
+          "js": "let currentPage = 1;\n\nasync function loadPosts(page) {\n  currentPage = page;\n  const out = document.getElementById('posts');\n  out.textContent = '加载中...';\n  try {\n    const res = await fetch(\n      `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=5`\n    );\n    const posts = await res.json();\n    out.innerHTML = posts.map(p => `\n      <div class=\"post-card\">\n        <h3>${p.title}</h3>\n        <p>${p.body.substring(0, 80)}...</p>\n      </div>\n    `).join('');\n    renderPagination(page);\n  } catch (e) {\n    out.innerHTML = '<p style=\"color:red\">加载失败</p>';\n  }\n}\n\nfunction renderPagination(current) {\n  const el = document.getElementById('pagination');\n  el.innerHTML = '';\n  for (let i = 1; i <= 5; i++) {\n    const btn = document.createElement('button');\n    btn.className = 'page-btn' + (i === current ? ' active' : '');\n    btn.textContent = i;\n    btn.onclick = () => loadPosts(i);\n    el.appendChild(btn);\n  }\n}\n\nloadPosts(1);"
+        },
+        "propRef": "fullstack.frontend"
+      },
+      {
+        "id": "fs3-2",
+        "title": "部署上线——PM2 + Nginx",
+        "content": "将全栈项目部署到生产环境：<ol><li><b>构建前端</b>: <code>npm run build</code> → 生成 dist/</li><li><b>Express 托管静态文件</b>: <code>app.use(express.static('dist'))</code></li><li><b>PM2 进程管理</b>: <code>pm2 start server.js --name blog</code></li><li><b>Nginx 反向代理</b>: 80 → 3000</li><li><b>HTTPS</b>: Let's Encrypt 免费证书</li></ol>",
+        "code": {
+          "html": "<div style=\"font-family:monospace;background:#1c1c1e;padding:16px;border-radius:8px;color:#e6edf3;line-height:1.7\">\n<b># 1. 构建前端</b>\n$ cd client && npm run build\n\n<b># 2. Express 托管静态文件</b>\napp.use(express.static('../client/dist'));\napp.get('*', (req, res) => {\n  res.sendFile(path.resolve('../client/dist/index.html'));\n});\n\n<b># 3. PM2 启动</b>\n$ npm install -g pm2\n$ pm2 start server.js --name blog\n$ pm2 save && pm2 startup\n\n<b># 4. Nginx 配置</b>\nserver {\n  listen 80;\n  server_name your-domain.com;\n  location / {\n    proxy_pass http://127.0.0.1:3000;\n  }\n}\n\n<b># 5. HTTPS</b>\n$ sudo certbot --nginx -d your-domain.com</div>",
+          "css": "",
+          "js": "const express = require('express');\nconst path = require('path');\nconst app = express();\n\napp.use(express.json());\n\n// API routes\napp.get('/api/posts', (req, res) => {\n  res.json([{ id: 1, title: 'Hello' }]);\n});\n\n// 生产环境: 托管前端静态文件\nif (process.env.NODE_ENV === 'production') {\n  app.use(express.static(path.join(__dirname, '../client/dist')));\n  app.get('*', (req, res) => {\n    res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));\n  });\n}\n\nconst PORT = process.env.PORT || 3000;\napp.listen(PORT, () => console.log(`Server on :${PORT}`));"
+        },
+        "tip": "恭喜！你已经完成了从 HTML 到全栈部署的完整学习之旅！🎉 你就是全栈大牛！",
+        "propRef": "fullstack.deploy"
       }
     ]
   }

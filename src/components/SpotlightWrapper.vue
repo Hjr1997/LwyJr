@@ -14,6 +14,8 @@ const glowRef = ref<HTMLElement>()
 let rafId = 0
 let currentX = 0, currentY = 0
 let targetX = 0, targetY = 0
+let lastMoveTime = 0
+let isActive = true
 
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t
@@ -23,10 +25,20 @@ function animate() {
   const glow = glowRef.value
   if (!glow) return
 
+  if (!isActive) {
+    rafId = requestAnimationFrame(animate)
+    return
+  }
+
   currentX = lerp(currentX, targetX, 0.08)
   currentY = lerp(currentY, targetY, 0.08)
 
   glow.style.background = `radial-gradient(600px circle at ${currentX}px ${currentY}px, rgba(0,113,227,0.08), rgba(88,86,214,0.04) 30%, transparent 70%)`
+
+  if (Date.now() - lastMoveTime > 3000) {
+    isActive = false
+  }
+
   rafId = requestAnimationFrame(animate)
 }
 
@@ -36,6 +48,8 @@ function onMove(e: MouseEvent) {
   const rect = wrapper.getBoundingClientRect()
   targetX = e.clientX - rect.left
   targetY = e.clientY - rect.top
+  lastMoveTime = Date.now()
+  isActive = true
 }
 
 onMounted(() => {

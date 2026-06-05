@@ -1691,5 +1691,109 @@
         "propRef": "js.modules"
       }
     ]
+  },
+  {
+    "id": "j34",
+    "title": "🌐 Fetch API——浏览器里的 HTTP 客户端",
+    "desc": "fetch基础/GET/POST/async-await/错误处理",
+    "category": "js",
+    "icon": "🌐",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "j34-1",
+        "title": "AJAX 的进化——从 XMLHttpRequest 到 fetch",
+        "content": "过去用 <code>XMLHttpRequest</code> 发请求，要写一堆回调：<pre><code>var xhr = new XMLHttpRequest();\nxhr.open('GET', '/api/data');\nxhr.onload = function() { ... };\nxhr.send();</code></pre>现在用 <code>fetch()</code>，一个 Promise 搞定：<pre><code>fetch('/api/data')\n  .then(res => res.json())\n  .then(data => console.log(data));</code></pre><p><b>fetch 的优势</b>：写法简洁、基于 Promise（可 async/await）、分离请求和响应处理。</p>",
+        "code": {
+          "html": "<h3>AJAX 对比演示</h3>\n<div id=\"output\" style=\"padding:16px;background:#f5f5f5;border-radius:8px;font-family:monospace;white-space:pre-wrap\">点击按钮查看 fetch 请求结果...</div>\n<button id=\"btn\" style=\"margin-top:12px;padding:10px 24px;background:#0071e3;color:#fff;border:none;border-radius:8px;cursor:pointer\">Fetch 数据</button>",
+          "css": "body{margin:0;padding:20px;font-family:-apple-system,sans-serif;background:#fff;color:#1d1d1f}",
+          "js": "document.getElementById('btn').onclick = async () => {\n  const out = document.getElementById('output');\n  out.textContent = '请求中...';\n  try {\n    const res = await fetch('https://jsonplaceholder.typicode.com/posts/1');\n    if (!res.ok) throw new Error('HTTP ' + res.status);\n    const data = await res.json();\n    out.textContent = JSON.stringify(data, null, 2);\n  } catch (e) {\n    out.textContent = '错误: ' + e.message;\n  }\n};"
+        },
+        "tip": "fetch() 返回 Promise，第一个 .then 拿到的是 Response 对象，不是数据本身！需要调用 .json() / .text() 才能拿到真正的数据。",
+        "propRef": "js.fetch"
+      },
+      {
+        "id": "j34-2",
+        "title": "GET 请求——从服务器获取数据",
+        "content": "<code>fetch(url)</code> 默认就是 GET 请求。Response 对象有很多有用属性：<ul><li><code>res.ok</code> — 状态码 200-299 为 true</li><li><code>res.status</code> — HTTP 状态码 (200, 404, 500...)</li><li><code>res.headers</code> — 响应头</li><li><code>res.json()</code> — 解析 JSON（返回 Promise）</li><li><code>res.text()</code> — 获取纯文本</li></ul><p>记住：<b>res.json() 也是异步的</b>，返回 Promise！</p>",
+        "code": {
+          "html": "<h3>用户列表</h3>\n<div id=\"list\" style=\"display:grid;grid-template-columns:1fr 1fr;gap:12px\"></div>",
+          "css": "body{margin:0;padding:20px;font-family:-apple-system,sans-serif;background:#fff;color:#1d1d1f}\n.card{padding:12px;border:1px solid #e5e5ea;border-radius:10px;background:#fafafa}\n.card h4{margin:0 0 4px}\n.card p{margin:0;color:#86868b;font-size:14px}",
+          "js": "async function loadUsers() {\n  const res = await fetch('https://jsonplaceholder.typicode.com/users?_limit=6');\n  if (!res.ok) throw new Error('请求失败: ' + res.status);\n  const users = await res.json();\n  const list = document.getElementById('list');\n  list.innerHTML = users.map(u =>\n    `<div class=\"card\"><h4>${u.name}</h4><p>${u.email}</p></div>`\n  ).join('');\n}\nloadUsers().catch(e => {\n  document.getElementById('list').innerHTML = `<p style=\"color:red\">${e.message}</p>`;\n});"
+        },
+        "tip": "fetch 不 Reject HTTP 错误（如 404/500），只有网络断开才会 Reject。必须手动检查 res.ok！",
+        "propRef": "js.fetch"
+      },
+      {
+        "id": "j34-3",
+        "title": "POST/PUT/DELETE——向服务器发送数据",
+        "content": "fetch 的第二个参数是配置对象：<pre><code>fetch(url, {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ name: 'LwyJr' })\n})</code></pre><p>常用 HTTP 方法：</p><ul><li><b>POST</b> — 创建新资源</li><li><b>PUT</b> — 更新整个资源</li><li><b>PATCH</b> — 部分更新</li><li><b>DELETE</b> — 删除资源</li></ul><p><code>body</code> 必须是字符串，所以用 <code>JSON.stringify()</code> 序列化。</p>",
+        "code": {
+          "html": "<h3>POST 请求演示</h3>\n<input id=\"title\" placeholder=\"输入标题\" style=\"padding:8px 12px;border:1px solid #d2d2d7;border-radius:6px;width:300px;display:block;margin-bottom:8px\">\n<textarea id=\"body\" placeholder=\"输入内容\" style=\"padding:8px 12px;border:1px solid #d2d2d7;border-radius:6px;width:300px;height:80px;display:block;margin-bottom:12px\"></textarea>\n<button id=\"btn\" style=\"padding:8px 20px;background:#0071e3;color:#fff;border:none;border-radius:6px;cursor:pointer\">提交 POST</button>\n<div id=\"result\" style=\"margin-top:12px;padding:12px;background:#f5f5f5;border-radius:8px;white-space:pre-wrap;font-family:monospace\"></div>",
+          "css": "body{margin:0;padding:20px;font-family:-apple-system,sans-serif;background:#fff;color:#1d1d1f}",
+          "js": "document.getElementById('btn').onclick = async () => {\n  const title = document.getElementById('title').value;\n  const body = document.getElementById('body').value;\n  if (!title) return alert('请输入标题');\n  const res = await fetch('https://jsonplaceholder.typicode.com/posts', {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify({ title, body, userId: 1 })\n  });\n  const data = await res.json();\n  document.getElementById('result').textContent = '服务器返回:\\n' + JSON.stringify(data, null, 2);\n};"
+        },
+        "tip": "Content-Type 很重要！发 JSON 必须设 'application/json'，否则服务器可能无法解析 body。",
+        "propRef": "js.fetch"
+      },
+      {
+        "id": "j34-4",
+        "title": "完整示例——async/await + 错误处理",
+        "content": "最佳实践——用 async/await + try/catch 处理请求：<pre><code>async function fetchUser(id) {\n  try {\n    const res = await fetch(`/api/users/${id}`);\n    if (!res.ok) throw new Error(`${res.status}`);\n    return await res.json();\n  } catch (e) {\n    console.error('请求失败:', e);\n    return null;\n  }\n}</code></pre><p>记住三件事：</p><ol><li>网络错误 → 进入 catch</li><li>HTTP 错误 (404/500) → 需手动检查 res.ok</li><li>res.json() 也可能抛错 → 一并 catch</li></ol>",
+        "code": {
+          "html": "<h3>用户查询</h3>\n<input id=\"uid\" type=\"number\" value=\"1\" min=\"1\" max=\"10\" style=\"padding:8px 12px;border:1px solid #d2d2d7;border-radius:6px;width:80px\">\n<button id=\"btn\" style=\"margin-left:8px;padding:8px 20px;background:#0071e3;color:#fff;border:none;border-radius:6px;cursor:pointer\">查询</button>\n<div id=\"result\" style=\"margin-top:12px;padding:16px;background:#f5f5f5;border-radius:8px\"></div>",
+          "css": "body{margin:0;padding:20px;font-family:-apple-system,sans-serif;background:#fff;color:#1d1d1f}",
+          "js": "async function fetchUser(id) {\n  const out = document.getElementById('result');\n  out.textContent = '查询中...';\n  try {\n    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);\n    if (!res.ok) throw new Error(`用户不存在 (HTTP ${res.status})`);\n    const user = await res.json();\n    out.innerHTML = `\n      <h3 style=\"margin:0 0 8px\">${user.name}</h3>\n      <p style=\"margin:0;color:#86868b\">${user.email}</p>\n      <p style=\"margin:4px 0 0;color:#86868b\">${user.company.name}</p>\n    `;\n  } catch (e) {\n    out.innerHTML = `<p style=\"color:#ff3b30;margin:0\">${e.message}</p>`;\n  }\n}\ndocument.getElementById('btn').onclick = () => {\n  const id = parseInt(document.getElementById('uid').value) || 1;\n  fetchUser(id);\n};\nfetchUser(1);"
+        },
+        "tip": "实战中建议封装一个 apiFetch 函数，统一处理错误、token、loading 状态。",
+        "propRef": "js.fetch"
+      }
+    ]
+  },
+  {
+    "id": "j35",
+    "title": "📡 网络请求进阶——超时/重试/并发",
+    "desc": "AbortController/Promise.all/并发控制",
+    "category": "js",
+    "icon": "📡",
+    "difficulty": "中级",
+    "steps": [
+      {
+        "id": "j35-1",
+        "title": "AbortController——请求超时与取消",
+        "content": "fetch 没有内置超时机制，但可以用 <code>AbortController</code> 实现：<pre><code>const controller = new AbortController();\nconst timeout = setTimeout(() => controller.abort(), 5000);\ntry {\n  const res = await fetch(url, { signal: controller.signal });\n  clearTimeout(timeout);\n} catch (e) {\n  if (e.name === 'AbortError') console.log('请求超时');\n}</code></pre><p>abort() 之后 fetch 会立即 Reject，释放网络资源。</p>",
+        "code": {
+          "html": "<h3>超时请求演示</h3>\n<button id=\"btn\" style=\"padding:8px 20px;background:#0071e3;color:#fff;border:none;border-radius:6px;cursor:pointer\">发送请求 (2s超时)</button>\n<button id=\"cancel\" style=\"margin-left:8px;padding:8px 20px;background:#ff3b30;color:#fff;border:none;border-radius:6px;cursor:pointer;display:none\">取消</button>\n<div id=\"result\" style=\"margin-top:12px;padding:12px;background:#f5f5f5;border-radius:8px;font-family:monospace\">点击按钮开始</div>",
+          "css": "body{margin:0;padding:20px;font-family:-apple-system,sans-serif;background:#fff;color:#1d1d1f}",
+          "js": "let controller = null;\ndocument.getElementById('btn').onclick = async () => {\n  controller = new AbortController();\n  const out = document.getElementById('result');\n  const cancelBtn = document.getElementById('cancel');\n  out.textContent = '请求中... (2秒超时)';\n  cancelBtn.style.display = 'inline-block';\n  const timeout = setTimeout(() => controller.abort(), 2000);\n  try {\n    const res = await fetch('https://jsonplaceholder.typicode.com/posts', { signal: controller.signal });\n    clearTimeout(timeout);\n    const data = await res.json();\n    out.textContent = '成功! 获取 ' + data.length + ' 条数据';\n  } catch (e) {\n    out.textContent = e.name === 'AbortError' ? '请求已取消/超时' : '错误: ' + e.message;\n  } finally {\n    cancelBtn.style.display = 'none';\n    controller = null;\n  }\n};\ndocument.getElementById('cancel').onclick = () => controller?.abort();"
+        },
+        "tip": "一个 AbortController 只能 abort 一次。每次新请求需要创建新的 controller。",
+        "propRef": "js.fetch"
+      },
+      {
+        "id": "j35-2",
+        "title": "Promise.all——并发请求",
+        "content": "同时发多个请求，等全部完成：<pre><code>const [users, posts] = await Promise.all([\n  fetch('/api/users').then(r => r.json()),\n  fetch('/api/posts').then(r => r.json()),\n]);</code></pre><ul><li><code>Promise.all</code> — 全部成功才成功，一个失败就失败</li><li><code>Promise.allSettled</code> — 等全部完成（不管成功失败）</li><li><code>Promise.race</code> — 取最快返回的</li></ul>",
+        "code": {
+          "html": "<h3>并发请求演示</h3>\n<button id=\"btn\" style=\"padding:8px 20px;background:#0071e3;color:#fff;border:none;border-radius:6px;cursor:pointer\">并发获取用户+帖子</button>\n<div id=\"result\" style=\"margin-top:12px;padding:12px;background:#f5f5f5;border-radius:8px;font-family:monospace;white-space:pre-wrap\">等待中...</div>",
+          "css": "body{margin:0;padding:20px;font-family:-apple-system,sans-serif;background:#fff;color:#1d1d1f}",
+          "js": "document.getElementById('btn').onclick = async () => {\n  const out = document.getElementById('result');\n  out.textContent = '并发请求中...';\n  const start = Date.now();\n  try {\n    const [users, posts] = await Promise.all([\n      fetch('https://jsonplaceholder.typicode.com/users?_limit=3').then(r => r.json()),\n      fetch('https://jsonplaceholder.typicode.com/posts?_limit=5').then(r => r.json()),\n    ]);\n    const ms = Date.now() - start;\n    out.textContent = `耗时 ${ms}ms\\n获取 ${users.length} 个用户 + ${posts.length} 篇帖子\\n\\n用户: ${users.map(u => u.name).join(', ')}\\n\\n帖子: ${posts.map(p => p.title.substring(0, 20) + '...').join('\\n')}`;\n  } catch (e) {\n    out.textContent = '错误: ' + e.message;\n  }\n};"
+        },
+        "tip": "Promise.all 比 for 循环逐个请求快得多！但要注意并发量，一次发 100 个请求可能被服务器限流。",
+        "propRef": "js.promise"
+      },
+      {
+        "id": "j35-3",
+        "title": "实战挑战——综合运用",
+        "content": "综合运用 fetch + async/await + 错误处理 + 并发，做一个完整的小应用。<p><b>挑战要求</b>：</p><ol><li>并发获取用户列表和帖子列表</li><li>将帖子关联到对应用户</li><li>展示每个用户的帖子数量</li><li>处理网络错误</li></ol>",
+        "code": {
+          "html": "<h3>用户帖子统计</h3>\n<div id=\"app\" style=\"font-family:-apple-system,sans-serif\"><p>加载中...</p></div>",
+          "css": "body{margin:0;padding:20px;background:#fff;color:#1d1d1f}\n.user-card{padding:12px 16px;border:1px solid #e5e5ea;border-radius:10px;margin-bottom:8px;display:flex;align-items:center;gap:12px}\n.user-card .avatar{width:40px;height:40px;border-radius:50%;background:#0071e3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold}\n.user-card .info{flex:1}\n.user-card h4{margin:0;font-size:15px}\n.user-card p{margin:2px 0 0;color:#86868b;font-size:13px}\n.badge{background:#e8f0fe;color:#0071e3;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600}",
+          "js": "async function loadDashboard() {\n  const app = document.getElementById('app');\n  try {\n    const [users, posts] = await Promise.all([\n      fetch('https://jsonplaceholder.typicode.com/users?_limit=6').then(r => r.json()),\n      fetch('https://jsonplaceholder.typicode.com/posts').then(r => r.json()),\n    ]);\n    const postCount = {};\n    posts.forEach(p => { postCount[p.userId] = (postCount[p.userId] || 0) + 1; });\n    app.innerHTML = users.map(u => `\n      <div class=\"user-card\">\n        <div class=\"avatar\">${u.name[0]}</div>\n        <div class=\"info\">\n          <h4>${u.name}</h4>\n          <p>${u.company.name}</p>\n        </div>\n        <span class=\"badge\">${postCount[u.id] || 0} 篇帖子</span>\n      </div>\n    `).join('');\n  } catch (e) {\n    app.innerHTML = `<p style=\"color:#ff3b30\">加载失败: ${e.message}</p>`;\n  }\n}\nloadDashboard();"
+        },
+        "tip": "恭喜！你已经掌握了 fetch API 的核心用法：GET/POST、错误处理、超时取消、并发请求。这些是前端开发最高频的操作！",
+        "propRef": "js.fetch"
+      }
+    ]
   }
 ]

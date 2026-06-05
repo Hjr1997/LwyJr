@@ -269,6 +269,11 @@ defineExpose({ open })
   font-size: 0.9rem;
 }
 
+@media (max-width: 640px) {
+  .search-overlay { padding-top: min(10vh, 80px); }
+  .search-results { max-height: calc(60vh - 80px); }
+}
+
 /* Transition */
 .search-overlay-enter-active { transition: opacity .2s; }
 .search-overlay-leave-active { transition: opacity .15s; }

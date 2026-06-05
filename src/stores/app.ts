@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed, reactive } from 'vue'
 
 const THEME_KEY = 'lwyjr-theme-preference'
+const PROGRESS_KEY = 'lwyjr-tutorial-progress'
 
 function getSystemTheme(): 'dark' | 'light' {
   if (typeof window === 'undefined') return 'light'
@@ -42,7 +43,9 @@ export const useAppStore = defineStore('app', () => {
   const activeSection = ref('hero')
   const tutorialProgress = ref(0)
   const tutorialState = reactive({
-    completed: new Set<string>(),
+    completed: new Set<string>(
+      (() => { try { return JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]') } catch { return [] } })()
+    ),
     get size() { return this.completed.size },
   })
 
@@ -69,7 +72,12 @@ export const useAppStore = defineStore('app', () => {
   }
 
   function markTutorialComplete(id: string) {
-    tutorialState.completed.add(id)
+    if (tutorialState.completed.has(id)) {
+      tutorialState.completed.delete(id)
+    } else {
+      tutorialState.completed.add(id)
+    }
+    try { localStorage.setItem(PROGRESS_KEY, JSON.stringify([...tutorialState.completed])) } catch {}
     const total = 30
     tutorialProgress.value = Math.round((tutorialState.completed.size / total) * 100)
   }

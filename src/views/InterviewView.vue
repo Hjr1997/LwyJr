@@ -19,7 +19,8 @@
       <button class="abtn" :class="{on:mode==='collapse'}" @click="mode='collapse'">全部折叠</button>
       <button class="abtn" :class="{on:mode==='hot'}" @click="mode='hot'">仅高频</button>
       <button class="abtn" :class="{on:mode==='hard'}" @click="mode='hard'">仅困难</button>
-      <span class="stats">共 {{totalQ}} 题 · {{totalHot}} 高频 · {{totalHard}} 困难</span>
+      <button class="abtn" :class="{on:mode==='easy'}" @click="mode='easy'">仅基础</button>
+      <span class="stats">共 {{totalQ}} 题 · {{totalEasy}} 基础 · {{totalHot}} 高频 · {{totalHard}} 困难</span>
     </div>
 
     <div v-for="cat in categories" :key="cat.name" class="cat" :data-cat="cat.name">
@@ -63,12 +64,13 @@ import ExampleModal from '@/components/ExampleModal.vue'
 
 const openCats = reactive(new Set<string>())
 const expandedKeys = reactive(new Set<string>())
-const mode = ref<'expand'|'collapse'|'hot'|'hard'>('collapse')
+const mode = ref<'expand'|'collapse'|'hot'|'hard'|'easy'>('collapse')
 const exampleModal = ref<InstanceType<typeof ExampleModal>|null>(null)
 
 const totalQ = computed(() => categories.reduce((s, c) => s + c.questions.length, 0))
 const totalHot = computed(() => categories.reduce((s, c) => s + c.questions.filter(q => q.hot).length, 0))
 const totalHard = computed(() => categories.reduce((s, c) => s + c.questions.filter(q => q.hard).length, 0))
+const totalEasy = computed(() => categories.reduce((s, c) => s + c.questions.filter(q => !q.hard && !q.hot).length, 0))
 
 function toggleCat(name: string) {
   if (openCats.has(name)) openCats.delete(name)
@@ -109,6 +111,16 @@ function showOnlyHard() {
   categories.forEach(c => {
     if (c.questions.some(q => q.hard)) openCats.add(c.name)
     c.questions.forEach(q => { if (q.hard) expandedKeys.add(q.q) })
+  })
+}
+
+function showOnlyEasy() {
+  openCats.clear()
+  expandedKeys.clear()
+  categories.forEach(c => {
+    const easy = c.questions.filter(q => !q.hard && !q.hot)
+    if (easy.length) openCats.add(c.name)
+    easy.forEach(q => expandedKeys.add(q.q))
   })
 }
 
@@ -160,6 +172,7 @@ watch(mode, (v) => {
   else if (v === 'collapse') collapseAll()
   else if (v === 'hot') showOnlyHot()
   else if (v === 'hard') showOnlyHard()
+  else if (v === 'easy') showOnlyEasy()
 })
 </script>
 
@@ -225,5 +238,12 @@ watch(mode, (v) => {
   .cat-desc{width:100%;order:4}
   .q-a{padding-left:22px}
   .hot-list{gap:6px}
+}
+@media(max-width:640px){
+  .sp{padding:0 16px 60px}
+  .ss{font-size:.92rem}
+  .hot-bar{padding:16px}
+  .q-h{padding:12px 16px}
+  .q-a{padding:0 16px 14px 42px}
 }
 </style>

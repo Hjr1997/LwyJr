@@ -852,7 +852,7 @@ if (typeof document !== 'undefined') {
    ═══════════════════════════════════ */
 @media (max-width: 640px) {
   .chatbot-container {
-    bottom: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0));
     right: 16px;
   }
   .chatbot-trigger {
@@ -862,12 +862,15 @@ if (typeof document !== 'undefined') {
   }
   .chatbot-window {
     width: calc(100vw - 16px);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 80px - env(safe-area-inset-bottom, 0));
     max-width: none;
     border-radius: var(--radius-lg);
     position: fixed;
-    bottom: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom, 0));
     right: 8px;
+  }
+  .chatbot-selector-item {
+    min-height: 44px;
   }
 }
 </style>

@@ -88,6 +88,7 @@ function load(t:{h:string;c:string;j:string}){
 <style scoped>
 .pg{display:grid;grid-template-columns:1fr 1fr;gap:20px;min-height:500px}
 @media(max-width:900px){.pg{grid-template-columns:1fr}}
+@media(max-width:640px){.pg-body{min-height:280px}.pg-if{min-height:250px}}
 
 .pg-editor{background:var(--code-bg);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
 .pg-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--code-header-bg);border-bottom:1px solid var(--code-border)}
@@ -95,7 +96,7 @@ function load(t:{h:string;c:string;j:string}){
 .pg-dots i:nth-child(1){background:var(--code-dot-red)}.pg-dots i:nth-child(2){background:var(--code-dot-yellow)}.pg-dots i:nth-child(3){background:var(--code-dot-green)}
 .pg-title{flex:1;text-align:center;color:var(--code-header-text);font-size:.8rem}
 .pg-tabs{display:flex;gap:2px}
-.pg-tab{padding:5px 14px;background:0 0;color:var(--code-header-text);border-radius:5px;font-size:.78rem;border:none;cursor:pointer;min-height:36px;min-width:36px}
+.pg-tab{padding:5px 14px;background:0 0;color:var(--code-header-text);border-radius:5px;font-size:.78rem;border:none;cursor:pointer;min-height:44px;min-width:44px}
 .pg-tab.on{background:var(--primary);color:var(--btn-inverted-text)}
 .pg-body{flex:1;min-height:400px}
 

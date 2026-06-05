@@ -1050,4 +1050,8 @@ onUnmounted(() => {
 @media (max-width: 480px) {
   .cloud-body { max-width: 150px; font-size: .75rem; }
 }
+@media (max-height: 500px) {
+  .thought-cloud { top: 18vh; }
+  .cloud-body { max-width: 140px; font-size: .72rem; padding: 6px 12px; }
+}
 </style>

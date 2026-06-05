@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SpotlightWrapper>
+    <SpotlightWrapper v-if="!isMobile">
       <section class="hero-section">
       <div class="hero-content">
         <div class="hero-badge reveal-up">🚀 从零开始的编程之旅</div>
@@ -14,26 +14,44 @@
           零基础 · 动画教学 · 实战演练 · 全套学习路径
         </p>
         <div class="hero-buttons reveal-up delay-3">
-          <router-link to="/roadmap" class="btn btn-primary btn-glow">🚀 开始学习之旅</router-link>
-          <router-link to="/gallery" class="btn btn-outline">✨ 探索动画</router-link>
+          <router-link to="/roadmap" class="btn btn-primary btn-glow">开始学习之旅</router-link>
+          <router-link to="/gallery" class="btn btn-outline">探索动画特效</router-link>
         </div>
-        <div class="hero-stats reveal-up delay-4">
+        <div class="hero-stats reveal-up delay-3">
           <div class="stat-item">
-            <CountUp :end="100" suffix="+" />
-            <span class="stat-label">动画效果</span>
+            <span class="stat-number"><CountUp :end="100" suffix="+" /></span>
+            <span class="stat-label">动画特效</span>
           </div>
           <div class="stat-item">
-            <CountUp :end="50" suffix="+" />
-            <span class="stat-label">实战教程</span>
+            <span class="stat-number"><CountUp :end="50" suffix="+" /></span>
+            <span class="stat-label">教程课时</span>
           </div>
           <div class="stat-item">
-            <CountUp :end="200" suffix="+" />
+            <span class="stat-number"><CountUp :end="200" suffix="+" /></span>
             <span class="stat-label">代码示例</span>
           </div>
         </div>
       </div>
     </section>
     </SpotlightWrapper>
+    <section v-if="isMobile" class="hero-section">
+      <div class="hero-content">
+        <div class="hero-badge reveal-up">🚀 从零开始的编程之旅</div>
+        <h1 class="hero-title">
+          <span class="gradient-text">从 0 到前后端大牛</span>
+        </h1>
+        <p class="hero-subtitle reveal-up delay-2">
+          <span ref="typewriterRefMobile"></span><span class="cursor-blink">|</span>
+        </p>
+        <p class="hero-desc reveal-up delay-3">
+          零基础 · 动画教学 · 实战演练 · 全套学习路径
+        </p>
+        <div class="hero-buttons reveal-up delay-3">
+          <router-link to="/roadmap" class="btn btn-primary btn-glow">开始学习之旅</router-link>
+          <router-link to="/gallery" class="btn btn-outline">探索动画特效</router-link>
+        </div>
+      </div>
+    </section>
 
     <section class="section-padding">
       <h2 class="section-title reveal-up"><span class="gradient-text">为什么选择 LwyJr？</span></h2>
@@ -64,12 +82,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import CountUp from '@/components/CountUp.vue'
 import SpotlightWrapper from '@/components/SpotlightWrapper.vue'
 import { useScrollReveal } from '@/composables/useScrollReveal'
 import { use3DTilt } from '@/composables/use3DTilt'
 import { useMagneticCursor } from '@/composables/useMagneticCursor'
+import { useReducedMotion } from '@/composables/useReducedMotion'
+
+const { isMobile } = useReducedMotion()
 
 useScrollReveal()
 use3DTilt('.feature-card, .preview-card', { maxTilt: 6, scale: 1.03 })
@@ -89,6 +110,7 @@ onMounted(() => {
 })
 
 const typewriterRef = ref<HTMLElement>()
+const typewriterRefMobile = ref<HTMLElement>()
 
 const sentences = [
   'HTML + CSS + JavaScript 从入门到精通',
@@ -99,9 +121,10 @@ const sentences = [
 let sentenceIdx = 0
 let charIdx = 0
 let isDeleting = false
+let typewriterTimer: ReturnType<typeof setTimeout> | null = null
 
 function typewriter() {
-  const el = typewriterRef.value
+  const el = typewriterRef.value || typewriterRefMobile.value
   if (!el) return
 
   const current = sentences[sentenceIdx]
@@ -124,7 +147,7 @@ function typewriter() {
     speed = 300
   }
 
-  setTimeout(typewriter, speed)
+  typewriterTimer = setTimeout(typewriter, speed)
 }
 
 const features = [
@@ -145,6 +168,7 @@ const previews = [
 ]
 
 onMounted(typewriter)
+onUnmounted(() => { if (typewriterTimer) clearTimeout(typewriterTimer) })
 </script>
 
 <style scoped>
@@ -163,7 +187,7 @@ onMounted(typewriter)
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-lg), 0 0 30px var(--glow-secondary);
   border-color: var(--primary);
 }
@@ -208,7 +232,7 @@ onMounted(typewriter)
 .preview-card:hover {
   border-color: var(--primary);
   box-shadow: var(--shadow-lg), 0 0 20px var(--glow-primary);
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-2px);
 }
 
 .preview-icon {
@@ -232,5 +256,12 @@ onMounted(typewriter)
   color: var(--primary);
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .feature-card { padding: 20px; }
+  .preview-card { padding: 16px; }
+  .features-grid { grid-template-columns: 1fr; gap: 12px; }
+  .preview-grid { grid-template-columns: 1fr; gap: 12px; }
 }
 </style>
