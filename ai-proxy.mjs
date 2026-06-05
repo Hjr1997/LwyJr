@@ -271,7 +271,7 @@ function postBuild(distDir) {
 // ═══════════════════════════════════════════════════════════════
 //  CLI entry point
 // ═══════════════════════════════════════════════════════════════
-const isMain = process.argv[1]?.endsWith('ai-proxy.mjs')
+const isMain = process.argv[1] && (process.argv[1].endsWith('ai-proxy.mjs') || process.argv[1].endsWith('server.mjs'))
 if (isMain) {
   const firstArg = process.argv[2]
 
