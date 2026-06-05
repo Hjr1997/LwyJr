@@ -3,12 +3,13 @@ import DOMPurify from 'dompurify'
 // Sanitize HTML content to prevent XSS
 // Used for all v-html directives across the app
 DOMPurify.addHook('afterSanitizeElements', (node) => {
+  const el = node as Element
   // Allow iframe elements (needed for code previews)
-  if (node.tagName === 'IFRAME') {
+  if (el.tagName === 'IFRAME') {
     const src = (node as HTMLIFrameElement).getAttribute('src')
     // Only allow same-origin iframes
     if (src && !src.startsWith('about:') && !src.startsWith('blob:')) {
-      node.remove()
+      el.remove()
     }
   }
 })

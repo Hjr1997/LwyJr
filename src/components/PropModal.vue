@@ -75,7 +75,7 @@
                 <table class="sheet-table">
                   <thead><tr><th>标签</th><th>说明</th></tr></thead>
                   <tbody>
-                    <tr v-for="t in data.tags" :key="t.tag"><td class="td-k">{{ t.tag }}</td><td class="td-v">{{ t.desc }}{{ t.attrs && t.attrs.length ? ' (' + t.attrs.map(a => a.name + ': ' + a.desc).join(', ') + ')' : '' }}</td></tr>
+                    <tr v-for="t in data.tags" :key="t.tag"><td class="td-k">{{ t.tag }}</td><td class="td-v">{{ t.desc }}{{ t.attrs && t.attrs.length ? ' (' + t.attrs.map((a: any) => a.name + ': ' + a.desc).join(', ') + ')' : '' }}</td></tr>
                   </tbody>
                 </table>
               </div>

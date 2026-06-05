@@ -38,7 +38,7 @@
 
         <!-- Capsules -->
         <div class="capsules-row" :class="{ in: step>=3 }">
-          <span v-for="(c,i) in capsules" :key="c.label" class="cap-item" :style="{ animationDelay: (0.12*i)+'s' }">
+          <span v-for="(c,i) in capsules" :key="c" class="cap-item" :style="{ animationDelay: (0.12*i)+'s' }">
             <span class="cap-dot" :style="{ background: preset.accent }"></span>{{ c }}
           </span>
         </div>

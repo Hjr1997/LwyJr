@@ -102,7 +102,7 @@ const results = computed<SearchResult[]>(() => {
   for (const a of animations) {
     if (a.title.toLowerCase().includes(q) || a.desc?.toLowerCase().includes(q)) {
       items.push({
-        id: a.id, title: a.title, category: a.category,
+        id: String(a.id), title: a.title, category: a.category,
         icon: a.icon || '🎬',
         type: '动画', route: '/gallery',
       })

@@ -255,7 +255,7 @@ function draw() {
   c.beginPath(); c.arc(beadX, beadY, 5.5, 0, Math.PI * 2); c.fill()
   c.strokeStyle = col(0.3); c.lineWidth = 0.8; c.stroke()
   c.fillStyle = 'rgba(255,255,255,0.18)'
-  c.beginPath(); c.arc(beadX - 1.5, beadY - 2, 2, 2, 0, Math.PI * 2); c.fill()
+  c.beginPath(); c.arc(beadX - 1.5, beadY - 2, 2, 0, Math.PI * 2); c.fill()
 
   // Trigger ring
   if (triggered.value) {
