@@ -1,5 +1,5 @@
 <template>
-  <div class="not-found page-in" style="padding-top:var(--nav-height)">
+  <div class="not-found page-in" style="padding-top:var(--main-header-top)">
     <div class="not-found-inner">
       <span class="nf-404">404</span>
       <h1>Page Not Found</h1>

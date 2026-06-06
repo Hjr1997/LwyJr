@@ -49,6 +49,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAppStore } from '@/stores/app'
 import { tutorials } from '@/data/tutorials'
 import { animations } from '@/data/animations'
 
@@ -63,6 +64,7 @@ interface SearchResult {
 }
 
 const router = useRouter()
+const store = useAppStore()
 const isOpen = ref(false)
 const query = ref('')
 const activeIdx = ref(0)
@@ -159,6 +161,9 @@ watch(isOpen, (v) => {
 if (typeof window !== 'undefined') {
   window.addEventListener('keydown', onKeydown)
 }
+
+// Watch store searchEvent to open from NavBar
+watch(() => store.searchEvent, () => { if (!isOpen.value) open() })
 
 defineExpose({ open })
 </script>
@@ -272,18 +277,17 @@ defineExpose({ open })
 @media (max-width: 640px) {
   .search-overlay { padding-top: min(10vh, 80px); }
   .search-results { max-height: calc(60vh - 80px); }
+  .search-modal { padding-bottom: env(safe-area-inset-bottom, 0); }
 }
-
-/* Transition */
-.search-overlay-enter-active { transition: opacity .2s; }
-.search-overlay-leave-active { transition: opacity .15s; }
-.search-overlay-enter-from,
-.search-overlay-leave-to { opacity: 0; }
-.search-overlay-enter-active .search-modal {
-  transition: opacity .2s, transform .25s cubic-bezier(.16,1,.3,1);
-}
-.search-overlay-enter-from .search-modal {
-  opacity: 0;
-  transform: translateY(-12px) scale(0.98);
-}
+</style>
+<!-- Transition (unscoped for Vue dynamic classes) -->
+<style>
+.search-overlay-enter-active{transition:opacity .4s cubic-bezier(.34,1.56,.64,1)}
+.search-overlay-enter-active .search-modal{transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .4s cubic-bezier(.34,1.56,.64,1)}
+.search-overlay-enter-from{opacity:0}
+.search-overlay-enter-from .search-modal{opacity:0;transform:translateY(-20px) scale(.95)}
+.search-overlay-leave-active{transition:opacity .25s cubic-bezier(.68,-.3,.32,1.3)}
+.search-overlay-leave-active .search-modal{transition:transform .25s cubic-bezier(.68,-.3,.32,1.3),opacity .25s cubic-bezier(.68,-.3,.32,1.3)}
+.search-overlay-leave-to{opacity:0}
+.search-overlay-leave-to .search-modal{opacity:0;transform:translateY(-8px) scale(.96)}
 </style>

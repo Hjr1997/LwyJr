@@ -53,6 +53,7 @@ export function use3DTilt(selector: string, opts: TiltOptions = {}) {
   }
 
   onMounted(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) return
     document.querySelectorAll<HTMLElement>(selector).forEach(bind)
   })
 

@@ -58,6 +58,12 @@ export const useAppStore = defineStore('app', () => {
     setTimeout(() => { lampEvent.value = null }, 100)
   }
 
+  // Search open event (NavBar search btn → SearchModal)
+  const searchEvent = ref(0)
+  function triggerSearch() {
+    searchEvent.value++
+  }
+
   function toggleTheme() {
     isDark.value = !isDark.value
     applyTheme(isDark.value)
@@ -98,5 +104,7 @@ export const useAppStore = defineStore('app', () => {
     isTutorialDone,
     lampEvent,
     triggerLampEvent,
+    searchEvent,
+    triggerSearch,
   }
 })

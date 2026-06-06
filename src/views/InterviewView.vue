@@ -1,5 +1,5 @@
 <template>
-  <div class="sp page-in" style="padding-top:var(--nav-height)">
+  <div class="sp page-in" style="padding-top:var(--main-header-top)">
     <h2 class="st"><span class="gt">📋 前端面试题库</span></h2>
     <p class="ss">2026最全面试题集，涵盖字节/腾讯/快手等大厂高频考点，来源掘金/CSDN/面试鸭/牛客网</p>
 
@@ -231,15 +231,13 @@ watch(mode, (v) => {
 .ex-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--radius-full);background:rgba(0,113,227,.1);border:1px solid rgba(0,113,227,.25);color:var(--primary);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s}
 .ex-btn:hover{background:rgba(0,113,227,.18);border-color:var(--primary);transform:translateY(-1px)}
 
-@media(max-width:700px){
+@media(max-width:640px){
   .actions{gap:6px}
   .stats{margin-left:0;width:100%}
   .cat-h{flex-wrap:wrap;gap:6px}
   .cat-desc{width:100%;order:4}
   .q-a{padding-left:22px}
   .hot-list{gap:6px}
-}
-@media(max-width:640px){
   .sp{padding:0 16px 60px}
   .ss{font-size:.92rem}
   .hot-bar{padding:16px}

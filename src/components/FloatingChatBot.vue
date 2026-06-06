@@ -245,6 +245,7 @@ function toggleOpen() {
   if (isOpen.value) {
     showSelector.value = false
     if (messages.value.length === 0) addMessage('ai', currentAgent.value.greeting)
+    scrollToBottom()
   }
 }
 
@@ -816,32 +817,6 @@ if (typeof document !== 'undefined') {
 .chatbot-send:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* ═══════════════════════════════════
-   Transitions
-   ═══════════════════════════════════ */
-.chat-window-enter-active { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.chat-window-leave-active { transition: all 0.2s ease-in; }
-.chat-window-enter-from, .chat-window-leave-to {
-  opacity: 0; transform: translateY(20px) scale(0.92);
-}
-
-.selector-dropdown-enter-active { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-.selector-dropdown-leave-active { transition: all 0.15s ease-in; }
-.selector-dropdown-enter-from, .selector-dropdown-leave-to {
-  opacity: 0; transform: translateY(-8px) scaleY(0.95);
-}
-
-.msg-enter-active { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.msg-leave-active { transition: all 0.2s ease-in; }
-.msg-enter-from { opacity: 0; transform: translateY(8px); }
-.msg-leave-to { opacity: 0; transform: scale(0.95); }
-
-/* Lamp bubble transition */
-.lamp-bubble-enter-active { transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1); }
-.lamp-bubble-leave-active { transition: all 0.25s ease-in; }
-.lamp-bubble-enter-from { opacity: 0; transform: translateY(8px) scale(0.85); }
-.lamp-bubble-leave-to { opacity: 0; transform: translateY(-4px) scale(0.9); }
-
-/* ═══════════════════════════════════
    Dark theme
    ═══════════════════════════════════ */
 :global([data-theme='dark']) .chatbot-window { border-color: rgba(255,255,255,0.08); }
@@ -868,11 +843,32 @@ if (typeof document !== 'undefined') {
     position: fixed;
     bottom: calc(8px + env(safe-area-inset-bottom, 0));
     right: 8px;
+    top: 10px;
   }
   .chatbot-selector-item {
     min-height: 44px;
   }
 }
+</style>
+<!-- Transitions (unscoped for Vue dynamic classes) -->
+<style>
+.chat-window-enter-active{transition:all .45s cubic-bezier(.34,1.56,.64,1)}
+.chat-window-leave-active{transition:all .25s ease-in}
+.chat-window-enter-from,.chat-window-leave-to{opacity:0;transform:translateY(20px) scale(.92)}
+
+.selector-dropdown-enter-active{transition:all .25s cubic-bezier(.16,1,.3,1)}
+.selector-dropdown-leave-active{transition:all .15s ease-in}
+.selector-dropdown-enter-from,.selector-dropdown-leave-to{opacity:0;transform:translateY(-8px) scaleY(.95)}
+
+.msg-enter-active{transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.msg-leave-active{transition:all .2s ease-in}
+.msg-enter-from{opacity:0;transform:translateY(8px)}
+.msg-leave-to{opacity:0;transform:scale(.95)}
+
+.lamp-bubble-enter-active{transition:all .35s cubic-bezier(.34,1.56,.64,1)}
+.lamp-bubble-leave-active{transition:all .25s ease-in}
+.lamp-bubble-enter-from{opacity:0;transform:translateY(8px) scale(.85)}
+.lamp-bubble-leave-to{opacity:0;transform:translateY(-4px) scale(.9)}
 </style>
 
 <!-- Global styles for v-html rendered Markdown code blocks -->

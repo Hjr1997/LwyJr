@@ -4,6 +4,7 @@
       <router-link to="/" class="nav-logo-animated" aria-label="LwyJr 首页">
         LwyJr
       </router-link>
+       
       <ul class="nav-menu" :class="{ open: menuOpen }" role="menubar" :aria-expanded="menuOpen">
         <li v-for="item in navItems" :key="item.path" role="none">
           <router-link
@@ -19,9 +20,14 @@
             {{ item.text }}
           </router-link>
         </li>
+        <li>
+          <button class="nav-search-btn-pc" @click="store.triggerSearch()" aria-label="搜索">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </li>
       </ul>
       <div class="nav-actions">
-        <button class="nav-search-btn" @click="searchModal?.open()" aria-label="搜索">
+        <button class="nav-search-btn-mobile" @click="store.triggerSearch()" aria-label="搜索">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
         <DeskLamp />
@@ -43,12 +49,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useAppStore } from '@/stores/app'
 import DeskLamp from '@/components/DeskLamp.vue'
 
 const route = useRoute()
+const store = useAppStore()
 const menuOpen = ref(false)
 const scrolled = ref(false)
-const searchModal = ref<{open:()=>void}|null>(null)
 
 const currentPath = computed(() => route.path)
 
@@ -97,7 +104,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 8px;
 }
-.nav-search-btn {
+.nav-search-btn-pc {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,10 +115,22 @@ onUnmounted(() => {
   color: var(--text-secondary);
   cursor: pointer;
   transition: all .25s var(--spring-bouncy);
+  /* position: absolute;
+  left: 100px;
+  top: 10px; */
+  z-index: 100001;
 }
-.nav-search-btn:hover {
+.nav-search-btn-pc:hover, .nav-search-btn-mobile:hover {
   color: var(--text);
   background: var(--hero-badge-bg);
+}
+
+.nav-search-btn-mobile {
+  display: none;
+}
+.mobile-menu-btn {
+  position: relative;
+  z-index: 100001;
 }
 .menu-backdrop {
   display: none;
@@ -124,6 +143,22 @@ onUnmounted(() => {
     top: calc(var(--nav-height) + env(safe-area-inset-top, 0));
     background: rgba(0,0,0,.3);
     z-index: 999;
+  }
+  .nav-search-btn-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all .25s var(--spring-bouncy);
+    z-index: 100001;
+  }
+  .nav-search-btn-pc {
+    display: none;
   }
 }
 </style>

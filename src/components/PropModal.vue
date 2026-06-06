@@ -332,7 +332,7 @@ defineExpose({ open, close })
 .sheet-tips{margin:0;padding-left:18px;color:var(--text-secondary);font-size:.85rem;line-height:1.8}
 .sheet-tips code{background:rgba(0,113,227,.08);padding:1px 6px;border-radius:4px;color:var(--primary);font-size:.8rem}
 
-@media(max-width:600px){
+@media(max-width:640px){
   .sheet-container{border-radius:24px 24px 0 0}
   .sheet-body{padding:4px 16px 20px}
   .sheet-header{padding:12px 16px 10px}

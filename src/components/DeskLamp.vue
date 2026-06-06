@@ -580,12 +580,13 @@ onUnmounted(() => {
 }
 @media (max-width: 768px) {
   .lamp-canvas {
-    z-index: 998;
-    right: 6px;
-    top: -20px;
+    z-index: 99998;
+    left: -3%;
+    right: 0%;
+    /* top: 0px; */
     width: 126px;
     height: 126px;
-    transform: scale(0.38);
+    transform: scale(0.38) translate(-50%);
   }
 }
 .lamp-canvas:active { cursor: grabbing; }

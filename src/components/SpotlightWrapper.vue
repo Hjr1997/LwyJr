@@ -53,6 +53,7 @@ function onMove(e: MouseEvent) {
 }
 
 onMounted(() => {
+  if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) return
   currentX = window.innerWidth / 2
   currentY = window.innerHeight / 2
   targetX = currentX

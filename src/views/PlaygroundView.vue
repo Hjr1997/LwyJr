@@ -1,5 +1,5 @@
 <template>
-  <div class="page-in" style="padding-top:var(--nav-height)">
+  <div class="page-in" style="padding-top:var(--main-header-top)">
     <h2 class="section-title"><span class="gradient-text">💻 代码演练场</span></h2>
     <p class="section-subtitle">实时编写 HTML/CSS/JS，即时预览效果。修改代码自动刷新。</p>
 

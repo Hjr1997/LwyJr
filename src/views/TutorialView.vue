@@ -1,5 +1,5 @@
 <template>
-  <div class="sp page-in" style="padding-top:var(--nav-height)">
+  <div class="sp page-in" style="padding-top:var(--main-header-top)">
     <h2 class="st"><span class="gt">🎓 教程中心</span></h2>
     <p class="ss">从零到全栈的系统化学习，每一步都有可运行代码</p>
     <div class="tt">
@@ -157,17 +157,17 @@ function copyNodeCode(stepId:string,e:MouseEvent){const cm=stepCodes[stepId];if(
 .st{font-size:clamp(2rem,4vw,3rem);text-align:center;margin-bottom:8px;font-weight:900;letter-spacing:-.03em}
 .gt{background:var(--gradient-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .ss{text-align:center;color:var(--text-secondary);max-width:560px;margin:0 auto 36px;font-size:1.05rem;font-weight:400}
-.tt{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;background:var(--bg-glass);padding:4px;border-radius:var(--radius-full);backdrop-filter:blur(12px);max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative}
+.tt{display:flex;gap:2px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;background:var(--bg-glass);padding:4px;border-radius:var(--radius-full);backdrop-filter:blur(12px);max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative;border: 1px solid var(--border);}
 .tt::-webkit-scrollbar{display:none}
 .tt::before,.tt::after{content:'';position:sticky;top:0;bottom:0;min-width:24px;flex-shrink:0;z-index:1;pointer-events:none}
 .tt::before{left:0;background:linear-gradient(to right,var(--bg-glass),transparent)}
-.tt::after{right:0;margin-left:auto;background:linear-gradient(to left,var(--bg-glass),transparent)}
+/* .tt::after{right:0;margin-left:auto;background:linear-gradient(to left,var(--bg-glass),transparent)} */
 .tt-adv{margin-top:8px;margin-bottom:24px;border-top:1px solid var(--border);padding-top:8px}
 .adv-toggle{color:var(--text-tertiary);font-size:.78rem}
 .adv-toggle:hover{color:var(--primary)}
-.tb{padding:9px 16px;border-radius:var(--radius-full);background:transparent;border:none;color:var(--text-secondary);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .3s var(--spring-bouncy);white-space:nowrap;min-height:44px;min-width:44px;display:inline-flex;align-items:center;gap:4px}
+.tb{padding:9px 16px;background:transparent;border:none;color:var(--text-secondary);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .3s var(--spring-bouncy);white-space:nowrap;min-height:44px;min-width:44px;display:inline-flex;align-items:center;gap:4px}
 .tb:hover{color:var(--text)}
-.tb.on{background:var(--bg-card);color:var(--primary);box-shadow:var(--shadow-sm);font-weight:600;transform:scale(1.02)}
+.tb.on{background:var(--bg-card);color:var(--primary);box-shadow:var(--shadow-sm);font-weight:600;transform:scale(1.02);border-radius: var(--radius-full);}
 .tc{font-size:.7rem;padding:2px 7px;border-radius:var(--radius-full);font-weight:600}
 .tb.on .tc{background:rgba(0,113,227,.1);color:var(--primary)}
 .tl{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
@@ -186,13 +186,15 @@ function copyNodeCode(stepId:string,e:MouseEvent){const cm=stepCodes[stepId];if(
     margin-bottom:20px;
     border-radius:var(--radius-lg);
     scrollbar-width:none;
+    z-index: 99999;
   }
   .ts::-webkit-scrollbar{display:none}
   .ts h4{display:none}
   .ci{flex-shrink:0;padding:8px 14px;border:1px solid var(--border);white-space:nowrap}
   .cm{display:none}
+  .tt{border-radius: var(--radius)}
 }
-.ts{position:sticky;top:calc(var(--nav-height) + 24px);background:var(--bg-glass);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;max-height:68vh;overflow-y:auto;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:var(--shadow-sm)}
+.ts{position:sticky;top:calc(var(--main-header-top) + 24px);background:var(--bg-glass);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;max-height:68vh;overflow-y:auto;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:var(--shadow-sm)}
 .ts h4{margin-bottom:14px;font-size:.9rem;font-weight:700;color:var(--text);letter-spacing:-.01em}
 .ci{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius);cursor:pointer;transition:all .25s var(--spring-bouncy);margin-bottom:2px;position:relative}
 .ci:hover{background:rgba(0,113,227,.06);transform:translateX(4px)}

@@ -1294,3 +1294,68 @@ onMounted(() => {
 - **6种动作**：wave(摇摆)、nod(点头)、think(思考倾斜)、excited(弹跳)、sleepy(缩小)、idle(微缩放)
 - **Fallback**：AI 不可用时使用预设心里话库（每个路由 2-3 条）
 - **CSS 安全**：所有反应动画都是 CSS wrapper 级别，不触碰 3D 对象
+
+## 2026-06-06 优化会话记录
+
+### 已完成的优化
+
+#### P0 Bug 修复
+- [x] **Transition scoped 修复**: ExampleModal/SearchModal/FloatingChatBot 的过渡类从 `<style scoped>` 移到独立 `<style>` 块，动画现已正常生效
+- [x] **--danger 变量**: `[data-theme='dark']` 和 `@media(prefers-color-scheme:dark)` 块均添加 `--danger:#ff453a`
+- [x] **SearchModal 搜索按钮集成**: NavBar 通过 `store.triggerSearch()` 触发 → SearchModal 监听 `store.searchEvent` 打开，无需 ref 传递
+- [x] **DeskLamp 遮挡修复**: `.nav-search-btn` 和 `.mobile-menu-btn` 添加 `z-index:100001` 确保不被 DeskLamp canvas 遮挡
+
+#### 弹窗动画统一
+- [x] ExampleModal: 过渡类移至 unscoped `<style>`，统一使用 sheet 弹簧参数 (`.5s spring` in / `.3s bounce` out)
+- [x] SearchModal: 过渡类移至 unscoped `<style>`，入场改为下降弹簧 (translateY(-20px) → 0)
+- [x] FloatingChatBot: 所有 4 组过渡类移至 unscoped `<style>` (chat-window/selector-dropdown/msg/lamp-bubble)
+- [x] RoadmapView modal: 添加 `<Transition name="sheet">` + body lock + ESC close + sheet-handle + z-index 10000
+- [x] GalleryView modal: 添加 `<Transition name="sheet">` + body lock + ESC close + sheet-handle + z-index 10000
+
+#### 颜色和样式统一
+- [x] TechStackView `.ctg`: `rgba(102,126,234,.1)` → `var(--tag-bg)`
+- [x] TechStackView `.tlk-go`: `#4ade80/#22c55e` → `var(--success)` 系列
+- [x] GalleryView `.btn-run:hover`: `rgba(74,222,128,0.5)` → `rgba(52,199,89,.35)`
+- [x] main.css `.gallery-card:hover`: `translateY(-6px)` → `translateY(-2px)`
+- [x] animations.css `.hover-lift:hover`: `translateY(-4px)` → `translateY(-2px)`
+
+#### AI 聊天助手修复
+- [x] `toggleOpen()` 添加 `scrollToBottom()` 调用，确保打开时滚动到最新消息
+- [x] 所有过渡类从 scoped 移到 unscoped，窗口进出动画正常
+
+#### 教程中心/面试题 Tab 统一
+- [x] TutorialView `.tb`: `border-radius: var(--radius-full)` → `border-radius: 10px` (与 InterviewView `.abtn` 保持一致的圆角风格)
+
+#### 移动端优化
+- [x] SplashScreen: 断点 `600px` → `640px`
+- [x] PropModal: 断点 `600px` → `640px`
+- [x] InterviewView: 断点 `700px` → `640px`，合并重复 `@media` 块
+- [x] SearchModal: 添加 `padding-bottom: env(safe-area-inset-bottom)` 
+- [x] use3DTilt: 添加移动端检测，≤768px 跳过 mousemove 绑定
+- [x] SpotlightWrapper: `hover:none` 检测，触控设备跳过 RAF 循环和事件监听
+
+#### 架构改进
+- [x] Pinia store 新增 `searchEvent` + `triggerSearch()` 用于 NavBar→SearchModal 通信
+- [x] RoadmapView 新增 `openDetail/closeDetail` 函数带 body scroll lock + ESC
+- [x] GalleryView 新增 `closeModal` 带 body scroll lock + ESC
+- [x] 已创建 `AGENTS.md` 记录所有关键规范和踩坑经验
+
+### 本次修复涉及的文件
+| 文件 | 修改内容 |
+|------|---------|
+| `main.css` | `--danger:#ff453a` 添加到暗色主题块, `.gallery-card:hover` translateY 修正 |
+| `animations.css` | `.hover-lift:hover` translateY 修正 |
+| `stores/app.ts` | 新增 `searchEvent` + `triggerSearch()` |
+| `ExampleModal.vue` | Transition 移至 unscoped + 统一 sheet 参数 |
+| `SearchModal.vue` | Transition 移至 unscoped + 监听 store searchEvent + safe-area |
+| `FloatingChatBot.vue` | 所有 Transitions 移至 unscoped + toggleOpen 滚动到底部 |
+| `NavBar.vue` | 搜索按钮用 store.triggerSearch() + z-index 100001 |
+| `RoadmapView.vue` | Transition sheet + body lock + ESC + z-index 10000 |
+| `GalleryView.vue` | Transition sheet + body lock + ESC + z-index 10000 + box-shadow 修正 |
+| `TechStackView.vue` | `.ctg`/.tlk-go 硬编码颜色替换为 CSS 变量 |
+| `TutorialView.vue` | `.tb` border-radius 统一为 10px |
+| `SplashScreen.vue` | 断点 600px → 640px |
+| `PropModal.vue` | 断点 600px → 640px |
+| `InterviewView.vue` | 断点 700px → 640px + 合并重复 @media |
+| `use3DTilt.ts` | 移动端 ≤768px 跳过绑定 |
+| `SpotlightWrapper.vue` | hover:none 检测，触控设备跳过 |

@@ -1,5 +1,5 @@
 <template>
-  <div class="sp page-in" style="padding-top:var(--nav-height)">
+  <div class="sp page-in" style="padding-top:var(--main-header-top)">
     <h2 class="st"><span class="gt">🛠 技术栈全景</span></h2>
     <p class="ss">覆盖前端+后端+工具的完整技术生态，点击卡片查看详情，一键跳转学习教程</p>
 
@@ -143,7 +143,7 @@ const faqs = reactive([
 .ch{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:20px}
 .cti{font-size:1.35rem;color:var(--primary);margin:0}
 .cdd{color:var(--text-secondary);font-size:.9rem;margin:0;flex:1}
-.ctg{font-size:.75rem;padding:2px 10px;background:rgba(102,126,234,.1);color:var(--primary);border-radius:20px}
+.ctg{font-size:.75rem;padding:2px 10px;background:var(--tag-bg);color:var(--primary);border-radius:20px}
 .tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
 .tc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;cursor:pointer;transition:all .3s}
 .tc:hover{border-color:var(--primary);box-shadow:var(--shadow)}
@@ -162,8 +162,8 @@ const faqs = reactive([
 .tli{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;align-items:center}
 .tlk{display:inline-flex;align-items:center;gap:3px;padding:6px 12px;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:.75rem;color:var(--primary);text-decoration:none;min-height:44px;min-width:44px}
 .tlk:hover{border-color:var(--primary)}
-.tlk-go{background:rgba(74,222,128,.15);border-color:#4ade80;color:#22c55e;font-weight:600}
-.tlk-go:hover{background:rgba(74,222,128,.25)}
+.tlk-go{background:rgba(52,199,89,.15);border-color:var(--success);color:var(--success);font-weight:600}
+.tlk-go:hover{background:rgba(52,199,89,.25)}
 .tht{font-size:.7rem;color:var(--text-secondary);margin-top:8px;opacity:.5}
 .lp{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;margin-top:40px}
 .lp h3{text-align:center;font-size:1.3rem;margin-bottom:28px}

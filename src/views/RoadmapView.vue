@@ -1,11 +1,11 @@
 <template>
-  <div class="section-padding page-in" style="padding-top: var(--nav-height);">
-    <h2 class="section-title reveal-up">
+  <div class="section-padding page-in" style="padding-top: var(--main-header-top);">
+    <h2 class="section-title">
       <span class="gradient-text">🗺️ 从0到1学习路径</span>
     </h2>
-    <p class="section-subtitle reveal-up">15个阶段，系统化从零基础到全栈工程师 · 点击卡片跳转到对应教程</p>
+    <p class="section-subtitle">15个阶段，系统化从零基础到全栈工程师 · 点击卡片跳转到对应教程</p>
 
-    <div class="phase-legend reveal-up">
+    <div class="phase-legend">
       <div v-for="p in phases" :key="p.name" class="legend-item">
         <span class="legend-dot" :style="{ background: p.color }"></span>
         <span>{{ p.name }}</span>
@@ -40,9 +40,11 @@
 
     <!-- Expanded step detail -->
     <Teleport to="body">
-      <div v-if="expandedStep" class="modal-overlay" @click.self="expandedStep = null">
-        <div class="detail-modal animate-bounce-in">
-          <button class="modal-close" @click="expandedStep = null">✕</button>
+      <Transition name="sheet">
+        <div v-if="expandedStep" class="modal-overlay" @click.self="closeDetail">
+          <div class="detail-modal">
+            <div class="sheet-handle" />
+            <button class="modal-close" @click="closeDetail">✕</button>
           <h3>{{ expandedStep.icon }} {{ expandedStep.title }}</h3>
           <div class="detail-phase" :style="{ color: expandedStep.phaseColor }">{{ expandedStep.phase }}</div>
           <p class="detail-desc">{{ expandedStep.content }}</p>
@@ -56,13 +58,14 @@
             </div>
           </div>
           <div class="detail-actions">
-            <router-link :to="getTutorialLink(expandedStep)" class="btn btn-primary btn-glow" @click="expandedStep = null">
+            <router-link :to="getTutorialLink(expandedStep)" class="btn btn-primary btn-glow" @click="closeDetail">
               🚀 开始学习此阶段
             </router-link>
-            <button class="btn btn-outline" @click="expandedStep = null">关闭</button>
+            <button class="btn btn-outline" @click="closeDetail">关闭</button>
           </div>
         </div>
       </div>
+      </Transition>
     </Teleport>
 
     <div class="roadmap-cta reveal-up" style="text-align:center; margin-top: 48px;">
@@ -75,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { roadmapSteps } from '@/data/roadmap'
 import { use3DTilt } from '@/composables/use3DTilt'
@@ -84,6 +87,25 @@ use3DTilt('.roadmap-card', { maxTilt: 5, scale: 1.02 })
 
 const router = useRouter()
 const expandedStep = ref<typeof roadmapSteps[0] | null>(null)
+
+function closeDetail() {
+  expandedStep.value = null
+  document.body.style.overflow = ''
+}
+
+function openDetail(step: typeof roadmapSteps[0]) {
+  expandedStep.value = step
+  document.body.style.overflow = 'hidden'
+}
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape' && expandedStep.value) closeDetail()
+}
+
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
+
+watch(expandedStep, (v) => { if (!v) document.body.style.overflow = '' })
 
 const phases = [
   { name: '启蒙阶段', color: '#4ade80' },
@@ -113,7 +135,7 @@ const stepToCategory: Record<number, string> = {
 }
 
 function goToTutorial(step: typeof roadmapSteps[0]) {
-  expandedStep.value = step
+  openDetail(step)
 }
 
 function getTutorialLink(step: typeof roadmapSteps[0]): string {
@@ -163,6 +185,8 @@ onMounted(() => {
   max-height: 85vh;
   overflow-y: auto;
 }
+.sheet-handle{width:36px;height:5px;background:var(--text-tertiary,#ccc);border-radius:3px;margin:0 auto 10px;opacity:.4}
+@media(min-width:768px){.sheet-handle{display:none}}
 .detail-modal h3 { font-size: 1.4rem; margin-bottom: 4px; }
 .detail-phase { font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; }
 .detail-desc { color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
@@ -171,5 +195,22 @@ onMounted(() => {
 .skill-cloud { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
 .skill-tag { padding: 4px 12px; background: var(--tag-bg); color: var(--primary); border-radius: 6px; font-size: 0.78rem; }
 .detail-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-@media(max-width:640px){ .detail-modal { padding: 24px 20px; } }
+@media(max-width:768px){
+  .detail-modal { padding: 24px 20px; border-radius: 24px 24px 0 0; max-height: 90vh; }
+}
+</style>
+<style>
+.roadmap-container + .modal-overlay {
+  z-index: 10000;
+}
+.sheet-enter-active { transition: opacity .5s cubic-bezier(.34,1.56,.64,1) }
+.sheet-enter-active .detail-modal { transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .5s cubic-bezier(.34,1.56,.64,1) }
+.sheet-enter-from { opacity: 0 }
+.sheet-enter-from .detail-modal { opacity: 0; transform: translateY(100%) scale(.88) }
+@media(min-width:768px){ .sheet-enter-from .detail-modal { transform: translateY(40px) scale(.88) } }
+.sheet-leave-active { transition: opacity .3s cubic-bezier(.68,-.3,.32,1.3) }
+.sheet-leave-active .detail-modal { transition: transform .3s cubic-bezier(.68,-.3,.32,1.3), opacity .3s cubic-bezier(.68,-.3,.32,1.3) }
+.sheet-leave-to { opacity: 0 }
+.sheet-leave-to .detail-modal { opacity: 0; transform: translateY(80%) scale(.8) }
+@media(min-width:768px){ .sheet-leave-to .detail-modal { transform: translateY(30px) scale(.88) } }
 </style>

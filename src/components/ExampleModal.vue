@@ -18,9 +18,11 @@
             <div class="ex-section">
               <h4 class="ex-section-h">💻 代码示例</h4>
               <div class="ex-code-wrap">
-                <div class="ex-lang-badge">{{ data.language || 'code' }}</div>
+                <div class="ex-code-top">
+                   <div class="ex-lang-badge">{{ data.language || 'code' }}</div>
+                   <button class="ex-copy" @click="copyCode">📋 复制</button>
+                </div>
                 <pre class="ex-code"><code>{{ data.code }}</code></pre>
-                <button class="ex-copy" @click="copyCode">📋 复制</button>
               </div>
             </div>
 
@@ -161,8 +163,15 @@ defineExpose({ open, close })
   overflow: hidden;
   background: var(--bg, #111);
 }
+.ex-code-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 20px;
+}
 .ex-lang-badge {
-  position: absolute;
+  /* position: absolute; */
   top: 8px;
   right: 48px;
   padding: 1px 8px;
@@ -173,7 +182,7 @@ defineExpose({ open, close })
   color: var(--primary, #0071e3);
   text-transform: uppercase;
 }
-.ex-code {
+/* .ex-code {
   margin: 0;
   padding: 16px;
   padding-top: 32px;
@@ -183,9 +192,11 @@ defineExpose({ open, close })
   overflow-x: auto;
   color: #c8d3d5;
   tab-size: 2;
-}
+} */
+.ex-code{background:var(--bg,rgba(0,0,0,.03));color:var(--text);padding:14px 18px;font-family:'SF Mono','Fira Code',monospace;font-size:.78rem;line-height:1.6;overflow-x:auto;white-space:pre-wrap;margin:0;}
+[data-theme='dark'] .ex-code{background:rgba(255,255,255,.04)}
 .ex-copy {
-  position: absolute;
+  /* position: absolute; */
   top: 6px;
   right: 8px;
   background: none;
@@ -231,14 +242,6 @@ defineExpose({ open, close })
 .ex-expand li { padding-left: 4px; }
 .ex-expand li::marker { color: var(--warning, #ff9f0a); font-weight: 700; }
 
-/* transition */
-.modal-fade-enter-active { transition: all .25s ease-out; }
-.modal-fade-leave-active { transition: all .2s ease-in; }
-.modal-fade-enter-from { opacity: 0; }
-.modal-fade-enter-from .ex-sheet { transform: translateY(20px) scale(.97); }
-.modal-fade-leave-to { opacity: 0; }
-.modal-fade-leave-to .ex-sheet { transform: translateY(10px) scale(.98); }
-
 /* mobile bottom sheet */
 @media(max-width:768px){
   .ex-overlay { align-items: flex-end; padding: 0; }
@@ -248,4 +251,17 @@ defineExpose({ open, close })
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 }
+</style>
+<!-- Transition (unscoped for Vue dynamic classes) -->
+<style>
+.modal-fade-enter-active{transition:opacity .5s cubic-bezier(.34,1.56,.64,1)}
+.modal-fade-enter-active .ex-sheet{transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .5s cubic-bezier(.34,1.56,.64,1)}
+.modal-fade-enter-from{opacity:0}
+.modal-fade-enter-from .ex-sheet{opacity:0;transform:translateY(100%) scale(.88)}
+@media(min-width:768px){.modal-fade-enter-from .ex-sheet{transform:translateY(40px) scale(.88)}}
+.modal-fade-leave-active{transition:opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
+.modal-fade-leave-active .ex-sheet{transition:transform .3s cubic-bezier(.68,-.3,.32,1.3),opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
+.modal-fade-leave-to{opacity:0}
+.modal-fade-leave-to .ex-sheet{opacity:0;transform:translateY(80%) scale(.8)}
+@media(min-width:768px){.modal-fade-leave-to .ex-sheet{transform:translateY(30px) scale(.88)}}
 </style>

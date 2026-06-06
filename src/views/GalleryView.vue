@@ -1,11 +1,11 @@
 <template>
-  <div class="section-padding" style="padding-top: var(--nav-height);">
-    <h2 class="section-title reveal-up">
+  <div class="section-padding" style="padding-top: var(--main-header-top);">
+    <h2 class="section-title">
       <span class="gradient-text">🎬 动画特效场</span>
     </h2>
-    <p class="section-subtitle reveal-up">精选 20+ 顶级前端动画效果，点击卡片查看真实演示与可编辑源码</p>
+    <p class="section-subtitle">精选 20+ 顶级前端动画效果，点击卡片查看真实演示与可编辑源码</p>
 
-    <div class="gallery-filters reveal-up">
+    <div class="gallery-filters">
       <button v-for="f in filters" :key="f.value" class="filter-btn" :class="{ active: activeFilter === f.value }" @click="activeFilter = f.value">{{ f.label }}</button>
     </div>
 
@@ -23,10 +23,12 @@
 
     <!-- Modal -->
     <Teleport to="body">
-      <div v-if="selectedAnim" class="modal-overlay" @click.self="closeModal">
-        <div class="modal-content animate-bounce-in">
-          <button class="modal-close" @click="closeModal">✕</button>
-          <div class="modal-body">
+      <Transition name="sheet">
+        <div v-if="selectedAnim" class="modal-overlay gallery-modal-overlay" @click.self="closeModal">
+          <div class="modal-content">
+            <div class="sheet-handle" />
+            <button class="modal-close" @click="closeModal">✕</button>
+            <div class="modal-body">
             <div class="modal-preview-panel">
               <div class="panel-header">
                 <span>🎬 实时演示</span>
@@ -54,14 +56,15 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
-      </div>
+      </Transition>
     </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick, reactive, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, reactive, watch } from 'vue'
 import { animations, type AnimationItem } from '@/data/animations'
 import { use3DTilt } from '@/composables/use3DTilt'
 
@@ -88,12 +91,25 @@ const filteredAnimations = computed(() =>
 
 function openModal(item: AnimationItem) {
   selectedAnim.value = item
+  document.body.style.overflow = 'hidden'
   activeCodeTab.value = 'html'
   editCode.html = item.html
   editCode.css = item.css
   editCode.js = item.js
-  // Wait for iframe to mount via watcher
 }
+
+function closeModal() {
+  selectedAnim.value = null
+  document.body.style.overflow = ''
+}
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape' && selectedAnim.value) closeModal()
+}
+
+watch(selectedAnim, (anim) => { if (!anim) document.body.style.overflow = '' })
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
 // Watch for selectedAnim change to run preview after iframe mounts
 watch(selectedAnim, (anim) => {
@@ -104,10 +120,6 @@ watch(selectedAnim, (anim) => {
     }, 100)
   }
 })
-
-function closeModal() {
-  selectedAnim.value = null
-}
 
 function runPreview() {
   const iframe = modalPreviewFrame.value
@@ -141,7 +153,7 @@ onMounted(() => {
 .modal-preview-panel { background: var(--preview-bg); display: flex; flex-direction: column; }
 .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; color: var(--preview-header-text); font-size: 0.85rem; border-bottom: 1px solid var(--preview-border); }
 .btn-run { padding: 6px 18px; background: var(--success); color: #fff; border: none; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
-.btn-run:hover { transform: scale(1.05); box-shadow: 0 0 12px rgba(74,222,128,0.5); }
+.btn-run:hover { transform: scale(1.05); box-shadow: 0 0 12px rgba(52,199,89,.35); }
 .preview-iframe-wrap { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .preview-iframe { width: 100%; height: 100%; border: none; background: var(--preview-bg); min-height: 350px; }
 .modal-code-panel { padding: 24px; display: flex; flex-direction: column; overflow-y: auto; max-height: 80vh; }
@@ -152,4 +164,19 @@ onMounted(() => {
 .code-tab-btn.active { background: var(--primary); color: var(--btn-inverted-text); border-color: var(--primary); }
 .code-textarea { flex: 1; min-height: 280px; background: var(--code-bg); color: var(--code-text); border: none; border-radius: 8px; padding: 14px; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.6; resize: vertical; outline: none; white-space: pre-wrap; }
 .modal-meta { display: flex; gap: 16px; margin-top: 12px; font-size: 0.78rem; color: var(--text-secondary); }
+.gallery-modal-overlay { z-index: 10000; }
+.sheet-handle{width:36px;height:5px;background:var(--text-tertiary,#ccc);border-radius:3px;margin:10px auto 0;opacity:.4}
+@media(min-width:768px){.sheet-handle{display:none}}
+</style>
+<style>
+.sheet-enter-active{transition:opacity .5s cubic-bezier(.34,1.56,.64,1)}
+.sheet-enter-active .modal-content{transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .5s cubic-bezier(.34,1.56,.64,1)}
+.sheet-enter-from{opacity:0}
+.sheet-enter-from .modal-content{opacity:0;transform:translateY(100%) scale(.88)}
+@media(min-width:768px){.sheet-enter-from .modal-content{transform:translateY(40px) scale(.88)}}
+.sheet-leave-active{transition:opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
+.sheet-leave-active .modal-content{transition:transform .3s cubic-bezier(.68,-.3,.32,1.3),opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
+.sheet-leave-to{opacity:0}
+.sheet-leave-to .modal-content{opacity:0;transform:translateY(80%) scale(.8)}
+@media(min-width:768px){.sheet-leave-to .modal-content{transform:translateY(30px) scale(.88)}}
 </style>
