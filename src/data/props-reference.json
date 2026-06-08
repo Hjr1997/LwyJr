@@ -7164,5 +7164,415 @@
         }
       ]
     }
+  },
+  "internet": {
+    "summary": {
+      "tag": "🌐",
+      "name": "互联网基础",
+      "desc": "浏览器、DNS、HTTP协议等基础知识速查",
+      "tips": [
+        "URL→DNS→TCP→TLS→HTTP→渲染",
+        "DNS=互联网电话簿，域名→IP",
+        "HTTP状态码：2xx成功/3xx重定向/4xx客户端错误/5xx服务端错误",
+        "HTTPS=HTTP+TLS加密层",
+        "HTTPS握手=非对称加密交换密钥+对称加密传输数据"
+      ]
+    },
+    "url": {
+      "tag": "🔍",
+      "name": "URL解析全流程",
+      "desc": "浏览器输入URL后经历6个阶段",
+      "tips": [
+        "1.DNS解析：域名→IP地址",
+        "2.TCP三次握手：SYN→SYN-ACK→ACK",
+        "3.TLS握手：密钥交换→加密通道",
+        "4.HTTP请求：GET/POST到服务器",
+        "5.服务器处理：后端代码运行返回HTML",
+        "6.浏览器渲染：DOM+CSSOM→渲染树→绘制"
+      ]
+    },
+    "dns": {
+      "tag": "📡",
+      "name": "DNS域名系统",
+      "desc": "域名→IP地址的分布式查询系统",
+      "tips": [
+        "查询层级：浏览器缓存→OS缓存→路由器→ISP→根DNS→TLD→权威DNS",
+        "13组根域名服务器全球分布",
+        "A记录：域名→IPv4",
+        "CNAME记录：别名指向",
+        "CDN通过智能DNS就近加速访问"
+      ]
+    },
+    "http": {
+      "tag": "📨",
+      "name": "HTTP协议",
+      "desc": "浏览器与服务器通信的标准协议",
+      "tips": [
+        "请求结构：请求行+请求头+空行+请求体",
+        "GET=读/POST=创建/PUT=更新/DELETE=删除",
+        "常见Header：Content-Type,Authorization,Cookie",
+        "RESTful API=按HTTP方法设计接口"
+      ]
+    },
+    "https": {
+      "tag": "🔒",
+      "name": "HTTPS加密",
+      "desc": "HTTP+TLS=加密的HTTP通信",
+      "tips": [
+        "非对称加密(RSA/ECDHE)交换密钥",
+        "对称加密(AES)传输数据",
+        "证书由CA签发验证身份",
+        "TLS1.3握手仅需1-RTT"
+      ]
+    },
+    "domain": {
+      "tag": "🌍",
+      "name": "域名系统与DNS记录",
+      "desc": "域名层级结构、DNS记录类型、CDN原理",
+      "tips": [
+        "域名层级（从右到左）：根域(.)→顶级域(.com)→二级域(example)→子域(www)",
+        "全球13组根域名服务器(A~M)，由ICANN管理",
+        "A记录：域名→IPv4地址 | AAAA记录：域名→IPv6地址",
+        "CNAME记录：域名别名（www→@），不直接指向IP",
+        "MX记录：指定邮件服务器及优先级",
+        "TXT记录：文本信息（SPF/DKIM邮件验证、域名所有权验证）",
+        "NS记录：指定该域名的权威DNS服务器",
+        "CDN原理：智能DNS解析将用户引导至最近的边缘节点",
+        "DNS查询链路：浏览器缓存→OS hosts→路由器→ISP递归→根→TLD→权威",
+        "TTL（Time To Live）：DNS记录缓存时间，影响变更生效速度",
+        "Anycast DNS：多个服务器共享同一IP，BGP路由到最近节点",
+        "dig/nslookup 命令可用于诊断DNS问题"
+      ]
+    }
+  },
+  "canvas": {
+    "summary": {
+      "tag": "🎯",
+      "name": "Canvas与SVG",
+      "desc": "HTML5图形API对比",
+      "tips": [
+        "Canvas=像素操作，适合游戏/数据可视化",
+        "SVG=矢量图形，适合图标/图表",
+        "Canvas通过JS操作，SVG通过DOM操作",
+        "大量对象用Canvas，少量交互用SVG"
+      ]
+    },
+    "basic": {
+      "tag": "🎨",
+      "name": "Canvas 2D基础",
+      "desc": "获取上下文、绘制基本形状",
+      "tips": [
+        "canvas.getContext(\"2d\")获取画笔",
+        "fillRect(x,y,w,h)填充矩形",
+        "strokeRect(x,y,w,h)描边矩形",
+        "fillStyle/strokeStyle设置颜色",
+        "beginPath()+arc()画圆"
+      ]
+    },
+    "path": {
+      "tag": "✏️",
+      "name": "Canvas路径绘制",
+      "desc": "beginPath/moveTo/lineTo/arc/bezier",
+      "tips": [
+        "beginPath()开始新路径",
+        "moveTo(x,y)移到起点",
+        "lineTo(x,y)画直线",
+        "arc(x,y,r,start,end)画弧线",
+        "closePath()闭合路径"
+      ]
+    },
+    "animation": {
+      "tag": "🎬",
+      "name": "Canvas动画循环",
+      "desc": "requestAnimationFrame实现60fps动画",
+      "tips": [
+        "RAF比setInterval更好：自动匹配刷新率",
+        "基本模板：update()+draw()+RAF(animate)",
+        "Tab不可见时RAF自动暂停（省电）",
+        "collision detection用AABB或圆形距离"
+      ]
+    },
+    "svg": {
+      "tag": "📐",
+      "name": "SVG矢量图形",
+      "desc": "可缩放的XML矢量图形",
+      "tips": [
+        "SVG直接嵌入HTML，支持CSS和JS",
+        "基础形状：rect/circle/ellipse/line/polygon",
+        "path是最强大的元素，d属性定义路径",
+        "viewBox控制坐标系统"
+      ]
+    }
+  },
+  "build": {
+    "summary": {
+      "tag": "🔧",
+      "name": "构建工具对比",
+      "desc": "Vite vs Webpack vs esbuild",
+      "tips": [
+        "Vite：开发最快(ESM原生)，Vue官方推荐",
+        "Webpack：生态最成熟，配置灵活但复杂",
+        "esbuild：Go编写速度最快(10-100x)",
+        "选型：新项目用Vite，老项目/复杂需求用Webpack"
+      ]
+    },
+    "vite": {
+      "tag": "⚡",
+      "name": "Vite",
+      "desc": "下一代前端构建工具(尤雨溪开发)",
+      "tips": [
+        "开发用浏览器原生ESM→秒启动",
+        "HMR毫秒级热更新",
+        "esbuild预处理node_modules依赖",
+        "生产构建用Rollup打包",
+        "vite.config.ts中配置插件和构建选项"
+      ]
+    },
+    "webpack": {
+      "tag": "📦",
+      "name": "Webpack",
+      "desc": "最流行的前端模块打包工具",
+      "tips": [
+        "五大核心：entry/output/loader/plugin/mode",
+        "Loader转换非JS文件(css-loader等)",
+        "Plugin做优化(HtmlWebpackPlugin等)",
+        "配置文件webpack.config.js",
+        "Vite封装了这些概念，配置量更少"
+      ]
+    },
+    "esbuild": {
+      "tag": "🚀",
+      "name": "esbuild",
+      "desc": "Go语言编写极速打包器",
+      "tips": [
+        "速度是Webpack的10-100倍",
+        "三个API：build/transform/context",
+        "Vite底层用它做预构建和TS/JSX转换",
+        "支持ESM/CJS/IIFE输出格式"
+      ]
+    }
+  },
+  "project": {
+    "summary": {
+      "tag": "🚀",
+      "name": "项目实战路线",
+      "desc": "3个项目从入门到全栈",
+      "tips": [
+        "项目1：纯HTML/CSS/JS博客→理解基础",
+        "项目2：Vue3+Pinia Todo→组件化思维",
+        "项目3：Node+Express API→全栈思维",
+        "完成3个项目后即可接外包"
+      ]
+    },
+    "blog": {
+      "tag": "📝",
+      "name": "个人博客项目",
+      "desc": "HTML/CSS/JS响应式博客",
+      "tips": [
+        "结构：导航+文章列表+侧边栏",
+        "CSS Grid/Flexbox实现响应式",
+        "暗色/亮色主题切换",
+        "JS实现移动端菜单toggle"
+      ]
+    },
+    "todo": {
+      "tag": "✅",
+      "name": "待办应用Todo",
+      "desc": "Vue3+Pinia经典项目",
+      "tips": [
+        "组件拆分：TodoInput/TodoList/TodoItem",
+        "Pinia store管理状态(CRUD)",
+        "localStorage持久化",
+        "filter(全部/未完成/已完成)",
+        "Transition动画增强体验"
+      ]
+    },
+    "api": {
+      "tag": "🔌",
+      "name": "REST API服务",
+      "desc": "Node.js+Express构建后端",
+      "tips": [
+        "Express路由：app.get/post/put/delete",
+        "5个标准端点：GET/all,GET/:id,POST,PUT/:id,DELETE/:id",
+        "JSON.parse/stringify处理请求/响应",
+        "app.listen启动服务器"
+      ]
+    }
+  },
+  "db": {
+    "summary": {
+      "tag": "🗄",
+      "name": "数据库选型",
+      "desc": "SQL vs MongoDB vs Redis",
+      "tips": [
+        "SQL(MySQL/PostgreSQL)→强一致性/财务",
+        "MongoDB→灵活Schema/快速迭代",
+        "Redis→缓存/排行榜/会话存储",
+        "全栈至少掌握1 SQL+1 NoSQL+Redis"
+      ]
+    },
+    "sql": {
+      "tag": "📊",
+      "name": "SQL基础",
+      "desc": "关系型数据库标准查询语言",
+      "tips": [
+        "CRUD:SELECT/INSERT/UPDATE/DELETE",
+        "WHERE过滤/ORDER BY排序/LIMIT分页",
+        "JOIN联表(INNER/LEFT/RIGHT)",
+        "索引加速查询(B+树结构)"
+      ]
+    },
+    "index": {
+      "tag": "🔑",
+      "name": "索引与事务",
+      "desc": "性能与数据安全的基石",
+      "tips": [
+        "索引=书的目录，给WHERE/JOIN字段加",
+        "ACID:原子性/一致性/隔离性/持久性",
+        "MySQL默认隔离级别：REPEATABLE READ",
+        "B+树是MySQL InnoDB的索引结构"
+      ]
+    },
+    "mongo": {
+      "tag": "🍃",
+      "name": "MongoDB",
+      "desc": "文档型NoSQL数据库",
+      "tips": [
+        "BSON格式存储(类似JSON)",
+        "Collection≈表,Document≈行",
+        "不需要预定义Schema",
+        "聚合管道替代JOIN"
+      ]
+    },
+    "redis": {
+      "tag": "⚡",
+      "name": "Redis",
+      "desc": "内存数据库缓存之王",
+      "tips": [
+        "5种类型:String/Hash/List/Set/SortedSet",
+        "SortedSet实现排行榜",
+        "SETNX+EXPIRE实现分布式锁",
+        "单线程IO多路复用→极快"
+      ]
+    }
+  },
+  "fullstack": {
+    "architecture": {
+      "tag": "🏗️",
+      "name": "全栈三层架构",
+      "desc": "表现层/业务层/数据层分离的Web应用架构模式",
+      "tips": [
+        "三层架构：表现层(前端UI)→业务层(API逻辑)→数据层(持久化存储)",
+        "表现层：Vue/React渲染用户界面，处理用户交互和路由",
+        "业务层：Express/Koa处理业务逻辑、认证、授权、数据校验",
+        "数据层：MySQL/PostgreSQL/MongoDB负责数据持久化和查询",
+        "前后端分离：前端通过HTTP/JSON与后端通信，解耦开发和部署",
+        "RESTful API是三层架构中前后端的标准通信协议",
+        "MVC模式扩展：Model(数据)+View(表现)+Controller(业务)",
+        "微服务架构：将业务层拆分为多个独立服务（进阶模式）",
+        "单体→分层→微服务是架构演进的三个阶段"
+      ]
+    },
+    "rest": {
+      "tag": "📋",
+      "name": "RESTful API设计",
+      "desc": "Representational State Transfer——Web API设计的黄金标准",
+      "tips": [
+        "URL用名词复数：/api/users ✓ | /api/getUsers ✗",
+        "HTTP方法映射CRUD：GET(查)/POST(增)/PUT(改)/DELETE(删)",
+        "PATCH用于部分更新，PUT用于全量替换",
+        "状态码语义：200(成功)/201(创建)/400(参数错)/401(未认证)/403(无权限)/404(不存在)/500(服务错)",
+        "嵌套资源表达关系：GET /api/users/1/posts（用户的文章）",
+        "分页参数：?page=1&limit=10，响应含data/page/total",
+        "过滤排序：?status=active&sort=-created_at（- 表示降序）",
+        "版本控制：/api/v1/users 或 Accept: application/vnd.api+json;version=1",
+        "HATEOAS超媒体驱动：响应中包含相关链接(rel=self/next/prev)",
+        "始终返回JSON，设置Content-Type: application/json"
+      ]
+    },
+    "setup": {
+      "tag": "📂",
+      "name": "全栈项目结构",
+      "desc": "标准前后端分离项目目录组织与开发环境配置",
+      "tips": [
+        "推荐结构：client/(Vue前端) + server/(Express后端) 独立目录",
+        "后端依赖：express(路由) + cors(跨域) + dotenv(环境变量) + mysql2(数据库)",
+        "前端依赖：vue(框架) + vue-router(路由) + pinia(状态) + axios(fetch)",
+        "开发代理：Vite proxy将/api请求转发到后端(避免跨域困扰)",
+        "vite.config.ts: server.proxy['/api'] = 'http://localhost:3000'",
+        "并发运行：前端(pnpm dev→5173) + 后端(node server.js→3000)",
+        "环境变量：.env文件存储PORT/DB_HOST/JWT_SECRET等敏感配置",
+        "Git管理：node_modules和.env加入.gitignore，README写清启动步骤",
+        "monorepo工具（可选）：pnpm workspaces或Turborepo管理多包"
+      ]
+    },
+    "database": {
+      "tag": "🗃️",
+      "name": "数据库设计",
+      "desc": "关系型数据库表设计、索引优化与ORM使用",
+      "tips": [
+        "ER图先行：确定实体(Entity)和关系(Relationship)再建表",
+        "范式化：1NF(原子值)→2NF(消除部分依赖)→3NF(消除传递依赖)",
+        "主键(PK)：每表必设自增INT或UUID作为唯一标识",
+        "外键(FK)：关联其他表，保证引用完整性(REFERENCES+ON DELETE CASCADE)",
+        "索引策略：WHERE/JOIN/ORDER BY常用字段创建索引(B+树结构)",
+        "连接池：mysql2.createPool管理数据库连接复用(避免频繁创建销毁)",
+        "SQL注入防护：始终使用参数化查询(?占位符)，禁止拼接SQL字符串",
+        "迁移工具：Knex.js/Prisma Migrate管理数据库版本变更",
+        "ORM选择：TypeORM(TS)/Prisma(现代)/Sequelize(成熟)简化SQL编写",
+        "软删除vs硬删除：关键数据用deleted_at字段标记而非物理删除"
+      ]
+    },
+    "api": {
+      "tag": "🔌",
+      "name": "REST API实现",
+      "desc": "Express路由+MySQL实现生产级CRUD API",
+      "tips": [
+        "路由模块化：express.Router()拆分路由文件(routes/users.js等)",
+        "中间件链：express.json()→cors()→authMiddleware→validate→handler",
+        "输入校验：用Joi/Zod验证请求体(body)和查询参数(query)的合法性",
+        "错误处理中间件：(err,req,res,next)统一捕获和返回错误",
+        "分页查询：SELECT...LIMIT?OFFSET? + COUNT(*)返回total",
+        "事务处理：转账等操作用BEGIN/COMMIT/ROLLBACK保证原子性",
+        "密码安全：bcrypt哈希存储(不存明文)，JWT管理登录态",
+        "CORS配置：生产环境限制origin为前端域名，不开放*通配符",
+        "限流防护：express-rate-limit限制单IP请求频率(防暴力破解)",
+        "日志记录：morgan记录请求日志，便于排查问题"
+      ]
+    },
+    "frontend": {
+      "tag": "🎨",
+      "name": "前端API对接",
+      "desc": "Vue/React通过fetch/axios调用后端API的标准模式",
+      "tips": [
+        "API封装层：src/api/目录统一管理fetch请求，不散落在组件中",
+        "请求拦截：统一添加Content-Type/Accept/Authorization头",
+        "响应拦截：统一处理401(跳转登录)/500(错误提示)等全局错误",
+        "加载态管理：每个异步请求对应loading/error/data三种状态",
+        "乐观更新：先更新UI再确认API(提升体验)，失败则回滚",
+        "防抖搜索：用户输入300ms后再发API请求(减少无用请求)",
+        "取消重复请求：AbortController取消前一个未完成的请求",
+        "Vite代理：开发环境proxy+/api前缀到后端(避免跨域)",
+        "Token管理：登录后JWT存localStorage，每次请求附Authorization头",
+        "错误边界：组件级try/catch + 全局错误处理显示友好提示"
+      ]
+    },
+    "deploy": {
+      "tag": "🚀",
+      "name": "生产环境部署",
+      "desc": "PM2进程管理+Nginx反向代理+HTTPS证书全流程",
+      "tips": [
+        "构建前端：npm run build→dist/，Express托管静态文件(express.static)",
+        "PM2进程管理：pm2 start server.js→自动重启+日志+集群模式",
+        "pm2常用命令：list(查看)/logs(日志)/restart(重启)/save(持久化)",
+        "Nginx反向代理：80端口→Express 3000端口，添加gzip压缩和缓存头",
+        "HTTPS证书：Let's Encrypt(certbot)免费SSL证书，3个月续期",
+        "环境变量：生产环境NODE_ENV=production，敏感信息用环境变量",
+        "健康检查：GET /health端点返回200，用于监控和自动恢复",
+        "日志管理：pm2 logs或winston写文件，定期清理或轮转",
+        "CI/CD：GitHub Actions自动构建→测试→部署到服务器",
+        "Docker化（可选）：Dockerfile+compose简化环境一致性和部署"
+      ]
+    }
   }
 }

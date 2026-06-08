@@ -7,6 +7,7 @@
     <div class="scroll-progress-bar" :style="{ transform: `scaleX(${scrollProgress})` }"></div>
     <NavBar />
     <SearchModal ref="searchModal" />
+    <AuthModal />
     <main id="main-content" tabindex="-1">
       <router-view v-slot="{ Component }">
         <template v-if="Component">
@@ -27,6 +28,7 @@
       </router-view>
     </main>
     <FooterSection />
+    <FloatingAuth />
     <FloatingChatBot />
   </div>
 </template>
@@ -39,6 +41,8 @@ import WebGLBackground from '@/components/WebGLBackground.vue'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 import FloatingChatBot from '@/components/FloatingChatBot.vue'
 import SearchModal from '@/components/SearchModal.vue'
+import AuthModal from '@/components/AuthModal.vue'
+import FloatingAuth from '@/components/FloatingAuth.vue'
 import { useScrollProgress } from '@/composables/useScrollProgress'
 import { useRobotMind } from '@/composables/useRobotMind'
 import { useReducedMotion } from '@/composables/useReducedMotion'

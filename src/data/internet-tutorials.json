@@ -1,0 +1,103 @@
+[
+  {
+    "id": "net0",
+    "title": "📑 互联网基础完全学习大纲",
+    "desc": "3篇教程 · 从输入网址到页面显示的全过程",
+    "category": "internet",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "net0-1",
+        "title": "大纲——互联网是如何工作的",
+        "content": "<div style=\"max-width:680px;margin:0 auto;padding:20px;background:#1a1a2e;border-radius:14px\"><h2 style=\"text-align:center;color:#667eea;margin:0 0 4px\">🌐 互联网基础学习路径</h2><p style=\"text-align:center;color:#888;font-size:13px;margin-bottom:8px\">3篇教程 · 5节 · 从零到实战</p><div style=\"text-align:center;margin-bottom:14px\"><span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#667eea22;color:#667eea\">🟢 入门 ×2</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#667eea22;color:#667eea\">🟠 进阶 ×1</span></div><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#667eea\"><th style=\"padding:7px 10px;color:#fff;text-align:left\">#</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">章节</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">难度</th></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#667eea;font-weight:bold\">1</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔍 浏览器输入 URL 后发生了什么？</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 2节</td></tr><tr><td style=\"padding:5px 10px;color:#667eea;font-weight:bold\">2</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">📡 HTTP 协议详解</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 2节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#667eea;font-weight:bold\">3</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🌍 域名与 DNS 深入</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶 · 1节</td></tr></table><div style=\"margin-top:14px;padding:12px 16px;background:#667eea10;border-radius:10px;border-left:3px solid #667eea\"><b style=\"color:#667eea;font-size:13px\">🎯 学完能做什么？</b><br><span style=\"color:#ccc;font-size:12px;line-height:1.8\">入门：理解 URL→DNS→TCP→HTTP→渲染的完整流程<br>进阶：能解释 HTTPS 加密原理、DNS 记录类型和 CDN 工作机制</span></div><p style=\"text-align:center;color:#888;font-size:11px;margin-top:12px\">💡 按难度排序，从入门循序渐进到高级，点击任意章节开始学习</p></div>",
+        "propRef": "internet.summary"
+      }
+    ]
+  },
+  {
+    "id": "net1",
+    "title": "🔍 浏览器输入 URL 后发生了什么？",
+    "desc": "DNS解析 → TCP连接 → HTTP请求 → 服务器处理 → 浏览器渲染",
+    "category": "internet",
+    "icon": "🔍",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "net1-1",
+        "title": "从 URL 到页面的完整旅程",
+        "content": "你在浏览器地址栏输入 <code>https://www.example.com</code> 并按回车。接下来发生了什么？<br><br>这其实是面试最高频问题之一！整个过程分 6 步：<br><br><b>① DNS 解析</b> — 把域名翻译成 IP 地址（就像把「公司名」翻译成「门牌号」）<br><b>② TCP 三次握手</b> — 客户端和服务器建立可靠连接<br><b>③ TLS 握手（HTTPS）</b> — 加密通信建立<br><b>④ HTTP 请求</b> — 浏览器说「请给我这个页面」<br><b>⑤ 服务器处理</b> — 后端代码运行，返回 HTML/CSS/JS<br><b>⑥ 浏览器渲染</b> — HTML→DOM树, CSS→CSSOM树, 合成→渲染树→绘制到屏幕<br><br>💡 整个过程通常只需几百毫秒！",
+        "code": {
+          "html": "<div style='font-family:monospace;font-size:12px;line-height:2;padding:12px;background:#1a1a2e;border-radius:8px;color:#ccc'><span style='color:#667eea'>1.</span> 用户输入: <span style='color:#4ade80'>https://example.com</span><br><span style='color:#667eea'>2.</span> DNS查询: example.com → <span style='color:#f59e0b'>93.184.216.34</span><br><span style='color:#667eea'>3.</span> TCP握手: <span style='color:#a78bfa'>SYN → SYN-ACK → ACK</span><br><span style='color:#667eea'>4.</span> TLS握手: <span style='color:#a78bfa'>密钥交换 → 加密通道建立</span><br><span style='color:#667eea'>5.</span> HTTP GET /  → <span style='color:#4ade80'>200 OK (HTML返回)</span><br><span style='color:#667eea'>6.</span> 浏览器渲染: <span style='color:#f59e0b'>DOM + CSSOM → 渲染树 → 画面</span></div>",
+          "css": "",
+          "js": "// 浏览器渲染的简化流程\n// 1. HTML Parser → DOM Tree\n// 2. CSS Parser → CSSOM Tree\n// 3. DOM + CSSOM → Render Tree\n// 4. Layout (计算位置)\n// 5. Paint (绘制像素)\n\n// 关键优化概念：\n// - CRP (Critical Rendering Path) 关键渲染路径\n// - 减少 DOM 深度提升解析速度\n// - CSS 放在 &lt;head&gt;，JS 放在 &lt;/body&gt; 前"
+        },
+        "propRef": "internet.url"
+      },
+      {
+        "id": "net1-2",
+        "title": "DNS 解析——互联网的电话簿",
+        "content": "<b>DNS (Domain Name System)</b> 就像互联网的电话簿：把人类好记的域名（如 google.com）翻译成机器用的 IP 地址（如 142.250.80.46）。<br><br><b>解析过程（递归 + 迭代）</b>：<br>① 浏览器缓存 → ② OS 缓存 (hosts文件) → ③ 路由器缓存 → ④ ISP DNS 服务器 → ⑤ 根域名服务器 → ⑥ 顶级域名服务器(.com) → ⑦ 权威 DNS 服务器<br><br>💡 <b>CDN 原理</b>：通过智能 DNS 解析，把用户引导到最近的服务器节点，加速访问。",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:1.8;color:#ccc;padding:12px;background:#1a1a2e;border-radius:8px'>🔍 <b style='color:#667eea'>DNS 查询层级</b><br><br>① 浏览器 DNS 缓存 (最快)<br>  ↓ 未命中<br>② 操作系统 hosts 文件<br>  ↓ 未命中<br>③ 路由器缓存<br>  ↓ 未命中<br>④ <span style='color:#f59e0b'>ISP DNS 递归查询</span><br><br>🌍 全球 13 组根域名服务器 (A~M)</div>",
+          "css": "",
+          "js": "# 查看 DNS 记录的命令\n\n# Windows\nnslookup example.com\n\n# Mac/Linux\ndig example.com\n\n# 查看本地 DNS 缓存 (Mac)\nsudo dscacheutil -cachedump\n\n# 清除 DNS 缓存 (Windows)\nipconfig /flushdns"
+        },
+        "propRef": "internet.dns"
+      }
+    ]
+  },
+  {
+    "id": "net2",
+    "title": "📡 HTTP 协议详解",
+    "desc": "请求方法/状态码/Header/HTTPS 工作原理",
+    "category": "internet",
+    "icon": "📡",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "net2-1",
+        "title": "HTTP 请求与响应——浏览器和服务器的对话",
+        "content": "<b>HTTP (HyperText Transfer Protocol)</b> 是浏览器和服务器之间的通信语言。<br><br><b>请求结构</b>：<br>① 请求行: <code>GET /index.html HTTP/1.1</code><br>② 请求头: <code>Host, User-Agent, Accept, Cookie...</code><br>③ 空行<br>④ 请求体 (POST/PUT 时携带数据)<br><br><b>常用方法</b>：<br>• <code>GET</code> — 获取资源（只读）<br>• <code>POST</code> — 创建资源<br>• <code>PUT</code> — 完整更新<br>• <code>PATCH</code> — 部分更新<br>• <code>DELETE</code> — 删除资源<br><br>💡 <b>RESTful API</b> 就是按这个规则设计的！",
+        "code": {
+          "html": "<div style='font-family:monospace;font-size:11px;line-height:1.8;padding:10px;background:#1a1a2e;border-radius:6px;color:#ccc'><span style='color:#a78bfa'>GET /api/users HTTP/1.1</span><br>Host: api.example.com<br>Accept: application/json<br><br><span style='color:#888'>← 服务器响应 →</span><br><br><span style='color:#a78bfa'>HTTP/1.1 200 OK</span><br>Content-Type: application/json<br><br>{<span style='color:#4ade80'>\"users\"</span>: [...]}</div>",
+          "css": "",
+          "js": "// 常见 HTTP 状态码速查\n\n// 2xx 成功\n200 OK           // 请求成功\n201 Created      // 创建成功 (POST)\n204 No Content   // 成功但无返回体\n\n// 3xx 重定向\n301 Moved Permanently  // 永久移动\n302 Found              // 临时重定向\n304 Not Modified       // 缓存有效\n\n// 4xx 客户端错误\n400 Bad Request   // 请求格式错误\n401 Unauthorized  // 未认证\n403 Forbidden     // 无权限\n404 Not Found     // 资源不存在\n\n// 5xx 服务器错误\n500 Internal Server Error  // 服务器内部错误\n502 Bad Gateway            // 网关错误\n503 Service Unavailable    // 服务不可用"
+        },
+        "propRef": "internet.http"
+      },
+      {
+        "id": "net2-2",
+        "title": "HTTPS 加密原理——为什么你的密码是安全的",
+        "content": "<b>HTTPS = HTTP + TLS（加密层）</b><br><br><b>混合加密方案</b>：<br>① <b>非对称加密</b>（RSA/ECDHE）— 握手阶段交换密钥（慢但安全）<br>② <b>对称加密</b>（AES）— 数据传输阶段（快）<br><br><b>TLS 握手简化流程</b>：<br>1. ClientHello → 支持的加密套件<br>2. ServerHello → 选加密套件 + 证书（含公钥）<br>3. 客户端验证证书 → 生成会话密钥<br>4. 双方用会话密钥对称加密通信<br><br>💡 面试重点：HTTPS = 非对称加密交换密钥 + 对称加密传输数据",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:1.8;color:#ccc;padding:10px;background:#1a1a2e;border-radius:6px'>🔒 <b style='color:#4ade80'>HTTPS 握手流程</b><br><br>🌐 浏览器 → <span style='color:#667eea'>ClientHello</span> → 🖥️ 服务器<br>🌐 浏览器 ← <span style='color:#667eea'>证书+公钥</span> ← 🖥️ 服务器<br>🌐 浏览器 → <span style='color:#667eea'>加密的会话密钥</span> → 🖥️ 服务器<br><br>✅ <b>之后全部用会话密钥（AES）加密</b></div>",
+          "css": "",
+          "js": "// 浏览器中查看 HTTPS 证书信息\n// 地址栏 → 🔒 图标 → 证书\n\n// Node.js 创建 HTTPS 服务器\nconst https = require('https')\nconst fs = require('fs')\n\nconst options = {\n  key: fs.readFileSync('private-key.pem'),\n  cert: fs.readFileSync('certificate.pem')\n}\n\nhttps.createServer(options, (req, res) => {\n  res.writeHead(200)\n  res.end('HTTPS 安全连接!')\n}).listen(443)"
+        },
+        "propRef": "internet.https"
+      }
+    ]
+  },
+  {
+    "id": "net3",
+    "title": "🌍 域名与 DNS 深入",
+    "desc": "域名结构/DNS记录类型/CDN工作原理",
+    "category": "internet",
+    "icon": "🌍",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "net3-1",
+        "title": "域名结构——从根到叶子",
+        "content": "<b>域名层级结构</b>（从右向左）：<br><br><code>www.example.com.</code><br>• <b>根域 (.)</b> — 最顶层，全球 13 组根服务器<br>• <b>顶级域 (.com)</b> — TLD: com/org/net/cn/io 等<br>• <b>二级域 (example)</b> — 你注册的名字<br>• <b>子域 (www)</b> — 可自由创建（api/mail/blog...）<br><br><b>DNS 记录类型</b>：<br>• <code>A</code> — 域名 → IPv4<br>• <code>AAAA</code> — 域名 → IPv6<br>• <code>CNAME</code> — 别名（www → @）<br>• <code>MX</code> — 邮件服务器<br>• <code>TXT</code> — 文本记录（常用于验证）",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:2;color:#ccc;padding:10px;background:#1a1a2e;border-radius:6px'>📋 <b style='color:#667eea'>常见 DNS 记录配置示例</b><br><br>A:     example.com → 93.184.216.34<br>AAAA:  example.com → 2606:2800:220:1::<br>CNAME: www.example.com → example.com<br>MX:    example.com → mail.example.com (优先级10)<br>TXT:   example.com → \"v=spf1 ...\"</div>",
+          "css": "",
+          "js": "# 查看域名的各种 DNS 记录\n\n# A 记录\ndig example.com A\n\n# MX 记录\ndig example.com MX\n\n# NS 记录（权威 DNS 服务器）\ndig example.com NS\n\n# 反向查询\nnslookup 93.184.216.34\n\n# 追踪 DNS 解析路径\ndig example.com +trace"
+        },
+        "propRef": "internet.domain"
+      }
+    ]
+  }
+]

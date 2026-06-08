@@ -8,22 +8,25 @@
     "build": "vue-tsc && vite build && node ai-proxy.mjs --postbuild dist",
     "preview": "vite preview",
     "ai-proxy": "node ai-proxy.mjs",
+    "server": "node server/index.mjs",
     "analyze": "vite build -- --report"
   },
   "dependencies": {
-    "@esbuild/darwin-x64": "^0.28.0",
     "@splinetool/runtime": "^1.12.96",
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.10.0",
+    "cors": "^2.8.5",
     "dompurify": "^3.2.4",
+    "express": "^5.2.1",
     "highlight.js": "^11.11.1",
+    "jsonwebtoken": "^9.0.3",
     "marked": "^18.0.4",
     "monaco-editor": "^0.52.2",
     "pinia": "^2.1.7",
-    "three": "^0.162.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@types/three": "^0.162.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "typescript": "^5.4.2",
     "vite": "^5.1.6",

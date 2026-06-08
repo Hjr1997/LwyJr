@@ -27,7 +27,7 @@
       ref="lampCanvas"
       class="lamp-canvas"
       @mousedown="onDown"
-      @touchstart="onDown"
+      @touchstart.prevent="onDown"
     ></canvas>
   </Teleport>
 </template>
@@ -567,7 +567,8 @@ onUnmounted(() => {
 .lamp-canvas {
   position: fixed;
   top: -29px;
-  right: 15px;
+  right: -20px;
+  touch-action: none;
   width: 165px;
   height: 165px;
   z-index: 99999;

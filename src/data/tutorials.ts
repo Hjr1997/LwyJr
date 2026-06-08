@@ -28,6 +28,11 @@ import vueData from './v-tutorials.json'
 import piniaData from './p-tutorials.json'
 import viteData from './i-tutorials.json'
 import fullstackData from './n-tutorials.json'
+import internetData from './internet-tutorials.json'
+import canvasData from './canvas-tutorials.json'
+import buildData from './build-tutorials.json'
+import projectData from './project-tutorials.json'
+import dbData from './db-tutorials.json'
 
 // Node.js data split into small files to avoid Vite SFC compiler memory limits
 const nodeModules = import.meta.glob<{ default: Tutorial[] }>('./node-*.json', { eager: true })
@@ -44,5 +49,10 @@ export const tutorials: Tutorial[] = [
   ...piniaData,
   ...viteData,
   ...fullstackData,
+  ...internetData,
+  ...canvasData,
+  ...buildData,
+  ...projectData,
+  ...dbData,
   ...Object.values(nodeModules).flatMap(m => m.default),
 ] as Tutorial[]

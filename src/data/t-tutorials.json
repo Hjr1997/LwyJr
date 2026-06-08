@@ -10,7 +10,7 @@
       {
         "id": "t0-1",
         "title": "大纲——按 TypeScript 官方手册顺序学习",
-        "content": "<div style='max-width:720px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'>\n  <h2 style='text-align:center;color:#3178c6;margin:0 0 4px'>📑 TypeScript 学习路径</h2>\n  <p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>10篇 · 类型系统 → 泛型 → 工具类型</p>\n  <table style='width:100%;border-collapse:collapse;font-size:12px'>\n    <tr style='background:#3178c6'><th style='padding:6px 10px;color:#fff;text-align:left'>#</th><th style='padding:6px 10px;color:#fff;text-align:left'>章节</th><th style='padding:6px 10px;color:#fff;text-align:left'>核心</th></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔷 TS 是什么——给 JS 加类型</td><td style='padding:5px 10px;color:#888;font-size:11px'>编译原理、类型系统价值</td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🛠 基础类型——七大原始类型</td><td style='padding:5px 10px;color:#888;font-size:11px'>string、number、boolean、array、tuple、enum、any</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🏷 interface——给对象定形</td><td style='padding:5px 10px;color:#888;font-size:11px'>接口定义、可选属性、只读、索引签名</td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔗 函数类型——标注参和返</td><td style='padding:5px 10px;color:#888;font-size:11px'>参数类型、返回值、重载、this</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>5</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔀 联合类型与类型收窄</td><td style='padding:5px 10px;color:#888;font-size:11px'>union、Narrowing、typeof、instanceof</td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>6</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🎲 泛型——类型的「变量」</td><td style='padding:5px 10px;color:#888;font-size:11px'>Generic<T>、约束、工具类型</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>7</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>📦 枚举与断言</td><td style='padding:5px 10px;color:#888;font-size:11px'>enum、as、const assertion</td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>8</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🏗 class——面向对象</td><td style='padding:5px 10px;color:#888;font-size:11px'>修饰符、抽象类、实现接口</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>9</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🪄 类型别名与工具类型</td><td style='padding:5px 10px;color:#888;font-size:11px'>type、Partial<T>、Pick<T>、Record<K,V></td></tr>\n    <tr><td style='padding:5px 10px;color:#3178c6;font-weight:bold'>10</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🚀 综合实战</td><td style='padding:5px 10px;color:#888;font-size:11px'>TS 重构 JS 项目、类型声明文件</td></tr>\n  </table>\n  <p style='text-align:center;color:#3178c6;font-size:11px;margin-top:12px'><b>💡 每步都有类型对比展示（TS vs JS）</b></p>\n</div>",
+        "content": "<div style=\"max-width:680px;margin:0 auto;padding:20px;background:#1a1a2e;border-radius:14px\"><h2 style=\"text-align:center;color:#3178c6;margin:0 0 4px\">🔷 TypeScript 完整学习路径</h2><p style=\"text-align:center;color:#888;font-size:13px;margin-bottom:8px\">10篇教程 · 22节 · 从零到实战</p><div style=\"text-align:center;margin-bottom:14px\"><span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#3178c622;color:#3178c6\">🟢 入门 ×2</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#3178c622;color:#3178c6\">🟡 中级 ×4</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#3178c622;color:#3178c6\">🔴 高级 ×4</span></div><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#3178c6\"><th style=\"padding:7px 10px;color:#fff;text-align:left\">#</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">章节</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">难度</th></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">1</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔷 TypeScript 是什么——给 JavaScript 加上「说明书」</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 3节</td></tr><tr><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">2</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🛠 基础类型——TS 的七大原始类型</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 3节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">3</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🏷 interface——给对象「定形」</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟡 中级 · 2节</td></tr><tr><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">4</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔗 函数类型——给参数和返回值「上锁」</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟡 中级 · 2节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">5</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔀 联合类型与类型收窄——一个变量，多种可能</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟡 中级 · 2节</td></tr><tr><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">6</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">📦 枚举与类型断言</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟡 中级 · 2节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">7</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🎲 泛型——类型的「变量」</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级 · 2节</td></tr><tr><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">8</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🏗 class——TS 的面向对象升级</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级 · 2节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">9</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🪄 类型别名与工具类型——TS 的魔法工具箱</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级 · 2节</td></tr><tr><td style=\"padding:5px 10px;color:#3178c6;font-weight:bold\">10</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🚀 综合实战——用 TS 重构 JS 项目</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级 · 2节</td></tr></table><div style=\"margin-top:14px;padding:12px 16px;background:#3178c610;border-radius:10px;border-left:3px solid #3178c6\"><b style=\"color:#3178c6;font-size:13px\">🎯 学完能做什么？</b><br><span style=\"color:#ccc;font-size:12px;line-height:1.8\">入门：能写基础类型注解(interface/type)，理解 TS 编译流程<br>中级：能用泛型/联合类型/类型收窄编写类型安全的代码<br>进阶：能用工具类型/声明文件，将 JS 项目渐进式迁移到 TS</span></div><p style=\"text-align:center;color:#888;font-size:11px;margin-top:12px\">💡 按难度排序，从入门循序渐进到高级，点击任意章节开始学习</p></div>",
         "propRef": "ts.summary"
       }
     ]
@@ -107,7 +107,7 @@
     "desc": "接口定义 / 可选属性 ? / readonly / 索引签名",
     "category": "ts",
     "icon": "🏷",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "t3-1",
@@ -139,7 +139,7 @@
     "desc": "参数类型 / 返回值类型 / 可选参数 / 函数重载",
     "category": "ts",
     "icon": "🔗",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "t4-1",
@@ -171,7 +171,7 @@
     "desc": "Union Types / Type Narrowing / typeof / instanceof",
     "category": "ts",
     "icon": "🔀",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "t5-1",
@@ -235,7 +235,7 @@
     "desc": "enum / as 断言 / const assertion / ! 非空断言",
     "category": "ts",
     "icon": "📦",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "t7-1",

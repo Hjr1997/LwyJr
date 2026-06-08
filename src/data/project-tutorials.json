@@ -1,0 +1,81 @@
+[
+  {
+    "id": "prj0",
+    "title": "📑 项目实战完整学习大纲",
+    "desc": "3个完整项目 · 从零到部署",
+    "category": "project",
+    "icon": "📑",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "prj0-1",
+        "title": "大纲——3 个项目带你从入门到全栈",
+        "content": "<div style=\"max-width:680px;margin:0 auto;padding:20px;background:#1a1a2e;border-radius:14px\"><h2 style=\"text-align:center;color:#ff375f;margin:0 0 4px\">🚀 项目实战学习路径</h2><p style=\"text-align:center;color:#888;font-size:13px;margin-bottom:8px\">3篇教程 · 3节 · 从零到实战</p><div style=\"text-align:center;margin-bottom:14px\"><span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#ff375f22;color:#ff375f\">🟢 入门 ×1</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#ff375f22;color:#ff375f\">🟠 进阶 ×1</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#ff375f22;color:#ff375f\">🔴 高级 ×1</span></div><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#ff375f\"><th style=\"padding:7px 10px;color:#fff;text-align:left\">#</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">章节</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">难度</th></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#ff375f;font-weight:bold\">1</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">📝 项目一：个人博客页面</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 1节</td></tr><tr><td style=\"padding:5px 10px;color:#ff375f;font-weight:bold\">2</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">✅ 项目二：待办应用 (Todo App)</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶 · 1节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#ff375f;font-weight:bold\">3</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔌 项目三：REST API 服务</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级 · 1节</td></tr></table><div style=\"margin-top:14px;padding:12px 16px;background:#ff375f10;border-radius:10px;border-left:3px solid #ff375f\"><b style=\"color:#ff375f;font-size:13px\">🎯 学完能做什么？</b><br><span style=\"color:#ccc;font-size:12px;line-height:1.8\">入门：能用 HTML/CSS/JS 搭建响应式博客<br>进阶：能用 Vue3+Pinia 搭建 Todo 应用<br>高级：能用 Node.js+Express 搭建 REST API 服务</span></div><p style=\"text-align:center;color:#888;font-size:11px;margin-top:12px\">💡 按难度排序，从入门循序渐进到高级，点击任意章节开始学习</p></div>",
+        "propRef": "project.summary"
+      }
+    ]
+  },
+  {
+    "id": "prj1",
+    "title": "📝 项目一：个人博客页面",
+    "desc": "纯 HTML/CSS/JS — 响应式博客首页设计",
+    "category": "project",
+    "icon": "📝",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "prj1-1",
+        "title": "搭建博客首页——导航 + 文章列表 + 侧边栏",
+        "content": "这是你的<b>第一个完整项目</b>！用纯 HTML/CSS/JS 做一个响应式个人博客。<br><br><b>功能清单</b>：<br>• 顶部导航栏（Logo + 菜单）<br>• 文章卡片列表（标题/摘要/日期/标签）<br>• 右侧个人信息卡片（头像/简介）<br>• 响应式布局（桌面端 2 栏，移动端 1 栏）<br>• 暗色/亮色主题切换<br><br>💡 这些都是真实项目中每天用的技能。",
+        "code": {
+          "html": "<div style='max-width:320px;margin:0 auto;font-family:sans-serif'>\n  <header style='background:#1a1a2e;padding:12px;text-align:center;border-radius:6px;margin-bottom:10px'>\n    <h2 style='color:#667eea;margin:0'>📝 My Blog</h2>\n    <span style='color:#888;font-size:11px'>Home | About | Contact</span>\n  </header>\n  <div style='background:#222;padding:14px;border-radius:6px;border-left:3px solid #667eea;margin-bottom:8px'>\n    <h4 style='color:#ccc;margin:0 0 4px'>HTML 入门指南</h4>\n    <p style='color:#888;font-size:11px;margin:0 0 6px'>从零开始学习HTML5标签...</p>\n    <span style='background:#667eea22;color:#667eea;font-size:10px;padding:2px 8px;border-radius:10px'>HTML</span>\n  </div>\n  <div style='background:#222;padding:14px;border-radius:6px;border-left:3px solid #34c759;margin-bottom:8px'>\n    <h4 style='color:#ccc;margin:0 0 4px'>CSS Flexbox 实战</h4>\n    <p style='color:#888;font-size:11px;margin:0 0 6px'>弹性布局完全指南...</p>\n    <span style='background:#34c75922;color:#34c759;font-size:10px;padding:2px 8px;border-radius:10px'>CSS</span>\n  </div>\n</div>",
+          "css": "/* 项目结构建议 */\n/*\nproject/\n  index.html      — 首页\n  css/style.css   — 样式\n  js/main.js      — 交互逻辑\n  img/            — 图片资源\n*/\n\n/* 响应式布局核心 */\n/* 桌面: grid-template-columns: 2fr 1fr */\n/* 移动: grid-template-columns: 1fr */",
+          "js": "// 主题切换（核心功能）\nconst toggleBtn = document.querySelector('.theme-toggle')\ntoggleBtn.addEventListener('click', () => {\n  const isDark = document.documentElement.getAttribute('data-theme') === 'dark'\n  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark')\n})\n\n// 移动端菜单\nconst menuBtn = document.querySelector('.menu-btn')\nconst nav = document.querySelector('nav ul')\nmenuBtn.addEventListener('click', () => {\n  nav.classList.toggle('open')\n})"
+        },
+        "propRef": "project.blog"
+      }
+    ]
+  },
+  {
+    "id": "prj2",
+    "title": "✅ 项目二：待办应用 (Todo App)",
+    "desc": "Vue 3 + Pinia — 增删改查 + 持久化存储",
+    "category": "project",
+    "icon": "✅",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "prj2-1",
+        "title": "Vue 3 Todo——组件化思维实践",
+        "content": "做一个功能完整的 <b>Todo 待办应用</b>！这是前端面试最常见的项目。<br><br><b>核心功能</b>：<br>① 添加待办（输入框 + Enter）<br>② 标记完成/取消（checkbox 切换）<br>③ 删除待办（单条/全部清除）<br>④ 筛选（全部/未完成/已完成）<br>⑤ 本地持久化（localStorage）<br>⑥ 动画过渡（列表增删动画）<br><br>💡 这个项目涵盖了 Vue 的 computed/watch/transition/组件通信。",
+        "code": {
+          "html": "<div id='todo-app' style='max-width:300px;margin:0 auto;background:#1a1a2e;border-radius:8px;padding:14px;font-family:sans-serif'>\n  <h3 style='color:#667eea;text-align:center;margin:0 0 10px'>✅ Todo List</h3>\n  <div style='display:flex;gap:6px;margin-bottom:10px'>\n    <input placeholder='添加新任务...' style='flex:1;padding:6px 10px;border-radius:4px;border:1px solid #333;background:#222;color:#ccc;font-size:12px'>\n    <button style='background:#667eea;color:#fff;border:none;border-radius:4px;padding:6px 12px;cursor:pointer;font-size:12px'>添加</button>\n  </div>\n  <div style='display:flex;gap:6px;margin-bottom:8px'>\n    <button style='font-size:11px;background:#222;color:#667eea;border:none;padding:4px 10px;border-radius:4px;cursor:pointer'>全部</button>\n    <button style='font-size:11px;background:#222;color:#888;border:none;padding:4px 10px;border-radius:4px;cursor:pointer'>未完成</button>\n    <button style='font-size:11px;background:#222;color:#888;border:none;padding:4px 10px;border-radius:4px;cursor:pointer'>已完成</button>\n  </div>\n  <div style='color:#888;font-size:12px;text-align:center;padding:20px'>3 项待办 · 1 项完成</div>\n</div>",
+          "css": "",
+          "js": "// Vue 3 Todo 应用核心代码框架\n// stores/todo.ts\nexport const useTodoStore = defineStore('todo', () => {\n  const todos = ref(JSON.parse(localStorage.getItem('todos') || '[]'))\n  const filter = ref('all') // 'all' | 'active' | 'completed'\n\n  const filteredTodos = computed(() => {\n    if (filter.value === 'active') return todos.value.filter(t => !t.done)\n    if (filter.value === 'completed') return todos.value.filter(t => t.done)\n    return todos.value\n  })\n\n  function addTodo(text) {\n    todos.value.push({ id: Date.now(), text, done: false })\n    save()\n  }\n\n  function toggleTodo(id) {\n    const todo = todos.value.find(t => t.id === id)\n    if (todo) todo.done = !todo.done\n    save()\n  }\n\n  function removeTodo(id) {\n    todos.value = todos.value.filter(t => t.id !== id)\n    save()\n  }\n\n  function save() {\n    localStorage.setItem('todos', JSON.stringify(todos.value))\n  }\n\n  return { todos, filter, filteredTodos, addTodo, toggleTodo, removeTodo }\n})"
+        },
+        "propRef": "project.todo"
+      }
+    ]
+  },
+  {
+    "id": "prj3",
+    "title": "🔌 项目三：REST API 服务",
+    "desc": "Node.js + Express — 构建你的第一个后端 API",
+    "category": "project",
+    "icon": "🔌",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "prj3-1",
+        "title": "Express 入门——5 分钟搭建 REST API",
+        "content": "从零搭建一个 <b>RESTful API 服务</b>！这是成为全栈开发者的关键一步。<br><br><b>API 端点设计</b>：<br>• <code>GET /api/books</code> — 获取所有书籍<br>• <code>GET /api/books/:id</code> — 获取单本书<br>• <code>POST /api/books</code> — 添加新书<br>• <code>PUT /api/books/:id</code> — 更新书籍<br>• <code>DELETE /api/books/:id</code> — 删除书籍<br><br>💡 这就是标准的 RESTful CRUD API！",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:2;padding:10px;background:#1a1a2e;border-radius:6px;color:#ccc'>🔌 <b style='color:#34c759'>API 端点速查</b><br><br>GET    /api/books      → 列表<br>GET    /api/books/1    → 详情<br>POST   /api/books      → 创建<br>PUT    /api/books/1    → 更新<br>DELETE /api/books/1    → 删除</div>",
+          "css": "",
+          "js": "// server.js — Express REST API\nconst express = require('express')\nconst app = express()\napp.use(express.json())\n\n// 模拟数据库\nlet books = [\n  { id: 1, title: 'JavaScript高级程序设计', author: 'Nicholas' },\n  { id: 2, title: 'CSS权威指南', author: 'Eric Meyer' }\n]\nlet nextId = 3\n\n// GET — 获取所有书籍\napp.get('/api/books', (req, res) => {\n  res.json(books)\n})\n\n// GET — 获取单本书\napp.get('/api/books/:id', (req, res) => {\n  const book = books.find(b => b.id === +req.params.id)\n  book ? res.json(book) : res.status(404).json({ error: 'Not Found' })\n})\n\n// POST — 创建新书\napp.post('/api/books', (req, res) => {\n  const book = { id: nextId++, ...req.body }\n  books.push(book)\n  res.status(201).json(book)\n})\n\n// PUT — 更新书籍\napp.put('/api/books/:id', (req, res) => {\n  const idx = books.findIndex(b => b.id === +req.params.id)\n  if (idx === -1) return res.status(404).json({ error: 'Not Found' })\n  books[idx] = { ...books[idx], ...req.body }\n  res.json(books[idx])\n})\n\n// DELETE — 删除书籍\napp.delete('/api/books/:id', (req, res) => {\n  books = books.filter(b => b.id !== +req.params.id)\n  res.status(204).send()\n})\n\napp.listen(3000, () => console.log('🚀 API Server → http://localhost:3000'))"
+        },
+        "propRef": "project.api"
+      }
+    ]
+  }
+]

@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('@/views/RoadmapView.vue'),
     },
     {
+      path: '/progress',
+      name: 'progress',
+      component: () => import('@/views/ProgressView.vue'),
+    },
+    {
       path: '/tutorials',
       name: 'tutorials',
       component: () => import('@/views/TutorialView.vue'),

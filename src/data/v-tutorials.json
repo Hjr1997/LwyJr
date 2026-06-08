@@ -10,7 +10,7 @@
       {
         "id": "v0-1",
         "title": "大纲——按 Vue 官方教程顺序学习",
-        "content": "<div style='max-width:720px;margin:0 auto;padding:16px;background:#1a1a2e;border-radius:12px'>\n  <h2 style='text-align:center;color:#42d392;margin:0 0 4px'>📑 Vue3 学习路径</h2>\n  <p style='text-align:center;color:#888;font-size:12px;margin-bottom:16px'>12篇 · 声明式 → 组件化 → 实战</p>\n  <table style='width:100%;border-collapse:collapse;font-size:12px'>\n    <tr style='background:#667eea'><th style='padding:6px 10px;color:#fff;text-align:left'>#</th><th style='padding:6px 10px;color:#fff;text-align:left'>章节</th><th style='padding:6px 10px;color:#fff;text-align:left'>核心</th></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>1</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>💚 声明式渲染</td><td style='padding:5px 10px;color:#888;font-size:11px'>createApp、{{ }} 插值、响应式初体验</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>2</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔗 属性绑定与事件</td><td style='padding:5px 10px;color:#888;font-size:11px'>v-bind / v-on / 修饰符链式调用</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>3</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔀 条件与列表渲染</td><td style='padding:5px 10px;color:#888;font-size:11px'>v-if / v-show / v-for / :key</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>4</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>⚡ 响应式基础</td><td style='padding:5px 10px;color:#888;font-size:11px'>ref() / reactive() / Proxy 原理</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>5</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🧮 计算属性与侦听</td><td style='padding:5px 10px;color:#888;font-size:11px'>computed() / watch() / watchEffect()</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>6</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>📝 v-model 双向绑定</td><td style='padding:5px 10px;color:#888;font-size:11px'>v-model / .lazy / .number / .trim</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>7</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🧩 组件基础</td><td style='padding:5px 10px;color:#888;font-size:11px'>defineProps / defineEmits / Slots</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>8</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🕐 生命周期</td><td style='padding:5px 10px;color:#888;font-size:11px'>onMounted / onUnmounted / KeepAlive</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>9</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🔌 深入组件</td><td style='padding:5px 10px;color:#888;font-size:11px'>provide / inject / Teleport</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>10</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🛠 Composables</td><td style='padding:5px 10px;color:#888;font-size:11px'>use 函数 / useMouse / useTodos</td></tr>\n    <tr style='background:#222'><td style='padding:5px 10px;color:#42d392;font-weight:bold'>11</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🧭 Vue Router + Pinia</td><td style='padding:5px 10px;color:#888;font-size:11px'>路由配置 / 导航守卫 / Store</td></tr>\n    <tr><td style='padding:5px 10px;color:#42d392;font-weight:bold'>12</td><td style='padding:5px 10px;color:#ccc;font-size:11px'>🚀 综合实战</td><td style='padding:5px 10px;color:#888;font-size:11px'>Todo 应用整合全家桶</td></tr>\n  </table>\n  <p style='text-align:center;color:#42d392;font-size:11px;margin-top:12px'><b>💡 每步都有可运行的实时代码预览</b></p>\n</div>",
+        "content": "<div style=\"max-width:680px;margin:0 auto;padding:20px;background:#1a1a2e;border-radius:14px\"><h2 style=\"text-align:center;color:#4ade80;margin:0 0 4px\">💚 Vue 3 完整学习路径</h2><p style=\"text-align:center;color:#888;font-size:13px;margin-bottom:8px\">12篇教程 · 从声明式渲染到综合实战</p><div style=\"text-align:center;margin-bottom:14px\"><span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#4ade8022;color:#4ade80\">🟢 入门 ×4</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#4ade8022;color:#4ade80\">🟠 进阶 ×5</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#4ade8022;color:#4ade80\">🔴 高级 ×4</span></div><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#4ade80\"><th style=\"padding:7px 10px;color:#000;text-align:left\">#</th><th style=\"padding:7px 10px;color:#000;text-align:left\">章节</th><th style=\"padding:7px 10px;color:#000;text-align:left\">难度</th></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">1</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">💚 声明式渲染——不用碰 DOM</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门</td></tr><tr><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">2</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔗 属性绑定与事件——HTML 的「动态升级」</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">3</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔀 条件与列表——让页面「会决策」</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门</td></tr><tr><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">4</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">⚡ 响应式基础——数据改变，视图跟随</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">5</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🧮 计算属性与侦听——数据的「自动反应」</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶</td></tr><tr><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">6</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">📝 v-model——数据与表单的「双向高速路」</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">7</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🧩 组件基础——像搭乐高一样写页面</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶</td></tr><tr><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">8</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🕐 生命周期——组件从生到死</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">9</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔌 深入组件——跨层级通信与按需加载</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级</td></tr><tr><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">10</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🛠 Composables——像搭乐高一样复用逻辑</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">11</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🧭 Vue Router + Pinia —— SPA 的两大支柱</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级</td></tr><tr><td style=\"padding:5px 10px;color:#4ade80;font-weight:bold\">12</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🚀 综合实战——用 Vue3 全家桶写 Todo 应用</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级</td></tr></table><div style=\"margin-top:14px;padding:12px 16px;background:#4ade8010;border-radius:10px;border-left:3px solid #4ade80\"><b style=\"color:#4ade80;font-size:13px\">🎯 学完能做什么？</b><br><span style=\"color:#ccc;font-size:12px;line-height:1.8\">入门：能用声明式渲染/v-bind/v-on/v-if/v-for 搭建动态页面<br>进阶：能用 ref/reactive/computed/watch 管理响应式状态，用组件/Props/Emits 搭建可复用体系<br>高级：能用 Vue Router+Pinia 搭建 SPA，用 Composables + Teleport 组织复杂应用</span></div><p style=\"text-align:center;color:#888;font-size:11px;margin-top:12px\">💡 按难度排序，从入门循序渐进到高级，点击任意章节开始学习</p></div>",
         "propRef": "vue.summary"
       }
     ]
@@ -150,7 +150,7 @@
     "desc": "ref() / reactive() / 响应式原理 Proxy / 解包规则",
     "category": "vue3",
     "icon": "⚡",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "v4-1",
@@ -193,7 +193,7 @@
     "desc": "computed 缓存 / watch 侦听 / watchEffect 自动追踪",
     "category": "vue3",
     "icon": "🧮",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "v5-1",
@@ -236,7 +236,7 @@
     "desc": "v-model 语法糖 / 修饰符 .lazy .number .trim / 组件 v-model",
     "category": "vue3",
     "icon": "📝",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "v6-1",
@@ -268,7 +268,7 @@
     "desc": "Props 父传子 / Emits 子传父 / Slots 内容分发 / 单向数据流",
     "category": "vue3",
     "icon": "🧩",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "v7-1",
@@ -311,7 +311,7 @@
     "desc": "onMounted / onUnmounted / 清理副作用 / KeepAlive",
     "category": "vue3",
     "icon": "🕐",
-    "difficulty": "中级",
+    "difficulty": "进阶",
     "steps": [
       {
         "id": "v8-1",

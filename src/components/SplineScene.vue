@@ -325,7 +325,6 @@ function discoverRobotParts() {
   for (const k of Object.keys(robotParts)) delete robotParts[k]
 
   const names = objects.map(o => o.name || '(unnamed)')
-  console.log('[SplineScene] All objects:', names.join(', '))
 
   for (const obj of objects) {
     const n = (obj.name || '').toLowerCase()
@@ -339,7 +338,6 @@ function discoverRobotParts() {
   }
 
   if (Object.keys(robotParts).length === 0) {
-    console.warn('[SplineScene] No robot parts found by name. Objects available:', names.join(', '))
     for (const obj of objects) {
       const n = (obj.name || '').toLowerCase()
       if (/background|ground|plane|light|camera|env|ambient/i.test(n)) continue
@@ -348,7 +346,6 @@ function discoverRobotParts() {
     }
   }
 
-  console.log('[SplineScene] Robot parts found:', Object.keys(robotParts))
   // Start idle animations after discovering parts
   startIdleAnimations()
 
@@ -539,8 +536,8 @@ async function robotReachForCord(): Promise<void> {
         animateProp(base, 'rotation', 'z', 0.06, 0, 600),
         animateProp(base, 'rotation', 'x', 0.06, 0, 600),
       ])
-    } catch (err) {
-      console.warn('[SplineScene] 3D reach animation error:', err)
+    } catch {
+      // 3D animation skipped — model may not be fully loaded
     }
   })() : Promise.resolve()
 
@@ -584,7 +581,6 @@ async function robotReachForCord(): Promise<void> {
 }
 
 watch(() => S.lampEvent, async (dir) => {
-  console.log('[SplineScene] lampEvent received:', dir)
   if (!dir || !app.value) return
   // Robot thinks about reaching for the cord
   props.onRobotInteract?.(dir === 'on' ? '哦~终于舍得开灯了，白天呢？' : '灯关了，你是想省电还是在酝酿什么？')

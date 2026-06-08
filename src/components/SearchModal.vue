@@ -52,6 +52,7 @@ import { useRouter } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import { tutorials } from '@/data/tutorials'
 import { animations } from '@/data/animations'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 interface SearchResult {
   id: string
@@ -154,8 +155,10 @@ function onKeydown(e: KeyboardEvent) {
   }
 }
 
+const { lock, unlock } = useBodyScrollLock()
+
 watch(isOpen, (v) => {
-  document.body.style.overflow = v ? 'hidden' : ''
+  if (v) lock(); else setTimeout(() => { unlock() }, 250)
 })
 
 if (typeof window !== 'undefined') {
@@ -172,10 +175,9 @@ defineExpose({ open })
 .search-overlay {
   position: fixed;
   inset: 0;
+  touch-action: none;
   z-index: 1000000;
   background: var(--modal-overlay-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -282,12 +284,18 @@ defineExpose({ open })
 </style>
 <!-- Transition (unscoped for Vue dynamic classes) -->
 <style>
-.search-overlay-enter-active{transition:opacity .4s cubic-bezier(.34,1.56,.64,1)}
+/* 基础状态：overlay 常驻 backdrop-filter */
+.search-overlay {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.search-overlay-enter-active{transition:opacity .4s cubic-bezier(.34,1.56,.64,1),backdrop-filter .4s ease,-webkit-backdrop-filter .4s ease}
 .search-overlay-enter-active .search-modal{transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .4s cubic-bezier(.34,1.56,.64,1)}
-.search-overlay-enter-from{opacity:0}
+.search-overlay-enter-from{opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)}
 .search-overlay-enter-from .search-modal{opacity:0;transform:translateY(-20px) scale(.95)}
-.search-overlay-leave-active{transition:opacity .25s cubic-bezier(.68,-.3,.32,1.3)}
-.search-overlay-leave-active .search-modal{transition:transform .25s cubic-bezier(.68,-.3,.32,1.3),opacity .25s cubic-bezier(.68,-.3,.32,1.3)}
-.search-overlay-leave-to{opacity:0}
-.search-overlay-leave-to .search-modal{opacity:0;transform:translateY(-8px) scale(.96)}
+.search-overlay-leave-active{transition:opacity .25s ease,backdrop-filter .25s ease,-webkit-backdrop-filter .25s ease}
+.search-overlay-leave-active .search-modal{transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s ease}
+.search-overlay-leave-to{opacity:0;backdrop-filter:none;-webkit-backdrop-filter:none;transform:none}
+.search-overlay-leave-to .search-modal{opacity:0;transform:translateY(-6px) scale(.97)}
 </style>

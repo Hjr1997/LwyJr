@@ -57,19 +57,21 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import type { IQExample } from '@/data/interview-questions'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 const visible = ref(false)
 const data = ref<IQExample>({ title: '', code: '' })
+const { lock, unlock } = useBodyScrollLock()
 
 function open(example: IQExample) {
   data.value = example
   visible.value = true
-  document.body.style.overflow = 'hidden'
+  lock()
 }
 
 function close() {
   visible.value = false
-  document.body.style.overflow = ''
+  setTimeout(() => { unlock() }, 300)
 }
 
 function onKeydown(e: KeyboardEvent) {
@@ -92,12 +94,12 @@ defineExpose({ open, close })
 .ex-overlay {
   position: fixed;
   inset: 0;
+  touch-action: none;
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(0,0,0,.45);
-  backdrop-filter: blur(8px);
   padding: 16px;
 }
 .ex-sheet {
@@ -254,14 +256,20 @@ defineExpose({ open, close })
 </style>
 <!-- Transition (unscoped for Vue dynamic classes) -->
 <style>
-.modal-fade-enter-active{transition:opacity .5s cubic-bezier(.34,1.56,.64,1)}
+/* 基础状态：overlay 常驻 backdrop-filter */
+.ex-overlay {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-fade-enter-active{transition:opacity .5s cubic-bezier(.34,1.56,.64,1),backdrop-filter .5s ease,-webkit-backdrop-filter .5s ease}
 .modal-fade-enter-active .ex-sheet{transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .5s cubic-bezier(.34,1.56,.64,1)}
-.modal-fade-enter-from{opacity:0}
+.modal-fade-enter-from{opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)}
 .modal-fade-enter-from .ex-sheet{opacity:0;transform:translateY(100%) scale(.88)}
 @media(min-width:768px){.modal-fade-enter-from .ex-sheet{transform:translateY(40px) scale(.88)}}
-.modal-fade-leave-active{transition:opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
-.modal-fade-leave-active .ex-sheet{transition:transform .3s cubic-bezier(.68,-.3,.32,1.3),opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
-.modal-fade-leave-to{opacity:0}
-.modal-fade-leave-to .ex-sheet{opacity:0;transform:translateY(80%) scale(.8)}
-@media(min-width:768px){.modal-fade-leave-to .ex-sheet{transform:translateY(30px) scale(.88)}}
+.modal-fade-leave-active{transition:opacity .25s ease,backdrop-filter .25s ease,-webkit-backdrop-filter .25s ease}
+.modal-fade-leave-active .ex-sheet{transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s ease}
+.modal-fade-leave-to{opacity:0;backdrop-filter:none;-webkit-backdrop-filter:none;transform:none}
+.modal-fade-leave-to .ex-sheet{opacity:0;transform:translateY(40%) scale(.9)}
+@media(min-width:768px){.modal-fade-leave-to .ex-sheet{transform:translateY(15px) scale(.94)}}
 </style>

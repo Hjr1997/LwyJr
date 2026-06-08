@@ -50,6 +50,12 @@ export default defineConfig({
     fs: {
       strict: false,
     },
+    proxy: {
+      // 认证 + 学习进度 API → 后端服务器(3001)
+      '/api/auth': 'http://localhost:3001',
+      '/api/progress': 'http://localhost:3001',
+      '/api/notes': 'http://localhost:3001',
+    },
   },
   build: {
     target: 'es2020',
@@ -59,9 +65,6 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes('node_modules/vue') || id.includes('node_modules/pinia') || id.includes('node_modules/vue-router')) {
             return 'vendor'
-          }
-          if (id.includes('node_modules/three')) {
-            return 'three'
           }
           if (id.includes('node_modules/monaco-editor')) {
             return 'monaco'

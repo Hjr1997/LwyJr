@@ -1,0 +1,81 @@
+[
+  {
+    "id": "bld0",
+    "title": "📑 构建工具完整学习大纲",
+    "desc": "3篇教程 · Vite/Webpack/esbuild 对比学习",
+    "category": "build",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "bld0-1",
+        "title": "大纲——为什么需要构建工具？",
+        "content": "<div style=\"max-width:680px;margin:0 auto;padding:20px;background:#1a1a2e;border-radius:14px\"><h2 style=\"text-align:center;color:#a78bfa;margin:0 0 4px\">🔧 构建工具学习路径</h2><p style=\"text-align:center;color:#888;font-size:13px;margin-bottom:8px\">3篇教程 · 3节 · 从零到实战</p><div style=\"text-align:center;margin-bottom:14px\"><span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#a78bfa22;color:#a78bfa\">🟢 入门 ×1</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#a78bfa22;color:#a78bfa\">🟠 进阶 ×2</span></div><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#a78bfa\"><th style=\"padding:7px 10px;color:#fff;text-align:left\">#</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">章节</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">难度</th></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#a78bfa;font-weight:bold\">1</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">⚡ Vite —— 下一代前端构建工具</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 1节</td></tr><tr><td style=\"padding:5px 10px;color:#a78bfa;font-weight:bold\">2</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">📦 Webpack 核心概念</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶 · 1节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#a78bfa;font-weight:bold\">3</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🚀 esbuild —— Go 语言写的极速打包器</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶 · 1节</td></tr></table><div style=\"margin-top:14px;padding:12px 16px;background:#a78bfa10;border-radius:10px;border-left:3px solid #a78bfa\"><b style=\"color:#a78bfa;font-size:13px\">🎯 学完能做什么？</b><br><span style=\"color:#ccc;font-size:12px;line-height:1.8\">入门：能用 Vite 创建和配置前端项目<br>进阶：理解 Webpack 五核心(entry/output/loader/plugin)，能用 esbuild 做极速打包</span></div><p style=\"text-align:center;color:#888;font-size:11px;margin-top:12px\">💡 按难度排序，从入门循序渐进到高级，点击任意章节开始学习</p></div>",
+        "propRef": "build.summary"
+      }
+    ]
+  },
+  {
+    "id": "bld1",
+    "title": "⚡ Vite —— 下一代前端构建工具",
+    "desc": "ESM 原生支持/秒级 HMR/零配置开箱即用",
+    "category": "build",
+    "icon": "⚡",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "bld1-1",
+        "title": "Vite 为什么这么快？——ESM + esbuild",
+        "content": "<b>Vite</b>（法语「快」）是 Vue 作者尤雨溪开发的下一代构建工具。<br><br><b>快在哪</b>：<br>① <b>开发服务器秒启动</b> — 用浏览器原生 ESM，不像 Webpack 需要全量打包<br>② <b>HMR 毫秒级</b> — 只更新修改的模块，不重新打包整个应用<br>③ <b>生产构建用 Rollup</b> — 成熟的打包方案<br>④ <b>esbuild 预处理依赖</b> — Go 语言写的超快打包器<br><br>💡 这个网站就是 Vite 构建的！",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:2;padding:10px;background:#1a1a2e;border-radius:6px;color:#ccc'>📦 <b style='color:#a78bfa'>Vite 架构</b><br><br>开发: <span style='color:#4ade80'>浏览器 ESM</span> → Vite Dev Server<br>依赖: esbuild → <span style='color:#f59e0b'>预构建</span> → node_modules/.vite<br>构建: <span style='color:#667eea'>Rollup</span> → dist/</div>",
+          "css": "",
+          "js": "# 创建 Vite 项目\nnpm create vite@latest my-app\n\n# 选择框架: Vue / React / Vanilla\n# 零配置直接开始开发！\n\nnpm run dev   # 启动开发服务器 (localhost:5173)\nnpm run build # 生产构建\nnpm run preview # 预览生产构建\n\n# vite.config.ts 示例\nimport { defineConfig } from 'vite'\nimport vue from '@vitejs/plugin-vue'\n\nexport default defineConfig({\n  plugins: [vue()],\n  server: { port: 3000 },\n  build: { target: 'es2020' }\n})"
+        },
+        "propRef": "build.vite"
+      }
+    ]
+  },
+  {
+    "id": "bld2",
+    "title": "📦 Webpack 核心概念",
+    "desc": "entry/output/loader/plugin —— 理解 Webpack 五大核心",
+    "category": "build",
+    "icon": "📦",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "bld2-1",
+        "title": "Webpack 五核心——entry/output/loader/plugin/mode",
+        "content": "<b>Webpack</b> 是使用最广泛的前端打包工具，虽然配置复杂但生态极其成熟。<br><br><b>五大核心概念</b>：<br>① <b>Entry</b> — 入口文件，Webpack 从这里开始构建依赖图<br>② <b>Output</b> — 输出配置，打包后的文件放哪、叫什么<br>③ <b>Loader</b> — 转换器，把非 JS 文件（CSS/图片/TS）转成 Webpack 能理解的模块<br>④ <b>Plugin</b> — 插件，做 Loader 做不了的事（打包优化/资源管理/环境变量注入）<br>⑤ <b>Mode</b> — development/production/none<br><br>💡 Vite 把这些都封装好了，所以配置量小很多。Webpack 灵活但复杂。",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:2;padding:10px;background:#1a1a2e;border-radius:6px;color:#ccc'>📦 <b style='color:#a78bfa'>Webpack 工作流</b><br><br>Entry → Loader(转换) → Plugin(优化) → Output</div>",
+          "css": "",
+          "js": "// webpack.config.js 基本结构\nconst path = require('path')\nconst HtmlWebpackPlugin = require('html-webpack-plugin')\n\nmodule.exports = {\n  mode: 'development',\n  entry: './src/index.js',     // ① 入口\n  output: {                     // ② 输出\n    path: path.resolve(__dirname, 'dist'),\n    filename: 'bundle.js'\n  },\n  module: {\n    rules: [{                    // ③ Loader\n      test: /\\.css$/,\n      use: ['style-loader', 'css-loader']\n    }]\n  },\n  plugins: [                     // ④ Plugin\n    new HtmlWebpackPlugin({ template: './index.html' })\n  ]\n}"
+        },
+        "propRef": "build.webpack"
+      }
+    ]
+  },
+  {
+    "id": "bld3",
+    "title": "🚀 esbuild —— Go 语言写的极速打包器",
+    "desc": "10倍于 Webpack 的速度/API简洁/Vite底层依赖",
+    "category": "build",
+    "icon": "🚀",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "bld3-1",
+        "title": "esbuild API —— 3 个函数搞定打包",
+        "content": "<b>esbuild</b> 用 Go 语言编写，打包速度是 Webpack 的 10-100 倍。<br><br><b>三个核心 API</b>：<br>• <code>build()</code> — 打包（最常用）<br>• <code>transform()</code> — 单文件转换<br>• <code>context()</code> — 持续构建（watch + serve）<br><br>💡 Vite 用 esbuild 做依赖预构建和 TS/JSX 转换，这也是 Vite 快的重要原因。",
+        "code": {
+          "html": "<div style='font-size:14px;text-align:center;padding:20px;color:#34c759'>🚀 esbuild: Go 语言编写<br>打包 1000 个模块 ≈ 0.1 秒</div>",
+          "css": "",
+          "js": "// esbuild 打包示例\nconst esbuild = require('esbuild')\n\nesbuild.build({\n  entryPoints: ['src/app.js'],\n  bundle: true,\n  minify: true,\n  outfile: 'dist/bundle.js',\n  platform: 'browser',\n  target: 'es2020'\n}).catch(() => process.exit(1))\n\n// transform 单文件\nconst result = esbuild.transformSync(\n  'const x: number = 1',\n  { loader: 'ts' }\n)\n// 输出: 'const x = 1;'\n\n// 速度对比（三文件处理 1000 个模块）\n// esbuild:  ~0.1s\n// Webpack:  ~2-5s\n// Rollup:   ~1-3s"
+        },
+        "propRef": "build.esbuild"
+      }
+    ]
+  }
+]

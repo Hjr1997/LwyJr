@@ -1,5 +1,5 @@
 <template>
-  <div class="section-padding" style="padding-top: var(--main-header-top);">
+  <div class="section-padding page-in" style="padding-top: var(--main-header-top);">
     <h2 class="section-title">
       <span class="gradient-text">🎬 动画特效场</span>
     </h2>
@@ -67,6 +67,7 @@
 import { ref, computed, onMounted, onUnmounted, nextTick, reactive, watch } from 'vue'
 import { animations, type AnimationItem } from '@/data/animations'
 import { use3DTilt } from '@/composables/use3DTilt'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 use3DTilt('.gallery-card', { maxTilt: 8, scale: 1.04, perspective: 1000 })
 
@@ -89,9 +90,11 @@ const filteredAnimations = computed(() =>
   activeFilter.value === 'all' ? animations : animations.filter((a) => a.category === activeFilter.value)
 )
 
+const { lock, unlock } = useBodyScrollLock()
+
 function openModal(item: AnimationItem) {
   selectedAnim.value = item
-  document.body.style.overflow = 'hidden'
+  lock()
   activeCodeTab.value = 'html'
   editCode.html = item.html
   editCode.css = item.css
@@ -100,14 +103,14 @@ function openModal(item: AnimationItem) {
 
 function closeModal() {
   selectedAnim.value = null
-  document.body.style.overflow = ''
+  setTimeout(() => { unlock() }, 300)
 }
 
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape' && selectedAnim.value) closeModal()
 }
 
-watch(selectedAnim, (anim) => { if (!anim) document.body.style.overflow = '' })
+watch(selectedAnim, (anim) => { if (!anim) setTimeout(() => { unlock() }, 300) })
 onMounted(() => window.addEventListener('keydown', onKeydown))
 onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
@@ -124,13 +127,11 @@ watch(selectedAnim, (anim) => {
 function runPreview() {
   const iframe = modalPreviewFrame.value
   if (!iframe) {
-    console.warn('iframe not ready, retrying...')
     setTimeout(() => runPreview(), 200)
     return
   }
   const doc = iframe.contentDocument || iframe.contentWindow?.document
   if (!doc) {
-    console.warn('contentDocument not available')
     return
   }
   const h = editCode.html || selectedAnim.value?.html || ''
@@ -149,7 +150,13 @@ onMounted(() => {
 
 <style scoped>
 .modal-body { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
-@media (max-width: 768px) { .modal-body { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .modal-body { grid-template-columns: 1fr; }
+  .modal-content { padding-top: 8px; }
+  .modal-close { top: 52px; right: 10px; z-index: 20; }
+  .panel-header { padding-right: 48px; }
+  .modal-code-panel { max-height: 50vh; }
+}
 .modal-preview-panel { background: var(--preview-bg); display: flex; flex-direction: column; }
 .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; color: var(--preview-header-text); font-size: 0.85rem; border-bottom: 1px solid var(--preview-border); }
 .btn-run { padding: 6px 18px; background: var(--success); color: #fff; border: none; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
@@ -164,7 +171,7 @@ onMounted(() => {
 .code-tab-btn.active { background: var(--primary); color: var(--btn-inverted-text); border-color: var(--primary); }
 .code-textarea { flex: 1; min-height: 280px; background: var(--code-bg); color: var(--code-text); border: none; border-radius: 8px; padding: 14px; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.6; resize: vertical; outline: none; white-space: pre-wrap; }
 .modal-meta { display: flex; gap: 16px; margin-top: 12px; font-size: 0.78rem; color: var(--text-secondary); }
-.gallery-modal-overlay { z-index: 10000; }
+.gallery-modal-overlay { z-index: 10000; touch-action: none; }
 .sheet-handle{width:36px;height:5px;background:var(--text-tertiary,#ccc);border-radius:3px;margin:10px auto 0;opacity:.4}
 @media(min-width:768px){.sheet-handle{display:none}}
 </style>
@@ -174,9 +181,9 @@ onMounted(() => {
 .sheet-enter-from{opacity:0}
 .sheet-enter-from .modal-content{opacity:0;transform:translateY(100%) scale(.88)}
 @media(min-width:768px){.sheet-enter-from .modal-content{transform:translateY(40px) scale(.88)}}
-.sheet-leave-active{transition:opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
-.sheet-leave-active .modal-content{transition:transform .3s cubic-bezier(.68,-.3,.32,1.3),opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
-.sheet-leave-to{opacity:0}
-.sheet-leave-to .modal-content{opacity:0;transform:translateY(80%) scale(.8)}
-@media(min-width:768px){.sheet-leave-to .modal-content{transform:translateY(30px) scale(.88)}}
+.sheet-leave-active{transition:opacity .25s ease,backdrop-filter .25s ease,-webkit-backdrop-filter .25s ease}
+.sheet-leave-active .modal-content{transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s ease}
+.sheet-leave-to{opacity:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+.sheet-leave-to .modal-content{opacity:0;transform:translateY(40%) scale(.9)}
+@media(min-width:768px){.sheet-leave-to .modal-content{transform:translateY(15px) scale(.94)}}
 </style>

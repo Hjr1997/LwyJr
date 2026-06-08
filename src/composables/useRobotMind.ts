@@ -1,6 +1,7 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
+import { useAuthStore } from '@/stores/auth'
 
 export interface RobotThought {
   text: string
@@ -205,9 +206,18 @@ export function useRobotMind() {
   const route = useRoute()
 
   function triggerThought(context: string) {
+    // 移动端不显示机器人，跳过 API 请求
+    if (window.innerWidth <= 768) return
     const now = Date.now()
     if (now - lastTriggerTime < COOLDOWN_MS) return
     lastTriggerTime = now
+
+    // 注入用户学习进度信息
+    const store = useAppStore()
+    const auth = useAuthStore()
+    if (auth.isLoggedIn && store.tutorialCompleted.size > 0) {
+      context += `。当前用户${auth.user?.username}已完成${store.tutorialCompleted.size}个步骤(${store.tutorialProgress}%)，连续学习${store.streakDays}天，获得${store.unlockedBadges.length}个徽章`
+    }
 
     isThinking.value = true
 
@@ -236,13 +246,15 @@ export function useRobotMind() {
     }, IDLE_MS)
   }
 
-  // Watch route changes → trigger thought
+  // Watch route changes → trigger thought (仅桌面端)
   watch(() => route.path, (path) => {
+    if (window.innerWidth <= 768) return
     const ctx = PAGE_CONTEXT[path] || `用户导航到了页面 ${path}`
     setTimeout(() => triggerThought(ctx), 1500)
   })
 
   onMounted(() => {
+    if (window.innerWidth <= 768) return
     // Trigger initial greeting after a delay
     setTimeout(() => {
       triggerThought(PAGE_CONTEXT[route.path] || '用户刚刚打开了网站')

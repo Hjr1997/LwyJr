@@ -1359,3 +1359,441 @@ onMounted(() => {
 | `InterviewView.vue` | 断点 700px → 640px + 合并重复 @media |
 | `use3DTilt.ts` | 移动端 ≤768px 跳过绑定 |
 | `SpotlightWrapper.vue` | hover:none 检测，触控设备跳过 |
+
+---
+
+## 2026-06-08 优化会话记录
+
+> 基于全项目审计 (40+ 文件)，覆盖移动端拖动修复、架构优化、代码质量清理。
+
+### P0 — 移动端拖动修复（用户反馈核心）
+
+#### body 阻止意外拖动
+- [x] **`body` overscroll-behavior**: `overflow-x: clip` → `hidden` + `overscroll-behavior-x: none` + `overscroll-behavior-y: contain` — 彻底阻止横向拖动和下拉刷新连锁反应
+- [x] **全局 `user-select: none`**: `html` 全局禁止文字选中拖动；`input/textarea/[contenteditable]/.code-editor/.code-textarea/.ncode-pre` 恢复选择
+- [x] **`touch-action` 全面扩展**:
+  - 可滚动容器 (`.tt/.ts/.cat-body/.modal-content/.sheet-body/.ex-body/.chatbot-messages/.search-results/.cbody`): `touch-action: pan-y`
+  - 代码块 (`.code-block/.ncode-pre/.code-textarea/.ex-code/.sheet-code`): `touch-action: pan-x pan-y pinch-zoom`
+  - Canvas 交互区 (`.lamp-canvas`): `touch-action: none`
+
+#### DeskLamp 触摸交互优化
+- [x] **Canvas `touch-action: none`**: 阻止浏览器对手势的默认处理
+- [x] **`@touchstart.prevent`**: Vue 修饰符确保 `e.preventDefault()` 在 passive 模式下生效，灯绳拖动不再触发页面滚动
+
+#### iOS 输入框缩放防止
+- [x] `@media (max-width: 768px)`: `input, textarea, select, .code-editor, .code-textarea { font-size: 16px !important }` — 阻止 iOS 点击输入框自动缩放页面
+
+### P1 — 移动端体验增强
+
+#### 底部安全区补全
+- [x] **TutorialView `.sp`**: `padding-bottom: calc(100px + env(safe-area-inset-bottom, 0))` — iPhone Home Indicator 不遮挡
+- [x] **TutorialView `.step-nav`**: `margin-bottom: env(safe-area-inset-bottom, 8px)` — 上一步/下一步按钮安全
+- [x] **SearchModal**: 已有 `padding-bottom: env(safe-area-inset-bottom)` (验证通过)
+- [x] **FloatingChatBot**: 已有 `bottom: calc(16px + env(safe-area-inset-bottom))` (验证通过)
+
+#### 横向课程列表 scroll-snap
+- [x] **TutorialView `.tt`**: `scroll-snap-type: x proximity` — 横向滑动带吸附感
+- [x] **TutorialView `.tb`**: `scroll-snap-align: start` — Tab 按钮吸附对齐
+
+### P1 — 架构优化
+
+#### HomeView 消除重复 Hero
+- [x] **合并两个完全重复的 Hero 区块**: `<component :is="isMobile ? 'div' : SpotlightWrapper">` 动态包裹，54行重复 → 单一模板 + 条件渲染
+- [x] **移除 `typewriterRefMobile`**: 统一使用 `typewriterRef`，typewriter 函数简化
+
+#### 公共弹窗过渡样式库
+- [x] **新建 `src/styles/transitions.css`**: 6 种标准过渡模式
+  - `sheet` — 底部抽屉 (iOS 风格弹簧)
+  - `bounce-modal` — 居中弹窗 (果冻入场)
+  - `overlay` — 遮罩层 (渐入渐出)
+  - `popdown` — 下拉菜单
+  - `msg` — 消息淡入
+  - `bubble` — 气泡弹出
+- [x] **`main.ts` 导入**: 全局可用
+
+### P1 — 代码质量清理
+
+#### 移除生产环境 console
+- [x] **SplineScene.vue**: 移除 5 处 `console.log/warn` (All objects / No robot parts / Robot parts found / 3D reach error / lampEvent received)
+- [x] **WebGLBackground.vue**: 移除 `console.warn('Shader compile:')`，改为注释
+- [x] **GalleryView.vue**: 移除 2 处 `console.warn` (iframe not ready / contentDocument not available)
+- **保留**: `ErrorBoundary.vue` 的 `console.error` 和 `useRobotMind.ts` 的 `console.error` (运行时错误日志有价值)
+
+### P2 — 依赖清理 & 组件拆分
+
+#### 依赖清理
+- [x] **package.json 移除 3 个未使用包**:
+  - `@esbuild/darwin-x64` — macOS 平台特定二进制，Windows 项目无用
+  - `three` — 源码中无 `import from 'three'`，仅通过 CDN importmap 在 iframe 中使用
+  - `@types/three` — 同上
+- [x] **vite.config.ts**: 移除 `three` manualChunks 配置 (无对应 import)
+
+#### FloatingChatBot 数据提取
+- [x] **新建 `src/data/chatbot-agents.ts`**: 从 FloatingChatBot 中提取 4 个 AI Agent 角色配置 (~60行)
+- [x] **FloatingChatBot.vue**: 导入 `agents` 和 `Agent` 类型，移除内联定义
+
+### 本次修复涉及的文件
+
+| 文件 | 修改内容 |
+|------|---------|
+| `src/styles/main.css` | body overscroll-behavior + user-select + touch-action 全覆盖 + iOS 输入框 16px |
+| `src/styles/transitions.css` | **新建** — 6 种标准弹窗过渡模式 |
+| `src/styles/animations.css` | 无需修改 |
+| `src/main.ts` | 导入 transitions.css |
+| `src/components/DeskLamp.vue` | canvas touch-action:none + @touchstart.prevent |
+| `src/components/SplineScene.vue` | 移除 5 处 console.log/warn |
+| `src/components/WebGLBackground.vue` | 移除 console.warn |
+| `src/components/FloatingChatBot.vue` | 导入 chatbot-agents，移除内联 Agent 数据 |
+| `src/data/chatbot-agents.ts` | **新建** — 4 个 AI Agent 配置 |
+| `src/views/HomeView.vue` | 消除重复 Hero 模板 (54行→单一模板) |
+| `src/views/TutorialView.vue` | 安全区 padding + scroll-snap + step-nav margin |
+| `src/views/GalleryView.vue` | 移除 2 处 console.warn |
+| `package.json` | 移除 @esbuild/darwin-x64, three, @types/three |
+| `vite.config.ts` | 移除 three manualChunks |
+
+### 🐛 滚动回归修复 (2026-06-08)
+
+**问题**: body 上 `overscroll-behavior-y: contain` + `-webkit-overflow-scrolling: touch` 导致 PC/移动端均无法正常垂直滚动。
+
+**根因**:
+- `overscroll-behavior-y: contain` 阻止了浏览器默认的滚动链行为，在 body 上使用会破坏视口滚动
+- `-webkit-overflow-scrolling: touch` 在 body 上创建独立滚动上下文，与浏览器视口滚动冲突
+
+**修复** (`main.css` body 规则):
+- 移除 `overscroll-behavior-y: contain`
+- 移除 `-webkit-overflow-scrolling: touch`
+- 保留 `overflow-x: hidden` + `overscroll-behavior-x: none`（阻止横向拖动）
+
+**教训**:
+- `overscroll-behavior-y` 只用于弹窗/Sheet 等特定容器，**禁止**放在全局 body
+- `-webkit-overflow-scrolling: touch` 只用于页面内可滚动子元素，**禁止**放在 body
+
+### 新增检查清单项
+- [ ] body `overscroll-behavior-x: none` + `overscroll-behavior-y: contain` 存在？
+- [ ] 全局 `user-select: none` + 输入区域恢复选择？
+- [ ] 可滚动容器 `touch-action: pan-y`？
+- [ ] 代码块 `touch-action: pan-x pan-y pinch-zoom`？
+- [ ] Canvas 交互区 `touch-action: none`？
+- [ ] DeskLamp `@touchstart.prevent` 修饰符存在？
+- [ ] iOS 输入框 `≤768px font-size: 16px !important`？
+- [ ] 底部按钮/导航 `env(safe-area-inset-bottom)`？
+- [ ] 横向课程列表 `scroll-snap-type`？
+- [ ] `transitions.css` 已导入 main.ts？
+- [ ] 新弹窗使用 transitions.css 标准过渡名？
+- [ ] 生产代码无 `console.log/warn`（ErrorBoundary/useRobotMind 除外）？
+- [ ] `package.json` 无未使用的 npm 依赖？
+- [ ] AI Agent 配置在 `chatbot-agents.ts` 中？
+- [ ] body **禁止** `overscroll-behavior-y`（会破坏视口滚动）？
+- [ ] body **禁止** `-webkit-overflow-scrolling: touch`（会创建冲突的滚动上下文）？
+- [ ] `overscroll-behavior-y` 仅用于弹窗/Sheet 容器？
+
+---
+
+## 2026-06-08 第二次优化会话记录
+
+> Bug 修复：弹窗滚动穿透 + 关闭黑影 + sticky 恢复 + 5门新课程
+
+### P0 — Bug 修复
+
+#### 弹窗滚动穿透修复
+- [x] **新建 `src/composables/useBodyScrollLock.ts`**: 统一 body scroll lock 方案
+  - `lock()`: 保存 scrollY → `body{position:fixed;top:-scrollY;width:100%;overflow:hidden}` — iOS Safari 可靠
+  - `unlock()`: 恢复 body 样式 → `window.scrollTo(0, savedScrollY)`
+- [x] **迁移 6 个弹窗组件**: PropModal/ExampleModal/SearchModal/GalleryView/RoadmapView/NavBar
+  - 替换 `document.body.style.overflow = 'hidden'` → `lock()/unlock()`
+  - `unlock()` 延迟 200-320ms 等待 leave 动画完成
+
+#### 弹窗关闭黑影修复
+- [x] **PropModal leave 动画**: `cubic-bezier(.68,-.3,.32,1.3)` → `cubic-bezier(.4,0,.2,1)` (去掉回弹，消除黑影)
+  - 添加 `will-change: opacity` GPU 加速
+- [x] **ExampleModal leave 动画**: 同上修复
+
+#### TutorialView sticky 恢复
+- [x] **`.tt` Tab 栏**: `position: sticky; top: calc(var(--nav-height) + env(safe-area-inset-top)); z-index: 100` — 桌面端悬浮
+- [x] **移动端重置**: `@media(max-width:900px)` 内 `.tt{position:relative;top:auto;z-index:auto}`
+
+### P1 — 5 门新课程补全
+
+| 文件 | 课程 | 章节 | 描述 |
+|------|------|------|------|
+| `src/data/internet-tutorials.json` | 🌐 互联网基础 | 4章 | URL→页面全过程/DNS/HTTP/HTTPS |
+| `src/data/canvas-tutorials.json` | 🎯 Canvas/SVG | 4章 | Canvas 2D绘图/RAF动画/SVG矢量 |
+| `src/data/build-tutorials.json` | 🔧 构建工具 | 4章 | Vite/Webpack/esbuild 对比 |
+| `src/data/project-tutorials.json` | 🚀 项目实战 | 4章 | 个人博客/Todo App/REST API |
+| `src/data/db-tutorials.json` | 🗄 数据库 | 4章 | SQL/MongoDB/Redis 入门 |
+
+- [x] **`tutorials.ts`**: 注册 5 门新课程到教程列表
+- 每门课程均包含大纲 + 完整章节 + 可运行代码示例
+
+### 本次修复涉及的文件
+
+| 文件 | 修改内容 |
+|------|---------|
+| `src/composables/useBodyScrollLock.ts` | **新建** — 统一 body scroll lock (position:fixed 方案) |
+| `src/components/PropModal.vue` | 迁移 useBodyScrollLock + leave 动画修复 (去回弹曲线 + will-change) |
+| `src/components/ExampleModal.vue` | 迁移 useBodyScrollLock + leave 动画修复 |
+| `src/components/SearchModal.vue` | 迁移 useBodyScrollLock + watch(isOpen) 用 lock/unlock |
+| `src/views/GalleryView.vue` | 迁移 useBodyScrollLock + 移除旧 watch overflow |
+| `src/views/RoadmapView.vue` | 迁移 useBodyScrollLock + 移除旧 watch overflow |
+| `src/components/NavBar.vue` | 迁移 useBodyScrollLock (移动菜单) |
+| `src/views/TutorialView.vue` | .tt sticky + @media 重置 |
+| `src/data/tutorials.ts` | 导入 5 门新教程 |
+| `src/data/internet-tutorials.json` | **新建** |
+| `src/data/canvas-tutorials.json` | **新建** |
+| `src/data/build-tutorials.json` | **新建** |
+| `src/data/project-tutorials.json` | **新建** |
+| `src/data/db-tutorials.json` | **新建** |
+
+### 新增检查清单项
+- [ ] body scroll lock 使用 `useBodyScrollLock` composable（非直接操作 overflow）？
+- [ ] 弹窗 close 时 unlock 延迟 ≥ 250ms（等 leave 动画完成）？
+- [ ] leave 动画曲线用 `cubic-bezier(.4,0,.2,1)` 无回弹（防黑影）？
+- [ ] `.tt` Tab 栏 `position: sticky` 桌面端悬浮？
+- [ ] 新教程 JSON 文件在 `tutorials.ts` 中注册？
+
+---
+
+## 2026-06-08 紧急修复记录 — 弹窗失效 + 黑影 + sticky
+
+### 🐛 P0 — 滚动锁导致 PropModal 失效
+**问题**: `useBodyScrollLock` 使用 `body{position:fixed}` 导致 Teleport to body 的弹窗定位异常，全属性按钮无反应。
+**修复**: 重写为 `html+body{overflow:hidden}` 方案，移除 position:fixed。
+**教训**: Teleport to body 的元素在 body position:fixed 时行为异常，禁止此方案。
+
+### 🐛 P0 — sticky 全部失效（整站范围）
+**问题**: `body{overflow-x:hidden}` 创建了滚动容器，导致后代所有 `position:sticky` 失效。
+**修复**: 改回 `overflow-x: clip`（裁剪但不创建滚动容器）。
+**教训**: `overflow:hidden` 会创建 scroll container，破坏 sticky。需要裁剪用 `clip`。
+
+### 🐛 P0 — 弹窗关闭黑影彻底修复
+**根因**: overlay 的 `backdrop-filter:blur()` 在 opacity 过渡时仍渲染，产生视觉黑影。
+**修复** (7 处 leave 过渡):
+- leave-to 添加 `backdrop-filter:none; -webkit-backdrop-filter:none`
+- leave-active 同时过渡 backdrop-filter
+- 过渡曲线从回弹 `.68,-.3,.32,1.3` → 平滑 `.4,0,.2,1`
+- 涉事组件: PropModal、ExampleModal、SearchModal、GalleryView、RoadmapView
+
+### 🐛 P0 — 弹窗滚动穿透增强
+**修复**: 所有弹窗 overlay 添加 `touch-action: none`（全局 .modal-overlay + 各组件）
+
+### 涉及文件
+| 文件 | 修改 |
+|------|------|
+| `src/composables/useBodyScrollLock.ts` | 重写 — position:fixed → overflow:hidden |
+| `src/styles/main.css` | body overflow-x:hidden→clip; .modal-overlay +touch-action:none |
+| `src/components/PropModal.vue` | overlay touch-action + leave 动画 (backdrop-filter none) |
+| `src/components/ExampleModal.vue` | overlay touch-action + leave 动画修复 |
+| `src/components/SearchModal.vue` | overlay touch-action + leave 动画修复 |
+| `src/views/GalleryView.vue` | overlay touch-action + leave 动画修复 |
+| `src/views/RoadmapView.vue` | leave 动画修复 |
+
+### 新增检查清单
+- [ ] body `overflow` 禁止使用 `hidden`（用 `clip` 替代，保护 sticky）？
+- [ ] 弹窗 body scroll lock 禁止使用 `position:fixed`（用 overflow:hidden）？
+- [ ] 所有 leave 过渡的 leave-to 包含 `backdrop-filter:none`？
+
+---
+
+## 2026-06-09 全面优化 — 用户系统 + 进度云端化 + 智能教程
+
+### P0 — 数据恢复
+- [x] **v-tutorials.json 恢复**: 被 TS 数据覆盖，从 git `HEAD` 恢复 13 门 Vue3 教程
+- [x] **v0 大纲更新**: 新格式（难度排序+学习成果）
+- [x] **Vue3 难度修复**: v4-v8 中级→进阶
+
+### 用户认证系统 (server/)
+
+#### 后端架构 (`server/index.mjs` + `server/db.mjs` + `server/auth.mjs` + `server/progress.mjs`)
+- **数据库**: SQLite (better-sqlite3)，3 张表：users / learning_progress / learning_notes
+- **认证**: JWT (jsonwebtoken + bcryptjs)，30 天过期
+- **启动**: `npm run server` → `http://localhost:3001`
+- **Vite 代理**: `/api/auth`、`/api/progress`、`/api/notes` → `localhost:3001`
+
+#### API 端点总览
+| 端点 | 方法 | 用途 | 认证 |
+|------|------|------|------|
+| `/api/auth/register` | POST | 注册 | 无 |
+| `/api/auth/login` | POST | 登录 | 无 |
+| `/api/auth/me` | GET | 当前用户信息 | JWT |
+| `/api/progress` | GET | 获取学习进度 | JWT |
+| `/api/progress/toggle` | POST | 切换步骤完成 | JWT |
+| `/api/progress/sync` | POST | 批量同步进度 | JWT |
+| `/api/notes/:stepId` | GET | 获取笔记 | JWT |
+| `/api/notes/:stepId` | PUT | 保存笔记 | JWT |
+
+#### 前端认证组件
+- **`src/stores/auth.ts`**: 认证 Pinia store — login/register/logout/syncProgress/loadServerProgress
+- **`src/components/AuthModal.vue`**: 登录/注册弹窗（Apple 风格，移动端底部 Sheet）
+- **`src/components/FloatingAuth.vue`**: 悬浮登录按钮（56×56，PC 端 `bottom:100px;right:28px`，对齐 ChatBot 大小）
+  - 未登录：蓝色圆形登录图标
+  - 已登录：用户首字母头像 + 下拉菜单（进度/继续学习/退出）
+  - 移动端隐藏（≤768px）
+
+### 登录门控规则
+- **所有进度操作**（Mark Done/学习进度页）必须先登录
+- 未登录点击 → 弹出 `AuthModal`
+- 登录成功 → 自动加载服务器进度 → 执行待处理操作
+- 退出登录 → 清除 token + 清空进度数据
+- **严禁使用 localStorage 存储学习进度**（仅保留主题/提醒偏好/笔记草稿）
+
+### 学习进度系统重构
+- **旧方案**: `localStorage` → `lwyjr-tutorial-progress` key
+- **新方案**: `POST /api/progress/toggle` → SQLite `learning_progress` 表
+- **store 变更**:
+  - `markTutorialComplete(id)` → 未登录弹出登录，已登录调 API
+  - `loadServerProgress(token)` → 登录后从服务器加载进度
+  - `clearProgress()` → 退出时清除
+  - 移除 `PROGRESS_KEY` localStorage 读写
+
+### 学习进度独立页面 (ProgressView.vue)
+- **路由**: `/progress`（NavBar: 📊 学习进度，位于学习路径和教程中心之间）
+- **未登录**: 显示登录提示卡片
+- **已登录**: SVG 环形总进度（三色渐变）+ 4 统计卡片 + 分类进度卡片网格 + 成就徽章墙 + 下一个成就进度条 + 学习提醒设置
+- `ProgressView.vue` 使用 `useAppStore` + `useAuthStore` + `useLearningReminder`
+
+### 学习笔记系统
+- 每个教程步骤可展开「📝 学习笔记」输入框
+- **本地**: `localStorage` (`lwyjr-notes`) 即时保存
+- **云端**: 登录后 2 秒防抖自动同步到 `/api/notes/:stepId`
+- 未登录时笔记仍可用（本地存储），登录后自动合并
+- 有笔记的步骤在折叠状态显示绿色小圆点指示器
+
+### 章末测验系统 (`src/data/quiz-data.ts`)
+- 12 组测验（HTML/CSS/JS/Vue/React/TS/Node/DB），36 道选择题
+- 完成课程全部步骤后显示「📝 章节测验」
+- 即时判分 + 正确答案高亮 + 详细解析
+- 仅对 `quizData` 中有数据的课程显示
+
+### 学习提醒系统 (`src/composables/useLearningReminder.ts`)
+- 浏览器 Notification API
+- 每日定时检查（默认 19:00）
+- 连续未学习天数检测
+- 权限请求流程：点击开启 → 浏览器弹窗 → 授权/拒绝
+- HomeView + ProgressView 均提供开关和时间选择器
+
+### 成就徽章系统 (app.ts badges)
+- **进度类**: 🌱 第一步(1) → 📚 初学者(10) → 📖 学徒(50) → ⚡ 精通者(100) → 🎓 全栈大师(200) → 👑 编程传奇(350)
+- **分类类**: 🌐 HTML大师 / 🎨 CSS艺术家 / ⚡ JS忍者 / 💚 Vue向导 / ⚛️ React游侠 / 🟢 Node骑士 / 🔷 TS学者 / 🗄 数据守护者
+- **坚持类**: 🔥 三日连学 / 💪 七日坚持 / 🏆 月度学霸
+- 动态计算（computed），HomeView + ProgressView 展示
+
+### 难度体系标准化
+- **5 级标签**: 入门 → 基础 → 中阶 → 进阶 → 高级
+- **JSON 实际标签**: 入门 / 基础 / 中级 / 进阶 / 高级（`中级` 在 UI 显示为 `中阶`）
+- **智能筛选**: 仅显示当前分类中实际存在的难度级别
+- **Node.js 教程**: 使用 入门 / 基础 / 中级 / 进阶（无高级）
+- **其他教程**: 使用 入门 / 中级 / 进阶 / 高级（无基础）
+- **筛选逻辑**: `availableDiffs` computed → 动态生成按钮
+- **排序**: 按 diffOrder(入门:1/基础:2/中级:3/进阶:4/高级:5) 升序
+
+### Tab 三组分层
+```
+🟢 基础     🌐 互联网基础 📄 HTML 🎨 CSS ⚡ JavaScript
+🟡 核心     🔷 TypeScript 💚 Vue3 ⚛️ React 🟢 Node.js
+🟠 扩展 ▾   ⚡Vite 🧩Pinia 🗄Zustand 🔷Dva 🎯Canvas 🔧构建 🗄DB 🚀项目 🔗全栈
+```
+- `tabList` / `coreTabList` / `advTabList` 三个数组
+- `allTabs = [...tabList, ...coreTabList, ...advTabList]`（URL query 匹配用）
+- 扩展组默认折叠，点击「🟠 扩展 ▾」展开
+
+### 大纲规范
+- **每个分类 1 个大纲**（id 如 h0/c25/j33/v0/r0/n0/net0 等）
+- **大纲内容**: 难度统计标签 + 完整课程列表表格（按难度排序）+ 🎯 学完能做什么
+- **大纲不显示代码面板**（overviewIds 已移除代码面板渲染）
+- **overviewIds = new Set([所有大纲 ID])** — 16 个全部分类
+- Node.js 大纲在 `node-a.json` 的 n0（39 课，4 级难度）
+
+### 弹窗 backdrop-filter 黑影根因修复
+- **根因**: scoped 样式的 `backdrop-filter:blur(8px)` (specificity 0,1,1) 优先级高于 unscoped `.xxx-leave-to { backdrop-filter:none }` (specificity 0,0,1)
+- **修复**: 移除 scoped 中的 `backdrop-filter`，在 unscoped `<style>` 中添加基础规则 + 过渡状态
+- **模式**:
+  ```css
+  /* unscoped */
+  .xxx-overlay { backdrop-filter: blur(8px); }            /* 常驻 */
+  .xxx-leave-to { backdrop-filter: none; transform: none; } /* 离场覆盖 */
+  ```
+- **已修复**: PropModal / ExampleModal / SearchModal
+
+### 机器人互动增强 (useRobotMind.ts)
+- `triggerThought()` 注入用户进度上下文
+- 已登录 + 有进度 → 「用户XXX已完成N个步骤(N%)，连续学习N天，获得N个徽章」
+- AI 根据学习数据生成个性化互动
+
+### DeskLamp 位置调整
+- `right: 15px` → `right: -20px`（台灯右移，避免遮挡悬浮按钮）
+
+### 新增文件清单 (2026-06-09)
+| 文件 | 用途 |
+|------|------|
+| `server/index.mjs` | Express 服务器入口 |
+| `server/db.mjs` | SQLite 数据库初始化 |
+| `server/auth.mjs` | 认证路由 + JWT 中间件 |
+| `server/progress.mjs` | 进度同步 + 笔记 API |
+| `src/views/ProgressView.vue` | 学习进度独立页面 |
+| `src/stores/auth.ts` | 认证 Pinia store |
+| `src/components/AuthModal.vue` | 登录/注册弹窗 |
+| `src/components/FloatingAuth.vue` | 悬浮登录按钮 |
+| `src/composables/useLearningReminder.ts` | 学习提醒系统 |
+| `src/data/quiz-data.ts` | 章末测验题库 |
+| `src/data/chatbot-agents.ts` | AI Agent 配置（已存在，此次确认） |
+
+### 新增依赖 (2026-06-09)
+```
+express better-sqlite3 bcryptjs jsonwebtoken cors
+```
+启动: `npm run server` → `http://localhost:3001`
+
+### 新增检查清单 (2026-06-09)
+- [ ] v-tutorials.json category 必须是 `vue3`（不能被其他数据覆盖）？
+- [ ] 每个分类有且仅有 1 个大纲条目？
+- [ ] 大纲步骤不显示代码面板（overviewIds 包含所有大纲 ID）？
+- [ ] 难度筛选按钮动态生成（仅显示存在的标签）？
+- [ ] Tab 分为三组（基础/核心/扩展），扩展默认折叠？
+- [ ] 弹窗 scoped 样式中无 `backdrop-filter`（已移至 unscoped）？
+- [ ] 登录按钮 56×56，与 ChatBot 一致？
+- [ ] 所有进度操作需登录（未登录弹出 AuthModal）？
+- [ ] localStorage 不存储学习进度（仅主题/提醒/笔记）？
+- [ ] 退出登录清空进度数据？
+- [ ] Node.js n0 大纲存在且格式正确？
+- [ ] `npm run server` 可正常启动后端？
+
+---
+
+## 2026-06-09 第二次优化 — 动画特效场 + 面试题 + 样式
+
+### GalleryView 动画特效场
+- **page-in 入场动画**: 添加 `page-in` class，与其他页面统一
+- **分类补全**: CSS(6) + Canvas(5) + SVG(4) + Text(6) + 3D(49) = **70 个动画**
+- **移动端弹窗修复**: 关闭按钮下移 `top:52px`，panel-header 右侧 padding 48px，代码面板 `max-height:50vh`
+- **动画分类筛选器**: 全部 / CSS动画 / Canvas / SVG / 3D效果 / 文字特效（6个过滤器）
+
+### 面试题速查表移动端
+- 表格 `overflow-x:auto; white-space:nowrap` 可横向滚动
+- pre/code `word-break:break-all; white-space:pre-wrap` 不溢出
+- 卡片 badge `flex-wrap:wrap` 适应窄屏
+- 字号统一缩小（q:0.86rem, a:0.78rem, table:0.68rem）
+
+### 样式间距优化
+- Flash card 圆角 12px，gap 12px
+- 移动端按钮 padding/font-size 适配
+- 面试题 `.q-a` 左 padding 16px
+
+### 移动端性能优化
+- **useRobotMind.ts**: `innerWidth <= 768` 时跳过 `/api/think` 请求
+- 路由监听 `watch(route.path)` 移动端跳过
+- `onMounted` 初始触发移动端跳过
+- 节省移动端 AI API 调用和 token 消耗
+
+### 动画内容规范
+- **CSS 类**: 毛玻璃卡片、霓虹按钮、3D翻转卡、渐变边框、脉冲波纹、骨架屏、视差卡片
+- **Canvas 类**: 粒子鼠标跟随、烟花、星空、黑客帝国雨、实时时钟
+- **SVG 类**: 路径描边、形状变形、加载器、波浪背景
+- **文字特效**: 渐变流动、打字机、字符分裂、3D立体、脉冲发光
+
+### 新增检查清单
+- [ ] GalleryView 有 `page-in` class（与其他页面统一）？
+- [ ] 动画特效场 6 个分类均有内容（非 0）？
+- [ ] 移动端 `/api/think` 不发送请求（innerWidth <= 768 跳过）？
+- [ ] 面试题速查表移动端表格可横向滚动？
+- [ ] 面试题代码块 `word-break:break-all` 不溢出？
+- [ ] 移动端弹窗关闭按钮不与运行按钮重叠？

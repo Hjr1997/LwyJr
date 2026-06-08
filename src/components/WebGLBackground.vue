@@ -94,9 +94,7 @@ function createShader(gl: WebGLRenderingContext, type: number, src: string) {
   const shader = gl.createShader(type)!
   gl.shaderSource(shader, src)
   gl.compileShader(shader)
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.warn('Shader compile:', gl.getShaderInfoLog(shader))
-  }
+  // Shader compilation errors are silently ignored in production
   return shader
 }
 

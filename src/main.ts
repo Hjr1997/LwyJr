@@ -5,6 +5,7 @@ import App from './App.vue'
 import { useAppStore } from '@/stores/app'
 import './styles/main.css'
 import './styles/animations.css'
+import './styles/transitions.css'
 
 const app = createApp(App)
 const pinia = createPinia()

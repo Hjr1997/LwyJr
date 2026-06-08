@@ -1,5 +1,21 @@
 [
   {
+    "id": "n0",
+    "title": "📑 全栈实战完整学习路径",
+    "desc": "Express + MySQL + Vue3 全栈项目从零到部署",
+    "category": "fullstack",
+    "icon": "📑",
+    "difficulty": "高级",
+    "steps": [
+      {
+        "id": "n0-1",
+        "title": "大纲——全栈开发学习路径",
+        "content": "<div style=\"max-width:680px;margin:0 auto;padding:20px;background:#1a1a2e;border-radius:14px\"><h2 style=\"text-align:center;color:#ff375f;margin:0 0 4px\">🔗 全栈开发学习路径</h2><p style=\"text-align:center;color:#888;font-size:13px;margin-bottom:14px\">3篇教程 · 按难度排序 · 从架构到部署</p><div style=\"text-align:center;margin-bottom:14px\"><span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#ff375f22;color:#ff375f\">🔴 高级 ×3</span></div><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#ff375f\"><th style=\"padding:7px 10px;color:#fff;text-align:left\">#</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">章节</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">难度</th></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#ff375f;font-weight:bold\">1</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🏗️ 全栈架构概览</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级 · 3节</td></tr><tr><td style=\"padding:5px 10px;color:#ff375f;font-weight:bold\">2</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🔗 Express + MySQL 后端实战</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级 · 2节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#ff375f;font-weight:bold\">3</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🏆 全栈毕业项目——个人博客</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🔴 高级 · 2节</td></tr></table><div style=\"margin-top:14px;padding:12px 16px;background:#ff375f10;border-radius:10px;border-left:3px solid #ff375f\"><b style=\"color:#ff375f;font-size:13px\">🎯 学完能做什么？</b><br><span style=\"color:#ccc;font-size:12px;line-height:1.8\">能独立搭建 Express+MySQL 后端API<br>能用 Vue3 对接后端，完成前后端联调<br>能用 PM2+Nginx 部署完整全栈应用到生产环境<br>具备接外包/找实习的全栈开发能力</span></div><p style=\"text-align:center;color:#888;font-size:11px;margin-top:12px\">💡 完成 HTML→CSS→JS→Vue→Node 后再学全栈实战</p></div>",
+        "propRef": "fullstack.architecture"
+      }
+    ]
+  },
+  {
     "id": "fs1",
     "title": "🏗️ 全栈架构概览",
     "desc": "三层架构/前后端分离/API设计",

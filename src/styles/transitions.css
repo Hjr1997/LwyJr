@@ -1,0 +1,114 @@
+/* ========== 公共弹窗过渡动画 ==========
+   所有弹窗/Sheet/Modal 共享的 Transition 类。
+   使用方式：<Transition name="sheet"> 或 <Transition name="bounce-modal">
+   必须放在 unscoped <style> 块中，因为 Vue 动态类不带 data-v-xxx。
+   ═══════════════════════════════════════════ */
+
+/* ── Sheet 底部抽屉 (iOS 风格) ── */
+.sheet-enter-active {
+  transition: all .5s cubic-bezier(.34,1.56,.64,1);
+}
+.sheet-leave-active {
+  transition: all .3s cubic-bezier(.68,-.3,.32,1.3);
+}
+.sheet-enter-from {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.sheet-leave-to {
+  opacity: 0;
+  transform: translateY(80%) scale(.8);
+}
+
+/* ── Modal 居中弹窗 (果冻入场) ── */
+.bounce-modal-enter-active {
+  transition: all .5s cubic-bezier(.34,1.56,.64,1);
+}
+.bounce-modal-leave-active {
+  transition: all .25s cubic-bezier(.68,-.3,.32,1.3);
+}
+.bounce-modal-enter-from {
+  opacity: 0;
+  transform: scale(.88) translateY(20px);
+}
+.bounce-modal-leave-to {
+  opacity: 0;
+  transform: scale(.92) translateY(10px);
+}
+
+/* ── Overlay 渐入渐出 (遮罩层) ── */
+.overlay-enter-active {
+  transition: opacity .4s cubic-bezier(.16,1,.3,1);
+}
+.overlay-leave-active {
+  transition: opacity .25s cubic-bezier(.4,0,.2,1);
+}
+.overlay-enter-from,
+.overlay-leave-to {
+  opacity: 0;
+}
+
+/* ── 下拉菜单/弹出框 ── */
+.popdown-enter-active {
+  transition: all .35s cubic-bezier(.34,1.56,.64,1);
+}
+.popdown-leave-active {
+  transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+.popdown-enter-from {
+  opacity: 0;
+  transform: translateY(-12px) scale(.95);
+}
+.popdown-leave-to {
+  opacity: 0;
+  transform: translateY(-8px) scale(.96);
+}
+
+/* ── 消息淡入 ── */
+.msg-enter-active {
+  transition: all .35s cubic-bezier(.34,1.56,.64,1);
+}
+.msg-leave-active {
+  transition: all .2s ease;
+}
+.msg-enter-from {
+  opacity: 0;
+  transform: translateY(16px) scale(.96);
+}
+.msg-leave-to {
+  opacity: 0;
+}
+
+/* ── 内容淡入 (路由/章节切换) ── */
+.content-fade-enter-active {
+  transition: all .35s cubic-bezier(.16,1,.3,1);
+}
+.content-fade-leave-active {
+  transition: all .15s cubic-bezier(.16,1,.3,1);
+  position: absolute;
+  width: 100%;
+}
+.content-fade-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.content-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* ── 气泡弹出 (ThoughtBubble) ── */
+.bubble-enter-active {
+  transition: all .4s cubic-bezier(.34,1.56,.64,1);
+}
+.bubble-leave-active {
+  transition: all .25s ease;
+}
+.bubble-enter-from {
+  opacity: 0;
+  transform: translateY(12px) scale(.85);
+}
+.bubble-leave-to {
+  opacity: 0;
+  transform: translateY(-8px) scale(.9);
+}

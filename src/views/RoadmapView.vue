@@ -50,11 +50,20 @@
           <p class="detail-desc">{{ expandedStep.content }}</p>
           <div class="detail-meta">
             <span>⏱ {{ expandedStep.duration }}</span>
+            <span v-if="expandedStep.prerequisites">📋 前置: {{ expandedStep.prerequisites }}</span>
           </div>
           <div class="detail-skills">
             <h4>学习技能:</h4>
             <div class="skill-cloud">
               <span v-for="s in expandedStep.skills" :key="s" class="skill-tag">{{ s }}</span>
+            </div>
+          </div>
+          <div v-if="expandedStep.resources?.length" class="detail-resources">
+            <h4>📖 推荐资源:</h4>
+            <div class="resource-links">
+              <a v-for="r in expandedStep.resources" :key="r.url" :href="r.url" target="_blank" rel="noopener" class="resource-link">
+                {{ r.name }} →
+              </a>
             </div>
           </div>
           <div class="detail-actions">
@@ -82,20 +91,22 @@ import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { roadmapSteps } from '@/data/roadmap'
 import { use3DTilt } from '@/composables/use3DTilt'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 use3DTilt('.roadmap-card', { maxTilt: 5, scale: 1.02 })
 
 const router = useRouter()
 const expandedStep = ref<typeof roadmapSteps[0] | null>(null)
+const { lock, unlock } = useBodyScrollLock()
 
 function closeDetail() {
   expandedStep.value = null
-  document.body.style.overflow = ''
+  setTimeout(() => { unlock() }, 300)
 }
 
 function openDetail(step: typeof roadmapSteps[0]) {
   expandedStep.value = step
-  document.body.style.overflow = 'hidden'
+  lock()
 }
 
 function onKeydown(e: KeyboardEvent) {
@@ -105,7 +116,7 @@ function onKeydown(e: KeyboardEvent) {
 onMounted(() => window.addEventListener('keydown', onKeydown))
 onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
-watch(expandedStep, (v) => { if (!v) document.body.style.overflow = '' })
+watch(expandedStep, (v) => { if (!v) setTimeout(() => { unlock() }, 300) })
 
 const phases = [
   { name: '启蒙阶段', color: '#4ade80' },
@@ -190,11 +201,16 @@ onMounted(() => {
 .detail-modal h3 { font-size: 1.4rem; margin-bottom: 4px; }
 .detail-phase { font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; }
 .detail-desc { color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
-.detail-meta { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px; }
+.detail-meta { display:flex; gap:16px; flex-wrap:wrap; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px; }
 .detail-skills h4 { font-size: 0.9rem; margin-bottom: 8px; }
 .skill-cloud { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
 .skill-tag { padding: 4px 12px; background: var(--tag-bg); color: var(--primary); border-radius: 6px; font-size: 0.78rem; }
 .detail-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.detail-resources { margin-bottom: 20px; }
+.detail-resources h4 { font-size: 0.9rem; margin-bottom: 8px; color: var(--text); }
+.resource-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.resource-link { display: inline-flex; align-items: center; gap: 4px; padding: 5px 14px; background: var(--tag-bg); color: var(--primary); border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 500; text-decoration: none; transition: all .2s; }
+.resource-link:hover { background: rgba(0,113,227,.15); transform: translateY(-1px); }
 @media(max-width:768px){
   .detail-modal { padding: 24px 20px; border-radius: 24px 24px 0 0; max-height: 90vh; }
 }
@@ -208,9 +224,9 @@ onMounted(() => {
 .sheet-enter-from { opacity: 0 }
 .sheet-enter-from .detail-modal { opacity: 0; transform: translateY(100%) scale(.88) }
 @media(min-width:768px){ .sheet-enter-from .detail-modal { transform: translateY(40px) scale(.88) } }
-.sheet-leave-active { transition: opacity .3s cubic-bezier(.68,-.3,.32,1.3) }
-.sheet-leave-active .detail-modal { transition: transform .3s cubic-bezier(.68,-.3,.32,1.3), opacity .3s cubic-bezier(.68,-.3,.32,1.3) }
-.sheet-leave-to { opacity: 0 }
-.sheet-leave-to .detail-modal { opacity: 0; transform: translateY(80%) scale(.8) }
-@media(min-width:768px){ .sheet-leave-to .detail-modal { transform: translateY(30px) scale(.88) } }
+.sheet-leave-active { transition: opacity .25s ease,backdrop-filter .25s ease,-webkit-backdrop-filter .25s ease }
+.sheet-leave-active .detail-modal { transition: transform .25s cubic-bezier(.4,0,.2,1), opacity .25s ease }
+.sheet-leave-to { opacity: 0; backdrop-filter:none; -webkit-backdrop-filter:none }
+.sheet-leave-to .detail-modal { opacity: 0; transform: translateY(40%) scale(.9) }
+@media(min-width:768px){ .sheet-leave-to .detail-modal { transform: translateY(15px) scale(.94) } }
 </style>

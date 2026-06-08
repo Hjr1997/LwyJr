@@ -20,9 +20,49 @@
       <button class="abtn" :class="{on:mode==='hot'}" @click="mode='hot'">仅高频</button>
       <button class="abtn" :class="{on:mode==='hard'}" @click="mode='hard'">仅困难</button>
       <button class="abtn" :class="{on:mode==='easy'}" @click="mode='easy'">仅基础</button>
+      <button class="abtn" :class="{on:mode==='flash'}" @click="startFlash()">⚡ 速查模式</button>
+      <button class="abtn" :class="{on:mode==='random'}" @click="startRandom()">🎲 随机10题</button>
       <span class="stats">共 {{totalQ}} 题 · {{totalEasy}} 基础 · {{totalHot}} 高频 · {{totalHard}} 困难</span>
     </div>
 
+    <!-- ═══ 速查模式：一览式卡片网格 ═══ -->
+    <div v-if="mode==='flash'" class="flash-grid">
+      <div v-for="(item, idx) in flashList" :key="idx" class="flash-card" :class="{hot:item.q.hot,hard:item.q.hard}">
+        <div class="flash-card-badge">
+          <span class="flash-num">{{ idx + 1 }}</span>
+          <span class="flash-cat">{{ item.cat }}</span>
+          <span v-if="item.q.hot" class="tag hot-tag">🔥 高频</span>
+          <span v-if="item.q.hard" class="tag hard-tag">💎 困难</span>
+          <span v-if="!item.q.hot && !item.q.hard" class="tag ez-tag">⭐ 基础</span>
+        </div>
+        <div class="flash-q">{{ item.q.q }}</div>
+        <div class="flash-a">{{ item.q.a }}</div>
+        <button v-if="item.q.example" class="ex-btn" @click.stop="openExample(item.q.example!)">💻 代码示例</button>
+        <div class="flash-cat-label">{{ item.cat }}</div>
+      </div>
+    </div>
+
+    <!-- ═══ 随机10题：独立平铺列表 ═══ -->
+    <div v-if="mode==='random'" class="random-panel">
+      <div class="random-header">
+        <h3>🎲 随机抽题 · 模拟面试</h3>
+        <button class="abtn" @click="startRandom()">🔄 换一批</button>
+      </div>
+      <div v-for="(item, idx) in randomList" :key="idx" class="random-card">
+        <div class="random-num">{{ idx + 1 }} / {{ randomList.length }}</div>
+        <div class="random-q">{{ item.q.q }}</div>
+        <div class="random-meta">
+          <span class="random-cat">{{ item.cat }}</span>
+          <span v-if="item.q.hot" class="tag hot-tag">🔥 高频</span>
+          <span v-if="item.q.hard" class="tag hard-tag">💎 困难</span>
+        </div>
+        <div class="random-a">{{ item.q.a }}</div>
+        <button v-if="item.q.example" class="ex-btn" @click.stop="openExample(item.q.example!)">💻 代码示例</button>
+      </div>
+    </div>
+
+    <!-- ═══ 普通模式：分类折叠 ═══ -->
+    <template v-if="mode!=='flash' && mode!=='random'">
     <div v-for="cat in categories" :key="cat.name" class="cat" :data-cat="cat.name">
       <div class="cat-h" @click="toggleCat(cat.name)">
         <span class="cat-icon">{{cat.icon}}</span>
@@ -51,6 +91,7 @@
         </div>
       </div>
     </div>
+    </template>
 
     <ExampleModal ref="exampleModal" />
   </div>
@@ -58,14 +99,18 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, watch, nextTick } from 'vue'
-import { interviewQuestions as categories, hotTopics } from '@/data/interview-questions'
-import type { IQExample } from '@/data/interview-questions'
+import { interviewQuestions as categories, hotTopics, type IQ, type IQExample } from '@/data/interview-questions'
 import ExampleModal from '@/components/ExampleModal.vue'
 
 const openCats = reactive(new Set<string>())
 const expandedKeys = reactive(new Set<string>())
-const mode = ref<'expand'|'collapse'|'hot'|'hard'|'easy'>('collapse')
+const mode = ref<'expand'|'collapse'|'hot'|'hard'|'easy'|'flash'|'random'>('collapse')
 const exampleModal = ref<InstanceType<typeof ExampleModal>|null>(null)
+
+// 速查：所有题目的平铺列表
+const flashList = ref<{cat:string, q:IQ}[]>([])
+// 随机：抽取的10题
+const randomList = ref<{cat:string, q:IQ}[]>([])
 
 const totalQ = computed(() => categories.reduce((s, c) => s + c.questions.length, 0))
 const totalHot = computed(() => categories.reduce((s, c) => s + c.questions.filter(q => q.hot).length, 0))
@@ -86,6 +131,27 @@ function openExample(example: IQExample) {
   exampleModal.value?.open(example)
 }
 
+function startFlash() {
+  mode.value = 'flash'
+  // 收集所有题目平铺
+  const all: {cat:string, q:IQ}[] = []
+  categories.forEach(c => c.questions.forEach(q => all.push({cat: c.name, q})))
+  flashList.value = all
+}
+
+function startRandom() {
+  mode.value = 'random'
+  // 收集所有题目，随机打乱取 10
+  const all: {cat:string, q:IQ}[] = []
+  categories.forEach(c => c.questions.forEach(q => all.push({cat: c.name, q})))
+  // Fisher-Yates 洗牌
+  for (let i = all.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [all[i], all[j]] = [all[j], all[i]]
+  }
+  randomList.value = all.slice(0, 10)
+}
+
 function expandAll() {
   categories.forEach(c => openCats.add(c.name))
   categories.forEach(c => c.questions.forEach(q => expandedKeys.add(q.q)))
@@ -97,8 +163,7 @@ function collapseAll() {
 }
 
 function showOnlyHot() {
-  openCats.clear()
-  expandedKeys.clear()
+  openCats.clear(); expandedKeys.clear()
   categories.forEach(c => {
     if (c.questions.some(q => q.hot)) openCats.add(c.name)
     c.questions.forEach(q => { if (q.hot) expandedKeys.add(q.q) })
@@ -106,8 +171,7 @@ function showOnlyHot() {
 }
 
 function showOnlyHard() {
-  openCats.clear()
-  expandedKeys.clear()
+  openCats.clear(); expandedKeys.clear()
   categories.forEach(c => {
     if (c.questions.some(q => q.hard)) openCats.add(c.name)
     c.questions.forEach(q => { if (q.hard) expandedKeys.add(q.q) })
@@ -115,8 +179,7 @@ function showOnlyHard() {
 }
 
 function showOnlyEasy() {
-  openCats.clear()
-  expandedKeys.clear()
+  openCats.clear(); expandedKeys.clear()
   categories.forEach(c => {
     const easy = c.questions.filter(q => !q.hard && !q.hot)
     if (easy.length) openCats.add(c.name)
@@ -124,49 +187,35 @@ function showOnlyEasy() {
   })
 }
 
-// 热门考点名称 → 分类名称的关键词映射
+// 热门考点 → 分类映射
 const topicCatMap: Record<string, string> = {
-  '事件循环': '异步编程',
-  '异步': '异步编程',
-  '框架对比': 'Vue vs React 深度对比',
-  '虚拟DOM': '虚拟DOM & 框架原理',
-  'Diff': '虚拟DOM & 框架原理',
-  'Fiber': '虚拟DOM & 框架原理',
-  '响应式': 'Vue',
-  '闭包': 'JavaScript',
-  'Promise': 'JavaScript',
-  'SSE': '网络协议',
-  'WebSocket': '网络协议',
-  '虚拟列表': '性能优化',
-  '性能优化': '性能优化',
-  '缓存策略': '浏览器',
-  'TypeScript': 'TypeScript',
-  '防抖': 'JavaScript',
-  '节流': 'JavaScript',
+  '事件循环': '异步编程','异步': '异步编程','框架对比': 'Vue vs React 深度对比',
+  '虚拟DOM': '虚拟DOM & 框架原理','Diff': '虚拟DOM & 框架原理','Fiber': '虚拟DOM & 框架原理',
+  '响应式': 'Vue','闭包': 'JavaScript','Promise': 'JavaScript','SSE': '网络协议',
+  'WebSocket': '网络协议','虚拟列表': '性能优化','性能优化': '性能优化',
+  '缓存策略': '浏览器','TypeScript': 'TypeScript','防抖': 'JavaScript','节流': 'JavaScript',
 }
 
 function scrollToHot(topicName: string) {
+  mode.value = 'expand'
   let catName = topicCatMap[topicName]
   if (!catName) {
-    // 模糊匹配：遍历映射表的key，检查是否是topicName的子串
     for (const [key, val] of Object.entries(topicCatMap)) {
       if (topicName.includes(key)) { catName = val; break }
     }
   }
   if (!catName) {
-    // 最后尝试直接匹配分类名
     const cat = categories.find(c => topicName.includes(c.name) || c.name.includes(topicName))
     catName = cat?.name || ''
   }
   if (!catName) return
-  openCats.add(catName)
+  expandAll()
   nextTick(() => {
     const el = document.querySelector(`[data-cat="${catName}"]`)
     el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   })
 }
 
-// mode 变化时触发对应操作
 watch(mode, (v) => {
   if (v === 'expand') expandAll()
   else if (v === 'collapse') collapseAll()
@@ -190,7 +239,6 @@ watch(mode, (v) => {
 .hot-name{color:var(--text);font-weight:600}
 .hot-count{color:var(--primary);font-weight:700}
 .hot-trend{color:var(--success);font-weight:700;font-size:.85rem}
-.hot-trend.stable{color:var(--text-secondary)}
 
 .actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:24px}
 .abtn{padding:7px 16px;border-radius:var(--radius-full);background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);font-size:.8rem;cursor:pointer;transition:all .25s;min-height:44px;min-width:44px}
@@ -228,20 +276,64 @@ watch(mode, (v) => {
 .q-a{padding:0 22px 18px 56px}
 .q-a-label{font-size:.75rem;color:var(--primary);font-weight:700;margin-bottom:6px}
 .q-a p{margin:0 0 10px;font-size:.85rem;color:var(--text-secondary);line-height:1.75;background:var(--bg);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border)}
-.ex-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--radius-full);background:rgba(0,113,227,.1);border:1px solid rgba(0,113,227,.25);color:var(--primary);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s}
+.ex-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--radius-full);background:rgba(0,113,227,.1);border:1px solid rgba(0,113,227,.25);color:var(--primary);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s;margin-top: 8px;}
 .ex-btn:hover{background:rgba(0,113,227,.18);border-color:var(--primary);transform:translateY(-1px)}
+
+/* ═══ 速查模式 ═══ */
+.flash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:40px}
+.flash-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:all .2s}
+.flash-card:hover{border-color:var(--primary);box-shadow:var(--shadow-sm)}
+.flash-card.hot{border-left:3px solid var(--warning)}
+.flash-card.hard{border-left:3px solid var(--danger)}
+.flash-card-badge{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.flash-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--primary);color:#fff;font-size:.7rem;font-weight:700}
+.flash-cat{font-size:.7rem;color:var(--text-secondary)}
+.flash-q{font-weight:700;color:var(--text);font-size:.88rem;line-height:1.4;margin-bottom:8px}
+.flash-a{font-size:.8rem;color:var(--text-secondary);line-height:1.65;background:var(--bg);padding:10px 14px;border-radius:8px;border:1px solid var(--border)}
+.flash-a .ex-btn{margin-top:8px}
+.flash-cat-label{font-size:.65rem;color:var(--text-tertiary);margin-top:8px;text-align:right}
+.ez-tag{background:rgba(52,199,89,.1);color:var(--success)}
+
+/* ═══ 随机10题 ═══ */
+.random-panel{max-width:800px;margin:0 auto 40px}
+.random-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius)}
+.random-header h3{margin:0;font-size:1.1rem;font-weight:700}
+.random-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;transition:all .2s}
+.random-card:hover{border-color:var(--primary)}
+.random-num{font-size:.8rem;font-weight:700;color:var(--primary);margin-bottom:6px}
+.random-q{font-size:.92rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:6px}
+.random-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.random-cat{font-size:.72rem;color:var(--text-tertiary)}
+.random-a{font-size:.82rem;color:var(--text-secondary);line-height:1.7;background:var(--bg);padding:12px 16px;border-radius:8px;border:1px solid var(--border)}
+.random-a .ex-btn{margin-top:8px}
 
 @media(max-width:640px){
   .actions{gap:6px}
   .stats{margin-left:0;width:100%}
   .cat-h{flex-wrap:wrap;gap:6px}
   .cat-desc{width:100%;order:4}
-  .q-a{padding-left:22px}
+  .q-a{padding-left:16px;font-size:.84rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .q-a table{display:block;overflow-x:auto;white-space:nowrap;font-size:.72rem}
+  .q-a pre,.q-a code{font-size:.76rem;word-break:break-all}
   .hot-list{gap:6px}
   .sp{padding:0 16px 60px}
   .ss{font-size:.92rem}
   .hot-bar{padding:16px}
   .q-h{padding:12px 16px}
-  .q-a{padding:0 16px 14px 42px}
+  .flash-grid{grid-template-columns:1fr;gap:12px}
+  .flash-card{padding:14px;border-radius:12px}
+  .flash-q{font-size:.86rem;line-height:1.5}
+  .flash-a{font-size:.78rem;line-height:1.6;overflow-x:auto;-webkit-overflow-scrolling:touch;word-break:break-word}
+  .flash-a table{display:block;overflow-x:auto;white-space:nowrap;font-size:.68rem;max-width:100%}
+  .flash-a pre,.flash-a code{font-size:.72rem;word-break:break-all;white-space:pre-wrap}
+  .flash-card-badge{flex-wrap:wrap;gap:4px}
+  .flash-num{font-size:.7rem}
+  .flash-cat{font-size:.62rem}
+  .random-card{padding:14px}
+  .random-q{font-size:.88rem;line-height:1.5}
+  .random-a{font-size:.78rem;line-height:1.6;overflow-x:auto;-webkit-overflow-scrolling:touch;word-break:break-word}
+  .random-a table{display:block;overflow-x:auto;white-space:nowrap;font-size:.68rem;max-width:100%}
+  .random-a pre,.random-a code{font-size:.72rem;word-break:break-all;white-space:pre-wrap}
+  .abtn{padding:8px 16px;font-size:.78rem}
 }
 </style>

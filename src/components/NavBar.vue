@@ -51,6 +51,7 @@ import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import DeskLamp from '@/components/DeskLamp.vue'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 const route = useRoute()
 const store = useAppStore()
@@ -59,14 +60,16 @@ const scrolled = ref(false)
 
 const currentPath = computed(() => route.path)
 
+const { lock, unlock } = useBodyScrollLock()
 watch(menuOpen, (v) => {
-  document.body.style.overflow = v ? 'hidden' : ''
+  if (v) lock(); else setTimeout(() => { unlock() }, 200)
 })
 
 const navItems = [
   { icon: '🏠', text: '首页', path: '/' },
   { icon: '🎬', text: '动画特效', path: '/gallery' },
   { icon: '🗺️', text: '学习路径', path: '/roadmap' },
+  { icon: '📊', text: '学习进度', path: '/progress' },
   { icon: '🎓', text: '教程中心', path: '/tutorials' },
   { icon: '💻', text: '代码演练', path: '/playground' },
   { icon: '🛠', text: '技术栈', path: '/techstack' },

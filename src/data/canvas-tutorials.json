@@ -1,0 +1,92 @@
+[
+  {
+    "id": "cv0",
+    "title": "📑 Canvas/SVG 完整学习大纲",
+    "desc": "3篇教程 · HTML5 图形与动画入门",
+    "category": "canvas",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "cv0-1",
+        "title": "大纲——Canvas vs SVG 何时用哪个？",
+        "content": "<div style=\"max-width:680px;margin:0 auto;padding:20px;background:#1a1a2e;border-radius:14px\"><h2 style=\"text-align:center;color:#f59e0b;margin:0 0 4px\">🎯 Canvas/SVG 学习路径</h2><p style=\"text-align:center;color:#888;font-size:13px;margin-bottom:8px\">3篇教程 · 4节 · 从零到实战</p><div style=\"text-align:center;margin-bottom:14px\"><span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#f59e0b22;color:#f59e0b\">🟢 入门 ×2</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#f59e0b22;color:#f59e0b\">🟠 进阶 ×1</span></div><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#f59e0b\"><th style=\"padding:7px 10px;color:#fff;text-align:left\">#</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">章节</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">难度</th></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#f59e0b;font-weight:bold\">1</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🎨 Canvas 2D 绘图基础</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 2节</td></tr><tr><td style=\"padding:5px 10px;color:#f59e0b;font-weight:bold\">2</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">📐 SVG 矢量图形入门</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 1节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#f59e0b;font-weight:bold\">3</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🎬 Canvas 动画循环</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶 · 1节</td></tr></table><div style=\"margin-top:14px;padding:12px 16px;background:#f59e0b10;border-radius:10px;border-left:3px solid #f59e0b\"><b style=\"color:#f59e0b;font-size:13px\">🎯 学完能做什么？</b><br><span style=\"color:#ccc;font-size:12px;line-height:1.8\">入门：能用 Canvas 2D API 绘制基本形状和路径<br>进阶：能用 RAF 写动画循环，用 SVG 创建可交互的矢量图形</span></div><p style=\"text-align:center;color:#888;font-size:11px;margin-top:12px\">💡 按难度排序，从入门循序渐进到高级，点击任意章节开始学习</p></div>",
+        "propRef": "canvas.summary"
+      }
+    ]
+  },
+  {
+    "id": "cv1",
+    "title": "🎨 Canvas 2D 绘图基础",
+    "desc": "矩形/圆形/线条/文字/渐变 —— 用代码画画",
+    "category": "canvas",
+    "icon": "🎨",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "cv1-1",
+        "title": "获取 Canvas 上下文，画第一个矩形",
+        "content": "<b>Canvas</b> 是 HTML5 提供的像素级绘图 API。就像一个白板，你可以用 JavaScript 在上面画任何东西。<br><br><b>三步开始</b>：<br>① HTML 中放置 <code>&lt;canvas id=\"c\"&gt;&lt;/canvas&gt;</code><br>② JS 获取 2D 上下文 <code>const ctx = canvas.getContext('2d')</code><br>③ 调用绘制方法 <code>ctx.fillRect(x, y, w, h)</code><br><br>💡 <b>Canvas vs SVG</b>：Canvas 适合大量对象（游戏/粒子），SVG 适合少量交互元素（图标/图表）。",
+        "code": {
+          "html": "<h3 style='color:#f59e0b;margin:4px 0'>🎨 Canvas 基本形状</h3><canvas id='cv-demo' width='280' height='200' style='border:1px solid #333;border-radius:6px;display:block;margin:0 auto'></canvas>",
+          "css": "",
+          "js": "const c = document.getElementById('cv-demo')\nconst ctx = c.getContext('2d')\n\n// 蓝色填充矩形\nctx.fillStyle = '#667eea'\nctx.fillRect(10, 10, 80, 50)\n\n// 红色描边矩形\nctx.strokeStyle = '#ff375f'\nctx.lineWidth = 3\nctx.strokeRect(100, 10, 80, 50)\n\n// 绿色圆形\nctx.fillStyle = '#34c759'\nctx.beginPath()\nctx.arc(50, 120, 35, 0, Math.PI * 2)\nctx.fill()\n\n// 渐变文字\nconst grad = ctx.createLinearGradient(0, 0, 200, 0)\ngrad.addColorStop(0, '#ff375f')\ngrad.addColorStop(1, '#f59e0b')\nctx.fillStyle = grad\nctx.font = 'bold 24px sans-serif'\nctx.fillText('Canvas ✨', 100, 150)"
+        },
+        "propRef": "canvas.basic"
+      },
+      {
+        "id": "cv1-2",
+        "title": "路径绘制——线条/弧线/贝塞尔曲线",
+        "content": "Canvas 的 <b>路径 (Path)</b> 是各种形状的基础。<br><br><b>绘制路径步骤</b>：<br>① <code>beginPath()</code> — 开始新路径<br>② <code>moveTo(x, y)</code> — 移到起点<br>③ <code>lineTo(x, y)</code> — 画线到目标点<br>④ <code>arc(x, y, r, start, end)</code> — 画弧线<br>⑤ <code>stroke()</code> 或 <code>fill()</code> — 描边或填充<br><br>💡 路径就像一个「隐形笔画」，stroke/fill 时才真正画出。",
+        "code": {
+          "html": "<canvas id='cv-path' width='280' height='180' style='border:1px solid #333;border-radius:6px;display:block;margin:0 auto'></canvas>",
+          "css": "",
+          "js": "const c2 = document.getElementById('cv-path')\nconst ctx = c2.getContext('2d')\n\n// 画一个三角形\nctx.beginPath()\nctx.moveTo(140, 20)   // 顶点\nctx.lineTo(40, 140)    // 左下\nctx.lineTo(240, 140)   // 右下\nctx.closePath()        // 闭合路径\nctx.fillStyle = 'rgba(102,126,234,0.3)'\nctx.fill()\nctx.strokeStyle = '#667eea'\nctx.lineWidth = 2\nctx.stroke()\n\n// 画一个笑脸弧线\nctx.beginPath()\nctx.arc(140, 100, 30, 0.2, Math.PI - 0.2)\nctx.strokeStyle = '#f59e0b'\nctx.lineWidth = 2\nctx.stroke()\n\n// 两个眼睛\nctx.fillStyle = '#fff'\nctx.beginPath(); ctx.arc(125, 85, 5, 0, Math.PI*2); ctx.fill()\nctx.beginPath(); ctx.arc(155, 85, 5, 0, Math.PI*2); ctx.fill()"
+        },
+        "propRef": "canvas.path"
+      }
+    ]
+  },
+  {
+    "id": "cv2",
+    "title": "🎬 Canvas 动画循环",
+    "desc": "requestAnimationFrame + 粒子系统 + 弹球游戏",
+    "category": "canvas",
+    "icon": "🎬",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "cv2-1",
+        "title": "requestAnimationFrame——动画的核心引擎",
+        "content": "<b>requestAnimationFrame (RAF)</b> 是浏览器提供的动画 API，每秒约 60 帧（60fps）。<br><br><b>动画循环模板</b>：<br><code>function animate() {</code><br><code>  update(); // 更新位置</code><br><code>  draw();   // 重新绘制</code><br><code>  requestAnimationFrame(animate);</code><br><code>}</code><br><br>💡 RAF 比 setInterval 更好：自动匹配屏幕刷新率、Tab 不可见时自动暂停（省电）、流畅无撕裂。",
+        "code": {
+          "html": "<canvas id='cv-bounce' width='280' height='200' style='border:1px solid #333;border-radius:6px;display:block;margin:0 auto;background:#1a1a2e'></canvas>",
+          "css": "",
+          "js": "const canvas = document.getElementById('cv-bounce')\nconst ctx = canvas.getContext('2d')\n\n// 小球\nlet x = 50, y = 50\nlet vx = 2, vy = 1.5\nconst r = 15\n\nfunction animate() {\n  // 清除画布\n  ctx.clearRect(0, 0, canvas.width, canvas.height)\n  \n  // 移动\n  x += vx; y += vy\n  \n  // 碰撞检测（反弹）\n  if (x + r > canvas.width || x - r < 0) vx *= -1\n  if (y + r > canvas.height || y - r < 0) vy *= -1\n  \n  // 绘制小球\n  ctx.beginPath()\n  ctx.arc(x, y, r, 0, Math.PI * 2)\n  const grad = ctx.createRadialGradient(x-3,y-3,2,x,y,r)\n  grad.addColorStop(0, '#ff375f')\n  grad.addColorStop(1, '#ff375f44')\n  ctx.fillStyle = grad\n  ctx.fill()\n  \n  requestAnimationFrame(animate)\n}\nanimate()"
+        },
+        "propRef": "canvas.animation"
+      }
+    ]
+  },
+  {
+    "id": "cv3",
+    "title": "📐 SVG 矢量图形入门",
+    "desc": "SVG 标签/路径动画/交互事件——不会失真的图形",
+    "category": "canvas",
+    "icon": "📐",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "cv3-1",
+        "title": "SVG 基础——HTML 内嵌的矢量图形",
+        "content": "<b>SVG (Scalable Vector Graphics)</b> 是 XML 格式的矢量图形，放大缩小不失真。<br><br><b>基础形状标签</b>：<br>• <code>&lt;rect&gt;</code> — 矩形<br>• <code>&lt;circle&gt;</code> — 圆形<br>• <code>&lt;ellipse&gt;</code> — 椭圆<br>• <code>&lt;line&gt;</code> — 线段<br>• <code>&lt;polygon&gt;</code> — 多边形<br>• <code>&lt;path&gt;</code> — 任意路径（最强大）<br><br>💡 SVG 可以直接嵌入 HTML，支持 CSS 样式和 JS 事件，非常适合做图标和图表。",
+        "code": {
+          "html": "<svg width='280' height='160' viewBox='0 0 280 160' style='display:block;margin:0 auto;background:#1a1a2e;border-radius:6px'>\n  <rect x='10' y='10' width='60' height='60' rx='8' fill='#667eea' opacity='0.8'/>\n  <circle cx='120' cy='40' r='30' fill='#ff375f' opacity='0.8'/>\n  <polygon points='190,10 230,70 150,70' fill='#34c759' opacity='0.8'/>\n  <line x1='10' y1='100' x2='250' y2='100' stroke='#f59e0b' stroke-width='2' stroke-dasharray='5,3'/>\n  <text x='10' y='140' fill='#ccc' font-size='14' font-family='sans-serif'>SVG 矢量图形 ✨</text>\n</svg>",
+          "css": "",
+          "js": "// SVG 也可以用 JS 动态创建\nconst svgNS = 'http://www.w3.org/2000/svg'\n\nfunction createCircle(cx, cy, r, color) {\n  const circle = document.createElementNS(svgNS, 'circle')\n  circle.setAttribute('cx', cx)\n  circle.setAttribute('cy', cy)\n  circle.setAttribute('r', r)\n  circle.setAttribute('fill', color)\n  return circle\n}\n\n// SVG 元素支持标准 DOM 事件\n// circle.addEventListener('click', () => alert('点击了!'))"
+        },
+        "propRef": "canvas.svg"
+      }
+    ]
+  }
+]

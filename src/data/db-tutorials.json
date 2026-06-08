@@ -1,0 +1,92 @@
+[
+  {
+    "id": "db0",
+    "title": "📑 数据库完整学习大纲",
+    "desc": "3篇教程 · SQL/MongoDB/Redis 入门到实战",
+    "category": "db",
+    "icon": "📑",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "db0-1",
+        "title": "大纲——SQL vs NoSQL 如何选择？",
+        "content": "<div style=\"max-width:680px;margin:0 auto;padding:20px;background:#1a1a2e;border-radius:14px\"><h2 style=\"text-align:center;color:#34c759;margin:0 0 4px\">🗄 数据库学习路径</h2><p style=\"text-align:center;color:#888;font-size:13px;margin-bottom:8px\">3篇教程 · 4节 · 从零到实战</p><div style=\"text-align:center;margin-bottom:14px\"><span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#34c75922;color:#34c759\">🟢 入门 ×1</span> <span style=\"display:inline-block;padding:2px 10px;margin:2px;border-radius:10px;font-size:11px;background:#34c75922;color:#34c759\">🟠 进阶 ×2</span></div><table style=\"width:100%;border-collapse:collapse;font-size:12px\"><tr style=\"background:#34c759\"><th style=\"padding:7px 10px;color:#fff;text-align:left\">#</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">章节</th><th style=\"padding:7px 10px;color:#fff;text-align:left\">难度</th></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#34c759;font-weight:bold\">1</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">📊 SQL 基础——关系型数据库</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟢 入门 · 2节</td></tr><tr><td style=\"padding:5px 10px;color:#34c759;font-weight:bold\">2</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">🍃 MongoDB 文档型数据库</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶 · 1节</td></tr><tr style=\"background:#222\"><td style=\"padding:5px 10px;color:#34c759;font-weight:bold\">3</td><td style=\"padding:5px 10px;color:#ccc;font-size:11px\">⚡ Redis 内存数据库</td><td style=\"padding:5px 10px;color:#888;font-size:11px\">🟠 进阶 · 1节</td></tr></table><div style=\"margin-top:14px;padding:12px 16px;background:#34c75910;border-radius:10px;border-left:3px solid #34c759\"><b style=\"color:#34c759;font-size:13px\">🎯 学完能做什么？</b><br><span style=\"color:#ccc;font-size:12px;line-height:1.8\">入门：能写 SQL CRUD 操作，理解关系型数据库<br>进阶：能用 MongoDB 文档存储，用 Redis 做缓存和排行榜</span></div><p style=\"text-align:center;color:#888;font-size:11px;margin-top:12px\">💡 按难度排序，从入门循序渐进到高级，点击任意章节开始学习</p></div>",
+        "propRef": "db.summary"
+      }
+    ]
+  },
+  {
+    "id": "db1",
+    "title": "📊 SQL 基础——关系型数据库",
+    "desc": "SELECT/INSERT/UPDATE/DELETE + JOIN/索引/事务",
+    "category": "db",
+    "icon": "📊",
+    "difficulty": "入门",
+    "steps": [
+      {
+        "id": "db1-1",
+        "title": "CRUD 四大操作——增删改查",
+        "content": "<b>SQL (Structured Query Language)</b> 是关系型数据库的标准语言。<br><br><b>四大基本操作 (CRUD)</b>：<br>• <code>SELECT * FROM users WHERE age > 18</code> — <b>查</b> (Read)<br>• <code>INSERT INTO users (name, age) VALUES ('张三', 25)</code> — <b>增</b> (Create)<br>• <code>UPDATE users SET age = 26 WHERE name = '张三'</code> — <b>改</b> (Update)<br>• <code>DELETE FROM users WHERE id = 1</code> — <b>删</b> (Delete)<br><br>💡 面试高频：SQL 查询执行顺序 FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:2;padding:10px;background:#1a1a2e;border-radius:6px;color:#ccc'>📊 <b style='color:#34c759'>SQL 速查表</b><br><br>查: SELECT 列 FROM 表 WHERE 条件<br>增: INSERT INTO 表 VALUES (...)<br>改: UPDATE 表 SET 列=值 WHERE 条件<br>删: DELETE FROM 表 WHERE 条件</div>",
+          "css": "",
+          "js": "-- ===== 创建表 =====\nCREATE TABLE users (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  name VARCHAR(50) NOT NULL,\n  email VARCHAR(100) UNIQUE,\n  age INT DEFAULT 0,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);\n\n-- ===== 插入数据 =====\nINSERT INTO users (name, email, age) VALUES\n  ('张三', 'zhang@example.com', 25),\n  ('李四', 'li@example.com', 30),\n  ('王五', 'wang@example.com', 22);\n\n-- ===== 查询（最常用）=====\nSELECT * FROM users;\nSELECT name, age FROM users WHERE age > 20;\nSELECT COUNT(*) FROM users;\nSELECT AVG(age) FROM users;\n\n-- ===== 排序和分页 =====\nSELECT * FROM users ORDER BY age DESC LIMIT 10 OFFSET 0;\n\n-- ===== 联表查询（JOIN）=====\n-- INNER JOIN: 只返回匹配的行\n-- LEFT JOIN: 返回左表所有行 + 右表匹配行"
+        },
+        "propRef": "db.sql"
+      },
+      {
+        "id": "db1-2",
+        "title": "索引和事务——性能与安全的基石",
+        "content": "<b>索引 (Index)</b> 就像书的目录，让查询更快。<br><br><b>索引使用原则</b>：<br>• 给 WHERE/JOIN/ORDER BY 常用字段加索引<br>• 不要给每个字段都加索引（写入变慢、占空间）<br>• 复合索引有「最左前缀」规则<br><br><b>事务 (Transaction) ACID</b>：<br>• <b>A</b>tomicity 原子性 — 要么全做，要么不做<br>• <b>C</b>onsistency 一致性 — 数据前后状态一致<br>• <b>I</b>solation 隔离性 — 并发事务互不干扰<br>• <b>D</b>urability 持久性 — 提交后永久保存<br><br>💡 面试必考：什么是索引？MySQL 用 B+ 树。事务隔离级别有哪些？",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:2;padding:10px;background:#1a1a2e;border-radius:6px;color:#ccc'>🔑 <b style='color:#34c759'>ACID 记忆口诀</b><br><br>A: 全做或全不做<br>C: 数据始终合法<br>I: 并发互不干扰<br>D: 提交永不丢失</div>",
+          "css": "",
+          "js": "-- ===== 创建索引 =====\nCREATE INDEX idx_users_email ON users(email);\nCREATE INDEX idx_users_name_age ON users(name, age);\n\n-- ===== 事务示例 =====\nSTART TRANSACTION;\n  UPDATE accounts SET balance = balance - 100 WHERE id = 1;\n  UPDATE accounts SET balance = balance + 100 WHERE id = 2;\n  -- 如果任一步失败，ROLLBACK 回滚\nCOMMIT;\n\n-- 隔离级别（从低到高）\n-- READ UNCOMMITTED → READ COMMITTED → REPEATABLE READ(MySQL默认) → SERIALIZABLE"
+        },
+        "propRef": "db.index"
+      }
+    ]
+  },
+  {
+    "id": "db2",
+    "title": "🍃 MongoDB 文档型数据库",
+    "desc": "BSON文档/Collection/Mongoose ODM",
+    "category": "db",
+    "icon": "🍃",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "db2-1",
+        "title": "MongoDB 核心概念——文档/集合/数据库",
+        "content": "<b>MongoDB</b> 是最流行的 NoSQL 文档数据库。数据以 <b>BSON</b>（类似 JSON）格式存储。<br><br><b>核心概念</b>：<br>• <b>Document</b> — 一条记录（≈ SQL 的一行）<br>• <b>Collection</b> — 文档的集合（≈ SQL 的表）<br>• <b>Database</b> — 多个 Collection<br><br><b>MongoDB vs SQL 术语对照</b>：<br>• Table → Collection<br>• Row → Document<br>• Column → Field<br>• JOIN → $lookup (聚合管道)<br><br>💡 MongoDB 不需要预先定义 Schema，适合快速迭代、数据结构灵活的场景。",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:2;padding:10px;background:#1a1a2e;border-radius:6px;color:#ccc'>🍃 <b style='color:#4ade80'>MongoDB 文档示例</b><br><br>{<br>  _id: ObjectId,<br>  name: '张三',<br>  email: 'zhang@test.com',<br>  hobbies: ['编程','篮球'],<br>  address: { city: '北京', zip: '100000' }<br>}</div>",
+          "css": "",
+          "js": "// MongoDB Node.js Driver\nconst { MongoClient } = require('mongodb')\nconst client = new MongoClient('mongodb://localhost:27017')\n\nawait client.connect()\nconst db = client.db('myapp')\nconst users = db.collection('users')\n\n// 增\nawait users.insertOne({ name: '张三', age: 25 })\nawait users.insertMany([\n  { name: '李四', age: 30 },\n  { name: '王五', age: 22 }\n])\n\n// 查\nconst all = await users.find().toArray()\nconst young = await users.find({ age: { $lt: 25 } }).toArray()\n\n// 改\nawait users.updateOne({ name: '张三' }, { $set: { age: 26 } })\n\n// 删\nawait users.deleteOne({ name: '王五' })\n\n// 聚合（类似 SQL GROUP BY）\nconst result = await users.aggregate([\n  { $group: { _id: null, avgAge: { $avg: '$age' } } }\n]).toArray()\n\nconsole.log('平均年龄:', result[0].avgAge)"
+        },
+        "propRef": "db.mongo"
+      }
+    ]
+  },
+  {
+    "id": "db3",
+    "title": "⚡ Redis 内存数据库",
+    "desc": "缓存/会话/Sorted Set排行榜/发布订阅",
+    "category": "db",
+    "icon": "⚡",
+    "difficulty": "进阶",
+    "steps": [
+      {
+        "id": "db3-1",
+        "title": "Redis 5 大数据类型——不只是缓存",
+        "content": "<b>Redis</b> 是高性能内存数据库，常用于缓存、会话存储、排行榜、消息队列。<br><br><b>5 种核心数据类型</b>：<br>① <b>String</b> — 键值对（缓存/Session）<br>② <b>Hash</b> — 字段-值映射（用户信息）<br>③ <b>List</b> — 有序列表（消息队列）<br>④ <b>Set</b> — 无序集合（标签/去重）<br>⑤ <b>Sorted Set</b> — 带分数的有序集合（排行榜！）<br><br>💡 面试必考：Redis 为什么快？纯内存操作 + 单线程 IO 多路复用 + 高效数据结构。",
+        "code": {
+          "html": "<div style='font-size:12px;line-height:2;padding:10px;background:#1a1a2e;border-radius:6px;color:#ccc'>⚡ <b style='color:#ff375f'>Redis 应用场景</b><br><br>缓存: GET user:1 → JSON<br>排行榜: ZADD rank 100 '张三'<br>限流: INCR + EXPIRE<br>分布式锁: SETNX lock:order 1 EX 10</div>",
+          "css": "",
+          "js": "// Node.js 使用 Redis (ioredis)\nconst Redis = require('ioredis')\nconst redis = new Redis()\n\n// String — 缓存\nawait redis.set('user:1', JSON.stringify({ name: '张三', age: 25 }))\nawait redis.expire('user:1', 3600) // 1小时过期\nconst user = JSON.parse(await redis.get('user:1'))\n\n// Hash — 存储对象字段\nawait redis.hset('user:2', 'name', '李四', 'age', '30')\nconst name = await redis.hget('user:2', 'name')\n\n// Sorted Set — 排行榜\nawait redis.zadd('leaderboard', 100, '张三')\nawait redis.zadd('leaderboard', 200, '李四')\nawait redis.zadd('leaderboard', 150, '王五')\n// 获取 Top 3\nconst top3 = await redis.zrevrange('leaderboard', 0, 2, 'WITHSCORES')\n// → ['李四','200','王五','150','张三','100']\n\n// Set — 标签/去重\nawait redis.sadd('tags:article:1', 'JavaScript', 'Vue', '前端')\nconst tags = await redis.smembers('tags:article:1')"
+        },
+        "propRef": "db.redis"
+      }
+    ]
+  }
+]

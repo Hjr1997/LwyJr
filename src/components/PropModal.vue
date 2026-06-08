@@ -244,10 +244,12 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { sanitize } from '@/utils/sanitize'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 const visible = ref(false)
 const data = ref<any>({})
 const hasMethodType = computed(() => data.value.methods?.some((m:any) => m.type || m.scope))
+const { lock, unlock } = useBodyScrollLock()
 
 let cache: any = null
 async function loadRef() {
@@ -261,12 +263,13 @@ async function open(category: string, key: string) {
   if (!cat || !cat[key]) return
   data.value = cat[key]
   visible.value = true
-  document.body.style.overflow = 'hidden'
+  lock()
 }
 
 function close() {
   visible.value = false
-  document.body.style.overflow = ''
+  // 延迟解锁 body，等 leave 动画完成（.3s）后恢复
+  setTimeout(() => { unlock() }, 320)
 }
 
 // ESC key to close
@@ -274,15 +277,16 @@ function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape' && visible.value) close()
 }
 onMounted(() => window.addEventListener('keydown', onKeydown))
-onUnmounted(() => window.removeEventListener('keydown', onKeydown))
-
-watch(visible, v => { if (!v) document.body.style.overflow = '' })
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown)
+  unlock() // 组件卸载时安全恢复滚动
+})
 defineExpose({ open, close })
 </script>
 
 <style scoped>
 /* Sheet Overlay */
-.sheet-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.35);display:flex;align-items:flex-end;justify-content:center;padding:0;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.sheet-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:flex-end;justify-content:center;padding:0;background:rgba(0,0,0,.45);touch-action:none}
 @media(min-width:768px){.sheet-overlay{align-items:center;padding:24px}}
 
 /* Sheet Container */
@@ -340,17 +344,23 @@ defineExpose({ open, close })
 }
 </style>
 
-<!-- iOS 26 Jelly Sheet (unscoped for Vue Transition) -->
+<!-- Transition exactly matching ExampleModal (unscoped for Vue dynamic classes) -->
 <style>
-.sheet-enter-active{transition:opacity .5s cubic-bezier(.34,1.56,.64,1)}
+/* 基础状态：overlay 常驻 backdrop-filter */
+.sheet-overlay {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sheet-enter-active{transition:opacity .5s cubic-bezier(.34,1.56,.64,1),backdrop-filter .5s ease,-webkit-backdrop-filter .5s ease}
 .sheet-enter-active .sheet-container{transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .5s cubic-bezier(.34,1.56,.64,1)}
-.sheet-enter-from{opacity:0}
+.sheet-enter-from{opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)}
 .sheet-enter-from .sheet-container{opacity:0;transform:translateY(100%) scale(.88)}
 @media(min-width:768px){.sheet-enter-from .sheet-container{transform:translateY(40px) scale(.88)}}
 
-.sheet-leave-active{transition:opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
-.sheet-leave-active .sheet-container{transition:transform .3s cubic-bezier(.68,-.3,.32,1.3),opacity .3s cubic-bezier(.68,-.3,.32,1.3)}
-.sheet-leave-to{opacity:0}
-.sheet-leave-to .sheet-container{opacity:0;transform:translateY(80%) scale(.8)}
-@media(min-width:768px){.sheet-leave-to .sheet-container{transform:translateY(30px) scale(.88)}}
+.sheet-leave-active{transition:opacity .25s ease,backdrop-filter .25s ease,-webkit-backdrop-filter .25s ease}
+.sheet-leave-active .sheet-container{transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s ease}
+.sheet-leave-to{opacity:0;backdrop-filter:none;-webkit-backdrop-filter:none;transform:none}
+.sheet-leave-to .sheet-container{opacity:0;transform:translateY(40%) scale(.9)}
+@media(min-width:768px){.sheet-leave-to .sheet-container{transform:translateY(15px) scale(.94)}}
 </style>
