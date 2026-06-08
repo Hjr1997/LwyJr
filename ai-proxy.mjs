@@ -279,7 +279,7 @@ if (isMain) {
     const distDir = process.argv[3] || 'dist'
     postBuild(distDir)
   } else {
-    const distDir = firstArg || join(fileURLToPath(new URL('.', import.meta.url)), 'dist')
+    const distDir = firstArg || '.'
     const port = parseInt(process.argv[3] || '3001', 10)
     startStandaloneServer(distDir, port)
   }
