@@ -36,6 +36,7 @@ function createSourceGuardPlugin(): Plugin {
 }
 
 export default defineConfig({
+  base: './',
   plugins: [
     vue(),
     createAiProxyPlugin(),
