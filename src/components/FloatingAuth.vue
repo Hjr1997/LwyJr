@@ -53,7 +53,7 @@ if (typeof window !== 'undefined') {
 <style scoped>
 .floating-auth {
   position: fixed;
-  bottom: 100px;
+  bottom: calc(92px + env(safe-area-inset-bottom, 0px));
   right: 28px;
   z-index: 99999;
 }
@@ -107,7 +107,10 @@ if (typeof window !== 'undefined') {
 .fa-menu-item.danger:hover { background: rgba(255,59,48,.08); }
 
 @media(max-width:768px){
-  .floating-auth { bottom: 88px; right: 16px; }
+  .floating-auth {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    right: 16px;
+  }
   .fa-btn { width: 48px; height: 48px; }
   .fa-user { width: 48px; height: 48px; }
   .fa-avatar { font-size: .95rem; }

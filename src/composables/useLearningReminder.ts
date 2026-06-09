@@ -28,9 +28,19 @@ function saveSettings(s: ReminderSettings) {
  * - 追踪最后学习时间
  * - 连续 2 天未学习 → 主动提醒
  */
+// 安全获取通知权限（模块导入时不抛异常）
+function getNotificationGranted(): boolean {
+  try {
+    if (typeof Notification === 'undefined') return false
+    return Notification.permission === 'granted'
+  } catch {
+    return false // 非 HTTPS 或隐私模式下可能抛异常
+  }
+}
+
 export function useLearningReminder() {
   const settings = ref<ReminderSettings>(getSettings())
-  const notificationGranted = ref(Notification?.permission === 'granted')
+  const notificationGranted = ref(getNotificationGranted())
   const lastStudyDate = ref('')
 
   // 读取最后学习日期

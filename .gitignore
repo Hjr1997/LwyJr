@@ -4,6 +4,10 @@ node_modules/
 # Build
 dist/
 
+# Database
+data/
+*.db
+
 # Environment variables (API keys)
 .env.local
 .env.*.local

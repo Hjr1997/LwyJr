@@ -10,8 +10,8 @@
  *   POST /api/chat   — chat bot    (base64 request → SSE stream)
  */
 import { createServer } from 'node:http'
-import { readFileSync, existsSync, statSync, copyFileSync, writeFileSync } from 'node:fs'
-import { join, dirname } from 'node:path'
+import { readFileSync, existsSync, statSync, copyFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs'
+import { join, dirname, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const AI_TARGET = 'https://open.bigmodel.cn/api/paas'
@@ -248,22 +248,57 @@ function startStandaloneServer(distDir, port = 3001) {
 // ═══════════════════════════════════════════════════════════════
 function postBuild(distDir) {
   const selfPath = fileURLToPath(import.meta.url)
-  const target = join(distDir, 'server.mjs')
-  copyFileSync(selfPath, target)
-  // Copy .env.local if exists
-  const envPath = join(dirname(selfPath), '.env.local')
+  const rootDir = dirname(selfPath)
+
+  // 1. 复制 ai-proxy.mjs → dist/ai-proxy.mjs（保持原名，server/index.mjs 通过 ../ai-proxy.mjs 导入）
+  copyFileSync(selfPath, join(distDir, 'ai-proxy.mjs'))
+
+  // 2. 复制 .env.local（如果存在）
+  const envPath = join(rootDir, '.env.local')
   if (existsSync(envPath)) {
     copyFileSync(envPath, join(distDir, '.env.local'))
   } else {
-    // Create placeholder
     const placeholder = '# AI_API_KEY=your_api_key_here'
     writeFileSync(join(distDir, '.env.local'), placeholder)
   }
+
+  // 3. 复制 server/ 目录（Express 后端）→ dist/server/
+  const serverSrc = join(rootDir, 'server')
+  const serverDest = join(distDir, 'server')
+  if (existsSync(serverSrc)) {
+    if (!existsSync(serverDest)) mkdirSync(serverDest, { recursive: true })
+    const files = readdirSync(serverSrc)
+    for (const f of files) {
+      const srcPath = join(serverSrc, f)
+      const destPath = join(serverDest, f)
+      // 跳过数据库文件（含 WAL/SHM）和目录
+      if (statSync(srcPath).isFile() && !f.includes('.db')) {
+        copyFileSync(srcPath, destPath)
+      }
+    }
+  }
+
+  // 4. 复制 package.json → dist/（生产服务器 npm install 需要）
+  const pkgPath = join(rootDir, 'package.json')
+  if (existsSync(pkgPath)) {
+    copyFileSync(pkgPath, join(distDir, 'package.json'))
+  }
+
+  // 5. 创建 data/ 目录（SQLite 数据库持久化位置）
+  const dataDir = join(distDir, 'data')
+  if (!existsSync(dataDir)) mkdirSync(dataDir, { recursive: true })
+
   console.log(`[ai-proxy] Deploy files copied to ${distDir}/`)
-  console.log(`  → server.mjs`)
-  console.log(`  → .env.local`)
-  console.log(`\n  Deploy: upload "${distDir}/" to server, then run:`)
-  // console.log(`    node server.mjs . ${port || 80}`)
+  console.log(`  → ai-proxy.mjs (AI 代理中间件)`)
+  console.log(`  → server/*.mjs (Express 后端: 认证/进度/笔记)`)
+  console.log(`  → package.json (依赖清单)`)
+  console.log(`  → .env.local (环境变量)`)
+  console.log(`  → data/ (数据库持久化目录)`)
+  console.log(`\n  生产部署:`)
+  console.log(`    1. 将 dist/ 整个目录上传到服务器`)
+  console.log(`    2. cd dist && npm install --omit=dev`)
+  console.log(`    3. 设置环境变量: AI_API_KEY + JWT_SECRET`)
+  console.log(`    4. 启动: node server/index.mjs`)
 }
 
 

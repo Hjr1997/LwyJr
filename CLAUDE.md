@@ -1797,3 +1797,321 @@ express better-sqlite3 bcryptjs jsonwebtoken cors
 - [ ] 面试题速查表移动端表格可横向滚动？
 - [ ] 面试题代码块 `word-break:break-all` 不溢出？
 - [ ] 移动端弹窗关闭按钮不与运行按钮重叠？
+
+---
+
+## 🚀 生产部署踩坑记录 (2026-06-09)
+
+> **核心教训**: Vite SPA + Express 后端 + AI 代理 = 三套独立的服务，生产部署时必须全部考虑。
+
+### 架构全景图
+
+```
+浏览器 (121.199.38.22:80)
+  │
+  ├─ /api/think          → AI 代理 (dist/server.mjs = ai-proxy.mjs)
+  ├─ /api/chat           → AI 代理 (dist/server.mjs = ai-proxy.mjs)
+  ├─ /api/auth/*         → Express 后端 (server/index.mjs:3001)  ← 缺！
+  ├─ /api/progress/*     → Express 后端 (server/index.mjs:3001)  ← 缺！
+  ├─ /api/notes/*        → Express 后端 (server/index.mjs:3001)  ← 缺！
+  └─ /* (静态文件)        → dist/ (Vite build 产出)
+```
+
+### 🐛 P0 — 生产环境 /api/auth 返回 200 空内容
+
+**问题**: curl `http://121.199.38.22/api/auth/login` 返回 HTTP 200，但 response body 为空。
+
+**根因链**:
+1. `npm run build` = `vue-tsc && vite build && node ai-proxy.mjs --postbuild dist`
+   - `vite build` 只构建前端 Vue 应用 → `dist/`
+   - `--postbuild` 只复制 `ai-proxy.mjs` → `dist/server.mjs` + `.env.local` → `dist/`
+   - **`server/` 目录完全不参与构建**，`server/auth.mjs`、`server/progress.mjs`、`server/db.mjs` 不在 `dist/` 中
+2. 生产服务器只运行了 `node dist/server.mjs dist`（AI 代理 + 静态文件），没有运行 Express 后端
+3. `/api/auth/login` 请求到达 AI 代理服务器，它不认识这个路由，返回空 200
+
+**修复方案**:
+
+**方案 A — Nginx 反向代理（推荐）**:
+```nginx
+server {
+    listen 80;
+    server_name 121.199.38.22;
+
+    # 静态文件 + SPA fallback
+    root /path/to/dist;
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # AI 代理（/api/think, /api/chat）
+    location /api/think { proxy_pass http://localhost:3001; }
+    location /api/chat  { proxy_pass http://localhost:3001; }
+
+    # Express 后端（/api/auth, /api/progress, /api/notes）
+    location /api/auth    { proxy_pass http://localhost:3002; }
+    location /api/progress { proxy_pass http://localhost:3002; }
+    location /api/notes   { proxy_pass http://localhost:3002; }
+}
+```
+然后同时运行：
+```bash
+node dist/server.mjs dist 3001 &   # AI 代理 + 静态文件（备用）
+node server/index.mjs &             # Express 后端 → 默认 3001
+```
+⚠️ 注意：AI 代理和 Express 后端默认都用 3001 端口，需错开：
+```bash
+PORT=3002 node server/index.mjs &   # Express → 3002
+node dist/server.mjs dist 3001 &    # AI 代理 → 3001
+```
+
+**方案 B — 合并 server/index.mjs + ai-proxy.mjs**:
+将 AI 代理中间件集成到 Express 服务器中，统一监听一个端口：
+```js
+// server/index.mjs 中添加:
+import { createAiProxyMiddleware } from '../ai-proxy.mjs'
+app.use(createAiProxyMiddleware())
+```
+这样只需 `node server/index.mjs` 一个进程。
+
+### 🐛 P1 — Vite proxy 配置仅开发环境生效
+
+**问题**: `vite.config.ts` 中的 `server.proxy` 配置很容易被误解为"已配置好了代理"。
+
+**真相**: `server.proxy` **仅 Vite dev server 生效**（`npm run dev` 时）。生产环境中 `vite build` 产出的 `dist/` 是纯静态文件，不包含任何代理逻辑。
+
+**教训**:
+- `vite.config.ts` 的 `server.proxy` 是**开发期**配置，不能替代生产环境的 Nginx/反向代理
+- 每次新增 API 端点时，必须同步更新：
+  1. `vite.config.ts` proxy（dev）
+  2. Nginx 配置 / 生产反向代理规则（production）
+  3. `server/index.mjs` 路由（后端）
+
+### 🐛 P2 — SQLite 数据库文件路径
+
+**问题**: `server/db.mjs` 中 `better-sqlite3` 的数据库文件默认创建在 `server/` 目录下。生产部署时这个文件需要持久化存储。
+
+**当前代码** (`server/db.mjs`):
+```js
+const db = new Database('lwyjr.db')  // 相对路径 → server/lwyjr.db
+```
+
+**注意事项**:
+- 数据库文件不应该在 `dist/` 中（每次 build 会清空）
+- 部署时确保数据库文件路径在持久化卷上
+- 建议使用绝对路径或环境变量 `DB_PATH`
+
+### 🐛 P3 — .env.local 管理
+
+**问题**: `ai-proxy.mjs --postbuild` 会把开发环境的 `.env.local` 复制到 `dist/`。如果开发和生产用的 API Key 不同，会导致生产环境用错 Key。
+
+**教训**:
+- 生产环境应使用服务器环境变量（`export AI_API_KEY=xxx`），而非 `.env.local` 文件
+- `server/index.mjs` 中通过 `process.env.JWT_SECRET` 读取，优先级高于硬编码默认值
+- JWT_SECRET 必须在生产环境覆盖默认值 `lwyjr-secret-key-change-in-production`
+
+### 🐛 P4 — better-sqlite3 原生编译失败 (2026-06-09)
+
+**问题**: 生产服务器 (Windows Server, Node 20.18.0) 上 `npm install` 失败，`better-sqlite3` 找不到预编译二进制，回退到 `node-gyp` 源码编译，但服务器缺少 Python + VS Build Tools。
+
+**根因**: `better-sqlite3` 是原生 C++ 模块，通过 `prebuild-install` 下载预编译二进制。当 npm registry 没有匹配目标 Node 版本的二进制时，自动回退到源码编译。
+
+**修复**: 替换为 `sql.js`（SQLite 编译为 WebAssembly，纯 JavaScript，零原生依赖）：
+- `server/db.mjs`: 重写为 `sql.js` + 兼容封装层（模拟 `better-sqlite3` 的 `prepare/get/all/run/transaction` API）
+- `package.json`: `better-sqlite3` → `sql.js`
+- 数据库文件自动保存：拦截写操作（INSERT/UPDATE/DELETE）后自动调用 `db.export()` 写入磁盘
+- `auth.mjs` / `progress.mjs`: 无需修改（兼容封装层 API 一致）
+
+**教训**:
+- 生产服务器不一定有编译工具链，优先使用纯 JS/WASM 方案
+- `sql.js` 初始化是异步的（`await initSqlJs()`），需用顶层 await
+- `sql.js` 不自动持久化到磁盘，需手动 `db.export()` + `writeFileSync`
+- Windows Server + IIS 环境 `node-gyp` 几乎不可用，禁止使用原生编译依赖
+
+### 正确的生产部署步骤 (2026-06-09 更新)
+
+```bash
+# 1. 构建前端 + 复制后端到 dist/
+npm run build
+# → dist/ (前端 + ai-proxy.mjs + server/ + package.json + data/)
+
+# 2. 上传 dist/ 到服务器
+# 整个 dist/ 目录上传到 C:\inetpub\wwwroot\ (或 /var/www/)
+
+# 3. 服务器上安装依赖（sql.js 纯 JS，无需编译！）
+cd C:\inetpub\wwwroot
+npm install --omit=dev
+# 依赖: express, cors, sql.js, bcryptjs, jsonwebtoken
+# 全部纯 JS，无需 Python / VS Build Tools
+
+# 4. 设置环境变量
+set AI_API_KEY=你的智谱API密钥
+set JWT_SECRET=一个随机字符串（不要用默认值！）
+set PORT=3001
+
+# 5. 启动统一服务（一个进程 = 全部功能）
+node server/index.mjs
+```
+
+**新架构（统一服务）**:
+```
+浏览器 → :3001 → Express 统一服务
+                   ├─ /api/think, /api/chat  (AI 代理)
+                   ├─ /api/auth/*            (认证)
+                   ├─ /api/progress/*        (进度)
+                   ├─ /api/notes/*           (笔记)
+                   └─ 静态文件 + SPA fallback
+```
+
+### 部署检查清单 (2026-06-09 更新)
+- [ ] `dist/` 目录包含 `index.html` + JS/CSS chunks？
+- [ ] `dist/ai-proxy.mjs` 存在？
+- [ ] `dist/server/` 包含 `index.mjs, auth.mjs, db.mjs, progress.mjs`？
+- [ ] `dist/package.json` 包含 `sql.js`（非 `better-sqlite3`）？
+- [ ] `npm install --omit=dev` 无报错（sql.js 纯 JS，无需编译）？
+- [ ] JWT_SECRET 已覆盖默认值 `lwyjr-secret-key-change-in-production`？
+- [ ] AI_API_KEY 已设置？
+- [ ] `node server/index.mjs` 启动无报错？
+- [ ] `curl localhost:3001/api/auth/login -d '{"email":"...","password":"..."}'` 返回 JSON？
+- [ ] `curl localhost:3001/` 返回 HTML 首页？
+- [ ] 防火墙已开放 3001 端口（或 Nginx 代理 80→3001）？
+
+---
+
+## 2026-06-09 生产部署实战 — PM2 + Windows Server + IIS
+
+### 🐛 P5 — PM2 启动旧文件导致 /api/auth 无效
+
+**问题**: PM2 运行的是 `dist/server.mjs`（旧 AI 代理单独文件），不是 `dist/server/index.mjs`（新统一服务）。
+- `pm2 describe` 显示 `script path: C:\inetpub\wwwroot\dist\server.mjs`
+- 旧文件只处理 `/api/think` 和 `/api/chat`，认证/进度路由不存在
+
+**修复**: 
+```cmd
+pm2 stop lwyjr && pm2 delete lwyjr
+del C:\inetpub\wwwroot\dist\server.mjs
+pm2 start ecosystem.config.cjs
+pm2 save
+```
+
+**教训**:
+- 每次 `npm run build` 后 `postBuild` 会复制 `ai-proxy.mjs` 到 `dist/ai-proxy.mjs`，但旧的 `dist/server.mjs` 如果之前存在不会被自动清理
+- PM2 启动前必须确认 `script` 指向正确的入口文件 `server/index.mjs`
+
+### 🐛 P6 — PM2 ecosystem.config.js 被 ES Module 拒绝
+
+**问题**: `package.json` 有 `"type": "module"`，PM2 用 `require()` 加载 `ecosystem.config.js` 时报错 `ERR_REQUIRE_ESM`。
+
+**修复**: 配置文件重命名为 `ecosystem.config.cjs`（强制 CommonJS）。
+
+**教训**:
+- 项目使用 ES Module（`"type": "module"`）时，PM2 配置文件必须用 `.cjs` 后缀
+- 环境变量通过 `ecosystem.config.cjs` 的 `env` 字段传入，不能通过 CLI `--port` 参数
+
+### 🐛 P7 — 静态文件 404（distPath 路径错误）
+
+**问题**: `server/index.mjs` 中 `distPath = path.join(__dirname, '..', 'dist')`，从 `dist/server/` 运行时解析为 `dist/dist/`（不存在），首页返回 404。
+
+**根因**: 开发时 `__dirname = server/`，生产时 `__dirname = dist/server/`，路径不一致。
+
+**修复**: 自动检测上层目录是否有 `index.html`：
+```js
+const distPath = (() => {
+  const parentPath = path.join(__dirname, '..')
+  if (existsSync(path.join(parentPath, 'index.html'))) return parentPath
+  return path.join(parentPath, 'dist')
+})()
+```
+
+### 🐛 P8 — 移动端首页/进度页报错（Notification API 异常）
+
+**问题**: 移动端访问首页和进度页报错，其他页面正常。两个页面都导入了 `useLearningReminder`。
+
+**根因**: `useLearningReminder.ts` 第 33 行在模块导入时直接访问 `Notification?.permission`：
+```ts
+const notificationGranted = ref(Notification?.permission === 'granted')
+```
+可选链 `?.` 只能处理 `undefined`/`null`，但无法捕获**抛出的异常**。在 HTTP 非安全上下文或部分移动浏览器中，访问 `Notification.permission` 会抛出 `SecurityError`，导致整个模块加载失败 → 页面白屏/报错。
+
+**修复**: 将 `Notification` 访问包裹在 try-catch 函数中：
+```ts
+function getNotificationGranted(): boolean {
+  try {
+    if (typeof Notification === 'undefined') return false
+    return Notification.permission === 'granted'
+  } catch {
+    return false
+  }
+}
+const notificationGranted = ref(getNotificationGranted())
+```
+
+**教训**:
+- 浏览器 API 访问（即使用了可选链）必须在 try-catch 内，尤其在 HTTP 环境
+- 模块顶层的表达式在 import 时就执行，出错会阻止整个组件渲染
+- `Notification` / `navigator.serviceWorker` / `navigator.storage` 等 API 在非 HTTPS 下行为不可预测
+
+### 🐛 P9 — 移动端 FloatingAuth 与 ChatBot 间距消失
+
+**问题**: 移动端滚动时用户登录图标下滑与聊天助手重叠，间距消失。
+
+**根因**: `FloatingAuth.vue` 的 `bottom: 88px`（移动端）和 `bottom: 100px`（桌面端）未考虑 `env(safe-area-inset-bottom)`。iPhone 有 ~34px 的 Home Indicator 安全区，ChatBot 已经用 `calc(16px + env(safe-area-inset-bottom, 0))` 补偿了，但 FloatingAuth 没有。
+
+**计算**（以 iPhone 为例，safe-bottom = 34px）：
+- ChatBot 触发器顶部 = `16px + 34px + 48px` = 98px（距视口底部）
+- FloatingAuth 底部 = `88px`（距视口底部）
+- 结果：88 < 98 → **重叠 10px**
+
+**修复**:
+- 桌面：`bottom: calc(92px + env(safe-area-inset-bottom, 0px))`（= 28px 间距 + 56px ChatBot 高度 + 8px 间隙）
+- 移动端：`bottom: calc(72px + env(safe-area-inset-bottom, 0px))`（= 16px 间距 + 48px ChatBot 高度 + 8px 间隙）
+- `right` 值与 ChatBot 对齐为 `16px`
+
+**教训**:
+- 所有 `position: fixed` 的角落元素必须统一使用 `env(safe-area-inset-*)`
+- 两个相邻 fixed 元素的 `bottom` 值必须联动计算，任一改动需检查另一个
+- 桌面/移动端断点不一致（640 vs 768）会导致中间宽度下定位错位
+
+### 🐛 P10 — PowerShell curl 语法陷阱
+
+**问题**: PowerShell 中 `curl` 是 `Invoke-WebRequest` 的别名，`-H` / `-d` 等 curl 参数不兼容。
+
+**修复**: 使用 `curl.exe -X POST ... -H "Content-Type: application/json" -d "{...}"`（加 `.exe` 后缀调用真正的 curl）。
+
+### PM2 配置文件模板 (ecosystem.config.cjs)
+
+```js
+module.exports = {
+  apps: [{
+    name: 'lwyjr',
+    script: 'server/index.mjs',
+    cwd: __dirname,
+    env: {
+      PORT: 80,
+      NODE_ENV: 'production',
+      AI_API_KEY: 'your-key-here',
+      JWT_SECRET: 'your-random-secret-here'
+    }
+  }]
+}
+```
+
+### Windows Server 部署完整流程
+
+```cmd
+:: 1. 上传 dist/ 到服务器
+:: 2. 安装依赖（纯 JS，无需编译工具）
+cd C:\inetpub\wwwroot\dist
+npm install --omit=dev
+
+:: 3. 创建 ecosystem.config.cjs（含环境变量）
+
+:: 4. 停 IIS（如果 80 端口冲突）
+iisreset /stop
+
+:: 5. PM2 启动
+pm2 start ecosystem.config.cjs
+pm2 save
+
+:: 6. 验证
+curl.exe -X POST http://localhost/api/auth/login -H "Content-Type: application/json" -d "{\"email\":\"test@test.com\",\"password\":\"123456\"}"
+```
